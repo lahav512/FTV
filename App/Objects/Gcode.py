@@ -1,3 +1,4 @@
+import os
 
 
 class Gcode:
@@ -5,9 +6,11 @@ class Gcode:
     def __init__(self, file_fullname: str):
 
         self.file_fullname: file_fullname
-        self.origin_data: str
-        self.data: str
+        self.origin_data = []
+        self.data: []
         self.properties = self.Properties()
+
+        self.load(file_fullname)
 
     @staticmethod
     def get_value_by_command(command_name, value_name):
@@ -18,10 +21,34 @@ class Gcode:
         pass
 
     def load(self, fullname):
-        pass
+        if "." in fullname:
+            if os.path.basename(fullname).split(".")[1] != "gcode":
+                raise Exception("Gcode file must be a '*.gcode' type.")
+        else:
+            raise Exception("Gcode file must be a '*.gcode' type.")
+
+        gcode_file = open(fullname, 'r', encoding='utf-8')
+        self.origin_data = gcode_file.readlines()
 
     def clean(self):
-        pass
+
+        line_count = 0
+        lines_amount = len(self.origin_data)
+
+        while lines_amount > line_count:
+
+            gcode_line = self.origin_data[line_count].split("\n")[0]
+
+            while gcode_line[0] == " ":
+                gcode_line = gcode_line[1:]
+
+            gcode_line = self.origin_data[line_count].split(";")[0]
+
+            self.origin_data[line_count] = gcode_line
+
+            line_count += 1
+
+        self.data = self.origin_data.copy()
 
     class Properties:
         def __init__(self):

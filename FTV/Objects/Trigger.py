@@ -1,0 +1,4 @@
+
+
+class Trigger:
+    pass
