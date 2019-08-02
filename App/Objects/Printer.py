@@ -1,4 +1,3 @@
-from App.Variables.Print import Print
 
 
 class Printer:
@@ -21,7 +20,7 @@ class Printer:
 
         self.tool_heads = [self.ToolHead()]
 
-        self.prints = []
+        self.prints = {}
         self.prints_sorted = []
 
     def send(self, command):
@@ -33,11 +32,11 @@ class Printer:
     def is_connected(self):
         pass
 
-    def add_print(self):
-        self.prints.append(Print())
+    def add_print(self, _print, id_number):
+        self.prints[id_number] = _print
 
-    def remove_print(self, index):
-        del self.prints[index]
+    def remove_print(self, id_number):
+        del self.prints[id_number]
 
     class Axis:
         def __init__(self):

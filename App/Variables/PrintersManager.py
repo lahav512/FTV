@@ -1,4 +1,4 @@
-from App.Variables.Printer import Printer
+from App.Objects.Printer import Printer
 
 
 class PrintersManager:

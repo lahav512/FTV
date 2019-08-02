@@ -9,3 +9,7 @@ class VariablesManager:
 
     def __init__(self):
         pass
+
+    @classmethod
+    def add(cls, key, value):
+        cls.__setattr__(key, value)

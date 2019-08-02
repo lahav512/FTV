@@ -2,10 +2,9 @@
 
 class Gcode:
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, file_fullname: str):
 
-        self.file_fullname: str
+        self.file_fullname: file_fullname
         self.origin_data: str
         self.data: str
         self.properties = self.Properties()
