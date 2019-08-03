@@ -16,7 +16,7 @@ class Main(FrameWork):
             AddPrintToEnvironment()
         )
 
-        for k in range(5):
+        for k in range(1):
 
             self.features_manager.get(0)\
                 .load_gcode_file("C:/Users/user/PycharmProjects/ftv/App/ExampleGcodes/AI3M_Beak_B_R_3.gcode")
