@@ -1,4 +1,3 @@
-import signal
 
 
 class Trigger:

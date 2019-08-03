@@ -5,24 +5,24 @@ from App.Managers.VM import VM
 from App.Managers.TM import TM
 
 
-class Main:
+class Main(FrameWork):
     def __init__(self):
-        self.frame_work = FrameWork()
+        super().__init__()
 
-        self.frame_work.set_variables_manager(VM)
-        self.frame_work.set_triggers_manager(TM)
+        self.set_variables_manager(VM)
+        # self.frame_work.set_triggers_manager(TM)
 
-        self.frame_work.features_manager.add_multiple(
+        self.features_manager.add_multiple(
             AddPrintToEnvironment()
         )
 
-        self.frame_work.features_manager.get(0)\
-            .load_gcode_file("C:/Users/user/PycharmProjects/ftv/App/ExampleGcodes/AI3M_Beak_B_R_3.gcode")
+        for k in range(5):
 
-        VM.prints_manager.prints[1] = "B"
-        #
-        # self.frame_work.features_manager.get(0)\
-        #     .clean_file(0)
+            self.features_manager.get(0)\
+                .load_gcode_file("C:/Users/user/PycharmProjects/ftv/App/ExampleGcodes/AI3M_Beak_B_R_3.gcode")
+
+            self.features_manager.get(0)\
+                .clean_file(k)
 
 
 if __name__ == '__main__':

@@ -35,20 +35,18 @@ class Gcode:
         line_count = 0
         lines_amount = len(self.origin_data)
 
+        data = []
+
         while lines_amount > line_count:
 
-            gcode_line = self.origin_data[line_count].split("\n")[0]
+            gcode_line = self.origin_data[line_count].split("\n")[0].split(";")[0]
 
-            while gcode_line[0] == " ":
-                gcode_line = gcode_line[1:]
-
-            gcode_line = self.origin_data[line_count].split(";")[0]
-
-            self.origin_data[line_count] = gcode_line
+            if gcode_line:
+                data.append(gcode_line)
 
             line_count += 1
 
-        self.data = self.origin_data.copy()
+        self.data = data
 
     class Properties:
         def __init__(self):
