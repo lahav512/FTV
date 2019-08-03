@@ -1,16 +1,26 @@
 from FTV.Managers.FeaturesManager import FeaturesManager
-# from FTV.Managers.VariablesManager import VariablesManager
-from App.Variables.VM import VM as VariablesManager
 
 
 class FrameWork:
     def __init__(self):
+        self.variables_manager = None
+        self.triggers_manager = None
         self.features_manager = FeaturesManager()
-        self.variables_manager = VariablesManager()
 
-    def __setattr__(self, key, value):
-        self._set_attr(key, value)
+    # def __setattr__(self, key, value):
+    #     self._set_attr(key, value)
+    #
+    # @classmethod
+    # def _set_attr(cls, key, value):
+    #     setattr(cls, key, value)
 
-    @classmethod
-    def _set_attr(cls, key, value):
-        setattr(cls, key, value)
+    def set_variables_manager(self, variables_manager):
+        self.variables_manager = variables_manager
+
+    def set_triggers_manager(self, triggers_manager):
+        self.triggers_manager = triggers_manager
+
+
+class MainApp:
+    def __init__(self):
+        self.frame_work = FrameWork()

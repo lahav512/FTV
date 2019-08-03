@@ -1,7 +1,9 @@
 from FTV.Objects.Feature import Feature
 
-from App.Variables.VM import VM
+from App.Managers.VM import VM
 from App.Objects.Print import Print
+
+from App.Managers.TM import TM
 
 
 class AddPrintToEnvironment(Feature):
@@ -10,6 +12,7 @@ class AddPrintToEnvironment(Feature):
         self.set_enabled()
 
         # Define Triggers
+        # TM.DictFirstItemAdded(VM.prints_manager.prints)
 
     @staticmethod
     def load_gcode_file(gcode_file_fullname: str):

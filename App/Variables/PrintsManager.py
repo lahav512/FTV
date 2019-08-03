@@ -1,7 +1,8 @@
+from App.Managers.TM import TM
 from App.Objects.Print import Print
 
 
-class PrintsManager:
+class PrintsManager(TM.DictFirstItemAdded):
     next_id = 0
 
     def __init__(self):
