@@ -24,12 +24,31 @@ class TM:
         TM.links[id(variable)] = Link(self, trigger, method)
 
     @classmethod
-    def renameKey(self, old_id, new_id):
+    def renameKey(cls, old_id, new_id):
         if old_id == new_id:
             return
-        link = self.links[old_id]
-        del self.links[old_id]
-        self.links[new_id] = link
+        link = cls.links[old_id]
+        del cls.links[old_id]
+        cls.links[new_id] = link
+
+
+class LM:
+    _debugging_mode = False
+
+    def __init__(self):
+        self.setOptions()
+
+    def setOptions(self):
+        self.setDebuggingMode(True)
+
+    @classmethod
+    def setDebuggingMode(cls, mode):
+        cls._debugging_mode = mode
+
+    @classmethod
+    def print(cls, message):
+        if cls._debugging_mode:
+            print(message)
 
 
 class VP:
@@ -60,7 +79,7 @@ class VP:
                 link = TM.links[new_var_id]
                 link.trigger.setArgs(old_var, new_var)
                 if link.trigger.condition():
-                    print("Change: " + str(key) + " = " + str(value))
+                    # print("Change: " + str(key) + " = " + str(value))
                     link.method()
 
         super().__setattr__(key, value)
@@ -70,6 +89,9 @@ class VP:
 
     def setTriggers(self):
         pass
+
+    def print(self, message):
+        LM.print(message)
 
     def hold(self):
         self._hold = True
@@ -120,8 +142,6 @@ class Vector:
     def update_r_and_theta(self):
         self.update_theta()
         self.update_r()
-        print("\ttheta = " + str(self.theta))
-        print("\tr = " + str(self.r))
 
     def update_x(self):
         self.x = self.r*cos(self.theta * pi / 180)
@@ -132,8 +152,6 @@ class Vector:
     def update_x_and_y(self):
         self.update_x()
         self.update_y()
-        print("\tx = " + str(self.x))
-        print("\ty = " + str(self.y))
 
 
 class CustomVector(Vector, VP):
@@ -144,11 +162,15 @@ class CustomVector(Vector, VP):
     def update_r_and_theta(self):
         self.hold()
         super(CustomVector, self).update_r_and_theta()
+        self.print("\ttheta = " + str(self.theta))
+        self.print("\tr = " + str(self.r))
         self.release()
 
     def update_x_and_y(self):
         self.hold()
         super(CustomVector, self).update_x_and_y()
+        self.print("\tx = " + str(self.x))
+        self.print("\ty = " + str(self.y))
         self.release()
 
 
@@ -156,7 +178,6 @@ class VM(VP):
     vector = CustomVector(3, 4)
 
     def setTriggers(self):
-        pass
         self.addTrigger(self.vector.x, FloatChanged, self.vector.update_r_and_theta)
         self.addTrigger(self.vector.y, FloatChanged, self.vector.update_r_and_theta)
         # self.addTrigger(self.vector.r, FloatChanged, self.vector.update_x_and_y)
@@ -166,11 +187,28 @@ class VM(VP):
 class FW:
     tm = None
     vm = None
+    lm = None
 
     def __init__(self):
-        self.setTriggerManager(TM)
-        self.setVariableManager(VM)
+        self.setManagers()
         self.vm.setTriggers()
+
+    def setManagers(self):
+        pass
+
+    def setTriggerManager(self, tm):
+        self.tm = tm()
+
+    def setVariableManager(self, vm):
+        self.vm = vm()
+
+    def setLogManager(self, lm):
+        self.lm = lm()
+
+
+class App(FW):
+    def __init__(self):
+        super().__init__()
 
         start = time()
         self.myActions()
@@ -181,16 +219,15 @@ class FW:
         print("Total time: " + str(total_time))
         print("Time per action: " + str(time_per_action))
 
+    def setManagers(self):
+        self.setTriggerManager(TM)
+        self.setVariableManager(VM)
+        self.setLogManager(LM)
+
     def myActions(self):
         for k in range(1, 1000):
             self.vm.vector.x = k
 
-    def setTriggerManager(self, tm):
-        self.tm = tm()
 
-    def setVariableManager(self, vm):
-        self.vm = vm()
-
-
-FW()
+App()
 
