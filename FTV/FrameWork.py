@@ -17,6 +17,9 @@ class FrameWork:
     def set_variables_manager(self, variables_manager):
         self.variables_manager = variables_manager
 
+    def set_features_manager(self, features_manager):
+        self.features_manager = features_manager
+
     def set_triggers_manager(self, triggers_manager):
         self.triggers_manager = triggers_manager
 
