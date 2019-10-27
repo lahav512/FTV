@@ -1,5 +1,6 @@
 from math import atan, pi, sqrt, pow, sin, cos
-# Shahar was here
+from time import time
+
 
 class Link:
     def __init__(self, feature, trigger, method):
@@ -19,8 +20,8 @@ class TM:
     def __init__(self):
         pass
 
-    def addTrigger(self, var_id, trigger, method):
-        TM.links[var_id] = Link(self, trigger, method)
+    def addTrigger(self, variable, trigger, method):
+        TM.links[id(variable)] = Link(self, trigger, method)
 
     @classmethod
     def renameKey(self, old_id, new_id):
@@ -64,8 +65,8 @@ class VP:
 
         super().__setattr__(key, value)
 
-    def addTrigger(self, var_id, trigger, method):
-        TM.addTrigger(self, var_id, trigger, method)
+    def addTrigger(self, variable, trigger, method):
+        TM.addTrigger(self, variable, trigger, method)
 
     def setTriggers(self):
         pass
@@ -112,10 +113,9 @@ class Vector:
 
     def update_theta(self):
         self.theta = atan(self.y / self.x) * 180 / pi
-        # and here
 
     def update_r(self):
-        self.r = sqrt(pow(self.x,2) + pow(self.y,2))
+        self.r = sqrt(pow(self.x, 2) + pow(self.y, 2))
 
     def update_r_and_theta(self):
         self.update_theta()
@@ -156,10 +156,11 @@ class VM(VP):
     vector = CustomVector(3, 4)
 
     def setTriggers(self):
-        self.addTrigger(id(self.vector.x), FloatChanged, self.vector.update_r_and_theta)
-        self.addTrigger(id(self.vector.y), FloatChanged, self.vector.update_r_and_theta)
-        # self.addTrigger(id(self.vector.r), FloatChanged, self.vector.update_x_and_y)
-        # self.addTrigger(id(self.vector.theta), FloatChanged, self.vector.update_x_and_y)
+        pass
+        self.addTrigger(self.vector.x, FloatChanged, self.vector.update_r_and_theta)
+        self.addTrigger(self.vector.y, FloatChanged, self.vector.update_r_and_theta)
+        # self.addTrigger(self.vector.r, FloatChanged, self.vector.update_x_and_y)
+        # self.addTrigger(self.vector.theta, FloatChanged, self.vector.update_x_and_y)
 
 
 class FW:
@@ -171,10 +172,18 @@ class FW:
         self.setVariableManager(VM)
         self.vm.setTriggers()
 
+        start = time()
         self.myActions()
+        end = time()
+
+        total_time = (end - start)
+        time_per_action = total_time / 1000
+        print("Total time: " + str(total_time))
+        print("Time per action: " + str(time_per_action))
 
     def myActions(self):
-        self.vm.vector.x = 4
+        for k in range(1, 1000):
+            self.vm.vector.x = k
 
     def setTriggerManager(self, tm):
         self.tm = tm()
@@ -185,4 +194,3 @@ class FW:
 
 FW()
 
-                                                                                                # and here
