@@ -9,7 +9,7 @@ class Link:
         self.method = method
 
     @staticmethod
-    def getVarByID(id):
+    def get_var_by_id(id):
         return [x for x in globals().values() if id(x) == id]
 
 
@@ -20,11 +20,11 @@ class TM:
     def __init__(self):
         pass
 
-    def addTrigger(self, variable, trigger, method):
+    def add_trigger(self, variable, trigger, method):
         TM.links[id(variable)] = Link(self, trigger, method)
 
     @classmethod
-    def renameKey(cls, old_id, new_id):
+    def rename_key(cls, old_id, new_id):
         if old_id == new_id:
             return
         link = cls.links[old_id]
@@ -36,13 +36,13 @@ class LM:
     _debugging_mode = False
 
     def __init__(self):
-        self.setOptions()
+        self.set_options()
 
-    def setOptions(self):
-        self.setDebuggingMode(True)
+    def set_options(self):
+        self.set_debugging_mode(False)
 
     @classmethod
-    def setDebuggingMode(cls, mode):
+    def set_debugging_mode(cls, mode):
         cls._debugging_mode = mode
 
     @classmethod
@@ -75,19 +75,19 @@ class VP:
             new_var = getattr(self, key)
             new_var_id = id(new_var)
             if old_var_id in TM.links:
-                TM.renameKey(old_var_id, new_var_id)
+                TM.rename_key(old_var_id, new_var_id)
                 link = TM.links[new_var_id]
-                link.trigger.setArgs(old_var, new_var)
-                if link.trigger.condition():
+                link.trigger.set_args(old_var, new_var)
+                if link.trigger():
                     # print("Change: " + str(key) + " = " + str(value))
                     link.method()
 
         super().__setattr__(key, value)
 
-    def addTrigger(self, variable, trigger, method):
-        TM.addTrigger(self, variable, trigger, method)
+    def add_trigger(self, variable, trigger, method):
+        TM.add_trigger(self, variable, trigger, method)
 
-    def setTriggers(self):
+    def set_triggers(self):
         pass
 
     def print(self, message):
@@ -102,7 +102,10 @@ class VP:
 
 
 class Trigger:
-    def setArgs(self, old_var, new_var):
+    def __call__(self, *args, **kwargs):
+        return self.condition()
+
+    def set_args(self, old_var, new_var):
         self.old_var = old_var
         self.new_var = new_var
 
@@ -177,9 +180,9 @@ class CustomVector(Vector, VP):
 class VM(VP):
     vector = CustomVector(3, 4)
 
-    def setTriggers(self):
-        self.addTrigger(self.vector.x, FloatChanged, self.vector.update_r_and_theta)
-        self.addTrigger(self.vector.y, FloatChanged, self.vector.update_r_and_theta)
+    def set_triggers(self):
+        self.add_trigger(self.vector.x, FloatChanged, self.vector.update_r_and_theta)
+        self.add_trigger(self.vector.y, FloatChanged, self.vector.update_r_and_theta)
         # self.addTrigger(self.vector.r, FloatChanged, self.vector.update_x_and_y)
         # self.addTrigger(self.vector.theta, FloatChanged, self.vector.update_x_and_y)
 
@@ -190,19 +193,19 @@ class FW:
     lm = None
 
     def __init__(self):
-        self.setManagers()
-        self.vm.setTriggers()
+        self.set_managers()
+        self.vm.set_triggers()
 
-    def setManagers(self):
+    def set_managers(self):
         pass
 
-    def setTriggerManager(self, tm):
+    def set_trigger_manager(self, tm):
         self.tm = tm()
 
-    def setVariableManager(self, vm):
+    def set_variable_manager(self, vm):
         self.vm = vm()
 
-    def setLogManager(self, lm):
+    def set_log_manager(self, lm):
         self.lm = lm()
 
 
@@ -211,23 +214,23 @@ class App(FW):
         super().__init__()
 
         start = time()
-        self.myActions()
+        self.my_actions()
         end = time()
 
         total_time = (end - start)
-        time_per_action = total_time / 1000
+        time_per_action = total_time / 1000 / 8
         print("Total time: " + str(total_time))
         print("Time per action: " + str(time_per_action))
 
-    def setManagers(self):
-        self.setTriggerManager(TM)
-        self.setVariableManager(VM)
-        self.setLogManager(LM)
+    def set_managers(self):
+        self.set_trigger_manager(TM)
+        self.set_variable_manager(VM)
+        self.set_log_manager(LM)
 
-    def myActions(self):
+    def my_actions(self):
         for k in range(1, 1000):
+            self.vm.vector.x = k
             self.vm.vector.x = k
 
 
 App()
-
