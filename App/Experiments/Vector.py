@@ -39,7 +39,7 @@ class LM:
         self.set_options()
 
     def set_options(self):
-        self.set_debugging_mode(False)
+        self.set_debugging_mode(True)
 
     @classmethod
     def set_debugging_mode(cls, mode):
