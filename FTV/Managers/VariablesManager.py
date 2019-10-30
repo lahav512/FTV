@@ -1,4 +1,0 @@
-
-
-class VariablesManager:
-    pass

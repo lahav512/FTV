@@ -1,4 +1,4 @@
-from FTV.Objects.Trigger import Trigger
+from FTV.Objects.Triggers import Trigger
 
 
 class DictFirstItemAdded(Trigger):

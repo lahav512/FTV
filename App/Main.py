@@ -1,31 +1,42 @@
 from FTV.FrameWork import FrameWork
 
-from App.Features.AddPrintToEnvironment import AddPrintToEnvironment
-from App.Managers.VM import VM
-from App.Managers.TM import TM
+from time import time
+from App.Managers.FeatureManager import FM
+from App.Managers.TriggerManager import TM
+from App.Managers.VariableManager import VM
+from App.Managers.LogManager import LM
 
 
 class Main(FrameWork):
     def __init__(self):
         super().__init__()
 
-        self.set_variables_manager(VM)
-        # self.frame_work.set_triggers_manager(TM)
+        start = time()
+        self.my_actions()
+        end = time()
 
-        self.features_manager.add_multiple(
-            AddPrintToEnvironment()
-        )
+        total_time = (end - start)
+        time_per_action = total_time
+        print("Total time: " + str(total_time))
+        print("Time per action: " + str(time_per_action))
 
-        for k in range(1):
+    def set_managers(self):
+        self.set_feature_manager(FM)
+        self.set_trigger_manager(TM)
+        self.set_variable_manager(VM)
+        self.set_log_manager(LM)
 
-            self.features_manager.get(0)\
-                .load_gcode_file("C:/Users/user/PycharmProjects/ftv/App/ExampleGcodes/AI3M_Beak_B_R_3.gcode")
+    def my_actions(self):
+        pass
 
-            self.features_manager.get(0)\
-                .clean_file(k)
+        # for k in range(1):
+        #
+        #     self.features_manager.get(0)\
+        #         .load_gcode_file("C:/Users/user/PycharmProjects/ftv/App/ExampleGcodes/AI3M_Beak_B_R_3.gcode")
+        #
+        #     self.features_manager.get(0)\
+        #         .clean_file(k)
 
 
 if __name__ == '__main__':
     main = Main()
-    print()
-
