@@ -1,5 +1,5 @@
 from FTV.Managers.VariableManager import VariableManager
-from App.Variables.PrintsManager import PrintsManager
+from AppPackage.Variables.PrintsManager import PrintsManager
 
 
 class VM(VariableManager):
@@ -11,5 +11,5 @@ class VM(VariableManager):
         self.current_round = 0
         self.max_rounds = 10
 
-        self.gcode_file_fullname = "C:/Users/user/PycharmProjects/ftv/App/ExampleGcodes/AI3M_Beak_B_R_3.gcode"
+        self.gcode_file_fullname = "C:/Users/user/PycharmProjects/ftv/AppPackage/ExampleGcodes/AI3M_Beak_B_R_3.gcode"
 

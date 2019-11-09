@@ -1,4 +1,4 @@
-from App.Objects.Print import Print
+from AppPackage.Objects.Print import Print
 
 
 class PrintsManager:

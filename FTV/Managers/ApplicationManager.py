@@ -8,7 +8,7 @@ from FTV.Objects.Feature import Feature
 from abc import abstractmethod
 
 
-class FrameWork:
+class ApplicationManager:
     fm: FM = None
     tm: TM = None
     vm: VM = None

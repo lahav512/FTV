@@ -1,4 +1,4 @@
-from App.Objects.Gcode import Gcode
+from AppPackage.Objects.Gcode import Gcode
 
 
 class Print:

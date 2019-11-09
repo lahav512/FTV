@@ -1,6 +1,6 @@
 from FTV.Managers.FeatureManager import FeatureManager
 
-from App.Features.AddPrintToEnvironment import AddPrintToEnvironment
+from AppPackage.Features.AddPrintToEnvironment import AddPrintToEnvironment
 
 
 class FM(FeatureManager):

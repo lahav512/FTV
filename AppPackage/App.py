@@ -1,13 +1,13 @@
-from FTV.FrameWork import FrameWork
+from FTV.Managers.ApplicationManager import ApplicationManager
 
 from time import time
-from App.Managers.FeatureManager import FM
-from App.Managers.TriggerManager import TM
-from App.Managers.VariableManager import VM
-from App.Managers.LogManager import LM
+from AppPackage.Managers.FeatureManager import FM
+from AppPackage.Managers.TriggerManager import TM
+from AppPackage.Managers.VariableManager import VM
+from AppPackage.Managers.LogManager import LM
 
 
-class Main(FrameWork):
+class App(ApplicationManager):
     def __init__(self):
         start = time()
         super().__init__()
@@ -35,4 +35,4 @@ class Main(FrameWork):
 
 
 if __name__ == '__main__':
-    main = Main()
+    app = App()
