@@ -14,7 +14,7 @@ class ChangedLessThan(Any.Changed):
         self.value = value
 
     def condition(self):
-        is_changed = super().condition()
+        is_changed = super()
         if is_changed:
             if self.new_var < self.value:
                 return True
@@ -26,7 +26,7 @@ class ChangedGraterThan(Any.Changed):
         self.value = value
 
     def condition(self):
-        is_changed = super().condition()
+        is_changed = super()
         if is_changed:
             if self.new_var > self.value:
                 return True
