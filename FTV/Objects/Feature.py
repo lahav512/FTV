@@ -1,13 +1,20 @@
-from FTV.Managers.TriggerManager import TriggerManager as TM
+from FTV.Managers.VariableManager import VariableManager as VM
 from FTV.Triggers.Trigger import GetterTrigger
+import inspect
+
+vm: VM = VM._vars
 
 
-class Feature:
+class Feature(object):
     def __init__(self):
+        self._init_private_variables()
         self._init_variables()
         self.set_options()
-        self.set_triggers()
         self.create_variables()
+
+    def _init_private_variables(self):
+        self._variables = []
+        self._triggers_args = []
 
     def _init_variables(self):
         self.enabled: bool
@@ -28,4 +35,24 @@ class Feature:
         self.enabled = False
 
     def add_trigger(self, variable, trigger: GetterTrigger, method):
-        TM.add_trigger(self, variable, trigger, method)
+        self._triggers_args.append((self, trigger, method))
+
+    def _get_variables(self):
+        # Get method string
+        method_str = inspect.getsource(self.set_triggers)
+        trigger_lines = method_str.splitlines()[1:]
+
+        for line in trigger_lines:
+            if ".add_trigger(" not in line:
+                continue
+
+            variable_fullname = line.split(".add_trigger(")[1].split(",")[0].strip()
+
+            if variable_fullname.startswith("self."):
+                variable_name = variable_fullname.split(".", 2)[-1]
+            else:
+                variable_name = variable_fullname.split(".", 1)[-1]
+
+            variable_name = variable_name.split(".", 1)[-1]
+
+            self._variables.append(variable_name)

@@ -1,17 +1,12 @@
 from FTV.Managers.VariableManager import VariableManager
-from FTV.Triggers import Any
+from App.Variables.PrintsManager import PrintsManager
 
 
 class VM(VariableManager):
+    def create_variables(self):
+        self.prints_manager = PrintsManager()
+        self.last_id = None
+        self.next_id = 0
 
-    prints_manager = []
-    next_id = 0
-    FLAG = True
+        self.gcode_file_fullname = "C:/Users/user/PycharmProjects/ftv/App/ExampleGcodes/AI3M_Beak_B_R_3.gcode"
 
-    gcode_file_fullname = "C:/Users/user/PycharmProjects/ftv/App/ExampleGcodes/AI3M_Beak_B_R_3.gcode"
-
-    # def increase_next_id(self):
-    #     self.next_id += 1
-    #
-    # def set_triggers(self):
-    #     self.add_trigger(self.next_id, Any.Used, self.increase_next_id)

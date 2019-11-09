@@ -2,6 +2,7 @@ from FTV.Managers.LogManager import LogManager as LM
 from FTV.Managers.TriggerManager import TriggerManager as TM
 from FTV.Triggers.Trigger import SetterTrigger
 from abc import abstractmethod
+import functools
 
 
 class VariableParent:
@@ -12,6 +13,9 @@ class VariableParent:
         self._current_key = None
         self._current_value = None
 
+    # def __set__(self, instance, owner):
+    #     return functools.partial(self.function, instance)
+
     def __setattr__(self, key, value):
         if key in self._forbidden:
             super().__setattr__(key, value)
@@ -21,21 +25,21 @@ class VariableParent:
             self._current_value = value
             super().__setattr__(key, value)
             return
-        if key in dir(self):
-            old_var = getattr(self, key)
-            old_var_id = id(old_var)
-            super().__setattr__(key, value)
-            new_var = getattr(self, key)
-            new_var_id = id(new_var)
-            if old_var_id in TM.setter_links:
-                TM.rename_key(old_var_id, new_var_id)
-                link = TM.setter_links[new_var_id]
-                link.trigger.set_args(old_var, new_var)
+
+        if self in TM.setter_links:
+            if key in TM.setter_links[self]:
+                old_var = getattr(self, key)
+                super().__setattr__(key, value)
+                link = TM.setter_links[self][key]
+                link.trigger.set_args(old_var, value)
                 if link.trigger():
                     # print("Change: " + str(key) + " = " + str(value))
                     link.method()
 
-        super().__setattr__(key, value)
+            else:
+                super().__setattr__(key, value)
+        else:
+            super().__setattr__(key, value)
 
     # def __getattribute__(self, item):
     #     var_id = id(super().__getattribute__(item))
@@ -46,11 +50,11 @@ class VariableParent:
     #             link.method()
 
     # @abstractmethod
-    def set_triggers(self):
-        pass
+    # def set_triggers(self):
+    #     pass
 
-    def add_trigger(self, variable, trigger: SetterTrigger, method):
-        TM.add_trigger(self, variable, trigger, method)
+    # def add_trigger(self, variable, trigger: SetterTrigger, method):
+    #     TM.add_trigger(self, variable, trigger, method)
 
     def print(self, message):
         LM.print(message)

@@ -21,9 +21,9 @@ class Main(FrameWork):
         print("Time per action: " + str(time_per_action))
 
     def set_managers(self):
+        self.set_variable_manager(VM)
         self.set_feature_manager(FM)
         self.set_trigger_manager(TM)
-        self.set_variable_manager(VM)
         self.set_log_manager(LM)
 
     def my_actions(self):

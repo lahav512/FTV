@@ -1,7 +1,6 @@
 
 
 class Printer:
-
     def __init__(self):
         self.id: int
 
