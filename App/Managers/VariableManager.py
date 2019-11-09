@@ -8,5 +8,8 @@ class VM(VariableManager):
         self.last_id = None
         self.next_id = 0
 
+        self.current_round = 0
+        self.max_rounds = 10
+
         self.gcode_file_fullname = "C:/Users/user/PycharmProjects/ftv/App/ExampleGcodes/AI3M_Beak_B_R_3.gcode"
 

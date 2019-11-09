@@ -14,7 +14,9 @@ class FeatureManager:
 
     def add_features(self, *features):
         for feature in features:
-            self.features.append(feature())
+            temp_feature: Feature = feature()
+            if temp_feature._enabled:
+                self.features.append(feature())
 
     def _init_features(self):
         for feature in self.features:

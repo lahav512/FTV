@@ -9,11 +9,18 @@ from App.Managers.LogManager import LM
 
 class Main(FrameWork):
     def __init__(self):
-        super().__init__()
-
         start = time()
-        self.my_actions()
+        super().__init__()
         end = time()
+
+        # start = time()
+        # self.set_managers()
+        #
+        # for k in range(100):
+        #     self.fm.features[0].load_gcode_file()
+        #     self.fm.features[0].clean_file()
+        #
+        # end = time()
 
         total_time = (end - start)
         time_per_action = total_time
@@ -25,17 +32,6 @@ class Main(FrameWork):
         self.set_feature_manager(FM)
         self.set_trigger_manager(TM)
         self.set_log_manager(LM)
-
-    def my_actions(self):
-        pass
-
-        # for k in range(1):
-        #
-        #     self.features_manager.get(0)\
-        #         .load_gcode_file("C:/Users/user/PycharmProjects/ftv/App/ExampleGcodes/AI3M_Beak_B_R_3.gcode")
-        #
-        #     self.features_manager.get(0)\
-        #         .clean_file(k)
 
 
 if __name__ == '__main__':

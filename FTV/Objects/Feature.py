@@ -17,7 +17,7 @@ class Feature(object):
         self._triggers_args = []
 
     def _init_variables(self):
-        self.enabled: bool
+        self._enabled = True
 
     def set_options(self):
         pass
@@ -29,10 +29,10 @@ class Feature(object):
         pass
 
     def set_enabled(self):
-        self.enabled = True
+        self._enabled = True
 
     def set_disabled(self):
-        self.enabled = False
+        self._enabled = False
 
     def add_trigger(self, variable, trigger: GetterTrigger, method):
         self._triggers_args.append((self, trigger, method))
