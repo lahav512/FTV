@@ -1,6 +1,8 @@
 from FTV.Managers.VariableManager import VariableManager
 from AppPackage.Variables.PrintsManager import PrintsManager
 
+import os
+
 
 class VM(VariableManager):
     def create_variables(self):
@@ -9,7 +11,8 @@ class VM(VariableManager):
         self.next_id = 0
 
         self.current_round = 0
-        self.max_rounds = 10
+        self.max_rounds = 4
 
-        self.gcode_file_fullname = "C:/Users/user/PycharmProjects/ftv/AppPackage/ExampleGcodes/AI3M_Beak_B_R_3.gcode"
+
+        self.gcode_file_fullname = os.getcwd().replace("\\", "/") + "/ExampleGcodes/AI3M_Beak_B_R_3.gcode"
 
