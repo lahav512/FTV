@@ -1,13 +1,7 @@
 import abc
 import sys
 
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLayout
-
-
-class Layout(QLayout):
-    @abc.abstractmethod
-    def set_container(self):
-        pass
+from PyQt5.QtWidgets import QApplication, QWidget, QLayout
 
 class Cell:
     @abc.abstractmethod
@@ -27,13 +21,27 @@ class MyCell(Cell):
 
 class Container:
     layout: QLayout = None
+    __window = None
+    __app = None
+    __container = None
+    print(__name__)
 
     def __init__(self):
-        self.setup_layout()
+        self.__setup_variables()
+        self.setup_ui()
+        self.__window.setLayout(self.layout)
         self.add_cells()
 
+    @classmethod
+    def __setup_variables(cls):
+        cls.__window = QWidget()
+
     @abc.abstractmethod
-    def setup_layout(self):
+    def setup_ui(self):
+        pass
+
+    @abc.abstractmethod
+    def set_item(self, *args):
         pass
 
     @classmethod
@@ -41,32 +49,13 @@ class Container:
     def add_cells(cls):
         pass
 
-    def show(self):
-        pass
-
-class MyContainer(Container):
-    def setup_layout(self):
-
-        self.bottom_lay = QHBoxLayout()
-
-        self.main_lay = QVBoxLayout()
-        self.main_lay.addLayout(self.bottom_lay)
+    @classmethod
+    def show(cls):
+        cls.__window.show()
 
     @classmethod
-    def add_cells(cls):
-        cls.a = MyCell()
-        cls.b = MyCell()
-        cls.c = MyCell()
-
-class Main(QWidget):
-    def __init__(self):
-        super().__init__()
-        MyContainer()
-        MyContainer.a.set_layout()
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = Main()
-    ex.show()
-    sys.exit(app.exec_())
+    def show_demo(cls):
+        cls.__app = QApplication(sys.argv)
+        cls.__container = cls()
+        cls.__container.show()
+        sys.exit(cls.__app.exec_())
