@@ -1,9 +1,8 @@
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QFont
+
 from PyQt5.QtWidgets import (QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QFrame, QWidget, QStackedLayout, QLayout,
                              QStackedWidget)
 
-from AppPackage.Experiments.GeneralObjects.Container import Container, MyCell
+from AppPackage.Experiments.GeneralObjects.Container import Container
 
 FONT = "Arial"
 FONT_SIZE = 10
@@ -17,15 +16,10 @@ class MainWindow(Container):
     @classmethod
     def setupUI(cls):
 
-        cls.frame_a = QStackedWidget()
-        cls.frame_b = QStackedWidget()
-        cls.frame_c = QStackedWidget()
-        cls.frame_d = QStackedWidget()
-
-        cls._setID(cls.frame_a, "A")
-        cls._setID(cls.frame_b, "B")
-        cls._setID(cls.frame_c, "C")
-        cls._setID(cls.frame_d, "D")
+        cls._setID(QStackedWidget(), "A")
+        cls._setID(QStackedWidget(), "B")
+        cls._setID(QStackedWidget(), "C")
+        cls._setID(QStackedWidget(), "D")
 
         cls.left_layout = QVBoxLayout()
         cls.left_layout.setContentsMargins(0,0,0,0)

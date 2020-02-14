@@ -48,7 +48,6 @@ class Container:
         if frame_id is None:
             frame_id = len(cls.frames)
 
-        frame: QWidget
         cls.frames[frame_id] = frame
 
     @abc.abstractmethod
@@ -85,7 +84,8 @@ class Container:
             label.setFont(QFont("Arial", 14))
             label.setAlignment(QtCore.Qt.AlignCenter)
             frame.addWidget(label)
-            frame.setStyleSheet("background-color:blue;");
+            frame.setStyleSheet("background-color:skyBlue;");
+
 
         cls.__container.show()
         sys.exit(cls.__app.exec_())

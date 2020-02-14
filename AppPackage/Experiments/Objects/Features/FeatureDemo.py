@@ -1,10 +1,11 @@
-
+from AppPackage.Experiments.GeneralObjects.Feature import Feature
 from AppPackage.Experiments.Objects.Containers.Dialog import Dialog, Dialog2, Dialog3, Dialog4
 from AppPackage.Experiments.Objects.Containers.MainWindow import MainWindow
+from AppPackage.Experiments.SystemObjects import UIPlatforms
 
 
-class FeatureDemo:
-    def __init__(self):
+class FeatureDemo(Feature):
+    def init(self):
         txt_question = "Would you like to answer the question?"
         btn_yes = "Yes"
         btn_no = "No"
@@ -20,12 +21,15 @@ class FeatureDemo:
         btn_no = "I am not"
         Dialog3.setItem(txt_question, btn_yes, btn_no)
 
-        # txt_question = "Would you like to answer the question?"
-        # btn_yes = "Yes"
-        # btn_no = "No"
-        # Dialog4.setItem(txt_question, btn_yes, btn_no)
+        txt_question = "Would you like to answer the question?"
+        btn_yes = "Yes"
+        btn_no = "No"
+        Dialog4.setItem(txt_question, btn_yes, btn_no)
 
         MainWindow.setCell(Dialog, "A")
         MainWindow.setCell(Dialog2, "B")
         MainWindow.setCell(Dialog3, "C")
-        # MainWindow.setCell(Dialog4, "C")
+        MainWindow.setCell(Dialog4, "D")
+
+    # def setSettings(self):
+    #     self.setUIPlatform(UIPlatforms.PyQt5)

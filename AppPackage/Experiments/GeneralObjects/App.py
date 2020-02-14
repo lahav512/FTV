@@ -3,12 +3,15 @@ import sys
 
 from PyQt5.QtWidgets import QApplication
 
+from AppPackage.Experiments.GeneralObjects.Feature import Feature
+
 
 global __app
 
 
-class App:
+class App(Feature):
     def __init__(self):
+        super().__init__()
         __app = QApplication(sys.argv)
 
         self.initContainers()

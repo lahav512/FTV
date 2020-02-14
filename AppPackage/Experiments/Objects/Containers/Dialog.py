@@ -1,7 +1,7 @@
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QPushButton, QLabel
+from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QWidget
 
-from AppPackage.Experiments.GeneralObjects.Container import Container, MyCell
+from AppPackage.Experiments.GeneralObjects.Container import Container
 
 FONT = "Arial"
 FONT_SIZE = 10
@@ -33,9 +33,16 @@ class Dialog(Container):
         cls.bottom_lay.addWidget(cls.btn_yes)
         cls.bottom_lay.addWidget(cls.btn_no)
 
+        cls.sub_layout = QVBoxLayout()
+        cls.sub_layout.addLayout(cls.top_lay)
+        cls.sub_layout.addLayout(cls.bottom_lay)
+
+        cls.widget = QWidget()
+        cls.widget.setLayout(cls.sub_layout)
+        cls.widget.setContentsMargins(10,10,10,10)
+
         cls.layout = QVBoxLayout()
-        cls.layout.addLayout(cls.top_lay)
-        cls.layout.addLayout(cls.bottom_lay)
+        cls.layout.addWidget(cls.widget)
         # return layout
 
     @classmethod
