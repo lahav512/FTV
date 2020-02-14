@@ -1,7 +1,9 @@
 import abc
 import sys
 
-from PyQt5.QtWidgets import QApplication, QWidget, QLayout, QFrame
+from PyQt5 import QtCore
+from PyQt5.QtGui import QFont
+from PyQt5.QtWidgets import QApplication, QWidget, QLayout, QFrame, QLabel
 
 
 class Cell:
@@ -33,6 +35,7 @@ class Container:
     def __init__(self):
         self.__setupVariables()
         self.setupUI()
+        self.layout.setContentsMargins(0,0,0,0)
         self.__window.setLayout(self.layout)
 
     @classmethod
@@ -44,6 +47,8 @@ class Container:
         if frame_id is None:
             frame_id = len(cls.frames)
 
+        frame: QWidget
+        frame.setContentsMargins(0,0,0,0)
         cls.frames[frame_id] = frame
 
     @abc.abstractmethod
@@ -67,6 +72,35 @@ class Container:
     @classmethod
     def showDemo(cls):
         cls.__app = QApplication(sys.argv)
+
         cls.__container = cls()
+
+        # Layout manipulations
+        frames_len = len(cls.__container.frames)
+        for index in range(frames_len):
+            frame: QWidget = list(cls.frames.values())[index]
+            key = list(cls.frames)[index]
+
+            label = QLabel(key)
+            label.setFont(QFont("Arial", 14))
+            label.setAlignment(QtCore.Qt.AlignCenter)
+            frame.addWidget(label)
+            frame.setStyleSheet("background-color:blue;");
+
+
         cls.__container.show()
         sys.exit(cls.__app.exec_())
+
+
+    @classmethod
+    def setCell(cls, container, id):
+        if cls.getCell(id).count() == 1:
+            cls.getCell(id).removeWidget(cls.getCell(id).currentWidget())
+
+        widget = QWidget()
+        widget.setLayout(container.layout)
+        cls.getCell(id).addWidget(widget)
+
+    @classmethod
+    def getCell(cls, id):
+        return cls.frames[id]

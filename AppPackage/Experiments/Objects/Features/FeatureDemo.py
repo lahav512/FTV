@@ -20,12 +20,12 @@ class FeatureDemo:
         btn_no = "I am not"
         Dialog3.setItem(txt_question, btn_yes, btn_no)
 
-        txt_question = "Would you like to answer the question?"
-        btn_yes = "Yes"
-        btn_no = "No"
-        Dialog4.setItem(txt_question, btn_yes, btn_no)
+        # txt_question = "Would you like to answer the question?"
+        # btn_yes = "Yes"
+        # btn_no = "No"
+        # Dialog4.setItem(txt_question, btn_yes, btn_no)
 
         MainWindow.setCell(Dialog, "A")
         MainWindow.setCell(Dialog2, "B")
         MainWindow.setCell(Dialog3, "C")
-        MainWindow.setCell(Dialog4, "C")
+        # MainWindow.setCell(Dialog4, "C")
