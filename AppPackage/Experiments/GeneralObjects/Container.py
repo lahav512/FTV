@@ -5,6 +5,8 @@ from PyQt5 import QtCore
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QApplication, QWidget, QLayout, QFrame, QLabel
 
+from AppPackage.Experiments.GeneralObjects.Feature import Feature
+
 
 class Cell:
     @abc.abstractmethod
@@ -32,12 +34,14 @@ class Container:
 
     _is_show = False
 
-    def __init__(self):
-        self.__setupVariables()
-        self.setupUI()
-        self.layout.setContentsMargins(0,0,0,0)
-        self.layout.setSpacing(2)
-        self.__window.setLayout(self.layout)
+    @classmethod
+    def __init__(cls):
+        # cls = Feature.ui_platform.Container
+        cls.__setupVariables()
+        cls.setupUI()
+        cls.layout.setContentsMargins(0,0,0,0)
+        cls.layout.setSpacing(2)
+        cls.__window.setLayout(cls.layout)
 
     @classmethod
     def __setupVariables(cls):
