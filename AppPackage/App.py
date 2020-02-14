@@ -35,4 +35,4 @@ class App(ApplicationManager):
 
 
 if __name__ == '__main__':
-    app = App()
+    __app = App()

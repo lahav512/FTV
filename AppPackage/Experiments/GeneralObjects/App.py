@@ -4,25 +4,26 @@ import sys
 from PyQt5.QtWidgets import QApplication
 
 
-global app
+global __app
 
 
 class App:
     def __init__(self):
-        app = QApplication(sys.argv)
+        __app = QApplication(sys.argv)
 
-        self.init_containers()
-        self.init_features()
+        self.initContainers()
+        self.initFeatures()
         self.start()
 
-        sys.exit(app.exec_())
+        # sys.exit(__app.exec_())
+        __app.exec_()
 
     @abc.abstractmethod
-    def init_containers(self):
+    def initContainers(self):
         pass
 
     @abc.abstractmethod
-    def init_features(self):
+    def initFeatures(self):
         pass
 
     @abc.abstractmethod

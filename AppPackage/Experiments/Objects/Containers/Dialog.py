@@ -1,5 +1,5 @@
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QLayout, QPushButton, QLabel
+from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QPushButton, QLabel
 
 from AppPackage.Experiments.GeneralObjects.Container import Container, MyCell
 
@@ -16,7 +16,7 @@ class Dialog(Container):
     btn_no: QPushButton = None
 
     @classmethod
-    def setup_ui(cls):
+    def setupUI(cls):
 
         cls.question_label = QLabel(cls.txt_question)
         cls.question_label.setFont(QFont(FONT, FONT_SIZE))
@@ -39,13 +39,13 @@ class Dialog(Container):
         # return layout
 
     @classmethod
-    def add_cells(cls):
+    def addCells(cls):
         cls.a = MyCell()
         cls.b = MyCell()
         cls.c = MyCell()
 
     @classmethod
-    def set_item(cls, question, yes, no):
+    def setItem(cls, question, yes, no):
         cls.question_label.setText(question)
         cls.btn_yes.setText(yes)
         cls.btn_no.setText(no)
@@ -53,5 +53,11 @@ class Dialog(Container):
 class Dialog2(Dialog):
     pass
 
+class Dialog3(Dialog):
+    pass
+
+class Dialog4(Dialog):
+    pass
+
 if __name__ == '__main__':
-    Dialog.show_demo()
+    Dialog.showDemo()
