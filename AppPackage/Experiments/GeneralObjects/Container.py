@@ -36,6 +36,7 @@ class Container:
         self.__setupVariables()
         self.setupUI()
         self.layout.setContentsMargins(0,0,0,0)
+        self.layout.setSpacing(2)
         self.__window.setLayout(self.layout)
 
     @classmethod
@@ -48,7 +49,6 @@ class Container:
             frame_id = len(cls.frames)
 
         frame: QWidget
-        frame.setContentsMargins(0,0,0,0)
         cls.frames[frame_id] = frame
 
     @abc.abstractmethod
@@ -86,7 +86,6 @@ class Container:
             label.setAlignment(QtCore.Qt.AlignCenter)
             frame.addWidget(label)
             frame.setStyleSheet("background-color:blue;");
-
 
         cls.__container.show()
         sys.exit(cls.__app.exec_())

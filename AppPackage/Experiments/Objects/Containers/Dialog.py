@@ -39,12 +39,6 @@ class Dialog(Container):
         # return layout
 
     @classmethod
-    def addCells(cls):
-        cls.a = MyCell()
-        cls.b = MyCell()
-        cls.c = MyCell()
-
-    @classmethod
     def setItem(cls, question, yes, no):
         cls.question_label.setText(question)
         cls.btn_yes.setText(yes)
