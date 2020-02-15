@@ -1,7 +1,6 @@
 from AppPackage.Experiments.GeneralObjects.Feature import Feature
 from AppPackage.Experiments.Objects.Containers.Dialog import Dialog, Dialog2, Dialog3, Dialog4
 from AppPackage.Experiments.Objects.Containers.MainWindow import MainWindow
-from AppPackage.Experiments.SystemObjects import UIPlatforms
 
 
 class FeatureDemo(Feature):

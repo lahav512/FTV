@@ -3,13 +3,13 @@ class LogManager:
     _debugging_mode = False
 
     def __init__(self):
-        self.set_options()
+        self.setOptions()
 
-    def set_options(self):
+    def setOptions(self):
         pass
 
     @staticmethod
-    def set_debugging_mode(mode):
+    def setDebuggingMode(mode):
         LogManager._debugging_mode = mode
 
     @classmethod
@@ -19,10 +19,10 @@ class LogManager:
                 message = ""
             print(message)
 
-    def start_app(self):
+    def startApp(self):
         self.print()
 
-    def end_app(self):
+    def endApp(self):
         self.print()
 
 

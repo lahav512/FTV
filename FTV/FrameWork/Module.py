@@ -34,7 +34,7 @@ class Module(object):
     def setupParents(self):
         pass
 
-    def addParent(self):
+    def addParent(self, parent):
         pass
 
     def setupSettings(self):
