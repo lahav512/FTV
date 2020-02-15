@@ -6,7 +6,18 @@ class Module(object):
     lm = None
 
     def __init__(self):
-        self.settings = Module.__Settings()
+        self.loadFeatures()
+        # self.setupManagers()
+        self.__setups()
+
+    # def setupManagers(self):
+    #     pass
+
+    def __setups(self):
+        self.settings = self.__class__._Settings()
+        self.setupSettings()
+        self.setupTriggers()
+        self.setupParents()
 
     def setupTriggers(self):
         pass
@@ -17,8 +28,8 @@ class Module(object):
     def loadFeatures(self):
         pass
 
-    def loadFeature(self):
-        pass
+    def loadFeature(self, feature):
+        feature()
 
     def setupParents(self):
         pass
@@ -29,7 +40,7 @@ class Module(object):
     def setupSettings(self):
         pass
 
-    class __Settings:
+    class _Settings:
         def __init__(self):
             self.enabled = True
 
