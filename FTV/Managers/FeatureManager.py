@@ -1,4 +1,4 @@
-from FTV.Objects.Feature import Feature
+from FTV.FrameWork import Feature
 from abc import abstractmethod
 
 
