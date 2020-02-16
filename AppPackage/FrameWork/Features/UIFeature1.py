@@ -16,4 +16,3 @@ class UIFeature1(UIFeature):
 
     def setupSettings(self):
         pass
-        # self.settings.setUIPlatform(0)

@@ -1,14 +1,10 @@
 import abc
 
+from FTV.FrameWork.Features import Module
 
-class VariableManager:
+
+class VariableManager(Module):
     APP_START = False
-
-    def __init__(self):
-        pass
-
-    def setTriggers(self):
-        pass
 
     def startApp(self):
         self.APP_START = True

@@ -1,5 +1,6 @@
 import abc
 import sys
+import time
 
 from PyQt5 import QtCore
 from PyQt5.QtGui import QFont

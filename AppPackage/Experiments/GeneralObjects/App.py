@@ -1,5 +1,6 @@
 import abc
 import sys
+import time
 
 from PyQt5.QtWidgets import QApplication
 
@@ -17,9 +18,8 @@ class App(Feature):
         self.initContainers()
         self.initFeatures()
         self.start()
-
-        # sys.exit(__app.exec_())
-        __app.exec_()
+        sys.exit(__app.exec_())
+        # __app.exec_()
 
     @abc.abstractmethod
     def initContainers(self):

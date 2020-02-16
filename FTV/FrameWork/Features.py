@@ -4,28 +4,14 @@ from FTV.Managers.EexecutionManager import ExecutionManager
 from FTV.Managers.FeatureManager import FeatureManager
 from FTV.Managers.LogManager import LogManager
 from FTV.Managers.UIManager import UIManager
-from FTV.Managers.VariableManager import VariableManager
 
 
-class ModuleFeature(object):
-    fm = FeatureManager()
+class Module(object):
     em = ExecutionManager()
-    vm = VariableManager()
     lm = LogManager()
 
     def __init__(self):
-        self.setupFeatures()
-        # self.setupManagers()
-        self.__setups()
-
-    # def setupManagers(self):
-    #     pass
-
-    def __setups(self):
-        self.settings = self.__class__._Settings()
-        self.setupSettings()
         self.setupTriggers()
-        self.setupParents()
 
     def setupTriggers(self):
         pass
@@ -33,17 +19,23 @@ class ModuleFeature(object):
     def addTrigger(self):
         pass
 
+class ModuleFeature(Module):
+    from FTV.Managers.VariableManager import VariableManager
+
+    vm = VariableManager()
+    fm = FeatureManager()
+
+    def __init__(self):
+        self.settings = self.__class__._Settings()
+        self.setupSettings()
+        super().__init__()
+        self.setupFeatures()
+
     def setupFeatures(self):
         pass
 
     def addFeatures(self, *features):
         self.fm.addFeatures(*features)
-
-    def setupParents(self):
-        pass
-
-    def addParent(self, parent):
-        pass
 
     def setupSettings(self):
         pass
