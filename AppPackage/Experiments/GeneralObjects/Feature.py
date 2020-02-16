@@ -14,6 +14,6 @@ class Feature:
     def setSettings(self):
         pass
 
-    @staticmethod
-    def setUIPlatform(ui_platform):
-        Feature.ui_platform = ui_platform
+    @classmethod
+    def setUIPlatform(cls, ui_platform):
+        cls.ui_platform = ui_platform

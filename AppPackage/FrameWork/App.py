@@ -1,10 +1,15 @@
-from AppPackage.FrameWork.Features.Feature1 import Feature1
-from FTV.FrameWork.App import App
+from AppPackage.FrameWork.Features.UIFeature1 import UIFeature1
+from FTV.FrameWork.Apps import UIApp
 from FTV.Managers.EexecutionManager import ExecutionManager
+from FTV.Managers.FeatureManager import FeatureManager
 from FTV.Managers.LogManager import LogManager
 from FTV.Managers.UIManager import UIManager
 from FTV.Managers.VariableManager import VariableManager
+from FTV.Objects.SystemObjects import UIPlatforms
 
+
+class FM(FeatureManager):
+    pass
 
 class EM(ExecutionManager):
     pass
@@ -18,18 +23,19 @@ class LM(LogManager):
 class UIM(UIManager):
     pass
 
-class MyApp(App):
+class App(UIApp):
+    fm = FM()
     em = EM()
     vm = VM()
     lm = LM()
     uim = UIM()
 
     def setupSettings(self):
-        self.settings.setUIPlatform(0)
+        self.settings.setUIPlatform(UIPlatforms.PyQt5)
 
-    def loadFeatures(self):
-        self.loadFeature(Feature1)
+    def setupFeatures(self):
+        self.addFeatures(UIFeature1)
 
 
 if __name__ == '__main__':
-    MyApp()
+    App()
