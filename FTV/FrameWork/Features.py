@@ -1,35 +1,59 @@
 import abc
 
+from AppPackage.Experiments.Log import Log
 from FTV.Managers.EexecutionManager import ExecutionManager
 from FTV.Managers.FeatureManager import FeatureManager
 from FTV.Managers.LogManager import LogManager
 from FTV.Managers.UIManager import UIManager
 
 
+# noinspection PyGlobalUndefined
+global variableManager
+
+
 class Module(object):
+    type = "Module"
+    is_potential_parent = False
+
     em = ExecutionManager()
     lm = LogManager()
 
     def __init__(self):
+        # if "ModuleFeature" not in map(lambda bases: bases.__name__,self.__class__.__bases__):
+        #     Log.i("initModule: " + str(self.__class__.__name__))
         self.setupTriggers()
 
     def setupTriggers(self):
         pass
 
-    def addTrigger(self):
+    def addTrigger(self, *args):
         pass
 
 class ModuleFeature(Module):
     from FTV.Managers.VariableManager import VariableManager
 
-    vm = VariableManager()
+    variableManager = VariableManager
+
+    type = "ModuleFeature"
+    is_potential_parent = True
+
+    vm: VariableManager = None
     fm = FeatureManager()
 
     def __init__(self):
+
+        Log.i("initFeature: " + str(self.__class__.__name__))
+        if self.__class__.vm is None:
+            self.__class__.vm = variableManager()
         self.settings = self.__class__._Settings()
         self.setupSettings()
+        self.__setupTriggers()
         super().__init__()
         self.setupFeatures()
+
+    def __setupTriggers(self):
+        self.addTrigger(self.vm.PRE_LOAD_FEATURES, True, self.addFeatures)
+        self.addTrigger(self.addFeatures, "finish", self.vm.POST_LOAD_FEATURES)
 
     def setupFeatures(self):
         pass
@@ -53,21 +77,24 @@ class ModuleFeature(Module):
             self.enabled = False
 
 class UIFeature(ModuleFeature):
+    type = "UIFeature"
+
     uim = UIManager()
 
     def __init__(self):
         super().__init__()
         self.settings: __class__._Settings
         self.setupUITriggers()
-        self.setupContainers()
-
-    # def __createSettings(self):
-    #     self.settings = Module._Settings()
+        self.startUIServices()
+        self.vm.POST_SETUP = True
 
     def setupUITriggers(self):
         pass
 
     def setupContainers(self):
+        pass
+
+    def startUIServices(self):
         pass
 
     class _Settings(ModuleFeature._Settings):
