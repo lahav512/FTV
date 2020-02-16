@@ -228,9 +228,9 @@ class App(FW):
         self.set_log_manager(LM)
 
     def my_actions(self):
-        for k in range(1, 1000):
+        for k in range(1, 1 + 1):
             self.vm.vector.x = k
-            self.vm.vector.x = k
+            self.vm.vector.y = k
 
 
 App()

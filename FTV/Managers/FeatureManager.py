@@ -1,11 +1,14 @@
 from abc import abstractmethod
 
 from AppPackage.Experiments.Log import Log
+from FTV.FrameWork.Features import DynamicModule
 
 
-class FeatureManager:
+class FeatureManager(DynamicModule):
+    features = []
+
     def __init__(self):
-        self.features = []
+        super().__init__()
 
     def addFeatures(self, *features):
         from FTV.FrameWork.Features import ModuleFeature

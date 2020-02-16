@@ -16,3 +16,6 @@ class UIFeature1(UIFeature):
 
     def setupSettings(self):
         pass
+
+    def setupTriggers(self):
+        self.addTrigger(self.fm.features, "Triger.List.len.Changed", "self.showPercentage")

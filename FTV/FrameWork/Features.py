@@ -2,16 +2,15 @@ import abc
 
 from AppPackage.Experiments.Log import Log
 from FTV.Managers.EexecutionManager import ExecutionManager
-from FTV.Managers.FeatureManager import FeatureManager
 from FTV.Managers.LogManager import LogManager
 from FTV.Managers.UIManager import UIManager
 
 
-# noinspection PyGlobalUndefined
-global variableManager
+# global variableManager
+# global featureManager
 
 
-class Module(object):
+class DynamicModule(object):
     type = "Module"
     is_potential_parent = False
 
@@ -21,7 +20,11 @@ class Module(object):
     def __init__(self):
         # if "ModuleFeature" not in map(lambda bases: bases.__name__,self.__class__.__bases__):
         #     Log.i("initModule: " + str(self.__class__.__name__))
+        self.setupVariables()
         self.setupTriggers()
+
+    def setupVariables(self):
+        pass
 
     def setupTriggers(self):
         pass
@@ -29,22 +32,24 @@ class Module(object):
     def addTrigger(self, *args):
         pass
 
-class ModuleFeature(Module):
+class ModuleFeature(DynamicModule):
     from FTV.Managers.VariableManager import VariableManager
-
-    variableManager = VariableManager
+    from FTV.Managers.FeatureManager import FeatureManager
 
     type = "ModuleFeature"
     is_potential_parent = True
 
     vm: VariableManager = None
-    fm = FeatureManager()
+    fm: FeatureManager = None
 
     def __init__(self):
-
         Log.i("initFeature: " + str(self.__class__.__name__))
+
         if self.__class__.vm is None:
-            self.__class__.vm = variableManager()
+            self.__class__.vm = self.__class__.VariableManager()
+        if self.__class__.fm is None:
+            self.__class__.fm = self.__class__.FeatureManager()
+
         self.settings = self.__class__._Settings()
         self.setupSettings()
         self.__setupTriggers()
