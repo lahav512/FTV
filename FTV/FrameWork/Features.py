@@ -14,9 +14,14 @@ from FTV.Objects.Variables.DynamicVariable import DynamicVariable
 
 class DynamicModule(object):
     __set_dynamic_variables = False
-    __forbidden_dynamic_variables = ("_DynamicModule__set_dynamic_variables",
-                                     "_DynamicModule__dynamic_variable_ids",
-                                     "__dict__")
+    __forbidden_dynamic_variables = (
+        "_DynamicModule__set_dynamic_variables",
+        "_DynamicModule__dynamic_variable_ids",
+        "__dict__",
+        "_DynamicModule__isForbiddenDynamicVariable",
+        "_DynamicModule__isDynamicParent",
+        "_DynamicModule__addDynamicVariable"
+    )
 
     type = "DynamicModule"
     is_potential_parent = False
@@ -56,8 +61,9 @@ class DynamicModule(object):
             super().__getattribute__(key).set(value)
             return
 
-        if self.__set_dynamic_variables:
-            if self.__isDynamicParent(value):
+        if self.__isDynamicParent(value):
+            if self.__set_dynamic_variables:
+                Log.d("{}.setup({})".format(key, value.get()))
                 super().__setattr__(key, value)
                 self.__addDynamicVariable(key)
                 return
@@ -181,7 +187,7 @@ class UIFeature(ModuleFeature):
         self.settings: __class__._Settings
         self.setupUITriggers()
         self.startUIServices()
-        self.vm.POST_SETUP = True
+        self.vm.POST_SETUP = True  # TODO lahav Remove this line!
 
     def setupUITriggers(self):
         pass
