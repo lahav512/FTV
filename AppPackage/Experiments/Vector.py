@@ -20,8 +20,9 @@ class TM:
     def __init__(self):
         pass
 
-    def add_trigger(self, variable, trigger, method):
-        TM.links[id(variable)] = Link(self, trigger, method)
+    @classmethod
+    def add_trigger(cls, variable, trigger, method):
+        cls.links[id(variable)] = Link(cls, trigger, method)
 
     @classmethod
     def rename_key(cls, old_id, new_id):
@@ -85,7 +86,7 @@ class VP:
         super().__setattr__(key, value)
 
     def add_trigger(self, variable, trigger, method):
-        TM.add_trigger(self, variable, trigger, method)
+        TM.add_trigger(variable, trigger, method)
 
     def set_triggers(self):
         pass

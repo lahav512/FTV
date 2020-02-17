@@ -11,14 +11,20 @@ class Link:
 
 class DynamicVariable(object):
     def __init__(self, value=None):
-        self.value: object = value
+        self.__value: object = value
         self.links: list[Link] = []
+
+    def set(self, value):
+        self.__value = value
+
+    def get(self):
+        return self.__value
 
     def updated(self):
         triggered_links = []
         for link in self.links:
             if link.trigger.condition():
-                triggered_links += link
+                triggered_links.append(link)
 
         map(lambda _link: _link.runAction(), triggered_links)
 
