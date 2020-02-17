@@ -58,12 +58,15 @@ class DynamicModule(object):
 
         if self.__isDynamicVariable(key):
             Log.d("{}.set({})".format(key, value))
-            super().__getattribute__(key).set(value)
+            dynamic_variable = super().__getattribute__(key)
+            old_value = dynamic_variable.get()
+            dynamic_variable.set(value)
+            self.__tm.checkTriggers(dynamic_variable, value, old_value)
             return
 
         if self.__isDynamicParent(value):
             if self.__set_dynamic_variables:
-                Log.d("{}.setup({})".format(key, value.get()))
+                # Log.d("{}.setup({})".format(key, value.get()))
                 super().__setattr__(key, value)
                 self.__addDynamicVariable(key)
                 return
@@ -124,8 +127,8 @@ class DynamicModule(object):
     def setupTriggers(self):
         pass
 
-    def addTrigger(self, *args):
-        pass
+    def addTrigger(self, variable, trigger, action, thread_id=None):
+        self.__tm.addTrigger(variable, trigger, action, thread_id)
 
 class ModuleFeature(DynamicModule):
     from FTV.Managers.VariableManager import VariableManager
