@@ -3,7 +3,7 @@ import abc
 from AppPackage.Experiments.Log import Log
 from FTV.Managers.EexecutionManager import ExecutionManager
 from FTV.Managers.LogManager import LogManager
-from FTV.Managers.TriggerManager import TriggerManager
+from FTV.Managers.TriggerManager import TriggerManager, addTriggerWrapper
 from FTV.Managers.UIManager import UIManager
 
 
@@ -82,8 +82,11 @@ class DynamicModule(object):
             return item
 
         if self.__isDynamicVariable(key):
-            # Log.d("{}.get()".format(key))
-            return item.get()
+            Log.d("{}.get()".format(key))
+            if self.__tm.is_add_trigger_active:
+                return item
+            else:
+                return item.get()
 
         return item
 
@@ -115,6 +118,7 @@ class DynamicModule(object):
     def _setupVariables(self):
         pass
 
+    @addTriggerWrapper
     def _setupTriggers(self):
         pass
 
@@ -124,6 +128,7 @@ class DynamicModule(object):
     def setupVariables(self):
         pass
 
+    @addTriggerWrapper
     def setupTriggers(self):
         pass
 

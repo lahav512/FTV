@@ -1,3 +1,5 @@
+import functools
+
 from AppPackage.Experiments.Log import Log
 from FTV.Objects.Variables.DynamicVariable import DynamicVariable
 
@@ -6,13 +8,14 @@ class TriggerManager:
     setter_links = {}
     getter_links = {}
     # preventLoop = False
+    is_add_trigger_active = False
 
     def __init__(self):
         pass
 
     @classmethod
     def addTrigger(cls, variable, trigger, action, thread_id=None):
-        cls.setter_links[id(variable)] = cls._Link(cls, trigger, action, thread_id)
+        cls.setter_links[id(variable)] = cls.Link(cls, trigger, action, thread_id)
 
     @classmethod
     def checkTriggers(cls, variable: DynamicVariable, new_value, old_value):
@@ -35,7 +38,7 @@ class TriggerManager:
         del cls.setter_links[old_id]
         cls.setter_links[new_id] = link
 
-    class _Link:
+    class Link:
         def __init__(self, feature, trigger, action, thread_id):
             self.feature = feature
             self.trigger = trigger
@@ -45,3 +48,23 @@ class TriggerManager:
         def runAction(self):
             self.feature.em.getThread(self.thread_id).start(self.action)
 
+    @staticmethod
+    class AddTriggerWrapper(object):
+        def __init__(self, func):
+            self.func = func
+
+        def __call__(self, *args, **kwargs):
+            TriggerManager.is_add_trigger_active = True
+            Log.d("is_add_trigger_active: True")
+            self.func(self, *args, **kwargs)
+            Log.d("is_add_trigger_active: False")
+            TriggerManager.is_add_trigger_active = False
+
+
+def addTriggerWrapper(func):
+    def wrapper(*args):
+        Log.d("is_add_trigger_active: True")
+        func(*args)
+        Log.d("is_add_trigger_active: False")
+
+    return wrapper

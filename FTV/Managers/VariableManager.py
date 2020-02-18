@@ -7,8 +7,8 @@ from FTV.Objects.Variables.DynamicVariable import DyBool
 
 class VariableManager(DynamicModule):
     def __init__(self):
-        super().__init__()
         Log.i("initVM: " + str(self.__class__.__name__))
+        super().__init__()
 
     def _setupVariables(self):
         self.POST_SETUP = DyBool(False)

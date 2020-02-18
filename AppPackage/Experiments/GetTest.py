@@ -1,12 +1,16 @@
 
-class DyBool(object):
-    def __init__(self, value):
-        self.value = value
 
-    def __set__(self, instance, value):
-        self.value = value
+def test(func):
+    def wrapper(*args):
+        print("->")
+        func(*args)
+        print("<-")
+
+    return wrapper
+
+@test
+def run(value):
+    print(value)
 
 
-a = DyBool(False)
-a = True
-print(type(a))
+run("lahav")
