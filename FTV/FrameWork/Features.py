@@ -62,7 +62,7 @@ class DynamicModule(object):
         pass
 
     def addTrigger(self, *args):
-        pass # TODO lahav Please choose a proper way to add triggers.
+        pass  # TODO lahav Please choose a proper way to add triggers.
 
     class _Settings:
         ui_platform = None
@@ -76,6 +76,7 @@ class DynamicModule(object):
         def setDisabled(self):
             self.enabled = False
     
+# TODO lahav Add a proper mechanism for the loaded features tree.
 class NIFeature(DynamicModule):
     def __init__(self):
         super(NIFeature, self).__init__()
