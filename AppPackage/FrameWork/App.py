@@ -24,14 +24,18 @@ class UIM(UIManager):
     pass
 
 class App(UIApp):
-    fm = FM()
-    em = EM()
-    vm = VM()
-    lm = LM()
-    uim = UIM()
+
+    @classmethod
+    def setupManagers(cls):
+        cls.fm = FM()
+        cls.em = EM()
+        cls.vm = VM()
+        cls.lm = LM()
+        cls.uim = UIM()
 
     def setupSettings(self):
-        self.settings.setUIPlatform(UIPlatforms.PyQt5)
+        pass
+    #     self.settings.setUIPlatform(UIPlatforms.PyQt5)
 
     def setupFeatures(self):
         self.addFeatures(UIFeature1)

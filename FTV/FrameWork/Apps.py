@@ -1,6 +1,6 @@
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 
-from FTV.FrameWork.Features import ModuleFeature, UIFeature
+from FTV.FrameWork.Features import NIFeature, UIFeature
 
 
 class __AbstractApp:
@@ -13,7 +13,7 @@ class __AbstractApp:
         cls.EXIT = True
 
 
-class ModuleApp(__AbstractApp, ModuleFeature):
+class NIApp(__AbstractApp, NIFeature):
     @abstractmethod
     def setupFeatures(self):
         pass
@@ -21,6 +21,7 @@ class ModuleApp(__AbstractApp, ModuleFeature):
     @abstractmethod
     def setupSettings(self):
         pass
+
 
 class UIApp(__AbstractApp, UIFeature):
     @abstractmethod
