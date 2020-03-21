@@ -17,7 +17,6 @@ class DynamicModule(object):
 
     def _setupEnvironment(self):
         self._loadBuiltinSelf()
-        self.vm.POST_BUILTIN_LOAD = True
 
     def _loadBuiltinSelf(self):
         self._setupBuiltinManagers()
@@ -50,7 +49,10 @@ class DynamicModule(object):
         self.vm.EXIT = DySwitch()
 
     def _setupBuiltinTriggers(self):
-        self.addTrigger()
+        self.addTrigger(self._loadBuiltinSelf, True, self.vm.POST_BUILTIN_LOAD, "thread.main")
+        self.addTrigger(self.vm.POST_BUILTIN_LOAD, True, self.vm.PRE_LOAD)
+        self.addTrigger(self.vm.PRE_LOAD, True, self._loadSelf)
+        self.addTrigger(self._loadSelf, True, self.vm.POST_LOAD)
 
     @classmethod
     def setupManagers(cls):
@@ -60,7 +62,7 @@ class DynamicModule(object):
         pass
 
     def addTrigger(self, *args):
-        pass
+        pass # TODO lahav Please choose a proper way to add triggers.
 
     class _Settings:
         ui_platform = None
@@ -91,6 +93,12 @@ class NIFeature(DynamicModule):
         self.vm.PRE_LOAD_FEATURES = DySwitch()
         self.vm.IS_CHILDREN_LOADED = DyBool(False)
         self.vm.POST_LOAD_FEATURES = DySwitch()
+
+    def _setupBuiltinTriggers(self):
+        super(NIFeature, self)._setupBuiltinTriggers()
+        self.addTrigger(self.vm.PRE_LOAD_FEATURES, True, self._loadChildren)
+        self.addTrigger(self._loadChildren, True, self.vm.POST_LOAD_FEATURES)
+        self.addTrigger(self.vm.POST_LOAD_FEATURES, True, self.vm.START)
 
     def _loadChildren(self):
         self.setupFeatures()
@@ -132,6 +140,13 @@ class UIFeature(NIFeature):
         self.vm.PRE_UI_LOAD = DySwitch()
         self.vm.IS_SELF_UI_LOADED = DyBool(False)
         self.vm.POST_UI_LOAD = DySwitch()
+
+    def _setupBuiltinTriggers(self):
+        super(NIFeature, self)._setupBuiltinTriggers()
+        self.addTrigger(self.vm.POST_LOAD, True, self.vm.PRE_UI_LOAD)
+        self.addTrigger(self.vm.PRE_UI_LOAD, True, self._loadUISelf)
+        self.addTrigger(self._loadUISelf, True, self.vm.POST_UI_LOAD)
+        self.addTrigger(self.vm.POST_UI_LOAD, True, self.vm.PRE_LOAD_FEATURES)
 
     def _loadUISelf(self):
         self.uim.setupUIVariables()
