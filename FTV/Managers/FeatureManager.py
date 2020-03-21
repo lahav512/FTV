@@ -10,7 +10,7 @@ class FeatureManager(DynamicModule):
     def __init__(self):
         super().__init__()
 
-    def addFeatures(self, *features):
+    def add(self, *features):
         from FTV.FrameWork.Features import NIFeature
 
         for feature in features:

@@ -1,56 +1,59 @@
 import abc
 
-from AppPackage.Experiments.Log import Log
-from FTV.Managers.EexecutionManager import ExecutionManager
-from FTV.Managers.LogManager import LogManager
-from FTV.Managers.TriggerManager import TriggerManager, addTriggerWrapper
-from FTV.Managers.UIManager import UIManager
-
-
 # global variableManager
 # global featureManager
-from FTV.Objects.Variables.DynamicVariable import DynamicVariable
+from FTV.Objects.Variables.DynamicVariable import DyBool, DySwitch
 
 
 class DynamicModule(object):
+    type = "NIFeature"
+
     def __init__(self):
-        self.setupManagers()
+        self.settings = self._Settings()
+        self.setupSettings()
+
+        if self.settings.enabled:
+            self._setupEnvironment()
 
     def _setupEnvironment(self):
         self._loadBuiltinSelf()
-        self.POST_BUILTIN_LOAD = True
+        self.vm.POST_BUILTIN_LOAD = True
 
     def _loadBuiltinSelf(self):
+        self._setupBuiltinManagers()
         self._setupBuiltinVariables()
         self._setupBuiltinTriggers()
 
     def _loadSelf(self):
-        pass
+        self.setupManagers()
+        self.vm.setupVariables()
+        self.vm.setupTriggers()
+        self.setupTriggers()
+        self.vm.IS_SELF_LOADED = True
 
-    def _loadUISelf(self):
-        pass
-
-    def _loadChildren(self):
+    @abc.abstractmethod
+    def setupSettings(self):
         pass
 
     @classmethod
-    def setupManagers(cls):
-        pass
+    def _setupBuiltinManagers(cls):
+        from FTV.Managers.VariableManager import VariableManager
+
+        cls.vm: VariableManager = VariableManager()
 
     def _setupBuiltinVariables(self):
-        self.POST_BUILTIN_LOAD = False
-        self.PRE_LOAD = False
-
-        self.IS_SELF_LOADED = False
-
-        self.POST_LOAD = False
-        self.START = False
-        self.EXIT = False
+        self.vm.POST_BUILTIN_LOAD = DySwitch()
+        self.vm.PRE_LOAD = DySwitch()
+        self.vm.IS_SELF_LOADED = DyBool(False)
+        self.vm.POST_LOAD = DySwitch()
+        self.vm.START = DySwitch()
+        self.vm.EXIT = DySwitch()
 
     def _setupBuiltinTriggers(self):
         self.addTrigger()
 
-    def setupVariables(self):
+    @classmethod
+    def setupManagers(cls):
         pass
 
     def setupTriggers(self):
@@ -58,52 +61,99 @@ class DynamicModule(object):
 
     def addTrigger(self, *args):
         pass
+
+    class _Settings:
+        ui_platform = None
+
+        def __init__(self):
+            self.enabled = True
+
+        def setEnabled(self):
+            self.enabled = True
+
+        def setDisabled(self):
+            self.enabled = False
     
 class NIFeature(DynamicModule):
-    from FTV.Managers.VariableManager import VariableManager
-    from FTV.Managers.FeatureManager import FeatureManager
-
-    type = "NIFeature"
-
-    vm: VariableManager = None
-    fm: FeatureManager = None
-    
     def __init__(self):
         super(NIFeature, self).__init__()
         self.setupSettings()
 
-        # if self.settings.enabled:
-        #    self._setupEnvironment() TODO lahav Don't forget to add the enabled flag
-        self._setupEnvironment()
+    @classmethod
+    def _setupBuiltinManagers(cls):
+        super(NIFeature, cls)._setupBuiltinManagers()
+        from FTV.Managers.FeatureManager import FeatureManager
+
+        cls.fm: FeatureManager = None
 
     def _setupBuiltinVariables(self):
         super(NIFeature, self)._setupBuiltinVariables()
-        self.PRE_LOAD_FEATURES = False
+        self.vm.PRE_LOAD_FEATURES = DySwitch()
+        self.vm.IS_CHILDREN_LOADED = DyBool(False)
+        self.vm.POST_LOAD_FEATURES = DySwitch()
 
-        self.IS_CHILDREN_LOADED = False
+    def _loadChildren(self):
+        self.setupFeatures()
+        self.vm.IS_CHILDREN_LOADED = DyBool(False)
 
-        self.POST_LOAD_FEATURES = False
+    @classmethod
+    @abc.abstractmethod
+    def setupManagers(cls):
+        pass
 
     @abc.abstractmethod
     def setupSettings(self):
         pass
 
-    def addFeature(self):
+    @abc.abstractmethod
+    def setupFeatures(self):
         pass
+
+    def addFeatures(self, *features):
+        for feature in features:
+            self.addFeature(feature)
+
+    def addFeature(self, feature):
+        self.fm.add(feature)
 
 class UIFeature(NIFeature):
 
     type = "UIFeature"
 
-    uim = UIManager()
+    @classmethod
+    def _setupBuiltinManagers(cls):
+        super(UIFeature, cls)._setupBuiltinManagers()
+        from FTV.Managers.UIManager import UIManager
+
+        cls.uim: UIManager = None
 
     def _setupBuiltinVariables(self):
         super(UIFeature, self)._setupBuiltinVariables()
-        self.PRE_UI_LOAD = False
+        self.vm.PRE_UI_LOAD = DySwitch()
+        self.vm.IS_SELF_UI_LOADED = DyBool(False)
+        self.vm.POST_UI_LOAD = DySwitch()
 
-        self.IS_SELF_UI_LOADED = False
+    def _loadUISelf(self):
+        self.uim.setupUIVariables()
+        self.uim.setupUITriggers()
+        self.setupUITriggers()
+        self.vm.IS_SELF_UI_LOADED = DyBool(False)
 
-        self.POST_UI_LOAD = False
+    @classmethod
+    @abc.abstractmethod
+    def setupManagers(cls):
+        pass
+
+    @abc.abstractmethod
+    def setupSettings(self):
+        pass
+
+    @abc.abstractmethod
+    def setupFeatures(self):
+        pass
+
+    def setupUITriggers(self):
+        pass
 
     def addUITrigger(self):
         pass

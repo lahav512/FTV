@@ -38,7 +38,7 @@ class App(UIApp):
     #     self.settings.setUIPlatform(UIPlatforms.PyQt5)
 
     def setupFeatures(self):
-        self.addFeatures(UIFeature1)
+        self.addFeature(UIFeature1)
 
 
 if __name__ == '__main__':

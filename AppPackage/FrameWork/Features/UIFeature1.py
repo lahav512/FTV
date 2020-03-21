@@ -12,7 +12,7 @@ class UIM(UIManager):
 class UIFeature1(UIFeature):
 
     @classmethod
-    def setupManagers(cls):
+    def _setupBuiltinManagers(cls):
         cls.vm = VM()
         cls.uim = UIM()
 
@@ -20,5 +20,6 @@ class UIFeature1(UIFeature):
         pass
 
     def setupTriggers(self):
-        self.addTrigger(self.fm.features, "Triger.List.len.Changed", "self.showPercentage")
+        pass
+        # self.addTrigger(self.fm.features, "Triger.List.len.Changed", "self.showPercentage")
 

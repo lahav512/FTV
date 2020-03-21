@@ -14,10 +14,26 @@ class DynamicVariable(object):
     def get(self):
         return self.__value__
 
+    def __repr__(self):
+        return str(self.get())
+
 class DyBool(DynamicVariable):
     def __init__(self, value):
         super().__init__(value)
         self.value: bool
 
+class DySwitch(DynamicVariable):
+    def __init__(self):
+        super().__init__(False)
+        self.value: bool
 
-a = DyBool(True)
+    def set(self, value):
+        if value:
+            super(DySwitch, self).set(True)
+
+        super(DySwitch, self).set(False)
+
+
+if __name__ == '__main__':
+    a = DySwitch()
+    a.set(True)

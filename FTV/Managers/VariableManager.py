@@ -1,28 +1,18 @@
-import abc
+from abc import abstractmethod
 
 from AppPackage.Experiments.Log import Log
-from FTV.FrameWork.Features import DynamicModule
-from FTV.Objects.Variables.DynamicVariable import DyBool
 
-
-class VariableManager(DynamicModule):
+class VariableManager:
     def __init__(self):
         Log.i("initVM: " + str(self.__class__.__name__))
-        super().__init__()
-
-    def _setupVariables(self):
-        self.POST_SETUP = DyBool(False)
-        self.PRE_LOAD_FEATURES = DyBool(False)
-        self.POST_LOAD_FEATURES = DyBool(False)
-        self.START = DyBool(False)
-        self.EXIT = DyBool(False)
-
-    def setupVariables(self):
-        pass
+        self.init()
 
     def init(self):
         pass
 
-    def _setupTriggers(self):
-        self.addTrigger(self.POST_SETUP, True, self.PRE_LOAD_FEATURES)
-        self.addTrigger(self.POST_LOAD_FEATURES, True, self.START)
+    @abstractmethod
+    def setupVariables(self):
+        pass
+
+    def setupTriggers(self):
+        pass
