@@ -1,5 +1,5 @@
 from AppPackage.FrameWork.Features.UIFeature1 import UIFeature1
-from FTV.FrameWork.Apps import UIApp
+from FTV.FrameWork.Apps import UIApp, NIApp
 from FTV.Managers.EexecutionManager import ExecutionManager
 from FTV.Managers.FeatureManager import FeatureManager
 from FTV.Managers.LogManager import LogManager
@@ -38,7 +38,6 @@ class App(UIApp):
     #     self.settings.setUIPlatform(UIPlatforms.PyQt5)
 
     def setupFeatures(self):
-        self.addFeature(UIFeature1)
         self.addFeature(UIFeature1)
 
 
