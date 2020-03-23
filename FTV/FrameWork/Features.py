@@ -2,18 +2,19 @@ import abc
 
 # global variableManager
 # global featureManager
-from FTV.Objects.Variables.DynamicVariable import DyBool, DySwitch
+from FTV.Objects.Variables.AbstractDynamicObject import DynamicModuleParent
+from FTV.Objects.Variables.DynamicObject import DyBool, DySwitch
 
 
-class DynamicModule(object):
-    type = "NIFeature"
+class Feature(DynamicModuleParent):
+    type = "Feature"
 
     def __init__(self):
         self.settings = self._Settings()
         self.setupSettings()
 
         if self.settings.enabled:
-            self._setupEnvironment()
+            super(Feature, self).__init__()
 
     def _setupEnvironment(self):
         self._loadBuiltinSelf()
@@ -37,8 +38,10 @@ class DynamicModule(object):
     @classmethod
     def _setupBuiltinManagers(cls):
         from FTV.Managers.VariableManager import VariableManager
+        from FTV.Managers.FeatureManager import FeatureManager
 
         cls.vm: VariableManager = VariableManager()
+        cls.fm: FeatureManager = None
 
     def _setupBuiltinVariables(self):
         self.vm.POST_BUILTIN_LOAD = DySwitch()
@@ -48,55 +51,16 @@ class DynamicModule(object):
         self.vm.START = DySwitch()
         self.vm.EXIT = DySwitch()
 
+        self.vm.PRE_LOAD_FEATURES = DySwitch()
+        self.vm.IS_CHILDREN_LOADED = DyBool(False)
+        self.vm.POST_LOAD_FEATURES = DySwitch()
+
     def _setupBuiltinTriggers(self):
         self.addTrigger(self._loadBuiltinSelf, True, self.vm.POST_BUILTIN_LOAD, "thread.main")
         self.addTrigger(self.vm.POST_BUILTIN_LOAD, True, self.vm.PRE_LOAD)
         self.addTrigger(self.vm.PRE_LOAD, True, self._loadSelf)
         self.addTrigger(self._loadSelf, True, self.vm.POST_LOAD)
 
-    @classmethod
-    def setupManagers(cls):
-        pass
-
-    def setupTriggers(self):
-        pass
-
-    def addTrigger(self, *args):
-        pass  # TODO lahav Please choose a proper way to add triggers.
-
-    class _Settings:
-        ui_platform = None
-
-        def __init__(self):
-            self.enabled = True
-
-        def setEnabled(self):
-            self.enabled = True
-
-        def setDisabled(self):
-            self.enabled = False
-    
-# TODO lahav Add a proper mechanism for the loaded features tree.
-class NIFeature(DynamicModule):
-    def __init__(self):
-        super(NIFeature, self).__init__()
-        self.setupSettings()
-
-    @classmethod
-    def _setupBuiltinManagers(cls):
-        super(NIFeature, cls)._setupBuiltinManagers()
-        from FTV.Managers.FeatureManager import FeatureManager
-
-        cls.fm: FeatureManager = None
-
-    def _setupBuiltinVariables(self):
-        super(NIFeature, self)._setupBuiltinVariables()
-        self.vm.PRE_LOAD_FEATURES = DySwitch()
-        self.vm.IS_CHILDREN_LOADED = DyBool(False)
-        self.vm.POST_LOAD_FEATURES = DySwitch()
-
-    def _setupBuiltinTriggers(self):
-        super(NIFeature, self)._setupBuiltinTriggers()
         self.addTrigger(self.vm.PRE_LOAD_FEATURES, True, self._loadChildren)
         self.addTrigger(self._loadChildren, True, self.vm.POST_LOAD_FEATURES)
         self.addTrigger(self.vm.POST_LOAD_FEATURES, True, self.vm.START)
@@ -110,11 +74,9 @@ class NIFeature(DynamicModule):
     def setupManagers(cls):
         pass
 
-    @abc.abstractmethod
-    def setupSettings(self):
+    def setupTriggers(self):
         pass
 
-    @abc.abstractmethod
     def setupFeatures(self):
         pass
 
@@ -125,8 +87,34 @@ class NIFeature(DynamicModule):
     def addFeature(self, feature):
         self.fm.add(feature)
 
-class UIFeature(NIFeature):
+    class _Settings:
+        ui_platform = None
 
+        def __init__(self):
+            self.enabled = True
+
+        def setEnabled(self):
+            self.enabled = True
+
+        def setDisabled(self):
+            self.enabled = False
+
+
+# TODO lahav Add a proper mechanism for the loaded features tree.
+class NIFeature(Feature):
+    type = "NIFeature"
+
+    @abc.abstractmethod
+    def setupSettings(self):
+        pass
+
+    @classmethod
+    @abc.abstractmethod
+    def setupManagers(cls):
+        pass
+
+
+class UIFeature(NIFeature):
     type = "UIFeature"
 
     @classmethod
@@ -162,10 +150,6 @@ class UIFeature(NIFeature):
 
     @abc.abstractmethod
     def setupSettings(self):
-        pass
-
-    @abc.abstractmethod
-    def setupFeatures(self):
         pass
 
     def setupUITriggers(self):

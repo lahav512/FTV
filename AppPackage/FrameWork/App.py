@@ -39,6 +39,7 @@ class App(UIApp):
 
     def setupFeatures(self):
         self.addFeature(UIFeature1)
+        self.addFeature(UIFeature1)
 
 
 if __name__ == '__main__':

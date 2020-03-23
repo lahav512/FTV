@@ -4,15 +4,18 @@ from FTV.Managers.UIManager import UIManager
 
 
 class VM(VariableManager):
-    pass
+
+    def setupVariables(self):
+        pass
 
 class UIM(UIManager):
-    pass
+    def setupUIVariables(self):
+        pass
 
 class UIFeature1(UIFeature):
 
     @classmethod
-    def _setupBuiltinManagers(cls):
+    def setupManagers(cls):
         cls.vm = VM()
         cls.uim = UIM()
 
