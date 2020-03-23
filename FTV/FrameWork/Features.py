@@ -2,7 +2,7 @@ import abc
 
 # global variableManager
 # global featureManager
-from FTV.Objects.Variables.AbstractDynamicObject import DynamicModuleParent
+from FTV.Objects.Variables.AbstractDynamicObject import DynamicModuleParent, FTVMethod
 from FTV.Objects.Variables.DynamicObject import DyBool, DySwitch
 
 
@@ -19,11 +19,13 @@ class Feature(DynamicModuleParent):
     def _setupEnvironment(self):
         self._loadBuiltinSelf()
 
+    @FTVMethod
     def _loadBuiltinSelf(self):
         self._setupBuiltinManagers()
         self._setupBuiltinVariables()
         self._setupBuiltinTriggers()
 
+    @FTVMethod
     def _loadSelf(self):
         self.setupManagers()
         self.vm.setupVariables()
@@ -67,6 +69,7 @@ class Feature(DynamicModuleParent):
         self.addTrigger(self._loadChildren, True, self.vm.POST_LOAD_FEATURES)
         self.addTrigger(self.vm.POST_LOAD_FEATURES, True, self.vm.START)
 
+    @FTVMethod
     def _loadChildren(self):
         self.setupFeatures()
         self.vm.IS_CHILDREN_LOADED = DyBool(False)
@@ -135,14 +138,15 @@ class UIFeature(NIFeature):
     def _setupBuiltinTriggers(self):
         super(NIFeature, self)._setupBuiltinTriggers()
         self.removeTrigger(self.vm.POST_INIT, self.vm.PRE_LOAD_FEATURES)  # Must be redefined
-        self.addTrigger(self.vm.POST_INIT, self.vm.PRE_UI_LOAD)
-        self.addTrigger(self.vm.PRE_UI_LOAD, self.vm.PRE_LOAD_FEATURES)
+        self.addTrigger(self.vm.POST_INIT, True, self.vm.PRE_UI_LOAD)
+        self.addTrigger(self.vm.PRE_UI_LOAD, True, self.vm.PRE_LOAD_FEATURES)
 
         self.addTrigger(self.vm.POST_INIT, True, self.vm.PRE_UI_LOAD)
         self.addTrigger(self.vm.PRE_UI_LOAD, True, self._loadUISelf)
         self.addTrigger(self._loadUISelf, True, self.vm.POST_UI_LOAD)
         self.addTrigger(self.vm.POST_UI_LOAD, True, self.vm.PRE_LOAD_FEATURES)
 
+    @FTVMethod
     def _loadUISelf(self):
         self.uim.setupVariables()
         self.uim.setupTriggers()

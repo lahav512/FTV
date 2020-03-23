@@ -1,4 +1,4 @@
-from FTV.Objects.Triggers import Any
+from FTV.Objects.Conditions import Any
 
 
 class Updated(Any.Updated):
