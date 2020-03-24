@@ -1,4 +1,5 @@
 import inspect
+import time
 from abc import abstractmethod
 from functools import wraps, partial
 from queue import Queue
@@ -38,7 +39,7 @@ class DynamicObject(object):
 
     def set(self, value):
         self._set(value)
-        print("Activated: " + self.__name__)
+        Log.i("Activated: " + self.__name__)
         DynamicModule._distributeTriggers(self)
         DynamicModule._runActiveTriggers(self)
 
@@ -223,7 +224,7 @@ class DynamicModule(DynamicModuleParent, DynamicObject):
         try:
             if object.type == DynamicObject.type:
                 if not is_new_var:
-                    print("Activated: " + key)
+                    Log.i("Activated: " + key)
                     DynamicModule._distributeTriggers(object)
                     DynamicModule._runActiveTriggers(object)
                 else:
@@ -242,7 +243,7 @@ if __name__ == '__main__':
     class DyModule(DynamicModule):
         @staticmethod
         def print(message):
-            print(message)
+            Log.i(message)
 
         @DynamicMethod()
         def ftvWorks(self):

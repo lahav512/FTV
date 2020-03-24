@@ -1,6 +1,7 @@
 
 class Log:
     """This class is temporary!"""
+    ENABLED = True
 
     @staticmethod
     def i(message):
@@ -16,4 +17,5 @@ class Log:
 
     @staticmethod
     def __print(mode, message):
-        print("{}: {}".format(mode, message))
+        if Log.ENABLED:
+            print("{}: {}".format(mode, message))
