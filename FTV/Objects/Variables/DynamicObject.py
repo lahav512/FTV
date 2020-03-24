@@ -16,7 +16,7 @@ class DySwitch(DynamicObject):
         if value:
             super(DySwitch, self).set(True)
 
-        super(DySwitch, self).set(False)
+        super(DySwitch, self)._set(False)
 
     def activate(self):
         self.set(True)
