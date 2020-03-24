@@ -78,7 +78,7 @@ class DynamicModuleParent(object):
         "_get",
         "_set",
         "get",
-        "set",s
+        "set",
         "_setupBuiltinVariables",
         "setupVariables",
     }
