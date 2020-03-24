@@ -240,11 +240,6 @@ if __name__ == '__main__':
     from FTV.Objects.Variables.DynamicObject import DySwitch
 
     class DyModule(DynamicModule):
-        def __init__(self):
-            self.first = DySwitch()
-            self.second = DySwitch()
-            self.third = DySwitch()
-
         @staticmethod
         def print(message):
             print(message)
