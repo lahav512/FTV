@@ -1,7 +1,7 @@
 
 class Log:
     """This class is temporary!"""
-    ENABLED = True
+    ENABLED = False
 
     @staticmethod
     def i(message):

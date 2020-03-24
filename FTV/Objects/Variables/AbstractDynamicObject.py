@@ -56,13 +56,13 @@ class DynamicObject(object):
 class DynamicModuleParent(object):
     type = "DynamicModuleParent"
 
-    __BUILTIN_METHODS = (
+    __BUILTIN_METHODS = {
         "_setupEnvironment",
         "_loadBuiltinSelf",
         "_loadSelf"
-    )
+    }
 
-    __IGNORE_METHODS = (
+    __IGNORE_METHODS = {
         "__setattr__",
         "__init__",
         "_setupBuiltinMethods",
@@ -78,10 +78,10 @@ class DynamicModuleParent(object):
         "_get",
         "_set",
         "get",
-        "set",
+        "set",s
         "_setupBuiltinVariables",
         "setupVariables",
-    )
+    }
 
     def __setattr__(self, key, value):
         if key in dir(self) and callable(getattr(self, key)):
@@ -113,23 +113,25 @@ class DynamicModuleParent(object):
         pass
 
     def _setupBuiltinMethods(self):
+
+        # map(lambda method_key: self.__setupMethod(method_key), getattr(self, "_DynamicModuleParent__BUILTIN_METHODS"))
+
+        # [self.__setupMethod(method_key) for method_key in getattr(self, "_DynamicModuleParent__BUILTIN_METHODS")]
+
         for method_key in getattr(self, "_DynamicModuleParent__BUILTIN_METHODS"):
             self.__setupMethod(method_key)
 
-
-        # for func in inspect.getmembers(self, inspect.ismethod):
-        #     method_key = func[0]
-        #     if method_key in getattr(self, "_DynamicModuleParent__BUILTIN_METHODS"):
-        #         self.__setupMethod(method_key)
-
     def _setupMethods(self):
-        ignore_methods = list(getattr(self, "_DynamicModuleParent__IGNORE_METHODS"))
-        builtin_methods = list(getattr(self, "_DynamicModuleParent__BUILTIN_METHODS"))
-        for func in inspect.getmembers(self, inspect.ismethod):
-            method_key = func[0]
-            if method_key not in set(ignore_methods + builtin_methods):
-                # print(method_key + "()")
-                self.__setupMethod(method_key)
+        ignore_methods = getattr(self, "_DynamicModuleParent__IGNORE_METHODS")
+        builtin_methods = getattr(self, "_DynamicModuleParent__BUILTIN_METHODS")
+
+        methods = inspect.getmembers(self, inspect.ismethod)
+        # map(lambda func: self.__setupMethod(func[0]) if func[0] not in ignore_methods | builtin_methods else None, methods)
+
+        filtered_methods = list(filter(lambda obj: obj[0] not in ignore_methods | builtin_methods, methods))
+
+        for func in filtered_methods:
+            self.__setupMethod(func[0])
 
     @abstractmethod
     def _setupBuiltinTriggers(self):
@@ -210,14 +212,17 @@ class DynamicModule(DynamicModuleParent, DynamicObject):
     @staticmethod
     def _runActiveTriggers(dy_object: DynamicObject):
         while not dy_object.__active_triggers__.empty():
-            trigger = dy_object.__active_triggers__.get_nowait()
-            # try:
-            trigger.action()
-            # except:
-            #     trigger.action(dy_object)
+            dy_object.__active_triggers__.get_nowait().action()
 
     def __setattr__(self, key, value):
+        # try:
+        #     getattr(self, key)
+        #     is_new_var = False
+        # except:
+        #     is_new_var = True
+
         is_new_var = key not in locals()
+        # is_new_var = True
 
         super(DynamicModule, self).__setattr__(key, value)
         object = getattr(self, key)
@@ -275,4 +280,10 @@ if __name__ == '__main__':
             self.addTrigger(self.second, True, self.thirdMethod)
             self.addTrigger(self.third, True, self.ftvWorks)
 
-    module = DyModule()
+    start = time.time()
+    for k in range(600):
+        module = DyModule()
+    end = time.time()
+
+    print(end - start)
+
