@@ -18,6 +18,9 @@ class DySwitch(DynamicObject):
 
         super(DySwitch, self).set(False)
 
+    def activate(self):
+        self.set(True)
+
 
 if __name__ == '__main__':
     a = DySwitch()
