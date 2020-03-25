@@ -29,5 +29,13 @@ class DyInt(DynamicObject):
 
 
 if __name__ == '__main__':
-    a = DySwitch()
-    a.set(True)
+    from FTV.Objects.Variables.DynamicModuleObject import DynamicModule
+
+    class DyBoolList(DynamicModule):
+        pass
+
+    class TestModule(DynamicModule):
+        def setupVariables(self):
+            self.list = DyBoolList()
+
+    TestModule()

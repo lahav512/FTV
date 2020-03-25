@@ -58,28 +58,28 @@ class DynamicModule(DynamicModuleParent, DynamicObject):
     #     while not dy_object.__active_triggers__.empty():
     #         dy_object.__active_triggers__.get_nowait().action()
 
-    # def __setattr__(self, key, value):
-    #     # try:
-    #     #     getattr(self, key)
-    #     #     is_new_var = False
-    #     # except:
-    #     #     is_new_var = True
-    #
-    #     is_new_var = key not in locals()
-    #     # is_new_var = True
-    #
-    #     super(DynamicModule, self).__setattr__(key, value)
-    #     _object = getattr(self, key)
-    #     try:
-    #         if isinstance(_object, DynamicObject):
-    #             if not is_new_var:
-    #                 Log.i("Activated: " + key)
-    #                 _object._distributeTriggers()
-    #                 _object._runActiveTriggers()
-    #             else:
-    #                 _object.__name__ = key
-    #     except:
-    #         pass
+    def __setattr__(self, key, value):
+        # try:
+        #     getattr(self, key)
+        #     is_new_var = False
+        # except:
+        #     is_new_var = True
+
+        is_new_var = key not in locals()
+        # is_new_var = True
+
+        super(DynamicModule, self).__setattr__(key, value)
+        _object = getattr(self, key)
+        try:
+            if isinstance(_object, DynamicObject):
+                if not is_new_var:
+                    Log.i(key, Log.color.BLUE)
+                    _object._distributeTriggers()
+                    _object._runActiveTriggers()
+                else:
+                    _object.__name__ = key
+        except:
+            pass
 
 
     # def __getattribute__(self, item):

@@ -41,9 +41,11 @@ class DynamicMethod(DynamicObjectInterface):
 
     @wrapt.decorator
     def __call__(self, wrapped, instance, args, kwargs):
-        Log.i("-> " + wrapped.__name__)
+        Log.i("-> " + wrapped.__name__, Log.color.ORANGE)
+        Log.step(1)
         ans = wrapped(*args, **kwargs)
-        Log.i("<- " + wrapped.__name__)
+        Log.step(-1)
+        Log.i("<- " + wrapped.__name__, Log.color.ORANGE)
         self._distributeTriggers(wrapped)
         self._runActiveTriggers(wrapped)
         return ans
@@ -55,14 +57,14 @@ class DynamicObject(DynamicObjectInterface):
     def __init__(self, value=None):
         super(DynamicObject, self).__init__()
         self.__value__: object = value
-        # self.__name__: str
+        self.__name__: str
 
     def _set(self, value):
         self.__value__ = value
 
     def set(self, value):
         self._set(value)
-        # Log.i("Activated: " + self.__name__)
+        Log.i(self.__name__, Log.color.BLUE)
         self._distributeTriggers()
         self._runActiveTriggers()
 
