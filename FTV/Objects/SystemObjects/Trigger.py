@@ -1,6 +1,8 @@
 
 
 class Action(object):
+    __slots__ = ("func", "__name__")
+
     def __init__(self, func):
         self.func = func
         self.__name__ = func.__name__
@@ -10,6 +12,8 @@ class Action(object):
 
 
 class Condition(object):
+    __slots__ = ()
+
     def __call__(self, *args, **kwargs):
         self.run()
 
@@ -18,6 +22,8 @@ class Condition(object):
 
 
 class Trigger:
+    __slots__ = ("dy_module_parent", "condition", "action", "thread")
+
     def __init__(self, dy_module_parent, condition, action, thread=None):
         self.dy_module_parent = dy_module_parent
         self.condition = condition

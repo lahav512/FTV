@@ -12,6 +12,7 @@ from AppPackage.Experiments import Efficiency
 
 
 class DynamicObjectInterface(ABC):
+    # __slots__ = ("__triggers__", "__active_triggers__")
 
     def __init__(self):
         self.__triggers__ = []
@@ -33,6 +34,8 @@ class DynamicObjectInterface(ABC):
 
 
 class DynamicMethod(DynamicObjectInterface):
+    # __slots__ = ()
+
     def __init__(self):
         super(DynamicMethod, self).__init__()
 
