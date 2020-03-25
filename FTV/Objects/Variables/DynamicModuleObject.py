@@ -1,10 +1,14 @@
 from AppPackage.Experiments.Log import Log
-from FTV.Objects.Variables.AbstractDynamicObject import DynamicModuleParent, DynamicObject, DynamicMethod
-from FTV.Objects.Variables.DynamicObject import DySwitch
+from FTV.Objects.Variables.AbstractDynamicObject import DynamicModuleParent, DynamicMethod
+from FTV.Objects.Variables.DynamicObjects import DySwitch, DynamicObject
 
 
 class DynamicModule(DynamicModuleParent, DynamicObject):
     type = "DynamicModule"
+    
+    def __init__(self, value=None):
+        super(DynamicModule, self).__init__()
+        DynamicObject.__init__(self, value)
 
     @DynamicMethod()
     def _setupEnvironment(self):
@@ -54,29 +58,49 @@ class DynamicModule(DynamicModuleParent, DynamicObject):
     #     while not dy_object.__active_triggers__.empty():
     #         dy_object.__active_triggers__.get_nowait().action()
 
-    def __setattr__(self, key, value):
-        # try:
-        #     getattr(self, key)
-        #     is_new_var = False
-        # except:
-        #     is_new_var = True
-
-        is_new_var = key not in locals()
-        # is_new_var = True
-
-        super(DynamicModule, self).__setattr__(key, value)
-        _object = getattr(self, key)
-        try:
-            if _object.type == DynamicObject.type:
-                if not is_new_var:
-                    Log.i("Activated: " + key)
-                    _object._distributeTriggers()
-                    _object._runActiveTriggers()
-                else:
-                    _object.__name__ = key
-        except:
-            pass
+    # def __setattr__(self, key, value):
+    #     # try:
+    #     #     getattr(self, key)
+    #     #     is_new_var = False
+    #     # except:
+    #     #     is_new_var = True
+    #
+    #     is_new_var = key not in locals()
+    #     # is_new_var = True
+    #
+    #     super(DynamicModule, self).__setattr__(key, value)
+    #     _object = getattr(self, key)
+    #     try:
+    #         if isinstance(_object, DynamicObject):
+    #             if not is_new_var:
+    #                 Log.i("Activated: " + key)
+    #                 _object._distributeTriggers()
+    #                 _object._runActiveTriggers()
+    #             else:
+    #                 _object.__name__ = key
+    #     except:
+    #         pass
 
 
     # def __getattribute__(self, item):
     #     return super(DynamicModule, self).__getattribute__(item)
+
+
+# class DyModuleSwitch(DynamicModule):
+#     def __init__(self):
+#         super().__init__(False)
+#         self.value: bool
+#
+#     def set(self, value):
+#         if value:
+#             super(DyModuleSwitch, self).set(True)
+#
+#         super(DyModuleSwitch, self)._set(False)
+#
+#     def activate(self):
+#         self.set(True)
+#
+#
+# if __name__ == '__main__':
+#     bool = DyModuleSwitch()
+#     bool.activate()

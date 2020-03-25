@@ -1,7 +1,7 @@
 import functools
 
 from AppPackage.Experiments.Log import Log
-from FTV.Objects.Variables.DynamicObject import DynamicObject
+from FTV.Objects.Variables.DynamicObjects import DynamicObject
 
 
 class TriggerManager:

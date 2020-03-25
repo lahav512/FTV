@@ -7,7 +7,8 @@ def check(module, repetitions, tag):
         temp_module = module()
     end = time.time()
     total_time = end - start
-    # printResult(total_time, tag)
+    total_time /= repetitions
+    printResult(total_time, tag)
     return total_time
 
 def printResult(_time, tag):

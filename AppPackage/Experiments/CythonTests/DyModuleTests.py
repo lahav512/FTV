@@ -2,7 +2,7 @@ from AppPackage.Experiments import Efficiency
 from AppPackage.Experiments.Log import Log
 from FTV.Objects.Variables.AbstractDynamicObject import DynamicMethod
 from FTV.Objects.Variables.DynamicModuleObject import DynamicModule
-from FTV.Objects.Variables.DynamicObject import DySwitch
+from FTV.Objects.Variables.DynamicObjects import DySwitch, DyBool
 
 
 class DyModule(DynamicModule):
@@ -38,8 +38,8 @@ class DyModule(DynamicModule):
     def setupTriggers(self):
         self.addTrigger(self.POST_INIT, True, self.firstMethod)
         self.addTrigger(self.firstMethod, True, self.secondMethod)
-        # self.addTrigger(self.second, True, self.thirdMethod)
-        # self.addTrigger(self.third, True, self.ftvWorks)
+        self.addTrigger(self.second, True, self.thirdMethod)
+        self.addTrigger(self.third, True, self.ftvWorks)
 
 class SimpleDyModule(DynamicModule):
 
@@ -87,20 +87,21 @@ class SimpleDyModule(DynamicModule):
         # self.print("thirdMethod")
         self.third.activate()
 
-class SimpleModule(object):
+
+class SimpleModule(DynamicModule):
 
     def __init__(self):
-        super(SimpleModule, self).__init__()
-        self.first = False
-        self.second = False
-        self.third = False
+        # super(SimpleModule, self).__init__()
+        self.first = DyBool(False)
+        self.second = DyBool(False)
+        self.third = DyBool(False)
 
         self.firstMethod()
-        if self.first:
+        if self.first.get():
             self.secondMethod()
-            if self.second:
+            if self.second.get():
                 self.thirdMethod()
-                if self.third:
+                if self.third.get():
                     self.ftvWorks()
 
     @staticmethod
@@ -112,48 +113,56 @@ class SimpleModule(object):
 
     def firstMethod(self):
         # self.print("firstMethod")
-        self.first = True
+        self.first.set(True)
 
     def secondMethod(self):
         # self.print("secondMethod")
-        self.second = True
+        self.second.set(True)
 
     def thirdMethod(self):
         # self.print("thirdMethod")
-        self.third = True
+        self.third.set(True)
+
+    # def __setattr__(self, key, value):
+    #     return object.__setattr__(self, key, value)
 
 
 if __name__ == '__main__':
-    DyModule()
+    repetitions = 1000
 
-    list_a = []
-    list_b = []
-    list_c = []
+    Efficiency.check(DyModule, repetitions, "DyModule")
+    Efficiency.check(SimpleDyModule, repetitions, "SimpleDyModule")
+    Efficiency.check(SimpleModule, repetitions, "SimpleModule")
 
-    decay_factor = []
-
-    cycles = 1
-
-    for i in range(cycles):
-        list_a.append(Efficiency.check(DyModule, 1200, "DyModule"))
-        list_b.append(Efficiency.check(SimpleDyModule, 1200, "SimpleDyModule"))
-        # list_c.append(Efficiency.check(SimpleModule, 1200, "SimpleModule"))
-
-        # if list_c[-1] != 0:
-        #     decay_factor.append(list_a[-1]/list_c[-1])
-
-    A = sum(list_a)/len(list_a)
-    B = sum(list_b)/len(list_b)
+    # list_a = []
+    # list_b = []
+    # list_c = []
+    #
+    # decay_factor = []
+    #
+    # cycles = 1
+    #
+    # for i in range(cycles):
+    #     list_a.append(Efficiency.check(DyModule, 1200, "DyModule"))
+    #     list_b.append(Efficiency.check(SimpleDyModule, 1200, "SimpleDyModule"))
+    #     list_c.append(Efficiency.check(SimpleModule, 1200, "SimpleModule"))
+    #
+    #     if list_c[-1] != 0:
+    #         decay_factor.append(list_a[-1]/list_c[-1])
+    #
+    # A = sum(list_a)/len(list_a)
+    # B = sum(list_b)/len(list_b)
     # C = sum(list_c)/len(list_c)
-
+    #
     # decayFactor = None
     #
     # if len(decay_factor) != 0:
     #     decayFactor = sum(decay_factor)/len(decay_factor)
-
-    Efficiency.printResult(A, "DyModule")
-    Efficiency.printResult(B, "SimpleDyModule")
+    #
+    # Efficiency.printResult(A, "DyModule")
+    # Efficiency.printResult(B, "SimpleDyModule")
     # Efficiency.printResult(C, "SimpleModule")
-
-    # print("Decay Factor: " + str(decayFactor))
+    #
+    # print()
+    # print("Decay Factor: " + str(round(decayFactor)))
     # print("Decay Cycles: " + str(len(decay_factor)))

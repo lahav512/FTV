@@ -11,7 +11,7 @@ from FTV.Objects.SystemObjects.Trigger import Action, Trigger
 from AppPackage.Experiments import Efficiency
 
 
-class DynamicObjectInterface(ABC):
+class DynamicObjectInterface(object):
     # __slots__ = ("__triggers__", "__active_triggers__")
 
     def __init__(self):
@@ -55,14 +55,14 @@ class DynamicObject(DynamicObjectInterface):
     def __init__(self, value=None):
         super(DynamicObject, self).__init__()
         self.__value__: object = value
-        self.__name__: str
+        # self.__name__: str
 
     def _set(self, value):
         self.__value__ = value
 
     def set(self, value):
         self._set(value)
-        Log.i("Activated: " + self.__name__)
+        # Log.i("Activated: " + self.__name__)
         self._distributeTriggers()
         self._runActiveTriggers()
 
@@ -112,13 +112,13 @@ class DynamicModuleParent(object):
         "setupVariables",
     }
 
-    def __setattr__(self, key, value):
-        if key in dir(self) and callable(getattr(self, key)):
-            raise Exception(
-                "Can't add the attribute \"{}\" to the object \"{}\", since it is already exists as a method.".format(
-                    key, self.__class__.__name__))
-
-        super().__setattr__(key, value)
+    # def __setattr__(self, key, value):
+    #     if key in dir(self) and callable(getattr(self, key)):
+    #         raise Exception(
+    #             "Can't add the attribute \"{}\" to the object \"{}\", since it is already exists as a method.".format(
+    #                 key, self.__class__.__name__))
+    #
+    #     super().__setattr__(key, value)
 
     def __init__(self):
         self._setupEnvironment()

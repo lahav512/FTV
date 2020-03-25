@@ -3,7 +3,7 @@ import abc
 # global variableManager
 # global featureManager
 from FTV.Objects.Variables.AbstractDynamicObject import DynamicModuleParent, FTVMethod
-from FTV.Objects.Variables.DynamicObject import DyBool, DySwitch
+from FTV.Objects.Variables.DynamicObjects import DyBool, DySwitch
 
 
 class Feature(DynamicModuleParent):
