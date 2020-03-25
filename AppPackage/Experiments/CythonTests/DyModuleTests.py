@@ -1,3 +1,4 @@
+from AppPackage.Experiments import Efficiency
 from AppPackage.Experiments.Log import Log
 from FTV.Objects.Variables.AbstractDynamicObject import DynamicMethod
 from FTV.Objects.Variables.DynamicModuleObject import DynamicModule
@@ -125,34 +126,34 @@ class SimpleModule(object):
 if __name__ == '__main__':
     DyModule()
 
-# list_a = []
-# list_b = []
-# list_c = []
-#
-# decay_factor = []
-#
-# cycles = 1
-#
-# for i in range(cycles):
-#     list_a.append(Efficiency.check(DyModule, 1200, "DyModule"))
-#     list_b.append(Efficiency.check(SimpleDyModule, 1200, "SimpleDyModule"))
-#     # list_c.append(Efficiency.check(SimpleModule, 1200, "SimpleModule"))
-#
-#     # if list_c[-1] != 0:
-#     #     decay_factor.append(list_a[-1]/list_c[-1])
-#
-# A = sum(list_a)/len(list_a)
-# B = sum(list_b)/len(list_b)
-# # C = sum(list_c)/len(list_c)
-#
-# # decayFactor = None
-# #
-# # if len(decay_factor) != 0:
-# #     decayFactor = sum(decay_factor)/len(decay_factor)
-#
-# Efficiency.printResult(A, "DyModule")
-# Efficiency.printResult(B, "SimpleDyModule")
-# # Efficiency.printResult(C, "SimpleModule")
-#
-# # print("Decay Factor: " + str(decayFactor))
-# # print("Decay Cycles: " + str(len(decay_factor)))
+    list_a = []
+    list_b = []
+    list_c = []
+
+    decay_factor = []
+
+    cycles = 1
+
+    for i in range(cycles):
+        list_a.append(Efficiency.check(DyModule, 1200, "DyModule"))
+        list_b.append(Efficiency.check(SimpleDyModule, 1200, "SimpleDyModule"))
+        # list_c.append(Efficiency.check(SimpleModule, 1200, "SimpleModule"))
+
+        # if list_c[-1] != 0:
+        #     decay_factor.append(list_a[-1]/list_c[-1])
+
+    A = sum(list_a)/len(list_a)
+    B = sum(list_b)/len(list_b)
+    # C = sum(list_c)/len(list_c)
+
+    # decayFactor = None
+    #
+    # if len(decay_factor) != 0:
+    #     decayFactor = sum(decay_factor)/len(decay_factor)
+
+    Efficiency.printResult(A, "DyModule")
+    Efficiency.printResult(B, "SimpleDyModule")
+    # Efficiency.printResult(C, "SimpleModule")
+
+    # print("Decay Factor: " + str(decayFactor))
+    # print("Decay Cycles: " + str(len(decay_factor)))
