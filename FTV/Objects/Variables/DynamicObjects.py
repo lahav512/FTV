@@ -6,6 +6,7 @@ class DyBool(DynamicObject):
         super().__init__(value)
         self.value: bool
 
+
 class DySwitch(DynamicObject):
     def __init__(self):
         super().__init__(False)
@@ -19,6 +20,12 @@ class DySwitch(DynamicObject):
 
     def activate(self):
         self.set(True)
+
+
+class DyInt(DynamicObject):
+    def __init__(self, value):
+        super().__init__(value)
+        self.value: int
 
 
 if __name__ == '__main__':
