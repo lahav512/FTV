@@ -6,7 +6,6 @@ from FTV.Objects.Variables.DynamicObjects import DySwitch, DyBool
 
 
 class DyModule(DynamicModule):
-
     @staticmethod
     def print(message):
         Log.p(message)
@@ -17,17 +16,14 @@ class DyModule(DynamicModule):
 
     @DynamicMethod()
     def firstMethod(self):
-        # self.print("firstMethod")
         self.first.activate()
 
     @DynamicMethod()
     def secondMethod(self):
-        # self.print("secondMethod")
         self.second.activate()
 
     @DynamicMethod()
     def thirdMethod(self):
-        # self.print("thirdMethod")
         self.third.activate()
 
     def setupVariables(self):
@@ -57,13 +53,6 @@ class SimpleDyModule(DynamicModule):
                 self.thirdMethod()
                 if self.third.get():
                     self.ftvWorks()
-
-    # def _setupBuiltinMethods(self):
-    #     super(SimpleDyModule, self)._setupBuiltinMethods()
-    #     self.__dynamic_methods__.add("firstMethod")
-    #     self.__dynamic_methods__.add("secondMethod")
-    #     self.__dynamic_methods__.add("thirdMethod")
-    #     self.__dynamic_methods__.add("ftvWorks")
 
     @staticmethod
     def print(message):
@@ -129,7 +118,6 @@ class SimpleModule(DynamicModule):
 
 
 if __name__ == '__main__':
-
     DyModule()
 
     # repetitions = 1000
