@@ -23,7 +23,7 @@ class Log:
     def __print(mode, message, color):
         if Log.ENABLED:
             mode_str = "".join((mode, ": "*int(bool(mode))))
-            print("".join((mode_str, "   "*Log.__BLANK_SPACE, color, message, "\033[0m")))
+            print("".join((mode_str, "   "*Log.__BLANK_SPACE, color, str(message), "\033[0m")))
 
     @classmethod
     def step(cls, step):

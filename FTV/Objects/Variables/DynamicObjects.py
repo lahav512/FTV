@@ -44,25 +44,42 @@ if __name__ == '__main__':
         
         def setupVariables(self):
             self._len_true = DyInt(0)
-            self.switch = DySwitch()
 
         def setupTriggers(self):
-            self.addTrigger(self.POST_INIT, True, self.switch)
-            # self.addTrigger(self.switch, True, self.print)
+            self.addTrigger(self._len_true, True, self._update_value)
 
         def add(self, dy_bool):
             self.__list__.append(dy_bool)
             self.__len__ = len(self.__list__)
 
+            if dy_bool.get():
+                self._len_true_plus()
+            # else:
+            #     self._len_true_minus()
+
+            self.addTrigger(dy_bool, True, self._len_true_plus)
+            # self.addTrigger(dy_bool, False, self._len_true_minus)
+
         @DynamicMethod()
-        def print(self):
-            print("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPP")
+        def _len_true_plus(self):
+            self._len_true.set(self._len_true.get() + 1)
+
+        @DynamicMethod()
+        def _len_true_minus(self):
+            self._len_true.set(self._len_true.get() - 1)
+
+        @DynamicMethod()
+        def _update_value(self):
+            self.set(self._len_true.get() == self.__len__)
+            Log.p(self.get())
+
+        # @DynamicMethod()
+        # def print(self):
+        #     print("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPP")
 
     class VariableManager(DynamicModule):
         def setupVariables(self):
-            self.AAA = DySwitch()
-
-            self.a = DyBool(False)
+            self.a = DyBool(True)
             self.b = DyBool(False)
             self.c = DyBool(False)
             self.list = DyBoolList(self)
@@ -73,11 +90,20 @@ if __name__ == '__main__':
             self.list.add(self.c)
 
             self.addTrigger(self.POST_INIT, True, self.printList)
-            self.addTrigger(self.printList, True, self.AAA)
+            self.addTrigger(self.list, True, self.printVictory)
+
+        @DynamicMethod()
+        def printVictory(self):
+            Log.p("Victory!", Log.color.PURPLE)
 
         @DynamicMethod()
         def printList(self):
-            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+            # self.a.set(True)
+            self.b.set(True)
+            self.c.set(True)
+            list = self.list.__list__
+            for item in list:
+                print(item.get())
 
             # Log.i(len(self.list))
 
