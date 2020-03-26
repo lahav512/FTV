@@ -33,6 +33,10 @@ class DynamicObjectInterface(object):
             dy_object.__active_triggers__.get_nowait().action()
 
 
+class DynamicMethodObject(DynamicObjectInterface):
+    pass
+
+
 class DynamicMethod(DynamicObjectInterface):
     # __slots__ = ()
 
@@ -41,13 +45,13 @@ class DynamicMethod(DynamicObjectInterface):
 
     @wrapt.decorator
     def __call__(self, wrapped, instance, args, kwargs):
-        Log.i("-> " + wrapped.__name__, Log.color.ORANGE)
+        Log.p("-> " + wrapped.__name__, Log.color.ORANGE)
         Log.step(1)
         ans = wrapped(*args, **kwargs)
         Log.step(-1)
-        Log.i("<- " + wrapped.__name__, Log.color.ORANGE)
-        self._distributeTriggers(wrapped)
-        self._runActiveTriggers(wrapped)
+        Log.p("<- " + wrapped.__name__, Log.color.ORANGE)
+        self._distributeTriggers(instance.__dynamic_methods__[wrapped.__name__])
+        self._runActiveTriggers(instance.__dynamic_methods__[wrapped.__name__])
         return ans
 
 
@@ -64,7 +68,8 @@ class DynamicObject(DynamicObjectInterface):
 
     def set(self, value):
         self._set(value)
-        Log.i(self.__name__, Log.color.BLUE)
+        # if self.__name__ == "POST_INIT":
+        Log.p(self.__name__, Log.color.BLUE)
         self._distributeTriggers()
         self._runActiveTriggers()
 
@@ -122,14 +127,12 @@ class DynamicModuleParent(object):
     #
     #     super().__setattr__(key, value)
 
-    def __init__(self):
+    def __init__(self, value=None):
         self._setupEnvironment()
 
     def __setupMethod(self, method_key):
         # print(method_key)
-        method = getattr(self.__class__, method_key)
-        setattr(method, "__triggers__", [])
-        setattr(method, "__active_triggers__", Queue())
+        self.__dynamic_methods__[method_key] = DynamicMethodObject()
 
     @abstractmethod
     def _setupEnvironment(self):
@@ -145,7 +148,7 @@ class DynamicModuleParent(object):
 
     def _setupBuiltinMethods(self):
         # self.__dynamic_methods__ = set()
-        self.__dynamic_methods__ = set()
+        self.__dynamic_methods__ = {}
 
         # map(lambda method_key: self.__setupMethod(method_key), getattr(self, "_DynamicModuleParent__BUILTIN_METHODS"))
 
@@ -176,15 +179,18 @@ class DynamicModuleParent(object):
 
     def addTrigger(self, dy_variable, condition, action, thread=None):
 
-        modified_action: function
-
         # TODO lahav This solution is temporary.
         if callable(action):
-            modified_action = Action(getattr(self, action.__name__))
+            modified_action = Action(self, action, action.__name__)
         else:
-            modified_action = Action(action.activate)
+            modified_action = Action(self, action.activate, action.__name__, action)
 
-        dy_variable.__triggers__.append(Trigger(self, condition, modified_action, thread))
+        if callable(dy_variable):
+            modified_variable = self.__dynamic_methods__[dy_variable.__name__]
+        else:
+            modified_variable = dy_variable
+
+        modified_variable.__triggers__.append(Trigger(self, condition, modified_action, thread))
         # TODO lahav Please choose a proper way to add triggers.
 
     def removeTrigger(self, *args):

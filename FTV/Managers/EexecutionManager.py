@@ -8,7 +8,7 @@ from FTV.Managers.AbstractManager import AbstractManager
 class ExecutionManager(AbstractManager):
     def __init__(self):
         super().__init__()
-        Log.i("initEM: " + str(self.__class__.__name__))
+        Log.p("initEM: " + str(self.__class__.__name__))
         self.threads = {}
         self.init()
 

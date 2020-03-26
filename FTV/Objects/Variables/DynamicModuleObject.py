@@ -1,3 +1,5 @@
+from queue import Queue
+
 from AppPackage.Experiments.Log import Log
 from FTV.Objects.Variables.AbstractDynamicObject import DynamicModuleParent, DynamicMethod
 from FTV.Objects.Variables.DynamicObjects import DySwitch, DynamicObject
@@ -7,8 +9,8 @@ class DynamicModule(DynamicModuleParent, DynamicObject):
     type = "DynamicModule"
     
     def __init__(self, value=None):
-        super(DynamicModule, self).__init__()
         DynamicObject.__init__(self, value)
+        super(DynamicModule, self).__init__(value)
 
     @DynamicMethod()
     def _setupEnvironment(self):
@@ -73,7 +75,7 @@ class DynamicModule(DynamicModuleParent, DynamicObject):
         try:
             if isinstance(_object, DynamicObject):
                 if not is_new_var:
-                    Log.i(key, Log.color.BLUE)
+                    Log.p(key, Log.color.BLUE)
                     _object._distributeTriggers()
                     _object._runActiveTriggers()
                 else:

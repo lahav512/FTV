@@ -9,7 +9,7 @@ class DyModule(DynamicModule):
 
     @staticmethod
     def print(message):
-        Log.i(message)
+        Log.p(message)
 
     @DynamicMethod()
     def ftvWorks(self):
@@ -37,9 +37,10 @@ class DyModule(DynamicModule):
 
     def setupTriggers(self):
         self.addTrigger(self.POST_INIT, True, self.firstMethod)
-        self.addTrigger(self.firstMethod, True, self.secondMethod)
+        self.addTrigger(self.first, True, self.secondMethod)
         self.addTrigger(self.second, True, self.thirdMethod)
         self.addTrigger(self.third, True, self.ftvWorks)
+
 
 class SimpleDyModule(DynamicModule):
 
@@ -66,7 +67,7 @@ class SimpleDyModule(DynamicModule):
 
     @staticmethod
     def print(message):
-        Log.i(message)
+        Log.p(message)
 
     # @DynamicMethod()
     def ftvWorks(self):
@@ -106,7 +107,7 @@ class SimpleModule(DynamicModule):
 
     @staticmethod
     def print(message):
-        Log.i(message)
+        Log.p(message)
 
     def ftvWorks(self):
         self.print("FTV Works!")
@@ -128,11 +129,14 @@ class SimpleModule(DynamicModule):
 
 
 if __name__ == '__main__':
-    repetitions = 1000
 
-    Efficiency.check(DyModule, repetitions, "DyModule")
-    Efficiency.check(SimpleDyModule, repetitions, "SimpleDyModule")
-    Efficiency.check(SimpleModule, repetitions, "SimpleModule")
+    DyModule()
+
+    # repetitions = 1000
+    #
+    # Efficiency.check(DyModule, repetitions, "DyModule")
+    # Efficiency.check(SimpleDyModule, repetitions, "SimpleDyModule")
+    # Efficiency.check(SimpleModule, repetitions, "SimpleModule")
 
     # list_a = []
     # list_b = []

@@ -1,11 +1,13 @@
 
 
 class Action(object):
-    __slots__ = ("func", "__name__")
+    __slots__ = ("func", "__name__", "parent", "item")
 
-    def __init__(self, func):
+    def __init__(self, parent, func, name, item=None):
+        self.parent = parent
         self.func = func
-        self.__name__ = func.__name__
+        self.item = item
+        self.__name__ = name
 
     def __call__(self, *args, **kwargs):
         self.func(*args, **kwargs)

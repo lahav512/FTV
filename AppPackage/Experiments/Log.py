@@ -4,6 +4,10 @@ class Log:
     __BLANK_SPACE = 0
 
     @staticmethod
+    def p(message, color=""):
+        Log.__print("", message, color)
+
+    @staticmethod
     def i(message, color=""):
         Log.__print("info", message, color)
 
@@ -18,7 +22,8 @@ class Log:
     @staticmethod
     def __print(mode, message, color):
         if Log.ENABLED:
-            print("{}: {}{}{}{}".format(mode, "   "*Log.__BLANK_SPACE, color, message, "\033[0m"))
+            mode_str = "".join((mode, ": "*int(bool(mode))))
+            print("".join((mode_str, "   "*Log.__BLANK_SPACE, color, message, "\033[0m")))
 
     @classmethod
     def step(cls, step):

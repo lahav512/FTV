@@ -1,16 +1,17 @@
-from FTV.Objects.Variables.AbstractDynamicObject import DynamicObject
+from AppPackage.Experiments.Log import Log
+from FTV.Objects.Variables.AbstractDynamicObject import DynamicObject, DynamicMethod
 
 
 class DyBool(DynamicObject):
     def __init__(self, value):
         super().__init__(value)
-        self.value: bool
+        self.__value__: bool
 
 
 class DySwitch(DynamicObject):
     def __init__(self):
         super().__init__(False)
-        self.value: bool
+        self.__value__: bool
 
     def set(self, value):
         if value:
@@ -25,17 +26,59 @@ class DySwitch(DynamicObject):
 class DyInt(DynamicObject):
     def __init__(self, value):
         super().__init__(value)
-        self.value: int
+        self.__value__: int
 
 
 if __name__ == '__main__':
     from FTV.Objects.Variables.DynamicModuleObject import DynamicModule
 
     class DyBoolList(DynamicModule):
-        pass
+        def __init__(self, parent):
+            self.parent = parent
+            super(DyBoolList, self).__init__()
 
-    class TestModule(DynamicModule):
+        def _setupBuiltinVariables(self):
+            super(DyBoolList, self)._setupBuiltinVariables()
+            self.__value__: bool
+            self.__list__ = []
+        
         def setupVariables(self):
-            self.list = DyBoolList()
+            self._len_true = DyInt(0)
+            self.switch = DySwitch()
 
-    TestModule()
+        def setupTriggers(self):
+            self.addTrigger(self.POST_INIT, True, self.switch)
+            # self.addTrigger(self.switch, True, self.print)
+
+        def add(self, dy_bool):
+            self.__list__.append(dy_bool)
+            self.__len__ = len(self.__list__)
+
+        @DynamicMethod()
+        def print(self):
+            print("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPP")
+
+    class VariableManager(DynamicModule):
+        def setupVariables(self):
+            self.AAA = DySwitch()
+
+            self.a = DyBool(False)
+            self.b = DyBool(False)
+            self.c = DyBool(False)
+            self.list = DyBoolList(self)
+
+        def setupTriggers(self):
+            self.list.add(self.a)
+            self.list.add(self.b)
+            self.list.add(self.c)
+
+            self.addTrigger(self.POST_INIT, True, self.printList)
+            self.addTrigger(self.printList, True, self.AAA)
+
+        @DynamicMethod()
+        def printList(self):
+            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+
+            # Log.i(len(self.list))
+
+    vm = VariableManager()
