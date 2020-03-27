@@ -120,11 +120,11 @@ class SimpleModule(DynamicModule):
 if __name__ == '__main__':
     DyModule()
 
-    # repetitions = 1000
-    #
-    # Efficiency.check(DyModule, repetitions, "DyModule")
-    # Efficiency.check(SimpleDyModule, repetitions, "SimpleDyModule")
-    # Efficiency.check(SimpleModule, repetitions, "SimpleModule")
+    repetitions = 1200
+
+    Efficiency.check(DyModule, repetitions, "DyModule")
+    Efficiency.check(SimpleDyModule, repetitions, "SimpleDyModule")
+    Efficiency.check(SimpleModule, repetitions, "SimpleModule")
 
     # list_a = []
     # list_b = []
