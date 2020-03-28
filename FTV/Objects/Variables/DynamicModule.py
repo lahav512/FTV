@@ -1,7 +1,8 @@
 from queue import Queue
 
 from AppPackage.Experiments.Log import Log
-from FTV.Objects.Variables.AbstractDynamicObject import DynamicModuleParent, DynamicMethod
+from FTV.Objects.Variables.AbstractDynamicModule import DynamicModuleParent
+from FTV.Objects.Variables.DynamicMethod import DynamicMethod, BuiltinDynamicMethod
 from FTV.Objects.Variables.DynamicObjects import DySwitch, DynamicObject
 
 
@@ -12,17 +13,17 @@ class DynamicModule(DynamicModuleParent, DynamicObject):
         DynamicObject.__init__(self, value)
         super(DynamicModule, self).__init__(value)
 
-    @DynamicMethod()
+    @BuiltinDynamicMethod()
     def _setupEnvironment(self):
         self._loadBuiltinSelf()
 
-    @DynamicMethod()
+    @BuiltinDynamicMethod()
     def _loadBuiltinSelf(self):
         self._setupBuiltinVariables()
         self._setupBuiltinMethods()
         self._setupBuiltinTriggers()
 
-    @DynamicMethod()
+    @BuiltinDynamicMethod()
     def _loadSelf(self):
         self.setupVariables()
         self._setupMethods()
@@ -36,8 +37,8 @@ class DynamicModule(DynamicModuleParent, DynamicObject):
 
     def _setupBuiltinVariables(self):
 
-        self.POST_BUILTIN_INIT = DySwitch()
-        self.PRE_INIT = DySwitch()
+        self.POST_BUILTIN_INIT = DySwitch(builtin=True)
+        self.PRE_INIT = DySwitch(builtin=True)
         self.POST_INIT = DySwitch()
 
     def setupVariables(self):

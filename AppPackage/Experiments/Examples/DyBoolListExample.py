@@ -1,6 +1,6 @@
 from AppPackage.Experiments.Log import Log
-from FTV.Objects.Variables.AbstractDynamicObject import DynamicMethod
-from FTV.Objects.Variables.DynamicModuleObject import DynamicModule
+from FTV.Objects.Variables.DynamicMethod import DynamicMethod
+from FTV.Objects.Variables.DynamicModule import DynamicModule
 from FTV.Objects.Variables.DynamicObjects import DyInt, DyBool, DySwitch
 
 
@@ -17,11 +17,11 @@ class DyBoolList(DynamicModule):
         self.__len__ = 0
         self.__len_true__ = DyInt(0)
         self.__len_true_change__ = DyInt()
-        self.__on_len_true_change__ = DySwitch()
+        # self.__on_len_true_change__ = DySwitch()
 
     def _setupBuiltinTriggers(self):
         super(DyBoolList, self)._setupBuiltinTriggers()
-        self.addTrigger(self.__on_len_true_change__, True, self._update_len_true)
+        self.addTrigger(self.__len_true_change__, True, self._update_len_true)
         self.addTrigger(self.__len_true__, True, self._update_value)
 
     @DynamicMethod()
@@ -29,9 +29,8 @@ class DyBoolList(DynamicModule):
         self.__list__ += dy_bools
         self.__len__ = len(self.__list__)
 
-        self.__len_true_change__.set(len(list(filter(lambda dy_bool: dy_bool.get(), dy_bools))))
-        self.__on_len_true_change__.activate()
-        
+        self.__len_true_change__.set(len(list(filter(lambda dy_bool: dy_bool, dy_bools))))
+
         for dy_bool in dy_bools:
             self.addTrigger(dy_bool, True, self._len_true_plus_one)
             # self.addTrigger(dy_bool, False, self._len_true_minus)
@@ -46,10 +45,10 @@ class DyBoolList(DynamicModule):
 
     @DynamicMethod()
     def _update_len_true(self):
-        self._update_len_(self.__len_true_change__.get())
+        self._update_len_(self.__len_true_change__)
 
     def _update_len_(self, change):
-        self.__len_true__.set(self.__len_true__.get() + change)
+        self.__len_true__ += change
 
     # @DynamicMethod()
     # def _len_true_minus(self):
@@ -57,8 +56,8 @@ class DyBoolList(DynamicModule):
 
     @DynamicMethod()
     def _update_value(self):
-        super(DyBoolList, self).set(self.__len_true__.get() == self.__len__)
-        Log.p(self.get(), Log.color.PURPLE)
+        super(DyBoolList, self).set(self.__len_true__ == self.__len__)
+        Log.p(self, Log.color.PURPLE)
 
 
 class VariableManager(DynamicModule):
@@ -78,7 +77,7 @@ class VariableManager(DynamicModule):
     @DynamicMethod()
     def printWorks(self):
         Log.p("DyBoolList Works!")
-        self.list.set(False)
+        # self.list.set(False)
 
     @DynamicMethod()
     def updateBC(self):

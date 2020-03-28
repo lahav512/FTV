@@ -1,7 +1,7 @@
 from AppPackage.Experiments import Efficiency
 from AppPackage.Experiments.Log import Log
 from FTV.Objects.Variables.AbstractDynamicObject import DynamicMethod
-from FTV.Objects.Variables.DynamicModuleObject import DynamicModule
+from FTV.Objects.Variables.DynamicModule import DynamicModule
 from FTV.Objects.Variables.DynamicObjects import DySwitch, DyBool
 
 
