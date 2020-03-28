@@ -2,28 +2,28 @@ from queue import Queue
 
 from AppPackage.Experiments.Log import Log
 from FTV.Objects.Variables.AbstractDynamicModule import DynamicModuleParent
-from FTV.Objects.Variables.DynamicMethod import DynamicMethod, BuiltinDynamicMethod
-from FTV.Objects.Variables.DynamicObjects import DySwitch, DynamicObject
+from FTV.Objects.Variables.DynamicMethods import DyBuiltinMethod
+from FTV.Objects.Variables.DynamicObjects import DySwitch, DyObject
 
 
-class DynamicModule(DynamicModuleParent, DynamicObject):
+class DyModule(DynamicModuleParent, DyObject):
     type = "DynamicModule"
     
     def __init__(self, value=None):
-        DynamicObject.__init__(self, value)
-        super(DynamicModule, self).__init__(value)
+        DyObject.__init__(self, value)
+        super(DyModule, self).__init__(value)
 
-    @BuiltinDynamicMethod()
+    @DyBuiltinMethod()
     def _setupEnvironment(self):
         self._loadBuiltinSelf()
 
-    @BuiltinDynamicMethod()
+    @DyBuiltinMethod()
     def _loadBuiltinSelf(self):
         self._setupBuiltinVariables()
         self._setupBuiltinMethods()
         self._setupBuiltinTriggers()
 
-    @BuiltinDynamicMethod()
+    @DyBuiltinMethod()
     def _loadSelf(self):
         self.setupVariables()
         self._setupMethods()
@@ -71,10 +71,10 @@ class DynamicModule(DynamicModuleParent, DynamicObject):
         is_new_var = key not in locals()
         # is_new_var = True
 
-        super(DynamicModule, self).__setattr__(key, value)
+        super(DyModule, self).__setattr__(key, value)
         _object = getattr(self, key)
         try:
-            if isinstance(_object, DynamicObject):
+            if isinstance(_object, DyObject):
                 if not is_new_var:
                     Log.p(key, Log.color.BLUE)
                     _object._distributeTriggers()

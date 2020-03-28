@@ -1,7 +1,7 @@
 import functools
 
 from AppPackage.Experiments.Log import Log
-from FTV.Objects.Variables.DynamicObjects import DynamicObject
+from FTV.Objects.Variables.DynamicObjects import DyObject
 
 
 class TriggerManager:
@@ -18,7 +18,7 @@ class TriggerManager:
         cls.setter_links[id(variable)] = cls.Link(cls, trigger, action, thread_id)
 
     @classmethod
-    def checkTriggers(cls, variable: DynamicObject, new_value, old_value):
+    def checkTriggers(cls, variable: DyObject, new_value, old_value):
         triggered_links = []
         Log.d("links: {}".format(variable.__links__))
         for link in variable.__links__:

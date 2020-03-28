@@ -38,22 +38,22 @@ class DyObjectMagicMethods(object):
     # # # Operator Magic Methods
 
     def __lt__(self, other):
-        return object.__lt__(self.get(), DynamicObject.__get_other__(other))
+        return object.__lt__(self.get(), DyObject.__get_other__(other))
 
     def __le__(self, other):
-        return object.__le__(self.get(), DynamicObject.__get_other__(other))
+        return object.__le__(self.get(), DyObject.__get_other__(other))
 
     def __eq__(self, other):
-        return object.__eq__(self.get(), DynamicObject.__get_other__(other))
+        return object.__eq__(self.get(), DyObject.__get_other__(other))
 
     def __ne__(self, other):
-        return object.__ne__(self.get(), DynamicObject.__get_other__(other))
+        return object.__ne__(self.get(), DyObject.__get_other__(other))
 
     def __gt__(self, other):
-        return object.__gt__(self.get(), DynamicObject.__get_other__(other))
+        return object.__gt__(self.get(), DyObject.__get_other__(other))
 
     def __ge__(self, other):
-        return object.__ge__(self.get(), DynamicObject.__get_other__(other))
+        return object.__ge__(self.get(), DyObject.__get_other__(other))
 
     # # # String Magic Methods
 
@@ -477,11 +477,11 @@ class DyIntMagicMethods(DyObjectMagicMethods):
     #     return int.__ceil__(self.__value__)
 
 
-class DynamicObject(DyObjectMagicMethods, DynamicObjectInterface):
+class DyObject(DyObjectMagicMethods, DynamicObjectInterface):
     type = "DynamicObject"
 
     def __init__(self, value=None, builtin=False):
-        super(DynamicObject, self).__init__()
+        super(DyObject, self).__init__()
         self.__value__: object = value
         self.__name__: str = "__name__"
         self._is_builtin: bool = builtin
@@ -506,17 +506,17 @@ class DynamicObject(DyObjectMagicMethods, DynamicObjectInterface):
         self._is_builtin = ans
 
     def _distributeTriggers(self):
-        super(DynamicObject, self)._distributeTriggers(self)
+        super(DyObject, self)._distributeTriggers(self)
 
     def _runActiveTriggers(self):
-        super(DynamicObject, self)._runActiveTriggers(self)
+        super(DyObject, self)._runActiveTriggers(self)
 
     # def __repr__(self):
     #     return self.get()
 
     @staticmethod
     def __get_other__(other):
-        if isinstance(other, DynamicObject):
+        if isinstance(other, DyObject):
             return other.get()
         return other
 

@@ -1,11 +1,11 @@
 from AppPackage.Experiments import Efficiency
 from AppPackage.Experiments.Log import Log
 from FTV.Objects.Variables.AbstractDynamicObject import DynamicMethod
-from FTV.Objects.Variables.DynamicModule import DynamicModule
+from FTV.Objects.Variables.DynamicModules import DyModule
 from FTV.Objects.Variables.DynamicObjects import DySwitch, DyBool
 
 
-class DyModule(DynamicModule):
+class DyModule(DyModule):
     @staticmethod
     def print(message):
         Log.p(message)
@@ -38,7 +38,7 @@ class DyModule(DynamicModule):
         self.addTrigger(self.third, True, self.ftvWorks)
 
 
-class SimpleDyModule(DynamicModule):
+class SimpleDyModule(DyModule):
 
     def __init__(self):
         super(SimpleDyModule, self).__init__()
@@ -78,7 +78,7 @@ class SimpleDyModule(DynamicModule):
         self.third.activate()
 
 
-class SimpleModule(DynamicModule):
+class SimpleModule(DyModule):
 
     def __init__(self):
         # super(SimpleModule, self).__init__()

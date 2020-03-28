@@ -1,17 +1,17 @@
 import math
 
 from AppPackage.Experiments.Log import Log
-from FTV.Objects.Variables.AbstractDynamicObject import (DynamicObject, DyIntMagicMethods,
+from FTV.Objects.Variables.AbstractDynamicObject import (DyObject, DyIntMagicMethods,
                                                          DyBoolMagicMethods)
 
 
-class DyBool(DyBoolMagicMethods, DynamicObject):
+class DyBool(DyBoolMagicMethods, DyObject):
     def __init__(self, value, builtin=False):
         super().__init__(value, builtin)
         self.__value__: bool
 
 
-class DySwitch(DynamicObject):
+class DySwitch(DyObject):
     def __init__(self, builtin=False):
         super().__init__(False, builtin)
         self.__value__: bool
@@ -26,7 +26,7 @@ class DySwitch(DynamicObject):
         self.set(True)
 
 
-class DyInt(DyIntMagicMethods, DynamicObject):
+class DyInt(DyIntMagicMethods, DyObject):
     def __init__(self, value: int=None, builtin=False):
         super().__init__(value, builtin)
         self.__value__: int = value

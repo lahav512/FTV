@@ -1,23 +1,23 @@
 from AppPackage.Experiments.Log import Log
-from FTV.Objects.Variables.DynamicMethod import DynamicMethod
-from FTV.Objects.Variables.DynamicModule import DynamicModule
+from FTV.Objects.Variables.DynamicMethods import DyMethod
+from FTV.Objects.Variables.DynamicModules import DyModule
 from FTV.Objects.Variables.DynamicObjects import DySwitch
 
 
-class DyWifiExample(DynamicModule):
-    @DynamicMethod()
+class DyWifiExample(DyModule):
+    @DyMethod()
     def turnWifiOn(self):
         self.onWifiTurnedOn.activate()
 
-    @DynamicMethod()
+    @DyMethod()
     def connectSSID(self):
         self.onWifiConnected.activate()
 
-    @DynamicMethod()
+    @DyMethod()
     def requestData(self):
         self.onDataReceived.activate()
 
-    @DynamicMethod()
+    @DyMethod()
     def displayData(self):
         Log.p("Displaying the data :)")
 

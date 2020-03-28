@@ -4,7 +4,7 @@ from AppPackage.Experiments.Log import Log
 from FTV.Objects.Variables.AbstractDynamicObject import DynamicObjectInterface
 
 
-class DynamicMethod(DynamicObjectInterface):
+class DyMethod(DynamicObjectInterface):
     # __slots__ = ()
 
     # def __init__(self):
@@ -32,14 +32,14 @@ class DynamicMethod(DynamicObjectInterface):
         Log.step(step)
 
 
-class BuiltinDynamicMethod(DynamicMethod):
+class DyBuiltinMethod(DyMethod):
 
     @staticmethod
     def __log_p__(message):
         if Log.BUILTIN_ENABLED:
-            DynamicMethod.__log_p__(message)
+            DyMethod.__log_p__(message)
 
     @staticmethod
     def __log_step__(step):
         if Log.BUILTIN_ENABLED:
-            DynamicMethod.__log_step__(step)
+            DyMethod.__log_step__(step)
