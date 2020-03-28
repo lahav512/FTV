@@ -11,9 +11,9 @@ class Module(DyModule):
         self.onSwitch = DySwitch()
 
     def setupTriggers(self):
-        self.addTrigger(self.dy_object_or_method, DyObject.isChanged(*args, **kwargs))\
-            .setAction(self.dy_object_or_method, *args, **kwargs)\
-            .setThread(self.threads.main)
+        self.addTrigger(self.dy_object_or_method, condition=DyObject.isChanged(*args, **kwargs))\
+            .setAction(action=self.dy_object_or_method, *args, **kwargs)\
+            .setThread(thread=self.threads.main)
 
     @DyMethod()
     def printFinish(self):
