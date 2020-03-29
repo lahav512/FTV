@@ -30,13 +30,17 @@ class DyModule(DynamicModuleParent, DyObject):
         self.setupTriggers()
 
     def _setupBuiltinTriggers(self):
-        self.addTrigger(self._loadBuiltinSelf, True, self.POST_BUILTIN_INIT)  # TODO lahav use this line: , "thread.main")
-        self.addTrigger(self.POST_BUILTIN_INIT, True, self.PRE_INIT)
-        self.addTrigger(self.PRE_INIT, True, self._loadSelf)
-        self.addTrigger(self._setupEnvironment, True, self.POST_INIT)
+        self.addTrigger(self._loadBuiltinSelf)\
+            .setAction(self.POST_BUILTIN_INIT)\
+            # .setThread("thread.main")  # TODO lahav use this line: , "thread.main")
+        self.addTrigger(self.POST_BUILTIN_INIT)\
+            .setAction(self.PRE_INIT)
+        self.addTrigger(self.PRE_INIT)\
+            .setAction(self._loadSelf)
+        self.addTrigger(self._setupEnvironment)\
+            .setAction(self.POST_INIT)
 
     def _setupBuiltinVariables(self):
-
         self.POST_BUILTIN_INIT = DySwitch(builtin=True)
         self.PRE_INIT = DySwitch(builtin=True)
         self.POST_INIT = DySwitch()
@@ -77,8 +81,7 @@ class DyModule(DynamicModuleParent, DyObject):
             if isinstance(_object, DyObject):
                 if not is_new_var:
                     Log.p(key, Log.color.BLUE)
-                    _object._distributeTriggers()
-                    _object._runActiveTriggers()
+                    _object._prepareAndRunTriggers(_object)
                 else:
                     _object.__name__ = key
         except:

@@ -1,7 +1,7 @@
 import inspect
 from abc import abstractmethod
 
-from FTV.Objects.SystemObjects.Trigger import Action, Trigger
+from FTV.Objects.SystemObjects.Trigger import Trigger
 from FTV.Objects.Variables.AbstractDynamicMethod import DynamicMethodObject
 
 
@@ -94,24 +94,25 @@ class DynamicModuleParent(object):
     def setupTriggers(self):
         pass
 
-    def addTrigger(self, dy_variable, condition, action, thread=None):
+    def addTrigger(self, dy_object):
 
-        # TODO lahav This solution is temporary.
-        if callable(action):
-            modified_action = Action(self, action, action.__name__)
+        # # TODO lahav This solution is temporary.
+
+        if callable(dy_object):
+            modified_dy_object = self.__get_dy_method__(dy_object)
         else:
-            modified_action = Action(self, action.activate, action.__name__, action)
+            modified_dy_object = dy_object
 
-        if callable(dy_variable):
-            modified_variable = self.__dynamic_methods__[dy_variable.__name__]
-        else:
-            modified_variable = dy_variable
+        trigger = Trigger(self).setCondition(modified_dy_object)
+        modified_dy_object.__triggers__.append(trigger)
 
-        modified_variable.__triggers__.append(Trigger(self, condition, modified_action, thread))
-        # TODO lahav Please choose a proper way to add triggers.
+        return trigger
 
     def removeTrigger(self, *args):
         pass  # TODO lahav Must be redefined.
+
+    def __get_dy_method__(self, method):
+        return self.__dynamic_methods__[method.__name__]
 
     # def _getDySwitchAction(self, action):
     #     return self.__temp_action.activate()

@@ -19,8 +19,7 @@ class DyMethod(DynamicObjectInterface):
         # instance._ACTIVE_METHOD = ""
         self.__log_step__(-1)
         self.__log_p__("<-"" {}".format(wrapped.__name__))
-        self._distributeTriggers(instance.__dynamic_methods__[wrapped.__name__])
-        self._runActiveTriggers(instance.__dynamic_methods__[wrapped.__name__])
+        self._prepareAndRunTriggers(instance.__get_dy_method__(wrapped))
         return ans
 
     @staticmethod
@@ -30,7 +29,6 @@ class DyMethod(DynamicObjectInterface):
     @staticmethod
     def __log_step__(step):
         Log.step(step)
-
 
 class DyBuiltinMethod(DyMethod):
 

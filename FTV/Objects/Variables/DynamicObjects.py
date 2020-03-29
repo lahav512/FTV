@@ -10,6 +10,9 @@ class DyBool(DyBoolMagicMethods, DyObject):
         super().__init__(value, builtin)
         self.__value__: bool
 
+    def __condition__(self, *args, **kwargs):
+        return self.__value__
+
 
 class DySwitch(DyObject):
     def __init__(self, builtin=False):
@@ -24,6 +27,9 @@ class DySwitch(DyObject):
 
     def activate(self):
         self.set(True)
+
+    def __action__(self, *args, **kwargs):
+        self.activate()
 
 
 class DyInt(DyIntMagicMethods, DyObject):

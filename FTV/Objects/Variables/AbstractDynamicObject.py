@@ -7,7 +7,7 @@ from queue import Queue
 import wrapt as wrapt
 
 from AppPackage.Experiments.Log import Log
-from FTV.Objects.SystemObjects.Trigger import Action, Trigger
+from FTV.Objects.SystemObjects.Trigger import Trigger
 from AppPackage.Experiments import Efficiency
 
 
@@ -30,7 +30,20 @@ class DynamicObjectInterface(object):
     @staticmethod
     def _runActiveTriggers(dy_object):
         while not dy_object.__active_triggers__.empty():
-            dy_object.__active_triggers__.get_nowait().action()
+            trigger = dy_object.__active_triggers__.get_nowait()
+            if trigger.runCondition():
+                trigger.runAction()
+
+    def _prepareAndRunTriggers(self, dy_object):
+        self._distributeTriggers(dy_object)
+        self._runActiveTriggers(dy_object)
+
+    def __condition__(self, *args, **kwargs):
+        return True
+
+    @abstractmethod
+    def __action__(self, *args, **kwargs) -> object:
+        pass
 
 
 class DyObjectMagicMethods(object):
@@ -478,6 +491,7 @@ class DyIntMagicMethods(DyObjectMagicMethods):
 
 
 class DyObject(DyObjectMagicMethods, DynamicObjectInterface):
+
     type = "DynamicObject"
 
     def __init__(self, value=None, builtin=False):
@@ -493,8 +507,7 @@ class DyObject(DyObjectMagicMethods, DynamicObjectInterface):
         self._set(value)
         # if self.__name__ == "POST_INIT":
         self.__log_p__(self.__name__)
-        self._distributeTriggers()
-        self._runActiveTriggers()
+        self._prepareAndRunTriggers(self)
 
     def _get(self):
         return self.__value__
@@ -504,12 +517,6 @@ class DyObject(DyObjectMagicMethods, DynamicObjectInterface):
 
     def setBuiltin(self, ans):
         self._is_builtin = ans
-
-    def _distributeTriggers(self):
-        super(DyObject, self)._distributeTriggers(self)
-
-    def _runActiveTriggers(self):
-        super(DyObject, self)._runActiveTriggers(self)
 
     # def __repr__(self):
     #     return self.get()
@@ -523,3 +530,6 @@ class DyObject(DyObjectMagicMethods, DynamicObjectInterface):
     def __log_p__(self, message):
         if not (self._is_builtin and not Log.BUILTIN_ENABLED):
             Log.p(message, Log.color.BLUE)
+
+    def __action__(self, *args, **kwargs):
+        return self.set(args[0])
