@@ -49,7 +49,7 @@ class DynamicModuleParent(object):
 
     def __setupMethod(self, method_key):
         # print(method_key)
-        self.__dynamic_methods__[method_key] = DynamicMethodObject()
+        self.__dynamic_methods__[method_key] = DynamicMethodObject(getattr(self, method_key))
 
     @abstractmethod
     def _setupEnvironment(self):

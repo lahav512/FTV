@@ -18,8 +18,8 @@ class DyWifiExample(DyModule):
         self.onDataReceived.activate()
 
     @DyMethod()
-    def displayData(self):
-        Log.p("Displaying the data :)")
+    def displayData(self, message):
+        Log.p(message)
 
     def setupVariables(self):
         self.onStartWifiConnection = DySwitch()
@@ -28,11 +28,11 @@ class DyWifiExample(DyModule):
         self.onDataReceived = DySwitch()
 
     def setupTriggers(self):
-        self.addTrigger(self.POST_INIT, True, self.onStartWifiConnection)
-        self.addTrigger(self.onStartWifiConnection, True, self.turnWifiOn)
-        self.addTrigger(self.onWifiTurnedOn, True, self.connectSSID)
-        self.addTrigger(self.onWifiConnected, True, self.requestData)
-        self.addTrigger(self.onDataReceived, True, self.displayData)
+        self.addTrigger(self.POST_INIT).setAction(self.onStartWifiConnection)
+        self.addTrigger(self.onStartWifiConnection).setAction(self.turnWifiOn)
+        self.addTrigger(self.onWifiTurnedOn).setAction(self.connectSSID)
+        self.addTrigger(self.onWifiConnected).setAction(self.requestData)
+        self.addTrigger(self.onDataReceived).setAction(self.displayData, "New data !!!")
 
 
 DyWifiExample()

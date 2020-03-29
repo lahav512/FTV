@@ -51,10 +51,10 @@ class Trigger:
         return self.__condition__(self.condition_args, self.condition_kwargs)
 
     def runAction(self):
-        return self.__action__(self.action_args, self.action_kwargs)
+        return self.__action__(*self.action_args, **self.action_kwargs)
 
     def __condition__(self, *args, **kwargs):
-        return self.condition(args, kwargs)
+        return self.condition(*args, **kwargs)
 
     def __action__(self, *args, **kwargs):
-        return self.action()
+        return self.action(*args, **kwargs)

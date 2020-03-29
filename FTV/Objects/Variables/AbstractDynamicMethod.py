@@ -2,7 +2,10 @@ from FTV.Objects.Variables.AbstractDynamicObject import DynamicObjectInterface
 
 
 class DynamicMethodObject(DynamicObjectInterface):
+    def __init__(self, action):
+        super(DynamicMethodObject, self).__init__()
+        self.action = action
+
     def __action__(self, *args, **kwargs):
-        pass
-        # return self.__call__(args, kwargs)
+        return self.action(*args, **kwargs)
 

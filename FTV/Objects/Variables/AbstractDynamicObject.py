@@ -41,7 +41,7 @@ class DynamicObjectInterface(object):
     def __condition__(self, *args, **kwargs):
         return True
 
-    @abstractmethod
+    # @abstractmethod
     def __action__(self, *args, **kwargs) -> object:
         pass
 
