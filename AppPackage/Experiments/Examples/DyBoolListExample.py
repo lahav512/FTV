@@ -1,8 +1,8 @@
 from AppPackage.Experiments.Log import Log
-from FTV.Objects.Variables.AbstractDynamicMethod import DyListMagicMethods
-from FTV.Objects.Variables.DynamicMethods import DyMethod, DyBuiltinMethod
+from FTV.Objects.Variables.AbstractDynamicObject import DyListMagicMethods
+from FTV.Objects.Variables.DynamicMethods import DyMethod
 from FTV.Objects.Variables.DynamicModules import DyModule
-from FTV.Objects.Variables.DynamicObjects import DyInt, DyBool, DySwitch
+from FTV.Objects.Variables.DynamicObjects import DyInt, DyBool
 
 
 class DyBoolList(DyListMagicMethods, DyModule):
