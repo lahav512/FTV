@@ -11,7 +11,7 @@ class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyModule):
     def _setupBuiltinVariables(self):
         super(DyBoolList, self)._setupBuiltinVariables()
         self.__value__: bool
-        self.__len__: int = 0
+        # self.__len__: int = 0
         self.__iterator__ = []
         self.__len_true__ = DyInt(0, builtin=True)
 
@@ -29,7 +29,7 @@ class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyModule):
     @DyMethod()
     def add(self, *dy_bools):
         self.__iterator__ += dy_bools
-        self.__len__ = len(self.__iterator__)
+        # self.__len__ = len(self.__iterator__)
         self._update_len_true(len(list(filter(lambda dy_bool: dy_bool, dy_bools))))
 
         for dy_bool in dy_bools:
@@ -65,3 +65,10 @@ class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyModule):
         @staticmethod
         def __condition__(old_val, new_val, *args, **kwargs):
             return new_val != len(args[0])
+
+
+if __name__ == '__main__':
+    magic_methods = list(filter(lambda method: method.startswith("__") and method.endswith("__"), dir(list)))
+    dy_int_magic_methods = list(filter(lambda method: method not in dir(DyBoolList), magic_methods))
+
+    print("\n".join(dy_int_magic_methods))

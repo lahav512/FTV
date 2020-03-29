@@ -22,7 +22,9 @@ class VariableManager(DyModule):
     @DyMethod()
     def printWorks(self):
         Log.p("DyBoolList Works!")
-        # Log.p(len(self.list))
+        for item in reversed(self.list):
+            Log.p(item.__name__)
+        Log.p(len(self.list))
         # Log.p(self.list)
 
     @DyMethod()

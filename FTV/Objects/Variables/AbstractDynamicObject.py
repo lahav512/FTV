@@ -488,8 +488,26 @@ class DyIntMagicMethods(DyObjectMagicMethods):
 class DyListMagicMethods(DyObjectMagicMethods):
 
     def __len__(self):
-        return self.__len__
+        return list.__len__(self.__iterator__)
 
+    def __contains__(self, item):
+        raise Exception("This attribute is irrelevant for a list of DyObjects.")
+
+    def __delitem__(self, item):
+        raise Exception("This attribute is irrelevant for a list of DyObjects.")
+        # TODO lahav Define whether you want to use this attribute or not.
+
+    def __getitem__(self, item):
+        raise Exception("This attribute is irrelevant for a list of DyObjects.")
+
+    def __setitem__(self, item):
+        raise Exception("This attribute is irrelevant for a list of DyObjects.")
+
+    def __iter__(self):
+        return list.__iter__(self.__iterator__)
+
+    def __reversed__(self):
+        return list.__reversed__(self.__iterator__)
 
 class DyObject(DyObjectMagicMethods, DynamicObjectInterface):
 
