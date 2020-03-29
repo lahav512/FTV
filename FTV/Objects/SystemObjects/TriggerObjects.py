@@ -1,5 +1,10 @@
+from abc import abstractmethod
+
+
 class Condition(object):
-    def __condition__(self, *args, **kwargs):
+    @staticmethod
+    @abstractmethod
+    def __condition__(old_val, new_val, *args, **kwargs):
         return True
 
 
@@ -16,7 +21,7 @@ class Trigger:
     def __init__(self, dy_module_parent):
         self.dy_module_parent = dy_module_parent
 
-        self.condition = None
+        self.condition: function = None
         self.condition_args = []
         self.condition_kwargs = dict()
 
@@ -47,14 +52,14 @@ class Trigger:
         self.thread = thread
         return self
 
-    def runCondition(self):
-        return self.__condition__(self.condition_args, self.condition_kwargs)
+    def runCondition(self, old_val, new_val):
+        return self.__condition__(old_val, new_val, *self.condition_args, **self.condition_kwargs)
 
     def runAction(self):
         return self.__action__(*self.action_args, **self.action_kwargs)
 
-    def __condition__(self, *args, **kwargs):
-        return self.condition(*args, **kwargs)
+    def __condition__(self, old_val, new_val, *args, **kwargs):
+        return self.condition(old_val, new_val, *args, **kwargs)
 
     def __action__(self, *args, **kwargs):
         return self.action(*args, **kwargs)

@@ -1,14 +1,7 @@
-import inspect
-import time
-from abc import abstractmethod, ABC
-from functools import wraps, partial
 from queue import Queue
 
-import wrapt as wrapt
 
 from AppPackage.Experiments.Log import Log
-from FTV.Objects.SystemObjects.Trigger import Trigger
-from AppPackage.Experiments import Efficiency
 
 
 class DynamicObjectInterface(object):
@@ -28,17 +21,17 @@ class DynamicObjectInterface(object):
                 pass
 
     @staticmethod
-    def _runActiveTriggers(dy_object):
+    def _runActiveTriggers(dy_object, old_val=None, new_val=None):
         while not dy_object.__active_triggers__.empty():
             trigger = dy_object.__active_triggers__.get_nowait()
-            if trigger.runCondition():
+            if trigger.runCondition(old_val, new_val):
                 trigger.runAction()
 
-    def _prepareAndRunTriggers(self, dy_object):
+    def _prepareAndRunTriggers(self, dy_object, old_val=None, new_val=None):
         self._distributeTriggers(dy_object)
-        self._runActiveTriggers(dy_object)
+        self._runActiveTriggers(dy_object, old_val, new_val)
 
-    def __condition__(self, *args, **kwargs):
+    def __condition__(self, old_val, new_val, *args, **kwargs):
         return True
 
     # @abstractmethod
@@ -490,6 +483,12 @@ class DyIntMagicMethods(DyObjectMagicMethods):
     #     return int.__ceil__(self.__value__)
 
 
+class DyListMagicMethods(DyObjectMagicMethods):
+
+    def __len__(self):
+        return list.__len__(self.__list__)
+
+
 class DyObject(DyObjectMagicMethods, DynamicObjectInterface):
 
     type = "DynamicObject"
@@ -504,10 +503,11 @@ class DyObject(DyObjectMagicMethods, DynamicObjectInterface):
         self.__value__ = value
 
     def set(self, value):
+        old_value = self.get()
         self._set(value)
         # if self.__name__ == "POST_INIT":
         self.__log_p__(self.__name__)
-        self._prepareAndRunTriggers(self)
+        self._prepareAndRunTriggers(self, old_value, value)
 
     def _get(self):
         return self.__value__

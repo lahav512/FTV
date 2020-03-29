@@ -1,28 +1,28 @@
 from AppPackage.Experiments import Efficiency
 from AppPackage.Experiments.Log import Log
-from FTV.Objects.Variables.AbstractDynamicObject import DynamicMethod
+from FTV.Objects.Variables.DynamicMethods import DyMethod
 from FTV.Objects.Variables.DynamicModules import DyModule
 from FTV.Objects.Variables.DynamicObjects import DySwitch, DyBool
 
 
-class DyModule(DyModule):
+class DynamicModule(DyModule):
     @staticmethod
     def print(message):
         Log.p(message)
 
-    @DynamicMethod()
+    @DyMethod()
     def ftvWorks(self):
         self.print("FTV Works!")
 
-    @DynamicMethod()
+    @DyMethod()
     def firstMethod(self):
         self.first.activate()
 
-    @DynamicMethod()
+    @DyMethod()
     def secondMethod(self):
         self.second.activate()
 
-    @DynamicMethod()
+    @DyMethod()
     def thirdMethod(self):
         self.third.activate()
 
@@ -32,10 +32,10 @@ class DyModule(DyModule):
         self.third = DySwitch()
 
     def setupTriggers(self):
-        self.addTrigger(self.POST_INIT, True, self.firstMethod)
-        self.addTrigger(self.first, True, self.secondMethod)
-        self.addTrigger(self.second, True, self.thirdMethod)
-        self.addTrigger(self.third, True, self.ftvWorks)
+        self.addTrigger(self.POST_INIT).setAction(self.firstMethod)
+        self.addTrigger(self.first).setAction(self.secondMethod)
+        self.addTrigger(self.second).setAction(self.thirdMethod)
+        self.addTrigger(self.third).setAction(self.ftvWorks)
 
 
 class SimpleDyModule(DyModule):
@@ -58,21 +58,21 @@ class SimpleDyModule(DyModule):
     def print(message):
         Log.p(message)
 
-    # @DynamicMethod()
+    # @DyMethod()
     def ftvWorks(self):
         self.print("FTV Works!")
 
-    # @DynamicMethod()
+    # @DyMethod()
     def firstMethod(self):
         # self.print("firstMethod")
         self.first.activate()
 
-    # @DynamicMethod()
+    # @DyMethod()
     def secondMethod(self):
         # self.print("secondMethod")
         self.second.activate()
 
-    # @DynamicMethod()
+    # @DyMethod()
     def thirdMethod(self):
         # self.print("thirdMethod")
         self.third.activate()
@@ -122,7 +122,7 @@ if __name__ == '__main__':
 
     repetitions = 1200
 
-    Efficiency.check(DyModule, repetitions, "DyModule")
+    Efficiency.check(DynamicModule, repetitions, "DynamicModule")
     Efficiency.check(SimpleDyModule, repetitions, "SimpleDyModule")
     Efficiency.check(SimpleModule, repetitions, "SimpleModule")
 

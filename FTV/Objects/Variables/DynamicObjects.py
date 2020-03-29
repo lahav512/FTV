@@ -1,8 +1,8 @@
 import math
 
 from AppPackage.Experiments.Log import Log
-from FTV.Objects.Variables.AbstractDynamicObject import (DyObject, DyIntMagicMethods,
-                                                         DyBoolMagicMethods)
+from FTV.Objects.SystemObjects.TriggerObjects import Condition
+from FTV.Objects.Variables.AbstractDynamicObject import DyObject, DyBoolMagicMethods, DyIntMagicMethods
 
 
 class DyBool(DyBoolMagicMethods, DyObject):
@@ -10,8 +10,20 @@ class DyBool(DyBoolMagicMethods, DyObject):
         super().__init__(value, builtin)
         self.__value__: bool
 
-    def __condition__(self, *args, **kwargs):
+    def __condition__(self, old_val, new_val, *args, **kwargs):
         return self.__value__
+
+    class IsChanged(Condition):
+        @staticmethod
+        def __condition__(old_val, new_val, *args, **kwargs):
+            return old_val != new_val
+
+    class IsChangedTo(Condition):
+        @staticmethod
+        def __condition__(old_val, new_val, *args, **kwargs):
+            if new_val == args[0]:
+                return old_val != new_val
+            return False
 
 
 class DySwitch(DyObject):
@@ -36,6 +48,9 @@ class DyInt(DyIntMagicMethods, DyObject):
     def __init__(self, value: int=None, builtin=False):
         super().__init__(value, builtin)
         self.__value__: int = value
+
+    # def __condition__(self, old_val, new_val, *args, **kwargs):
+    #     pass
 
 
 if __name__ == '__main__':

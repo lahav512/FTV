@@ -1,8 +1,7 @@
 import inspect
 from abc import abstractmethod
 
-from FTV.Objects.SystemObjects.Trigger import Trigger
-from FTV.Objects.Variables.AbstractDynamicMethod import DynamicMethodObject
+from FTV.Objects.SystemObjects.TriggerObjects import Trigger
 
 
 class DynamicModuleParent(object):

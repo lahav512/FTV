@@ -7,8 +7,8 @@ from FTV.Objects.Variables.AbstractDynamicObject import DynamicObjectInterface
 class DyMethod(DynamicObjectInterface):
     # __slots__ = ()
 
-    def __init__(self):
-        super(DyMethod, self).__init__()
+    # def __init__(self):
+    #     super(DyMethod, self).__init__()
 
     @wrapt.decorator
     def __call__(self, wrapped, instance, args, kwargs):
@@ -29,6 +29,7 @@ class DyMethod(DynamicObjectInterface):
     @staticmethod
     def __log_step__(step):
         Log.step(step)
+
 
 class DyBuiltinMethod(DyMethod):
 
