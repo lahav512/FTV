@@ -1,6 +1,6 @@
 class Log:
     """This class is temporary!"""
-    ENABLED = False
+    ENABLED = True
     BUILTIN_ENABLED = False
     __BLANK_SPACE = 0
 

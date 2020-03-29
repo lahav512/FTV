@@ -1,6 +1,5 @@
 from queue import Queue
 
-
 from AppPackage.Experiments.Log import Log
 
 
@@ -271,6 +270,9 @@ class DyBoolMagicMethods(DyObjectMagicMethods):
     def __trunc__(self):
         return self.get() # True for int only!!!
 
+    def __hash__(self):
+        return bool.__hash__(self.get())
+
     # def __floor__(self):
     #     return int.__floor__(self.__value__)
 
@@ -483,10 +485,10 @@ class DyIntMagicMethods(DyObjectMagicMethods):
     #     return int.__ceil__(self.__value__)
 
 
-class DyListMagicMethods(DyObjectMagicMethods):
+class DySetMagicMethods(DyObjectMagicMethods):
 
     def __len__(self):
-        return list.__len__(self.__list__)
+        return self.__len__
 
 
 class DyObject(DyObjectMagicMethods, DynamicObjectInterface):
@@ -506,7 +508,7 @@ class DyObject(DyObjectMagicMethods, DynamicObjectInterface):
         old_value = self.get()
         self._set(value)
         # if self.__name__ == "POST_INIT":
-        self.__log_p__(self.__name__)
+        self.__log_p__("{} = {}".format(self.__name__, value))
         self._prepareAndRunTriggers(self, old_value, value)
 
     def _get(self):
@@ -533,3 +535,6 @@ class DyObject(DyObjectMagicMethods, DynamicObjectInterface):
 
     def __action__(self, *args, **kwargs):
         return self.set(args[0])
+
+    def __condition__(self, old_val, new_val, *args, **kwargs):
+        return True

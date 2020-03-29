@@ -1,6 +1,3 @@
-import math
-
-from AppPackage.Experiments.Log import Log
 from FTV.Objects.SystemObjects.TriggerObjects import Condition
 from FTV.Objects.Variables.AbstractDynamicObject import DyObject, DyBoolMagicMethods, DyIntMagicMethods
 
@@ -51,6 +48,28 @@ class DyInt(DyIntMagicMethods, DyObject):
 
     # def __condition__(self, old_val, new_val, *args, **kwargs):
     #     pass
+
+    class IsChanged(Condition):
+        @staticmethod
+        def __condition__(old_val, new_val, *args, **kwargs):
+            return old_val != new_val
+
+    class IsChangedTo(Condition):
+        @staticmethod
+        def __condition__(old_val, new_val, *args, **kwargs):
+            if new_val == args[0]:
+                return old_val != new_val
+            return False
+
+    class IsEqualTo(Condition):
+        @staticmethod
+        def __condition__(old_val, new_val, *args, **kwargs):
+            return new_val == args[0]
+
+    class IsNotEqualTo(Condition):
+        @staticmethod
+        def __condition__(old_val, new_val, *args, **kwargs):
+            return new_val != args[0]
 
 
 if __name__ == '__main__':

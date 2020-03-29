@@ -4,7 +4,7 @@ import time
 def check(module, repetitions, tag):
     start = time.time()
     for k in range(repetitions):
-        temp_module = module()
+        module()
     end = time.time()
     total_time = end - start
     total_time /= repetitions
