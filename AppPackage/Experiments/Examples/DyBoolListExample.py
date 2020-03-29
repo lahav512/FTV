@@ -1,5 +1,5 @@
 from AppPackage.Experiments.Log import Log
-from FTV.Objects.Variables.DynamicMethods import DyMethod
+from FTV.Objects.Variables.DynamicMethods import DyMethod, DyBuiltinMethod
 from FTV.Objects.Variables.DynamicModules import DyModule
 from FTV.Objects.Variables.DynamicObjects import DyInt, DyBool, DySwitch
 
@@ -19,10 +19,10 @@ class DyBoolList(DyModule):
         self.__len_true_change__ = DyInt()
         # self.__on_len_true_change__ = DySwitch()
 
-    def _setupBuiltinTriggers(self):
-        super(DyBoolList, self)._setupBuiltinTriggers()
-        self.addTrigger(self.__len_true_change__, True, self._update_len_true)
-        self.addTrigger(self.__len_true__, True, self._update_value)
+    def setupTriggers(self):
+        super(DyBoolList, self).setupTriggers()
+        self.addTrigger(self.__len_true_change__).setAction(self._update_len_true, self.__len_true_change__)
+        self.addTrigger(self.__len_true__).setAction(self._update_value)
 
     @DyMethod()
     def add(self, *dy_bools):
@@ -32,7 +32,7 @@ class DyBoolList(DyModule):
         self.__len_true_change__.set(len(list(filter(lambda dy_bool: dy_bool, dy_bools))))
 
         for dy_bool in dy_bools:
-            self.addTrigger(dy_bool, True, self._len_true_plus_one)
+            self.addTrigger(dy_bool).setAction(self._update_len_true, 1)
             # self.addTrigger(dy_bool, False, self._len_true_minus)
             # self.addTrigger(self, False, dy_bool)
 
@@ -40,19 +40,8 @@ class DyBoolList(DyModule):
         Log.p("This object is a dependent variable. Therefore, it cannot be updated directly.", Log.color.RED)
 
     @DyMethod()
-    def _len_true_plus_one(self):
-        self._update_len_(1)
-
-    @DyMethod()
-    def _update_len_true(self):
-        self._update_len_(self.__len_true_change__)
-
-    def _update_len_(self, change):
+    def _update_len_true(self, change):
         self.__len_true__ += change
-
-    # @DynamicMethod()
-    # def _len_true_minus(self):
-    #     self.__len_true__.set(self.__len_true__.get() - 1)
 
     @DyMethod()
     def _update_value(self):
@@ -71,31 +60,18 @@ class VariableManager(DyModule):
     def setupTriggers(self):
         self.list.add(self.a, self.b, self.c)
 
-        self.addTrigger(self.POST_INIT, True, self.updateBC)
-        self.addTrigger(self.list, True, self.printWorks)
+        self.addTrigger(self.POST_INIT).setAction(self.updateBC, True, True, True)
+        self.addTrigger(self.list).setAction(self.printWorks)
 
     @DyMethod()
     def printWorks(self):
         Log.p("DyBoolList Works!")
 
     @DyMethod()
-    def updateBC(self):
-        self.a.set(True)
-        self.b.set(True)
-        self.c.set(True)
+    def updateBC(self, a, b, c):
+        self.a.set(a)
+        self.b.set(b)
+        self.c.set(c)
 
 
 vm = VariableManager()
-
-# class DyModule(DynamicModule):
-#     def setupVariables(self):
-#         self.a = DyBool(True)
-#         self.b = DyBool(True)
-#
-#         self.c = {self.a, self.b}
-#         self.a.set(False)
-#         self.c.add(self.a)
-#         Log.p(len(self.c))
-#
-#
-# DyModule()
