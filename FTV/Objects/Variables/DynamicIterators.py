@@ -1,12 +1,12 @@
 from AppPackage.Experiments.Log import Log
 from FTV.Objects.SystemObjects.TriggerObjects import Condition
-from FTV.Objects.Variables.AbstractDynamicObject import DySetMagicMethods, DyBoolMagicMethods
+from FTV.Objects.Variables.AbstractDynamicObject import DyListMagicMethods, DyBoolMagicMethods
 from FTV.Objects.Variables.DynamicMethods import DyMethod, DyBuiltinMethod
 from FTV.Objects.Variables.DynamicModules import DyModule
 from FTV.Objects.Variables.DynamicObjects import DyInt, DyBool
 
 
-class DyBoolList(DySetMagicMethods, DyBoolMagicMethods, DyModule):
+class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyModule):
 
     def _setupBuiltinVariables(self):
         super(DyBoolList, self)._setupBuiltinVariables()

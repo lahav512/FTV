@@ -485,7 +485,7 @@ class DyIntMagicMethods(DyObjectMagicMethods):
     #     return int.__ceil__(self.__value__)
 
 
-class DySetMagicMethods(DyObjectMagicMethods):
+class DyListMagicMethods(DyObjectMagicMethods):
 
     def __len__(self):
         return self.__len__
