@@ -23,7 +23,7 @@ class DyBool(DyBoolMagicMethods, DyObject):
             return False
 
 
-class DySwitch(DyObject):
+class DySwitch(DyBoolMagicMethods, DyObject):
     def __init__(self, builtin=False):
         super().__init__(False, builtin)
         self.__value__: bool

@@ -1,6 +1,5 @@
-from queue import Queue
-
 from AppPackage.Experiments.Log import Log
+from AppPackage.Experiments.PickleTests.DataObject import TempQueue
 
 
 class DynamicObjectInterface(object):
@@ -8,7 +7,7 @@ class DynamicObjectInterface(object):
 
     def __init__(self):
         self.__triggers__ = []
-        self.__active_triggers__ = Queue()
+        self.__active_triggers__ = TempQueue()
 
     @staticmethod
     def _distributeTriggers(dy_object):
