@@ -1,5 +1,6 @@
 from AppPackage.Experiments.Log import Log
 from AppPackage.Experiments.PickleTests.DataObject import TempQueue
+from FTV.Objects.SystemObjects.TriggerObjects import Condition
 
 
 class DynamicObjectInterface(object):
@@ -279,7 +280,7 @@ class DyBoolMagicMethods(DyObjectMagicMethods):
     #     return int.__ceil__(self.__value__)
 
 
-class DyIntMagicMethods(DyObjectMagicMethods):
+class DyNumericMagicMethods(DyObjectMagicMethods):
 
     # # # Operator Magic Methods
 
@@ -484,6 +485,10 @@ class DyIntMagicMethods(DyObjectMagicMethods):
     #     return int.__ceil__(self.__value__)
 
 
+class DyIntMagicMethods(DyNumericMagicMethods):
+    pass
+
+
 class DyListMagicMethods(DyObjectMagicMethods):
 
     def __len__(self):
@@ -507,6 +512,7 @@ class DyListMagicMethods(DyObjectMagicMethods):
 
     def __reversed__(self):
         return list.__reversed__(self.__iterator__)
+
 
 class DyObject(DyObjectMagicMethods, DynamicObjectInterface):
 
@@ -555,3 +561,15 @@ class DyObject(DyObjectMagicMethods, DynamicObjectInterface):
 
     def __condition__(self, old_val, new_val, *args, **kwargs):
         return True
+
+    class IsChanged(Condition):
+        @staticmethod
+        def __condition__(old_val, new_val, *args, **kwargs):
+            return old_val != new_val
+
+    class IsChangedTo(Condition):
+        @staticmethod
+        def __condition__(old_val, new_val, *args, **kwargs):
+            if new_val == args[0]:
+                return old_val != new_val
+            return False

@@ -3,7 +3,7 @@ from FTV.Objects.SystemObjects.TriggerObjects import Condition
 from FTV.Objects.Variables.AbstractDynamicObject import DyListMagicMethods, DyBoolMagicMethods
 from FTV.Objects.Variables.DynamicMethods import DyMethod, DyBuiltinMethod
 from FTV.Objects.Variables.DynamicModules import DyModule
-from FTV.Objects.Variables.DynamicObjects import DyInt, DyBool
+from FTV.Objects.Variables.DynamicObjects import DyInt, DyBool, DySwitch
 
 
 class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyModule):
@@ -16,8 +16,6 @@ class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyModule):
         self.__len_true__ = DyInt(0, builtin=True)
 
     def setupTriggers(self):
-        super(DyBoolList, self).setupTriggers()
-
         self.addTrigger(self.__len_true__)\
             .setCondition(DyBoolList.IsEqualToLenOf, self)\
             .setAction(self._update_value, True)
@@ -51,7 +49,7 @@ class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyModule):
         super(DyBoolList, self).set(value)
 
     def __condition__(self, old_val, new_val, *args, **kwargs):
-        return new_val
+        return self.__value__
 
     def __action__(self, *args, **kwargs):
         self.set(args[0])
@@ -65,6 +63,46 @@ class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyModule):
         @staticmethod
         def __condition__(old_val, new_val, *args, **kwargs):
             return new_val != len(args[0])
+
+
+class DySwitchList(DyBoolList):
+    def __init__(self):
+        super(DySwitchList, self).__init__(False)
+
+    def setupTriggers(self):
+        self.addTrigger(self.__len_true__) \
+            .setCondition(DyBoolList.IsEqualToLenOf, self)\
+            .setAction(self.deactivateAll)
+
+        self.addTrigger(self.__len_true__)\
+            .setCondition(DyBoolList.IsEqualToLenOf, self)\
+            .setAction(self._update_value, True)
+
+    @DyMethod()
+    def add(self, *dy_switches):
+        # super(DySwitchList, self).add(*dy_bools)
+        self.__iterator__ += dy_switches
+        # self.__len__ = len(self.__iterator__)
+        self._update_len_true(len(list(filter(lambda dy_bool: dy_bool, dy_switches))))
+
+        for dy_switch in dy_switches:
+            if isinstance(dy_switch, (DySwitch, DySwitchList)):
+                dy_switch._is_child = True
+                self.addTrigger(dy_switch).setCondition(DySwitch.IsChangedTo, True).setAction(self._update_len_true, 1)
+                self.addTrigger(dy_switch).setCondition(DySwitch.IsChangedTo, False).setAction(self._update_len_true, -1)
+            else:
+                Log.p("This object is a DySwitchList iterator. Therefore, it cannot add child that is not DySwitch or DySwitchList.", Log.color.RED)
+
+    def activate(self):
+        self.set(True)
+
+    @DyMethod()
+    def deactivateAll(self):
+        for item in self.__iterator__:
+            item._set(False)
+        # DyObject.set(self, False)
+        self._set(False)
+        self.__len_true__._set(0)
 
 
 if __name__ == '__main__':

@@ -14,6 +14,7 @@ class Trigger:
                  "condition_args",
                  "condition_kwargs",
                  "action",
+                 "action_name",
                  "action_args",
                  "action_kwargs",
                  "thread")
@@ -26,6 +27,7 @@ class Trigger:
         self.condition_kwargs = dict()
 
         self.action: function = None
+        self.action_name = None
         self.action_args = []
         self.action_kwargs = dict()
 
@@ -40,6 +42,7 @@ class Trigger:
     def setAction(self, action, *args, **kwargs):
         if callable(action):
             modified_action = self.dy_module_parent.__get_dy_method__(action)
+            self.action_name = action.__name__
         else:
             modified_action = action
 

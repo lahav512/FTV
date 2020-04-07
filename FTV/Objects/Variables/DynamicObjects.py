@@ -10,29 +10,18 @@ class DyBool(DyBoolMagicMethods, DyObject):
     def __condition__(self, old_val, new_val, *args, **kwargs):
         return self.__value__
 
-    class IsChanged(Condition):
-        @staticmethod
-        def __condition__(old_val, new_val, *args, **kwargs):
-            return old_val != new_val
-
-    class IsChangedTo(Condition):
-        @staticmethod
-        def __condition__(old_val, new_val, *args, **kwargs):
-            if new_val == args[0]:
-                return old_val != new_val
-            return False
-
 
 class DySwitch(DyBoolMagicMethods, DyObject):
     def __init__(self, builtin=False):
         super().__init__(False, builtin)
         self.__value__: bool
+        self._is_child = False
 
     def set(self, value):
-        if value:
-            super(DySwitch, self).set(True)
+        super(DySwitch, self).set(value)
 
-        super(DySwitch, self)._set(False)
+        if not self._is_child:
+            super(DySwitch, self)._set(False)
 
     def activate(self):
         self.set(True)
