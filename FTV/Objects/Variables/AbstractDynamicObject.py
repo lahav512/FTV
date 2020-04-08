@@ -524,15 +524,19 @@ class DyObject(DyObjectMagicMethods, DynamicObjectInterface):
         self.__name__: str = "__name__"
         self._is_builtin: bool = builtin
 
+    def _set_empty(self, value):
+        old_val = self._get()
+        self.__log_p__("{} = {}".format(self.__name__, value))
+        self._prepareAndRunTriggers(self, old_val, value)
+
     def _set(self, value):
         self.__value__ = value
 
     def set(self, value):
-        old_value = self.get()
+        old_val = self._get()
         self._set(value)
-        # if self.__name__ == "POST_INIT":
         self.__log_p__("{} = {}".format(self.__name__, value))
-        self._prepareAndRunTriggers(self, old_value, value)
+        self._prepareAndRunTriggers(self, old_val, value)
 
     def _get(self):
         return self.__value__

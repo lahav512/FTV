@@ -8,20 +8,16 @@ class DyBool(DyBoolMagicMethods, DyObject):
         self.__value__: bool
 
     def __condition__(self, old_val, new_val, *args, **kwargs):
-        return self.__value__
+        return new_val
 
 
 class DySwitch(DyBoolMagicMethods, DyObject):
     def __init__(self, builtin=False):
         super().__init__(False, builtin)
         self.__value__: bool
-        self._is_child = False
 
     def set(self, value):
-        super(DySwitch, self).set(value)
-
-        if not self._is_child:
-            super(DySwitch, self)._set(False)
+        super(DySwitch, self)._set_empty(value)
 
     def activate(self):
         self.set(True)
