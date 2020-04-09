@@ -45,3 +45,6 @@ class DyNumericConditions(DyObjectConditions):
 
 class DyIntConditions(DyNumericConditions):
     pass
+
+class DyFloatConditions(DyNumericConditions):
+    pass

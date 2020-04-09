@@ -1,5 +1,6 @@
-from FTV.Objects.Variables.AbstractConditions import DyIntConditions, DyBoolConditions
-from FTV.Objects.Variables.AbstractDynamicObject import DyObject, DyBoolMagicMethods, DyIntMagicMethods
+from FTV.Objects.Variables.AbstractConditions import DyIntConditions, DyBoolConditions, DyFloatConditions
+from FTV.Objects.Variables.AbstractDynamicObject import (DyObject, DyBoolMagicMethods, DyIntMagicMethods,
+                                                         DyFloatMagicMethods)
 
 
 class DyBool(DyBoolMagicMethods, DyBoolConditions, DyObject):
@@ -29,8 +30,14 @@ class DyInt(DyIntMagicMethods, DyIntConditions, DyObject):
     # def __condition__(self, old_val, new_val, *args, **kwargs):
     #     pass
 
+class DyFloat(DyFloatMagicMethods, DyFloatConditions, DyObject):
+    def __init__(self, value: float=None, builtin=False):
+        super().__init__(value, builtin)
+        self.__value__: float = value
+
 
 if __name__ == '__main__':
+    import math
     a = DyInt(8)
     b = DyInt(5)
     # b -= a
@@ -38,7 +45,7 @@ if __name__ == '__main__':
     # a.set(15)
     # print(a)
     # a += b
-    print(a > b)
+    print(math.trunc(a))
     # print(b)
 
     # magic_methods = list(filter(lambda method: method.startswith("__") and method.endswith("__"), dir(int)))

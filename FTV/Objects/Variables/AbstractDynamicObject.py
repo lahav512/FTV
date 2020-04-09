@@ -473,7 +473,7 @@ class DyNumericMagicMethods(DyObjectMagicMethods):
         return int.__round__(self.get())
 
     def __trunc__(self):
-        return self.get() # True for int only!!!
+        return int.__trunc__(self.get())  # True for int only!!!
 
     # def __floor__(self):
     #     return int.__floor__(self.__value__)
@@ -483,6 +483,10 @@ class DyNumericMagicMethods(DyObjectMagicMethods):
 
 
 class DyIntMagicMethods(DyNumericMagicMethods):
+    pass
+
+
+class DyFloatMagicMethods(DyNumericMagicMethods):
     pass
 
 

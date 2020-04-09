@@ -11,35 +11,23 @@ class VariableManager(DyModule):
         self.a = DyBool(False)
         self.b = DyBool(False)
         self.c = DyBool(False)
-        self.d = DyBool(False)
         self.list_1 = DyBoolList()
-        self.list_2 = DyBoolList()
 
     def setupTriggers(self):
         self.list_1.add(self.a, self.b, self.c)
-        self.list_2.add(self.a, self.b, self.d)
 
-        self.addTrigger(self.POST_INIT).setAction(self.updateD, True)
-        self.addTrigger(self.updateD).setAction(self.updateABC, True, True, True)
+        self.addTrigger(self.POST_INIT).setAction(self.updateABC, True, True, True)
         self.addTrigger(self.list_1).setAction(self.printWorks)
-        self.addTrigger(self.list_2).setAction(self.printWorks)
 
     @DyMethod()
     def printWorks(self):
         Log.p("DyBoolList Works!")
-        # for item in self.list:
-        #     Log.p(item.__name__)
-        # Log.p(len(self.list))
 
     @DyMethod()
     def updateABC(self, a, b, c):
         self.a.set(a)
         self.b.set(b)
         self.c.set(c)
-
-    @DyMethod()
-    def updateD(self, d):
-        self.d.set(d)
 
 
 vm = VariableManager()
