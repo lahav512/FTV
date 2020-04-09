@@ -30,7 +30,7 @@ class Log:
     def step(cls, step):
         cls.__BLANK_SPACE += step
 
-    class color(object):
+    class color:
         LIGHT_BLUE = "\033[0;96m"
         BLUE = "\033[0;34m"
         ORANGE = "\033[0;33m"

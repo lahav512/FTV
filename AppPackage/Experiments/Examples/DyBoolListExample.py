@@ -12,16 +12,16 @@ class VariableManager(DyModule):
         self.b = DyBool(False)
         self.c = DyBool(False)
         self.d = DyBool(False)
-        self.list = DyBoolList()
+        self.list_1 = DyBoolList()
         self.list_2 = DyBoolList()
 
     def setupTriggers(self):
-        self.list.add(self.a, self.b, self.c)
+        self.list_1.add(self.a, self.b, self.c)
         self.list_2.add(self.a, self.b, self.d)
 
         self.addTrigger(self.POST_INIT).setAction(self.updateD, True)
         self.addTrigger(self.updateD).setAction(self.updateABC, True, True, True)
-        self.addTrigger(self.list).setAction(self.printWorks)
+        self.addTrigger(self.list_1).setAction(self.printWorks)
         self.addTrigger(self.list_2).setAction(self.printWorks)
 
     @DyMethod()
