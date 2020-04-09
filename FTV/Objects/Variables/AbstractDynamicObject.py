@@ -1,6 +1,6 @@
 from AppPackage.Experiments.Log import Log
 from AppPackage.Experiments.PickleTests.DataObject import TempQueue
-from FTV.Objects.SystemObjects.TriggerObjects import Condition
+from FTV.Objects.Variables.AbstractConditions import DyObjectConditions
 
 
 class DynamicObjectInterface(object):
@@ -29,9 +29,6 @@ class DynamicObjectInterface(object):
     def _prepareAndRunTriggers(self, dy_object, old_val=None, new_val=None):
         self._distributeTriggers(dy_object)
         self._runActiveTriggers(dy_object, old_val, new_val)
-
-    def __condition__(self, old_val, new_val, *args, **kwargs):
-        return True
 
     # @abstractmethod
     def __action__(self, *args, **kwargs) -> object:
@@ -514,7 +511,7 @@ class DyListMagicMethods(DyObjectMagicMethods):
         return list.__reversed__(self.__iterator__)
 
 
-class DyObject(DyObjectMagicMethods, DynamicObjectInterface):
+class DyObject(DyObjectMagicMethods, DyObjectConditions, DynamicObjectInterface):
 
     type = "DynamicObject"
 
@@ -562,18 +559,3 @@ class DyObject(DyObjectMagicMethods, DynamicObjectInterface):
 
     def __action__(self, *args, **kwargs):
         return self.set(args[0])
-
-    def __condition__(self, old_val, new_val, *args, **kwargs):
-        return True
-
-    class IsChanged(Condition):
-        @staticmethod
-        def __condition__(old_val, new_val, *args, **kwargs):
-            return old_val != new_val
-
-    class IsChangedTo(Condition):
-        @staticmethod
-        def __condition__(old_val, new_val, *args, **kwargs):
-            if new_val == args[0]:
-                return old_val != new_val
-            return False

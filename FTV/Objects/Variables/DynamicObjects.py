@@ -1,15 +1,11 @@
-from FTV.Objects.SystemObjects.TriggerObjects import Condition
+from FTV.Objects.Variables.AbstractConditions import DyIntConditions, DyBoolConditions
 from FTV.Objects.Variables.AbstractDynamicObject import DyObject, DyBoolMagicMethods, DyIntMagicMethods
 
 
-class DyBool(DyBoolMagicMethods, DyObject):
+class DyBool(DyBoolMagicMethods, DyBoolConditions, DyObject):
     def __init__(self, value, builtin=False):
         super().__init__(value, builtin)
         self.__value__: bool
-
-    def __condition__(self, old_val, new_val, *args, **kwargs):
-        return new_val
-
 
 class DySwitch(DyBoolMagicMethods, DyObject):
     def __init__(self, builtin=False):
@@ -25,36 +21,13 @@ class DySwitch(DyBoolMagicMethods, DyObject):
     def __action__(self, *args, **kwargs):
         self.activate()
 
-
-class DyInt(DyIntMagicMethods, DyObject):
+class DyInt(DyIntMagicMethods, DyIntConditions, DyObject):
     def __init__(self, value: int=None, builtin=False):
         super().__init__(value, builtin)
         self.__value__: int = value
 
     # def __condition__(self, old_val, new_val, *args, **kwargs):
     #     pass
-
-    class IsChanged(Condition):
-        @staticmethod
-        def __condition__(old_val, new_val, *args, **kwargs):
-            return old_val != new_val
-
-    class IsChangedTo(Condition):
-        @staticmethod
-        def __condition__(old_val, new_val, *args, **kwargs):
-            if new_val == args[0]:
-                return old_val != new_val
-            return False
-
-    class IsEqualTo(Condition):
-        @staticmethod
-        def __condition__(old_val, new_val, *args, **kwargs):
-            return new_val == args[0]
-
-    class IsNotEqualTo(Condition):
-        @staticmethod
-        def __condition__(old_val, new_val, *args, **kwargs):
-            return new_val != args[0]
 
 
 if __name__ == '__main__':
