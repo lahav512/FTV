@@ -37,36 +37,49 @@ class DynamicObjectInterface(object):
 
 class DyObjectMagicMethods(object):
 
-    # # # Operator Magic Methods
+    # def __delattr__() -> Irrelevant
 
-    def __lt__(self, other):
-        return object.__lt__(self.get(), DyObject.__get_other__(other))
+    # def __dir__() -> Irrelevant
 
-    def __le__(self, other):
-        return object.__le__(self.get(), DyObject.__get_other__(other))
+    def __eq__(self, *args, **kwargs) -> bool:
+        return object.__eq__(self.get(), args[0] + 0, **kwargs)
 
-    def __eq__(self, other):
-        return object.__eq__(self.get(), DyObject.__get_other__(other))
+    def __format__(self, *args, **kwargs) -> str:
+        return object.__format__(self.get(), *args, **kwargs)
 
-    def __ne__(self, other):
-        return object.__ne__(self.get(), DyObject.__get_other__(other))
+    # def __getattribute__() -> Irrelevant
 
-    def __gt__(self, other):
-        return object.__gt__(self.get(), DyObject.__get_other__(other))
+    def __ge__(self, *args, **kwargs):
+        return object.__ge__(self.get(), *args, **kwargs)
 
-    def __ge__(self, other):
-        return object.__ge__(self.get(), DyObject.__get_other__(other))
+    def __gt__(self, *args, **kwargs):
+        return object.__gt__(self.get(), *args, **kwargs)
+
+    def __hash__(self, *args, **kwargs) -> int:
+        return object.__hash__(self.get(), *args, **kwargs)
+
+    # def __init_subclass__() -> Irrelevant
+
+    # def __init__() -> Irrelevant
+
+    def __le__(self, *args, **kwargs):
+        return object.__le__(self.get(), *args, **kwargs)
+
+    def __lt__(self, *args, **kwargs):
+        return object.__lt__(self.get(), *args, **kwargs)
+
+    # def __new__() -> Irrelevant
+
+    def __ne__(self, *args, **kwargs) -> int:
+        return object.__ne__(self.get(), *args, **kwargs)
+
+
+
 
     # # # String Magic Methods
 
     def __str__(self):
         return object.__str__(self.get())
-
-    def __format__(self, formatstr):
-        return object.__format__(self.get(), formatstr)
-
-    def __hash__(self):
-        return object.__hash__(self.get())
 
 
 class DyBoolMagicMethods(DyObjectMagicMethods):
@@ -79,8 +92,8 @@ class DyBoolMagicMethods(DyObjectMagicMethods):
     def __le__(self, other):
         return bool.__le__(self.get(), other + 0)
 
-    def __eq__(self, other):
-        return bool.__eq__(self.get(), other + 0)
+    # def __eq__(self, other):
+    #     return bool.__eq__(self.get(), other + 0)
 
     def __ne__(self, other):
         return bool.__ne__(self.get(), other + 0)
@@ -131,9 +144,6 @@ class DyBoolMagicMethods(DyObjectMagicMethods):
 
     def __xor__(self, other):
         return bool.__xor__(self.get(), other + 0)
-
-    def __bool__(self):
-        return bool.__bool__(self.get())
 
     # def __div__(self, other):
     #     return int.__div__(self.__value__, other)
@@ -287,8 +297,8 @@ class DyNumericMagicMethods(DyObjectMagicMethods):
     def __le__(self, other):
         return int.__le__(self.get(), other + 0)
 
-    def __eq__(self, other):
-        return int.__eq__(self.get(), other + 0)
+    # def __eq__(self, other):
+    #     return int.__eq__(self.get(), other + 0)
 
     def __ne__(self, other):
         return int.__ne__(self.get(), other + 0)
@@ -301,8 +311,8 @@ class DyNumericMagicMethods(DyObjectMagicMethods):
 
     # # # Operator Magic Methods
 
-    def __add__(self, other):
-        return int.__add__(self.get(), other + 0)
+    def __add__(self, *args, **kwargs):
+        return int.__add__(self.get(), *args, **kwargs)
 
     def __sub__(self, other):
         return int.__sub__(self.get(), other + 0)

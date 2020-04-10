@@ -37,15 +37,15 @@ class DyFloat(DyFloatMagicMethods, DyFloatConditions, DyObject):
 
 
 if __name__ == '__main__':
-    import math
     a = DyInt(8)
-    b = DyInt(5)
+    b = 8
     # b -= a
     # a -= 1
     # a.set(15)
     # print(a)
     # a += b
-    print(math.trunc(a))
+    print(b == a)
+
     # print(b)
 
     # magic_methods = list(filter(lambda method: method.startswith("__") and method.endswith("__"), dir(int)))
