@@ -11,7 +11,7 @@ def openFile(fullpath, lines=True):
     return file_lines
 
 def saveFile(fullpath, data: str):
-    with open(fullpath, 'w+') as file:
+    with open(fullpath, 'w') as file:
         file.write(data)
 
 def getType(file_classes, obj_name, method_name):
@@ -62,12 +62,53 @@ compare_methods = {
     "__lt__"
 }
 
+math_methods = {
+    "__add__",
+    "__sub__",
+    "__mul__",
+    "__floordiv__",
+    "__truediv__",  # ???
+    "__divmod__",  # ???
+    "__pow__"  # ???
+}
+
+i_methods = {
+    "__iadd__",
+    "__isub__",
+    "__imul__",
+    "__ifloordiv__",
+    "__imod__",
+    "__ilshift__",
+    "__irshift__",
+    "__iand__",
+    "__ior__",
+    "__ixor__"
+}
+r_methods = {
+    "__radd__",
+    "__rsub__",
+    "__rmul__",
+    "__rfloordiv__",
+    "__rmod__",
+    "__rlshift__",
+    "__rrshift__",
+    "__rand__",
+    "__ror__",
+    "__rxor__"
+}
+
 required_methods = {
 
 }
 
 ignored_methods = {
-    "__init__"
+    "__new__",
+    "__init__",
+    "__init_subclass__",
+    "__getattribute__",
+    "__setattr__",
+    "__type__",
+    "__repr__"
 }
 
 builtins_hint_fullpath = "D:/Program Files/JetBrains/PyCharm Community Edition 2018.3/" \
@@ -134,21 +175,32 @@ while k < len(file_lines):
                     new_file_lines.append("{}{}".format(temp_char, method_header_line))
 
                     method_content = "        return {}.{}(self, *args, **kwargs) # TODO Not Implemented\n".format(obj_name, method_name)
+                    is_method_modified = False
 
-                    if args_str == "self, *args, **kwargs" or (method_name in required_methods and method_name not in ignored_methods):
-                        if method_name in compare_methods:
-                            method_content = "        return {}.{}(self.get(), args[0] + 0, **kwargs)\n".format(obj_name, method_name)
-                        else:
-                            method_content = "        return {}.{}(self.get(), *args, **kwargs)\n".format(obj_name, method_name)
+                    if method_name not in ignored_methods:
+                        if args_str == "self, *args, **kwargs" or method_name in required_methods:
+                            is_method_modified = True
+                            if method_name in compare_methods:
+                                method_content = "        return {}.{}(self.get(), args[0] + 0, **kwargs)\n".format(obj_name, method_name)
+                            elif method_name in math_methods:
+                                method_content = "        self.set({}.{}(self.get(), args[0] + 0, **kwargs))\n" \
+                                                 "        return self\n".format(obj_name, method_name)
+                            else:
+                                method_content = "        return {}.{}(self.get(), *args, **kwargs)\n".format(obj_name, method_name)
 
-                    elif args_str in ("*args, **kwargs", "self") or (method_name not in required_methods and method_name in ignored_methods):
-                        if isClassOrStaticMethod(new_file_lines[-2]):
-                            new_file_lines[-2] = "\n    # " + new_file_lines[-2].strip()
+                    # if method_name == "__init_subclass__":
+                    #     print()
 
-                        new_file_lines[-1] = "\n    # " + new_file_lines[-1].lstrip()
-                        method_content = "    #     " + method_content.lstrip()
+                    if method_name in ignored_methods:
+                        if not is_method_modified and (args_str in ("*args, **kwargs", "self") or method_name not in required_methods):
+                            is_method_modified = True
+                            if isClassOrStaticMethod(new_file_lines[-2]):
+                                new_file_lines[-2] = "\n    # " + new_file_lines[-2].strip()
 
-                    else:
+                            new_file_lines[-1] = "\n    # " + new_file_lines[-1].lstrip()
+                            method_content = "    #     " + method_content.lstrip()
+
+                    if not is_method_modified:
                         method_content = "        pass  # Lahav\n"
 
                     new_file_lines.append(method_content)
@@ -163,7 +215,12 @@ while k < len(file_lines):
 methods_file_str = "".join(new_file_lines)
 print(methods_file_str)
 
-directory = os.getcwd().replace("\\", "/") + "/result/"
-file_name = "MagicMethodsInterfaces.py"
+directory = os.getcwd().replace("\\", "/") + "/"
+file_name = "result/MagicMethodsInterfaces.py"
+source_file_name = "source/MagicMethodsInterfacesDemo.py"
 
-saveFile(directory + file_name, methods_file_str)
+file_fullname = directory + file_name
+source_file_fullname = directory + source_file_name
+
+data = openFile(source_file_fullname, lines=False).replace("### CONTENT", methods_file_str.strip())
+saveFile(file_fullname, data)

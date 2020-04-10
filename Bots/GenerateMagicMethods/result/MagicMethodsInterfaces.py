@@ -1,3 +1,38 @@
+from AppPackage.Experiments.Log import Log
+from AppPackage.Experiments.PickleTests.DataObject import TempQueue
+from FTV.Objects.Variables.AbstractConditions import DyObjectConditions
+
+
+class DynamicObjectInterface(object):
+    # __slots__ = ("__triggers__", "__active_triggers__")
+
+    def __init__(self):
+        self.__triggers__ = []
+        self.__active_triggers__ = TempQueue()
+
+    @staticmethod
+    def _distributeTriggers(dy_object):
+        for trigger in dy_object.__triggers__:
+            if trigger.thread is None:
+                dy_object.__active_triggers__.put_nowait(trigger)
+            else:
+                # TODO lahav Add trigger to its designated thread
+                pass
+
+    @staticmethod
+    def _runActiveTriggers(dy_object, old_val=None, new_val=None):
+        while not dy_object.__active_triggers__.empty():
+            trigger = dy_object.__active_triggers__.get_nowait()
+            if trigger.runCondition(old_val, new_val):
+                trigger.runAction()
+
+    def _prepareAndRunTriggers(self, dy_object, old_val=None, new_val=None):
+        self._distributeTriggers(dy_object)
+        self._runActiveTriggers(dy_object, old_val, new_val)
+
+    # @abstractmethod
+    def __action__(self, *args, **kwargs) -> object:
+        pass
 
 
 class DyObjectMagicMethods:
@@ -14,8 +49,8 @@ class DyObjectMagicMethods:
     def __format__(self, *args, **kwargs) -> str:  # real signature unknown
         return object.__format__(self.get(), *args, **kwargs)
 
-    def __getattribute__(self, *args, **kwargs):  # real signature unknown
-        return object.__getattribute__(self.get(), *args, **kwargs)
+    # def __getattribute__(self, *args, **kwargs):  # real signature unknown
+    #     return object.__getattribute__(self, *args, **kwargs) # TODO Not Implemented
 
     def __ge__(self, *args, **kwargs):  # real signature unknown
         return object.__ge__(self.get(), args[0] + 0, **kwargs)
@@ -26,8 +61,8 @@ class DyObjectMagicMethods:
     def __hash__(self, *args, **kwargs) -> int:  # real signature unknown
         return object.__hash__(self.get(), *args, **kwargs)
 
-    def __init_subclass__(self, *args, **kwargs) -> None:  # real signature unknown
-        return object.__init_subclass__(self.get(), *args, **kwargs)
+    # def __init_subclass__(self, *args, **kwargs) -> None:  # real signature unknown
+    #     return object.__init_subclass__(self, *args, **kwargs) # TODO Not Implemented
 
     # def __init__(self) -> None:  # known special case of object.__init__
     #     return object.__init__(self, *args, **kwargs) # TODO Not Implemented
@@ -38,9 +73,9 @@ class DyObjectMagicMethods:
     def __lt__(self, *args, **kwargs):  # real signature unknown
         return object.__lt__(self.get(), args[0] + 0, **kwargs)
 
-    @staticmethod # known case of __new__
-    def __new__(cls, *more):  # known special case of object.__new__
-        pass  # Lahav
+    # @staticmethod # known case of __new__
+    # def __new__(cls, *more):  # known special case of object.__new__
+    #     return object.__new__(self, *args, **kwargs) # TODO Not Implemented
 
     def __ne__(self, *args, **kwargs) -> bool:  # real signature unknown
         return object.__ne__(self.get(), args[0] + 0, **kwargs)
@@ -51,11 +86,11 @@ class DyObjectMagicMethods:
     def __reduce__(self, *args, **kwargs) -> tuple:  # real signature unknown
         return object.__reduce__(self.get(), *args, **kwargs)
 
-    def __repr__(self, *args, **kwargs) -> str:  # real signature unknown
-        return object.__repr__(self.get(), *args, **kwargs)
+    # def __repr__(self, *args, **kwargs) -> str:  # real signature unknown
+    #     return object.__repr__(self, *args, **kwargs) # TODO Not Implemented
 
-    def __setattr__(self, *args, **kwargs) -> None:  # real signature unknown
-        return object.__setattr__(self.get(), *args, **kwargs)
+    # def __setattr__(self, *args, **kwargs) -> None:  # real signature unknown
+    #     return object.__setattr__(self, *args, **kwargs) # TODO Not Implemented
 
     def __sizeof__(self, *args, **kwargs) -> int:  # real signature unknown
         return object.__sizeof__(self.get(), *args, **kwargs)
@@ -70,8 +105,8 @@ class DyObjectMagicMethods:
 
 class DyIntMagicMethods(DyObjectMagicMethods):
 
-    # def bit_length(self) -> int:  # real signature unknown; restored from __doc__
-    #     return int.bit_length(self, *args, **kwargs) # TODO Not Implemented
+    def bit_length(self) -> int:  # real signature unknown; restored from __doc__
+        pass  # Lahav
 
     def conjugate(self, *args, **kwargs):  # real signature unknown
         return int.conjugate(self.get(), *args, **kwargs)
@@ -87,7 +122,8 @@ class DyIntMagicMethods(DyObjectMagicMethods):
         return int.__abs__(self.get(), *args, **kwargs)
 
     def __add__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__add__(self.get(), *args, **kwargs)
+        self.set(int.__add__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __and__(self, *args, **kwargs) -> int:  # real signature unknown
         return int.__and__(self.get(), *args, **kwargs)
@@ -99,7 +135,8 @@ class DyIntMagicMethods(DyObjectMagicMethods):
         return int.__ceil__(self.get(), *args, **kwargs)
 
     def __divmod__(self, *args, **kwargs):  # real signature unknown
-        return int.__divmod__(self.get(), *args, **kwargs)
+        self.set(int.__divmod__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __eq__(self, *args, **kwargs) -> bool:  # real signature unknown
         return int.__eq__(self.get(), args[0] + 0, **kwargs)
@@ -108,7 +145,8 @@ class DyIntMagicMethods(DyObjectMagicMethods):
         return int.__float__(self.get(), *args, **kwargs)
 
     def __floordiv__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__floordiv__(self.get(), *args, **kwargs)
+        self.set(int.__floordiv__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __floor__(self, *args, **kwargs):  # real signature unknown
         return int.__floor__(self.get(), *args, **kwargs)
@@ -116,8 +154,8 @@ class DyIntMagicMethods(DyObjectMagicMethods):
     def __format__(self, *args, **kwargs):  # real signature unknown
         return int.__format__(self.get(), *args, **kwargs)
 
-    def __getattribute__(self, *args, **kwargs):  # real signature unknown
-        return int.__getattribute__(self.get(), *args, **kwargs)
+    # def __getattribute__(self, *args, **kwargs):  # real signature unknown
+    #     return int.__getattribute__(self, *args, **kwargs) # TODO Not Implemented
 
     def __getnewargs__(self, *args, **kwargs):  # real signature unknown
         return int.__getnewargs__(self.get(), *args, **kwargs)
@@ -156,7 +194,8 @@ class DyIntMagicMethods(DyObjectMagicMethods):
         return int.__mod__(self.get(), *args, **kwargs)
 
     def __mul__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__mul__(self.get(), *args, **kwargs)
+        self.set(int.__mul__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __neg__(self, *args, **kwargs) -> int:  # real signature unknown
         return int.__neg__(self.get(), *args, **kwargs)
@@ -175,7 +214,8 @@ class DyIntMagicMethods(DyObjectMagicMethods):
         return int.__pos__(self.get(), *args, **kwargs)
 
     def __pow__(self, *args, **kwargs):  # real signature unknown
-        return int.__pow__(self.get(), *args, **kwargs)
+        self.set(int.__pow__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __radd__(self, *args, **kwargs) -> int:  # real signature unknown
         return int.__radd__(self.get(), *args, **kwargs)
@@ -186,8 +226,8 @@ class DyIntMagicMethods(DyObjectMagicMethods):
     def __rdivmod__(self, *args, **kwargs):  # real signature unknown
         return int.__rdivmod__(self.get(), *args, **kwargs)
 
-    def __repr__(self, *args, **kwargs):  # real signature unknown
-        return int.__repr__(self.get(), *args, **kwargs)
+    # def __repr__(self, *args, **kwargs):  # real signature unknown
+    #     return int.__repr__(self, *args, **kwargs) # TODO Not Implemented
 
     def __rfloordiv__(self, *args, **kwargs) -> int:  # real signature unknown
         return int.__rfloordiv__(self.get(), *args, **kwargs)
@@ -232,10 +272,12 @@ class DyIntMagicMethods(DyObjectMagicMethods):
         return int.__str__(self.get(), *args, **kwargs)
 
     def __sub__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__sub__(self.get(), *args, **kwargs)
+        self.set(int.__sub__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __truediv__(self, *args, **kwargs) -> float:  # real signature unknown
-        return int.__truediv__(self.get(), *args, **kwargs)
+        self.set(int.__truediv__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __trunc__(self, *args, **kwargs):  # real signature unknown
         return int.__trunc__(self.get(), *args, **kwargs)
@@ -262,8 +304,8 @@ class DyBoolMagicMethods(DyIntMagicMethods):
     def __rand__(self, *args, **kwargs) -> bool:  # real signature unknown
         return bool.__rand__(self.get(), *args, **kwargs)
 
-    def __repr__(self, *args, **kwargs):  # real signature unknown
-        return bool.__repr__(self.get(), *args, **kwargs)
+    # def __repr__(self, *args, **kwargs):  # real signature unknown
+    #     return bool.__repr__(self, *args, **kwargs) # TODO Not Implemented
 
     def __ror__(self, *args, **kwargs) -> bool:  # real signature unknown
         return bool.__ror__(self.get(), *args, **kwargs)
@@ -280,30 +322,30 @@ class DyBoolMagicMethods(DyIntMagicMethods):
 
 class DyDictMagicMethods(DyObjectMagicMethods):
 
-    # def clear(self) -> None:  # real signature unknown; restored from __doc__
-    #     return dict.clear(self, *args, **kwargs) # TODO Not Implemented
+    def clear(self) -> None:  # real signature unknown; restored from __doc__
+        pass  # Lahav
 
-    # def copy(self):  # real signature unknown; restored from __doc__
-    #     return dict.copy(self, *args, **kwargs) # TODO Not Implemented
+    def copy(self):  # real signature unknown; restored from __doc__
+        pass  # Lahav
 
-    # @staticmethod # known case
-    # def fromkeys(*args, **kwargs):  # real signature unknown
-    #     return dict.fromkeys(self, *args, **kwargs) # TODO Not Implemented
+    @staticmethod # known case
+    def fromkeys(*args, **kwargs):  # real signature unknown
+        pass  # Lahav
 
     def get(self, *args, **kwargs):  # real signature unknown
         return dict.get(self.get(), *args, **kwargs)
 
-    # def items(self):  # real signature unknown; restored from __doc__
-    #     return dict.items(self, *args, **kwargs) # TODO Not Implemented
+    def items(self):  # real signature unknown; restored from __doc__
+        pass  # Lahav
 
-    # def keys(self):  # real signature unknown; restored from __doc__
-    #     return dict.keys(self, *args, **kwargs) # TODO Not Implemented
+    def keys(self):  # real signature unknown; restored from __doc__
+        pass  # Lahav
 
     def pop(self, k, d=None):  # real signature unknown; restored from __doc__
         pass  # Lahav
 
-    # def popitem(self):  # real signature unknown; restored from __doc__
-    #     return dict.popitem(self, *args, **kwargs) # TODO Not Implemented
+    def popitem(self):  # real signature unknown; restored from __doc__
+        pass  # Lahav
 
     def setdefault(self, *args, **kwargs):  # real signature unknown
         return dict.setdefault(self.get(), *args, **kwargs)
@@ -311,8 +353,8 @@ class DyDictMagicMethods(DyObjectMagicMethods):
     def update(self, E=None, **F) -> None:  # known special case of dict.update
         pass  # Lahav
 
-    # def values(self):  # real signature unknown; restored from __doc__
-    #     return dict.values(self, *args, **kwargs) # TODO Not Implemented
+    def values(self):  # real signature unknown; restored from __doc__
+        pass  # Lahav
 
     def __contains__(self, *args, **kwargs):  # real signature unknown
         return dict.__contains__(self.get(), *args, **kwargs)
@@ -323,8 +365,8 @@ class DyDictMagicMethods(DyObjectMagicMethods):
     def __eq__(self, *args, **kwargs):  # real signature unknown
         return dict.__eq__(self.get(), args[0] + 0, **kwargs)
 
-    def __getattribute__(self, *args, **kwargs):  # real signature unknown
-        return dict.__getattribute__(self.get(), *args, **kwargs)
+    # def __getattribute__(self, *args, **kwargs):  # real signature unknown
+    #     return dict.__getattribute__(self, *args, **kwargs) # TODO Not Implemented
 
     def __getitem__(self, y):  # real signature unknown; restored from __doc__
         pass  # Lahav
@@ -357,30 +399,30 @@ class DyDictMagicMethods(DyObjectMagicMethods):
     def __ne__(self, *args, **kwargs):  # real signature unknown
         return dict.__ne__(self.get(), args[0] + 0, **kwargs)
 
-    def __repr__(self, *args, **kwargs):  # real signature unknown
-        return dict.__repr__(self.get(), *args, **kwargs)
+    # def __repr__(self, *args, **kwargs):  # real signature unknown
+    #     return dict.__repr__(self, *args, **kwargs) # TODO Not Implemented
 
     def __setitem__(self, *args, **kwargs):  # real signature unknown
         return dict.__setitem__(self.get(), *args, **kwargs)
 
-    # def __sizeof__(self):  # real signature unknown; restored from __doc__
-    #     return dict.__sizeof__(self, *args, **kwargs) # TODO Not Implemented
+    def __sizeof__(self):  # real signature unknown; restored from __doc__
+        pass  # Lahav
 
 
 class DyFloatMagicMethods(DyObjectMagicMethods):
 
-    # def as_integer_ratio(self):  # real signature unknown; restored from __doc__
-    #     return float.as_integer_ratio(self, *args, **kwargs) # TODO Not Implemented
+    def as_integer_ratio(self):  # real signature unknown; restored from __doc__
+        pass  # Lahav
 
     def conjugate(self, *args, **kwargs):  # real signature unknown
         return float.conjugate(self.get(), *args, **kwargs)
 
-    # @staticmethod # known case
-    # def fromhex(*args, **kwargs) -> float:  # real signature unknown; NOTE: unreliably restored from __doc__ 
-    #     return float.fromhex(self, *args, **kwargs) # TODO Not Implemented
+    @staticmethod # known case
+    def fromhex(*args, **kwargs) -> float:  # real signature unknown; NOTE: unreliably restored from __doc__ 
+        pass  # Lahav
 
-    # def hex(self) -> str:  # real signature unknown; restored from __doc__
-    #     return float.hex(self, *args, **kwargs) # TODO Not Implemented
+    def hex(self) -> str:  # real signature unknown; restored from __doc__
+        pass  # Lahav
 
     def is_integer(self, *args, **kwargs) -> bool:  # real signature unknown
         return float.is_integer(self.get(), *args, **kwargs)
@@ -389,13 +431,15 @@ class DyFloatMagicMethods(DyObjectMagicMethods):
         return float.__abs__(self.get(), *args, **kwargs)
 
     def __add__(self, *args, **kwargs) -> float:  # real signature unknown
-        return float.__add__(self.get(), *args, **kwargs)
+        self.set(float.__add__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __bool__(self, *args, **kwargs) -> bool:  # real signature unknown
         return float.__bool__(self.get(), *args, **kwargs)
 
     def __divmod__(self, *args, **kwargs):  # real signature unknown
-        return float.__divmod__(self.get(), *args, **kwargs)
+        self.set(float.__divmod__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __eq__(self, *args, **kwargs) -> bool:  # real signature unknown
         return float.__eq__(self.get(), args[0] + 0, **kwargs)
@@ -404,13 +448,14 @@ class DyFloatMagicMethods(DyObjectMagicMethods):
         return float.__float__(self.get(), *args, **kwargs)
 
     def __floordiv__(self, *args, **kwargs) -> float:  # real signature unknown
-        return float.__floordiv__(self.get(), *args, **kwargs)
+        self.set(float.__floordiv__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __format__(self, *args, **kwargs):  # real signature unknown
         return float.__format__(self.get(), *args, **kwargs)
 
-    def __getattribute__(self, *args, **kwargs):  # real signature unknown
-        return float.__getattribute__(self.get(), *args, **kwargs)
+    # def __getattribute__(self, *args, **kwargs):  # real signature unknown
+    #     return float.__getattribute__(self, *args, **kwargs) # TODO Not Implemented
 
     def __getformat__(self, *args, **kwargs):  # real signature unknown
         return float.__getformat__(self.get(), *args, **kwargs)
@@ -427,8 +472,8 @@ class DyFloatMagicMethods(DyObjectMagicMethods):
     def __hash__(self, *args, **kwargs) -> int:  # real signature unknown
         return float.__hash__(self.get(), *args, **kwargs)
 
-    def __init__(self, *args, **kwargs) -> None:  # real signature unknown
-        return float.__init__(self.get(), *args, **kwargs)
+    # def __init__(self, *args, **kwargs) -> None:  # real signature unknown
+    #     return float.__init__(self, *args, **kwargs) # TODO Not Implemented
 
     def __int__(self, *args, **kwargs) -> int:  # real signature unknown
         return float.__int__(self.get(), *args, **kwargs)
@@ -443,7 +488,8 @@ class DyFloatMagicMethods(DyObjectMagicMethods):
         return float.__mod__(self.get(), *args, **kwargs)
 
     def __mul__(self, *args, **kwargs) -> float:  # real signature unknown
-        return float.__mul__(self.get(), *args, **kwargs)
+        self.set(float.__mul__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __neg__(self, *args, **kwargs) -> float:  # real signature unknown
         return float.__neg__(self.get(), *args, **kwargs)
@@ -459,7 +505,8 @@ class DyFloatMagicMethods(DyObjectMagicMethods):
         return float.__pos__(self.get(), *args, **kwargs)
 
     def __pow__(self, *args, **kwargs) -> float:  # real signature unknown
-        return float.__pow__(self.get(), *args, **kwargs)
+        self.set(float.__pow__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __radd__(self, *args, **kwargs) -> float:  # real signature unknown
         return float.__radd__(self.get(), *args, **kwargs)
@@ -467,8 +514,8 @@ class DyFloatMagicMethods(DyObjectMagicMethods):
     def __rdivmod__(self, *args, **kwargs):  # real signature unknown
         return float.__rdivmod__(self.get(), *args, **kwargs)
 
-    def __repr__(self, *args, **kwargs):  # real signature unknown
-        return float.__repr__(self.get(), *args, **kwargs)
+    # def __repr__(self, *args, **kwargs):  # real signature unknown
+    #     return float.__repr__(self, *args, **kwargs) # TODO Not Implemented
 
     def __rfloordiv__(self, *args, **kwargs) -> float:  # real signature unknown
         return float.__rfloordiv__(self.get(), *args, **kwargs)
@@ -498,10 +545,12 @@ class DyFloatMagicMethods(DyObjectMagicMethods):
         return float.__str__(self.get(), *args, **kwargs)
 
     def __sub__(self, *args, **kwargs) -> float:  # real signature unknown
-        return float.__sub__(self.get(), *args, **kwargs)
+        self.set(float.__sub__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __truediv__(self, *args, **kwargs) -> float:  # real signature unknown
-        return float.__truediv__(self.get(), *args, **kwargs)
+        self.set(float.__truediv__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __trunc__(self, *args, **kwargs):  # real signature unknown
         return float.__trunc__(self.get(), *args, **kwargs)
@@ -543,7 +592,8 @@ class DyListMagicMethods(DyObjectMagicMethods):
         return list.sort(self.get(), *args, **kwargs)
 
     def __add__(self, *args, **kwargs):  # real signature unknown
-        return list.__add__(self.get(), *args, **kwargs)
+        self.set(list.__add__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __contains__(self, *args, **kwargs) -> bool:  # real signature unknown
         return list.__contains__(self.get(), *args, **kwargs)
@@ -554,8 +604,8 @@ class DyListMagicMethods(DyObjectMagicMethods):
     def __eq__(self, *args, **kwargs):  # real signature unknown
         return list.__eq__(self.get(), args[0] + 0, **kwargs)
 
-    def __getattribute__(self, *args, **kwargs):  # real signature unknown
-        return list.__getattribute__(self.get(), *args, **kwargs)
+    # def __getattribute__(self, *args, **kwargs):  # real signature unknown
+    #     return list.__getattribute__(self, *args, **kwargs) # TODO Not Implemented
 
     def __getitem__(self, y):  # real signature unknown; restored from __doc__
         pass  # Lahav
@@ -588,7 +638,8 @@ class DyListMagicMethods(DyObjectMagicMethods):
         return list.__lt__(self.get(), args[0] + 0, **kwargs)
 
     def __mul__(self, *args, **kwargs):  # real signature unknown
-        return list.__mul__(self.get(), *args, **kwargs)
+        self.set(list.__mul__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     # @staticmethod # known case of __new__
     # def __new__(*args, **kwargs):  # real signature unknown
@@ -597,8 +648,8 @@ class DyListMagicMethods(DyObjectMagicMethods):
     def __ne__(self, *args, **kwargs):  # real signature unknown
         return list.__ne__(self.get(), args[0] + 0, **kwargs)
 
-    def __repr__(self, *args, **kwargs):  # real signature unknown
-        return list.__repr__(self.get(), *args, **kwargs)
+    # def __repr__(self, *args, **kwargs):  # real signature unknown
+    #     return list.__repr__(self, *args, **kwargs) # TODO Not Implemented
 
     def __reversed__(self, *args, **kwargs):  # real signature unknown
         return list.__reversed__(self.get(), *args, **kwargs)
@@ -675,8 +726,8 @@ class DySetMagicMethods(DyObjectMagicMethods):
     def __eq__(self, *args, **kwargs):  # real signature unknown
         return set.__eq__(self.get(), args[0] + 0, **kwargs)
 
-    def __getattribute__(self, *args, **kwargs):  # real signature unknown
-        return set.__getattribute__(self.get(), *args, **kwargs)
+    # def __getattribute__(self, *args, **kwargs):  # real signature unknown
+    #     return set.__getattribute__(self, *args, **kwargs) # TODO Not Implemented
 
     def __ge__(self, *args, **kwargs) -> bool:  # real signature unknown
         return set.__ge__(self.get(), args[0] + 0, **kwargs)
@@ -727,8 +778,8 @@ class DySetMagicMethods(DyObjectMagicMethods):
     def __reduce__(self, *args, **kwargs):  # real signature unknown
         return set.__reduce__(self.get(), *args, **kwargs)
 
-    def __repr__(self, *args, **kwargs):  # real signature unknown
-        return set.__repr__(self.get(), *args, **kwargs)
+    # def __repr__(self, *args, **kwargs):  # real signature unknown
+    #     return set.__repr__(self, *args, **kwargs) # TODO Not Implemented
 
     def __ror__(self, *args, **kwargs):  # real signature unknown
         return set.__ror__(self.get(), *args, **kwargs)
@@ -739,11 +790,12 @@ class DySetMagicMethods(DyObjectMagicMethods):
     def __rxor__(self, *args, **kwargs):  # real signature unknown
         return set.__rxor__(self.get(), *args, **kwargs)
 
-    # def __sizeof__(self):  # real signature unknown; restored from __doc__
-    #     return set.__sizeof__(self, *args, **kwargs) # TODO Not Implemented
+    def __sizeof__(self):  # real signature unknown; restored from __doc__
+        pass  # Lahav
 
     def __sub__(self, *args, **kwargs):  # real signature unknown
-        return set.__sub__(self.get(), *args, **kwargs)
+        self.set(set.__sub__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __xor__(self, *args, **kwargs):  # real signature unknown
         return set.__xor__(self.get(), *args, **kwargs)
@@ -887,7 +939,8 @@ class DyStrMagicMethods(DyObjectMagicMethods):
         return str.zfill(self.get(), *args, **kwargs)
 
     def __add__(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.__add__(self.get(), *args, **kwargs)
+        self.set(str.__add__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __contains__(self, *args, **kwargs) -> bool:  # real signature unknown
         return str.__contains__(self.get(), *args, **kwargs)
@@ -898,8 +951,8 @@ class DyStrMagicMethods(DyObjectMagicMethods):
     def __format__(self, *args, **kwargs):  # real signature unknown
         return str.__format__(self.get(), *args, **kwargs)
 
-    def __getattribute__(self, *args, **kwargs):  # real signature unknown
-        return str.__getattribute__(self.get(), *args, **kwargs)
+    # def __getattribute__(self, *args, **kwargs):  # real signature unknown
+    #     return str.__getattribute__(self, *args, **kwargs) # TODO Not Implemented
 
     def __getitem__(self, *args, **kwargs) -> str:  # real signature unknown
         return str.__getitem__(self.get(), *args, **kwargs)
@@ -935,7 +988,8 @@ class DyStrMagicMethods(DyObjectMagicMethods):
         return str.__mod__(self.get(), *args, **kwargs)
 
     def __mul__(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.__mul__(self.get(), *args, **kwargs)
+        self.set(str.__mul__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     # @staticmethod # known case of __new__
     # def __new__(*args, **kwargs):  # real signature unknown
@@ -944,8 +998,8 @@ class DyStrMagicMethods(DyObjectMagicMethods):
     def __ne__(self, *args, **kwargs) -> bool:  # real signature unknown
         return str.__ne__(self.get(), args[0] + 0, **kwargs)
 
-    def __repr__(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.__repr__(self.get(), *args, **kwargs)
+    # def __repr__(self, *args, **kwargs) -> str:  # real signature unknown
+    #     return str.__repr__(self, *args, **kwargs) # TODO Not Implemented
 
     def __rmod__(self, *args, **kwargs):  # real signature unknown
         return str.__rmod__(self.get(), *args, **kwargs)
@@ -969,7 +1023,8 @@ class DyTupleMagicMethods(DyObjectMagicMethods):
         return tuple.index(self.get(), *args, **kwargs)
 
     def __add__(self, *args, **kwargs):  # real signature unknown
-        return tuple.__add__(self.get(), *args, **kwargs)
+        self.set(tuple.__add__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __contains__(self, *args, **kwargs) -> bool:  # real signature unknown
         return tuple.__contains__(self.get(), *args, **kwargs)
@@ -977,8 +1032,8 @@ class DyTupleMagicMethods(DyObjectMagicMethods):
     def __eq__(self, *args, **kwargs):  # real signature unknown
         return tuple.__eq__(self.get(), args[0] + 0, **kwargs)
 
-    def __getattribute__(self, *args, **kwargs):  # real signature unknown
-        return tuple.__getattribute__(self.get(), *args, **kwargs)
+    # def __getattribute__(self, *args, **kwargs):  # real signature unknown
+    #     return tuple.__getattribute__(self, *args, **kwargs) # TODO Not Implemented
 
     def __getitem__(self, *args, **kwargs):  # real signature unknown
         return tuple.__getitem__(self.get(), *args, **kwargs)
@@ -1011,7 +1066,8 @@ class DyTupleMagicMethods(DyObjectMagicMethods):
         return tuple.__lt__(self.get(), args[0] + 0, **kwargs)
 
     def __mul__(self, *args, **kwargs):  # real signature unknown
-        return tuple.__mul__(self.get(), *args, **kwargs)
+        self.set(tuple.__mul__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     # @staticmethod # known case of __new__
     # def __new__(*args, **kwargs):  # real signature unknown
@@ -1020,8 +1076,58 @@ class DyTupleMagicMethods(DyObjectMagicMethods):
     def __ne__(self, *args, **kwargs):  # real signature unknown
         return tuple.__ne__(self.get(), args[0] + 0, **kwargs)
 
-    def __repr__(self, *args, **kwargs):  # real signature unknown
-        return tuple.__repr__(self.get(), *args, **kwargs)
+    # def __repr__(self, *args, **kwargs):  # real signature unknown
+    #     return tuple.__repr__(self, *args, **kwargs) # TODO Not Implemented
 
     def __rmul__(self, *args, **kwargs):  # real signature unknown
         return tuple.__rmul__(self.get(), *args, **kwargs)
+
+
+class DyObject(DyObjectMagicMethods, DyObjectConditions, DynamicObjectInterface):
+
+    type = "DynamicObject"
+
+    def __init__(self, value=None, builtin=False):
+        super(DyObject, self).__init__()
+        self.__value__: object = value
+        self.__name__: str = "__name__"
+        self._is_builtin: bool = builtin
+
+    def _set_empty(self, value):
+        old_val = self._get()
+        self.__log_p__("{} = {}".format(self.__name__, value))
+        self._prepareAndRunTriggers(self, old_val, value)
+
+    def _set(self, value):
+        self.__value__ = value
+
+    def set(self, value):
+        old_val = self._get()
+        self._set(value)
+        self.__log_p__("{} = {}".format(self.__name__, value))
+        self._prepareAndRunTriggers(self, old_val, value)
+
+    def _get(self):
+        return self.__value__
+
+    def get(self):
+        return self._get()
+
+    def setBuiltin(self, ans):
+        self._is_builtin = ans
+
+    # def __repr__(self):
+    #     return self.get()
+
+    @staticmethod
+    def __get_other__(other):
+        if isinstance(other, DyObject):
+            return other.get()
+        return other
+
+    def __log_p__(self, message):
+        if not (self._is_builtin and not Log.BUILTIN_ENABLED):
+            Log.p(message, Log.color.BLUE)
+
+    def __action__(self, *args, **kwargs):
+        return self.set(args[0])
