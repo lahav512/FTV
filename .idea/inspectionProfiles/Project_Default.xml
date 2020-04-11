@@ -17,5 +17,16 @@
         </list>
       </option>
     </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="Bots.GenerateMagicMethods.result.MagicMethodsInterfaces.DyDictMagicMethods.get" />
+          <option value="Bots.GenerateMagicMethods.result.MagicMethodsInterfaces.DyFloatMagicMethods.*" />
+          <option value="Bots.GenerateMagicMethods.result.MagicMethodsInterfaces.DyListMagicMethods.*" />
+          <option value="Bots.GenerateMagicMethods.result.MagicMethodsInterfaces.DySetMagicMethods.*" />
+          <option value="Bots.GenerateMagicMethods.result.MagicMethodsInterfaces.DyComplexMagicMethods.get" />
+        </list>
+      </option>
+    </inspection_tool>
   </profile>
 </component>

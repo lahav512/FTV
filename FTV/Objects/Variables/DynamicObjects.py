@@ -45,15 +45,15 @@ class DyStr(DyStrMagicMethods, DyStrConditions, DyObject):
 
 
 if __name__ == '__main__':
-    a = 8
-    b = DyInt(6)
-    a += b
+    a = DyInt(8)
+    b = DyInt(10)
 
-    print(type(b))
-    print(b)
-    # print(type(b))
-    # print(b)
+    c = DyStr("lahav")
+    d = DyStr("svorai")
 
+    print("a = {}".format(a))
+    print("c = {}".format(c))
+    print(len(c))
 
     # magic_methods = list(filter(lambda method: method.startswith("__") and method.endswith("__"), dir(int)))
     # dy_int_magic_methods = list(filter(lambda method: method not in dir(DyInt), magic_methods))
