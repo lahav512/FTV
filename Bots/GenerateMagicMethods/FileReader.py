@@ -5,7 +5,7 @@ class FileString(dict):
 
     SEPARATOR = "%LAHAV%"
 
-    def __init__(self, file_data: str, relevant_classes=None, file_hints_data: str=None):
+    def __init__(self, file_data: str, relevant_classes=None, file_hints_data: str=None, only_magic_methods = False):
         super(FileString, self).__init__()
         if relevant_classes is None:
             relevant_classes = []
@@ -21,6 +21,8 @@ class FileString(dict):
             relevant_classes = []
         self.relevantClasses = relevant_classes
 
+        self.only_magic_methods = only_magic_methods
+
         self.sliceFile()
 
     def sliceFile(self):
@@ -28,7 +30,7 @@ class FileString(dict):
         self.__updateClassesNames()
 
         for class_name in self.classesNames:
-            self[class_name] = ClassString(self.getClass(class_name))
+            self[class_name] = ClassString(self.getClass(class_name), only_magic_methods=self.only_magic_methods)
 
         self.newFileString = copy.copy(self)
 
@@ -78,7 +80,7 @@ class ClassString(dict):
 
     SEPARATOR = "%LAHAV%"
 
-    def __init__(self, class_data: str, relevant_methods: list = None):
+    def __init__(self, class_data: str, relevant_methods: list = None, only_magic_methods = False):
         super(ClassString, self).__init__()
         self.classData = class_data
 
@@ -94,6 +96,8 @@ class ClassString(dict):
         self.headerPattern_1 = "class {name}:"
         self.headerPattern_2 = "class {name}({parents}):"
         self.headerPattern = self.headerPattern_2
+
+        self.only_magic_methods = only_magic_methods
 
         self.sliceClass()
 
@@ -116,9 +120,16 @@ class ClassString(dict):
 
         return class_data.strip()
 
+    def __isMagicMethod(self, method: str):
+        return method.startswith("__") and method.endswith("__")
+
     def __updateMethods(self) -> [str]:
         methods: list = (self.SEPARATOR + "\n    def ").join(self.classData.split("\n    def ")).split(self.SEPARATOR)[1::]
         methods[-1] = "\n".join(list(filter(lambda method: method.startswith("    def ") or method.startswith("        "), methods[-1].split("\n"))))
+
+        if self.only_magic_methods:
+            methods = list(filter(lambda method: self.__isMagicMethod(method.split("(", 1)[0].split("def ", 1)[-1]), methods))
+
         methods = list(map(lambda method: "    " + method.strip(), methods))
         self.methods = methods
 
@@ -310,8 +321,8 @@ if __name__ == '__main__':
     for key in builtin_objects.keys():
         builtin_objects[key] += "MagicMethods"
 
-    # Create the file reader (include filtering classes)
-    fileString = FileString(fileReader.fileData, list(builtin_objects))
+    # Create the file reader (include filtering)
+    fileString = FileString(fileReader.fileData, list(builtin_objects), only_magic_methods=True)
 
     # Replace objects' names
     fileString.replaceClassesNames(builtin_objects)
