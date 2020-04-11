@@ -37,1080 +37,436 @@ class DynamicObjectInterface(object):
 
 class DyObjectMagicMethods:
 
-    def __delattr__(self, *args, **kwargs):
-        """ Implement delattr(self, name). """
-        pass
-
-    def __dir__(self, *args, **kwargs):
-        """ Default dir() implementation. """
-        pass
-
     def __eq__(self, *args, **kwargs):
-        """ Return self==value. """
-        pass
-
-    def __format__(self, *args, **kwargs):
-        """ Default object formatter. """
-        pass
-
-    def __getattribute__(self, *args, **kwargs):
-        """ Return getattr(self, name). """
-        pass
+        self.set(object.__eq__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __ge__(self, *args, **kwargs):
-        """ Return self>=value. """
-        pass
+        self.set(object.__ge__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __gt__(self, *args, **kwargs):
-        """ Return self>value. """
-        pass
-
-    def __hash__(self, *args, **kwargs):
-        """ Return hash(self). """
-        pass
-
-    def __init_subclass__(self, *args, **kwargs):
-        """
-        This method is called when a class is subclassed.
-
-        The default implementation does nothing. It may be
-        overridden to extend subclasses.
-        """
-        pass
-
-    def __init__(self):
-        """ Initialize self.  See help(type(self)) for accurate signature. """
-        pass
+        self.set(object.__gt__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __le__(self, *args, **kwargs):
-        """ Return self<=value. """
-        pass
+        self.set(object.__le__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __lt__(self, *args, **kwargs):
-        """ Return self<value. """
-        pass
-
-    @staticmethod  # known case of __new__
-
-    def __new__(cls, *more):
-        """ Create and return a new object.  See help(type) for accurate signature. """
-        pass
+        self.set(object.__lt__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __ne__(self, *args, **kwargs):
-        """ Return self!=value. """
-        pass
-
-    def __reduce_ex__(self, *args, **kwargs):
-        """ Helper for pickle. """
-        pass
-
-    def __reduce__(self, *args, **kwargs):
-        """ Helper for pickle. """
-        pass
+        self.set(object.__ne__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __repr__(self, *args, **kwargs):
-        """ Return repr(self). """
-        pass
-
-    def __setattr__(self, *args, **kwargs):
-        """ Implement setattr(self, name, value). """
-        pass
-
-    def __sizeof__(self, *args, **kwargs):
-        """ Size of object in memory, in bytes. """
-        pass
-
-    def __str__(self, *args, **kwargs):
-        """ Return str(self). """
-        pass
-
-    @classmethod  # known case
-
-    def __subclasshook__(cls, subclass):
-        """
-        Abstract classes can override this to customize issubclass().
-        This is invoked early on by abc.ABCMeta.__subclasscheck__().
-        It should return True, False or NotImplemented.  If it returns
-        NotImplemented, the normal algorithm is used.  Otherwise, it
-        overrides the normal algorithm (and the outcome is cached).
-        """
-        pass
+        return object.__repr__(self.get(), *args, **kwargs)
 
 
 class DyIntMagicMethods(DyObjectMagicMethods):
 
-    def __abs__(self, *args, **kwargs):
-        """ abs(self) """
-        pass
-
     def __add__(self, *args, **kwargs):
-        """ Return self+value. """
-        pass
-
-    def __and__(self, *args, **kwargs):
-        """ Return self&value. """
-        pass
-
-    def __bool__(self, *args, **kwargs):
-        """ self != 0 """
-        pass
-
-    def __ceil__(self, *args, **kwargs):
-        """ Ceiling of an Integral returns itself. """
-        pass
+        self.set(int.__add__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __divmod__(self, *args, **kwargs):
-        """ Return divmod(self, value). """
-        pass
+        self.set(int.__divmod__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __eq__(self, *args, **kwargs):
-        """ Return self==value. """
-        pass
-
-    def __float__(self, *args, **kwargs):
-        """ float(self) """
-        pass
+        self.set(int.__eq__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __floordiv__(self, *args, **kwargs):
-        """ Return self//value. """
-        pass
-
-    def __floor__(self, *args, **kwargs):
-        """ Flooring an Integral returns itself. """
-        pass
-
-    def __format__(self, *args, **kwargs):
-        pass
-
-    def __getattribute__(self, *args, **kwargs):
-        """ Return getattr(self, name). """
-        pass
-
-    def __getnewargs__(self, *args, **kwargs):
-        pass
+        self.set(int.__floordiv__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __ge__(self, *args, **kwargs):
-        """ Return self>=value. """
-        pass
+        self.set(int.__ge__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __gt__(self, *args, **kwargs):
-        """ Return self>value. """
-        pass
-
-    def __hash__(self, *args, **kwargs):
-        """ Return hash(self). """
-        pass
-
-    def __index__(self, *args, **kwargs):
-        """ Return self converted to an integer, if self is suitable for use as an index into a list. """
-        pass
-
-    def __init__(self, x, base=10):
-        """
-        int([x]) -> integer
-        int(x, base=10) -> integer
-
-        Convert a number or string to an integer, or return 0 if no arguments
-        are given.  If x is a number, return x.__int__().  For floating point
-        numbers, this truncates towards zero.
-
-        If x is not a number or if base is given, then x must be a string,
-        bytes, or bytearray instance representing an integer literal in the
-        given base.  The literal can be preceded by '+' or '-' and be surrounded
-        by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
-        Base 0 means to interpret the base from the string as an integer literal.
-        >>> int('0b100', base=0)
-        4
-        # (copied from class doc)
-        """
-        pass
-
-    def __int__(self, *args, **kwargs):
-        """ int(self) """
-        pass
-
-    def __invert__(self, *args, **kwargs):
-        """ ~self """
-        pass
+        self.set(int.__gt__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __le__(self, *args, **kwargs):
-        """ Return self<=value. """
-        pass
-
-    def __lshift__(self, *args, **kwargs):
-        """ Return self<<value. """
-        pass
+        self.set(int.__le__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __lt__(self, *args, **kwargs):
-        """ Return self<value. """
-        pass
-
-    def __mod__(self, *args, **kwargs):
-        """ Return self%value. """
-        pass
+        self.set(int.__lt__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __mul__(self, *args, **kwargs):
-        """ Return self*value. """
-        pass
-
-    def __neg__(self, *args, **kwargs):
-        """ -self """
-        pass
-
-    @staticmethod  # known case of __new__
-
-    def __new__(*args, **kwargs):
-        """ Create and return a new object.  See help(type) for accurate signature. """
-        pass
+        self.set(int.__mul__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __ne__(self, *args, **kwargs):
-        """ Return self!=value. """
-        pass
-
-    def __or__(self, *args, **kwargs):
-        """ Return self|value. """
-        pass
-
-    def __pos__(self, *args, **kwargs):
-        """ +self """
-        pass
+        self.set(int.__ne__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __pow__(self, *args, **kwargs):
-        """ Return pow(self, value, mod). """
-        pass
+        self.set(int.__pow__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __radd__(self, *args, **kwargs):
-        """ Return value+self. """
-        pass
+        self.set(int.__radd__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __rand__(self, *args, **kwargs):
-        """ Return value&self. """
-        pass
-
-    def __rdivmod__(self, *args, **kwargs):
-        """ Return divmod(value, self). """
-        pass
+        self.set(int.__rand__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __repr__(self, *args, **kwargs):
-        """ Return repr(self). """
-        pass
+        return int.__repr__(self.get(), *args, **kwargs)
 
     def __rfloordiv__(self, *args, **kwargs):
-        """ Return value//self. """
-        pass
+        self.set(int.__rfloordiv__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __rlshift__(self, *args, **kwargs):
-        """ Return value<<self. """
-        pass
+        self.set(int.__rlshift__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __rmod__(self, *args, **kwargs):
-        """ Return value%self. """
-        pass
+        self.set(int.__rmod__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __rmul__(self, *args, **kwargs):
-        """ Return value*self. """
-        pass
+        self.set(int.__rmul__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __ror__(self, *args, **kwargs):
-        """ Return value|self. """
-        pass
-
-    def __round__(self, *args, **kwargs):
-        """
-        Rounding an Integral returns itself.
-        Rounding with an ndigits argument also returns an integer.
-        """
-        pass
-
-    def __rpow__(self, *args, **kwargs):
-        """ Return pow(value, self, mod). """
-        pass
+        self.set(int.__ror__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __rrshift__(self, *args, **kwargs):
-        """ Return value>>self. """
-        pass
-
-    def __rshift__(self, *args, **kwargs):
-        """ Return self>>value. """
-        pass
+        self.set(int.__rrshift__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __rsub__(self, *args, **kwargs):
-        """ Return value-self. """
-        pass
-
-    def __rtruediv__(self, *args, **kwargs):
-        """ Return value/self. """
-        pass
+        self.set(int.__rsub__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __rxor__(self, *args, **kwargs):
-        """ Return value^self. """
-        pass
-
-    def __sizeof__(self, *args, **kwargs):
-        """ Returns size in memory, in bytes. """
-        pass
-
-    def __str__(self, *args, **kwargs):
-        """ Return str(self). """
-        pass
+        self.set(int.__rxor__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __sub__(self, *args, **kwargs):
-        """ Return self-value. """
-        pass
+        self.set(int.__sub__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __truediv__(self, *args, **kwargs):
-        """ Return self/value. """
-        pass
-
-    def __trunc__(self, *args, **kwargs):
-        """ Truncating an Integral returns itself. """
-        pass
-
-    def __xor__(self, *args, **kwargs):
-        """ Return self^value. """
-        pass
+        self.set(int.__truediv__(self.get(), args[0] + 0, **kwargs))
+        return self
 
 
 class DyBoolMagicMethods(DyIntMagicMethods):
 
-    def __and__(self, *args, **kwargs):
-        """ Return self&value. """
-        pass
-
-    def __init__(self, x):
-        pass
-
-    @staticmethod  # known case of __new__
-
-    def __new__(*args, **kwargs):
-        """ Create and return a new object.  See help(type) for accurate signature. """
-        pass
-
-    def __or__(self, *args, **kwargs):
-        """ Return self|value. """
-        pass
-
     def __rand__(self, *args, **kwargs):
-        """ Return value&self. """
-        pass
+        self.set(bool.__rand__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __repr__(self, *args, **kwargs):
-        """ Return repr(self). """
-        pass
+        return bool.__repr__(self.get(), *args, **kwargs)
 
     def __ror__(self, *args, **kwargs):
-        """ Return value|self. """
-        pass
+        self.set(bool.__ror__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __rxor__(self, *args, **kwargs):
-        """ Return value^self. """
-        pass
-
-    def __str__(self, *args, **kwargs):
-        """ Return str(self). """
-        pass
-
-    def __xor__(self, *args, **kwargs):
-        """ Return self^value. """
-        pass
+        self.set(bool.__rxor__(self.get(), args[0] + 0, **kwargs))
+        return self
 
 
 class DyDictMagicMethods(DyObjectMagicMethods):
 
-    def __contains__(self, *args, **kwargs):
-        """ True if the dictionary has the specified key, else False. """
-        pass
-
-    def __delitem__(self, *args, **kwargs):
-        """ Delete self[key]. """
-        pass
-
     def __eq__(self, *args, **kwargs):
-        """ Return self==value. """
-        pass
-
-    def __getattribute__(self, *args, **kwargs):
-        """ Return getattr(self, name). """
-        pass
-
-    def __getitem__(self, y):
-        """ x.__getitem__(y) <==> x[y] """
-        pass
+        self.set(dict.__eq__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __ge__(self, *args, **kwargs):
-        """ Return self>=value. """
-        pass
+        self.set(dict.__ge__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __gt__(self, *args, **kwargs):
-        """ Return self>value. """
-        pass
-
-    def __init__(self, seq=None, **kwargs):
-        """
-        dict() -> new empty dictionary
-        dict(mapping) -> new dictionary initialized from a mapping object's
-            (key, value) pairs
-        dict(iterable) -> new dictionary initialized as if via:
-            d = {}
-            for k, v in iterable:
-                d[k] = v
-        dict(**kwargs) -> new dictionary initialized with the name=value pairs
-            in the keyword argument list.  For example:  dict(one=1, two=2)
-        # (copied from class doc)
-        """
-        pass
-
-    def __iter__(self, *args, **kwargs):
-        """ Implement iter(self). """
-        pass
-
-    def __len__(self, *args, **kwargs):
-        """ Return len(self). """
-        pass
+        self.set(dict.__gt__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __le__(self, *args, **kwargs):
-        """ Return self<=value. """
-        pass
+        self.set(dict.__le__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __lt__(self, *args, **kwargs):
-        """ Return self<value. """
-        pass
-
-    @staticmethod  # known case of __new__
-
-    def __new__(*args, **kwargs):
-        """ Create and return a new object.  See help(type) for accurate signature. """
-        pass
+        self.set(dict.__lt__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __ne__(self, *args, **kwargs):
-        """ Return self!=value. """
-        pass
+        self.set(dict.__ne__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __repr__(self, *args, **kwargs):
-        """ Return repr(self). """
-        pass
-
-    def __setitem__(self, *args, **kwargs):
-        """ Set self[key] to value. """
-        pass
-
-    def __sizeof__(self):
-        """ D.__sizeof__() -> size of D in memory, in bytes """
-        pass
+        return dict.__repr__(self.get(), *args, **kwargs)
 
 
 class DyFloatMagicMethods(DyObjectMagicMethods):
 
-    def __abs__(self, *args, **kwargs):
-        """ abs(self) """
-        pass
-
     def __add__(self, *args, **kwargs):
-        """ Return self+value. """
-        pass
-
-    def __bool__(self, *args, **kwargs):
-        """ self != 0 """
-        pass
+        self.set(float.__add__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __divmod__(self, *args, **kwargs):
-        """ Return divmod(self, value). """
-        pass
+        self.set(float.__divmod__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __eq__(self, *args, **kwargs):
-        """ Return self==value. """
-        pass
-
-    def __float__(self, *args, **kwargs):
-        """ float(self) """
-        pass
+        self.set(float.__eq__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __floordiv__(self, *args, **kwargs):
-        """ Return self//value. """
-        pass
-
-    def __format__(self, *args, **kwargs):
-        """ Formats the float according to format_spec. """
-        pass
-
-    def __getattribute__(self, *args, **kwargs):
-        """ Return getattr(self, name). """
-        pass
-
-    def __getformat__(self, *args, **kwargs):
-        """
-        You probably don't want to use this function.
-
-          typestr
-            Must be 'double' or 'float'.
-
-        It exists mainly to be used in Python's test suite.
-
-        This function returns whichever of 'unknown', 'IEEE, big-endian' or 'IEEE,
-        little-endian' best describes the format of floating point numbers used by the
-        C type named by typestr.
-        """
-        pass
-
-    def __getnewargs__(self, *args, **kwargs):
-        pass
+        self.set(float.__floordiv__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __ge__(self, *args, **kwargs):
-        """ Return self>=value. """
-        pass
+        self.set(float.__ge__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __gt__(self, *args, **kwargs):
-        """ Return self>value. """
-        pass
-
-    def __hash__(self, *args, **kwargs):
-        """ Return hash(self). """
-        pass
-
-    def __init__(self, *args, **kwargs):
-        pass
-
-    def __int__(self, *args, **kwargs):
-        """ int(self) """
-        pass
+        self.set(float.__gt__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __le__(self, *args, **kwargs):
-        """ Return self<=value. """
-        pass
+        self.set(float.__le__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __lt__(self, *args, **kwargs):
-        """ Return self<value. """
-        pass
-
-    def __mod__(self, *args, **kwargs):
-        """ Return self%value. """
-        pass
+        self.set(float.__lt__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __mul__(self, *args, **kwargs):
-        """ Return self*value. """
-        pass
-
-    def __neg__(self, *args, **kwargs):
-        """ -self """
-        pass
-
-    @staticmethod  # known case of __new__
-
-    def __new__(*args, **kwargs):
-        """ Create and return a new object.  See help(type) for accurate signature. """
-        pass
+        self.set(float.__mul__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __ne__(self, *args, **kwargs):
-        """ Return self!=value. """
-        pass
-
-    def __pos__(self, *args, **kwargs):
-        """ +self """
-        pass
+        self.set(float.__ne__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __pow__(self, *args, **kwargs):
-        """ Return pow(self, value, mod). """
-        pass
+        self.set(float.__pow__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __radd__(self, *args, **kwargs):
-        """ Return value+self. """
-        pass
-
-    def __rdivmod__(self, *args, **kwargs):
-        """ Return divmod(value, self). """
-        pass
+        self.set(float.__radd__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __repr__(self, *args, **kwargs):
-        """ Return repr(self). """
-        pass
+        return float.__repr__(self.get(), *args, **kwargs)
 
     def __rfloordiv__(self, *args, **kwargs):
-        """ Return value//self. """
-        pass
+        self.set(float.__rfloordiv__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __rmod__(self, *args, **kwargs):
-        """ Return value%self. """
-        pass
+        self.set(float.__rmod__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __rmul__(self, *args, **kwargs):
-        """ Return value*self. """
-        pass
-
-    def __round__(self, *args, **kwargs):
-        """
-        Return the Integral closest to x, rounding half toward even.
-
-        When an argument is passed, work like built-in round(x, ndigits).
-        """
-        pass
-
-    def __rpow__(self, *args, **kwargs):
-        """ Return pow(value, self, mod). """
-        pass
+        self.set(float.__rmul__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __rsub__(self, *args, **kwargs):
-        """ Return value-self. """
-        pass
-
-    def __rtruediv__(self, *args, **kwargs):
-        """ Return value/self. """
-        pass
-
-    def __set_format__(self, *args, **kwargs):
-        """
-        You probably don't want to use this function.
-
-          typestr
-            Must be 'double' or 'float'.
-          fmt
-            Must be one of 'unknown', 'IEEE, big-endian' or 'IEEE, little-endian',
-            and in addition can only be one of the latter two if it appears to
-            match the underlying C reality.
-
-        It exists mainly to be used in Python's test suite.
-
-        Override the automatic determination of C-level floating point type.
-        This affects how floats are converted to and from binary strings.
-        """
-        pass
-
-    def __str__(self, *args, **kwargs):
-        """ Return str(self). """
-        pass
+        self.set(float.__rsub__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __sub__(self, *args, **kwargs):
-        """ Return self-value. """
-        pass
+        self.set(float.__sub__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __truediv__(self, *args, **kwargs):
-        """ Return self/value. """
-        pass
-
-    def __trunc__(self, *args, **kwargs):
-        """ Return the Integral closest to x between 0 and x. """
-        pass
+        self.set(float.__truediv__(self.get(), args[0] + 0, **kwargs))
+        return self
 
 
 class DyListMagicMethods(DyObjectMagicMethods):
 
     def __add__(self, *args, **kwargs):
-        """ Return self+value. """
-        pass
-
-    def __contains__(self, *args, **kwargs):
-        """ Return key in self. """
-        pass
-
-    def __delitem__(self, *args, **kwargs):
-        """ Delete self[key]. """
-        pass
+        self.set(list.__add__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __eq__(self, *args, **kwargs):
-        """ Return self==value. """
-        pass
-
-    def __getattribute__(self, *args, **kwargs):
-        """ Return getattr(self, name). """
-        pass
-
-    def __getitem__(self, y):
-        """ x.__getitem__(y) <==> x[y] """
-        pass
+        self.set(list.__eq__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __ge__(self, *args, **kwargs):
-        """ Return self>=value. """
-        pass
+        self.set(list.__ge__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __gt__(self, *args, **kwargs):
-        """ Return self>value. """
-        pass
-
-    def __iadd__(self, *args, **kwargs):
-        """ Implement self+=value. """
-        pass
-
-    def __imul__(self, *args, **kwargs):
-        """ Implement self*=value. """
-        pass
-
-    def __init__(self, seq=()):
-        """
-        Built-in mutable sequence.
-
-        If no argument is given, the constructor creates a new empty list.
-        The argument must be an iterable if specified.
-        # (copied from class doc)
-        """
-        pass
-
-    def __iter__(self, *args, **kwargs):
-        """ Implement iter(self). """
-        pass
-
-    def __len__(self, *args, **kwargs):
-        """ Return len(self). """
-        pass
+        self.set(list.__gt__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __le__(self, *args, **kwargs):
-        """ Return self<=value. """
-        pass
+        self.set(list.__le__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __lt__(self, *args, **kwargs):
-        """ Return self<value. """
-        pass
+        self.set(list.__lt__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __mul__(self, *args, **kwargs):
-        """ Return self*value. """
-        pass
-
-    @staticmethod  # known case of __new__
-
-    def __new__(*args, **kwargs):
-        """ Create and return a new object.  See help(type) for accurate signature. """
-        pass
+        self.set(list.__mul__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __ne__(self, *args, **kwargs):
-        """ Return self!=value. """
-        pass
+        self.set(list.__ne__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __repr__(self, *args, **kwargs):
-        """ Return repr(self). """
-        pass
-
-    def __reversed__(self, *args, **kwargs):
-        """ Return a reverse iterator over the list. """
-        pass
+        return list.__repr__(self.get(), *args, **kwargs)
 
     def __rmul__(self, *args, **kwargs):
-        """ Return value*self. """
-        pass
-
-    def __setitem__(self, *args, **kwargs):
-        """ Set self[key] to value. """
-        pass
-
-    def __sizeof__(self, *args, **kwargs):
-        """ Return the size of the list in memory, in bytes. """
-        pass
+        self.set(list.__rmul__(self.get(), args[0] + 0, **kwargs))
+        return self
 
 
 class DySetMagicMethods(DyObjectMagicMethods):
 
-    def __and__(self, *args, **kwargs):
-        """ Return self&value. """
-        pass
-
-    def __contains__(self, y):
-        """ x.__contains__(y) <==> y in x. """
-        pass
-
     def __eq__(self, *args, **kwargs):
-        """ Return self==value. """
-        pass
-
-    def __getattribute__(self, *args, **kwargs):
-        """ Return getattr(self, name). """
-        pass
+        self.set(set.__eq__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __ge__(self, *args, **kwargs):
-        """ Return self>=value. """
-        pass
+        self.set(set.__ge__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __gt__(self, *args, **kwargs):
-        """ Return self>value. """
-        pass
-
-    def __iand__(self, *args, **kwargs):
-        """ Return self&=value. """
-        pass
-
-    def __init__(self, seq=()):
-        """
-        set() -> new empty set object
-        set(iterable) -> new set object
-
-        Build an unordered collection of unique elements.
-        # (copied from class doc)
-        """
-        pass
-
-    def __ior__(self, *args, **kwargs):
-        """ Return self|=value. """
-        pass
-
-    def __isub__(self, *args, **kwargs):
-        """ Return self-=value. """
-        pass
-
-    def __iter__(self, *args, **kwargs):
-        """ Implement iter(self). """
-        pass
-
-    def __ixor__(self, *args, **kwargs):
-        """ Return self^=value. """
-        pass
-
-    def __len__(self, *args, **kwargs):
-        """ Return len(self). """
-        pass
+        self.set(set.__gt__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __le__(self, *args, **kwargs):
-        """ Return self<=value. """
-        pass
+        self.set(set.__le__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __lt__(self, *args, **kwargs):
-        """ Return self<value. """
-        pass
-
-    @staticmethod  # known case of __new__
-
-    def __new__(*args, **kwargs):
-        """ Create and return a new object.  See help(type) for accurate signature. """
-        pass
+        self.set(set.__lt__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __ne__(self, *args, **kwargs):
-        """ Return self!=value. """
-        pass
-
-    def __or__(self, *args, **kwargs):
-        """ Return self|value. """
-        pass
+        self.set(set.__ne__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __rand__(self, *args, **kwargs):
-        """ Return value&self. """
-        pass
-
-    def __reduce__(self, *args, **kwargs):
-        """ Return state information for pickling. """
-        pass
+        self.set(set.__rand__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __repr__(self, *args, **kwargs):
-        """ Return repr(self). """
-        pass
+        return set.__repr__(self.get(), *args, **kwargs)
 
     def __ror__(self, *args, **kwargs):
-        """ Return value|self. """
-        pass
+        self.set(set.__ror__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __rsub__(self, *args, **kwargs):
-        """ Return value-self. """
-        pass
+        self.set(set.__rsub__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __rxor__(self, *args, **kwargs):
-        """ Return value^self. """
-        pass
-
-    def __sizeof__(self):
-        """ S.__sizeof__() -> size of S in memory, in bytes """
-        pass
+        self.set(set.__rxor__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __sub__(self, *args, **kwargs):
-        """ Return self-value. """
-        pass
-
-    def __xor__(self, *args, **kwargs):
-        """ Return self^value. """
-        pass
+        self.set(set.__sub__(self.get(), args[0] + 0, **kwargs))
+        return self
 
 
 class DyStrMagicMethods(DyObjectMagicMethods):
 
     def __add__(self, *args, **kwargs):
-        """ Return self+value. """
-        pass
-
-    def __contains__(self, *args, **kwargs):
-        """ Return key in self. """
-        pass
+        self.set(str.__add__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __eq__(self, *args, **kwargs):
-        """ Return self==value. """
-        pass
-
-    def __format__(self, *args, **kwargs):
-        """ Return a formatted version of the string as described by format_spec. """
-        pass
-
-    def __getattribute__(self, *args, **kwargs):
-        """ Return getattr(self, name). """
-        pass
-
-    def __getitem__(self, *args, **kwargs):
-        """ Return self[key]. """
-        pass
-
-    def __getnewargs__(self, *args, **kwargs):
-        pass
+        self.set(str.__eq__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __ge__(self, *args, **kwargs):
-        """ Return self>=value. """
-        pass
+        self.set(str.__ge__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __gt__(self, *args, **kwargs):
-        """ Return self>value. """
-        pass
-
-    def __hash__(self, *args, **kwargs):
-        """ Return hash(self). """
-        pass
-
-    def __init__(self, value="", encoding=None, errors="strict"):
-        """
-        str(object='') -> str
-        str(bytes_or_buffer[, encoding[, errors]]) -> str
-
-        Create a new string object from the given object. If encoding or
-        errors is specified, then the object must expose a data buffer
-        that will be decoded using the given encoding and error handler.
-        Otherwise, returns the result of object.__str__() (if defined)
-        or repr(object).
-        encoding defaults to sys.getdefaultencoding().
-        errors defaults to 'strict'.
-        # (copied from class doc)
-        """
-        pass
-
-    def __iter__(self, *args, **kwargs):
-        """ Implement iter(self). """
-        pass
-
-    def __len__(self, *args, **kwargs):
-        """ Return len(self). """
-        pass
+        self.set(str.__gt__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __le__(self, *args, **kwargs):
-        """ Return self<=value. """
-        pass
+        self.set(str.__le__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __lt__(self, *args, **kwargs):
-        """ Return self<value. """
-        pass
-
-    def __mod__(self, *args, **kwargs):
-        """ Return self%value. """
-        pass
+        self.set(str.__lt__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __mul__(self, *args, **kwargs):
-        """ Return self*value. """
-        pass
-
-    @staticmethod  # known case of __new__
-
-    def __new__(*args, **kwargs):
-        """ Create and return a new object.  See help(type) for accurate signature. """
-        pass
+        self.set(str.__mul__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __ne__(self, *args, **kwargs):
-        """ Return self!=value. """
-        pass
+        self.set(str.__ne__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __repr__(self, *args, **kwargs):
-        """ Return repr(self). """
-        pass
+        return str.__repr__(self.get(), *args, **kwargs)
 
     def __rmod__(self, *args, **kwargs):
-        """ Return value%self. """
-        pass
+        self.set(str.__rmod__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __rmul__(self, *args, **kwargs):
-        """ Return value*self. """
-        pass
-
-    def __sizeof__(self, *args, **kwargs):
-        """ Return the size of the string in memory, in bytes. """
-        pass
-
-    def __str__(self, *args, **kwargs):
-        """ Return str(self). """
-        pass
+        self.set(str.__rmul__(self.get(), args[0] + 0, **kwargs))
+        return self
 
 
 class DyTupleMagicMethods(DyObjectMagicMethods):
 
     def __add__(self, *args, **kwargs):
-        """ Return self+value. """
-        pass
-
-    def __contains__(self, *args, **kwargs):
-        """ Return key in self. """
-        pass
+        self.set(tuple.__add__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __eq__(self, *args, **kwargs):
-        """ Return self==value. """
-        pass
-
-    def __getattribute__(self, *args, **kwargs):
-        """ Return getattr(self, name). """
-        pass
-
-    def __getitem__(self, *args, **kwargs):
-        """ Return self[key]. """
-        pass
-
-    def __getnewargs__(self, *args, **kwargs):
-        pass
+        self.set(tuple.__eq__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __ge__(self, *args, **kwargs):
-        """ Return self>=value. """
-        pass
+        self.set(tuple.__ge__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __gt__(self, *args, **kwargs):
-        """ Return self>value. """
-        pass
-
-    def __hash__(self, *args, **kwargs):
-        """ Return hash(self). """
-        pass
-
-    def __init__(self, seq=()):
-        """
-        Built-in immutable sequence.
-
-        If no argument is given, the constructor returns an empty tuple.
-        If iterable is specified the tuple is initialized from iterable's items.
-
-        If the argument is a tuple, the return value is the same object.
-        # (copied from class doc)
-        """
-        pass
-
-    def __iter__(self, *args, **kwargs):
-        """ Implement iter(self). """
-        pass
-
-    def __len__(self, *args, **kwargs):
-        """ Return len(self). """
-        pass
+        self.set(tuple.__gt__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __le__(self, *args, **kwargs):
-        """ Return self<=value. """
-        pass
+        self.set(tuple.__le__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __lt__(self, *args, **kwargs):
-        """ Return self<value. """
-        pass
+        self.set(tuple.__lt__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __mul__(self, *args, **kwargs):
-        """ Return self*value. """
-        pass
-
-    @staticmethod  # known case of __new__
-
-    def __new__(*args, **kwargs):
-        """ Create and return a new object.  See help(type) for accurate signature. """
-        pass
+        self.set(tuple.__mul__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __ne__(self, *args, **kwargs):
-        """ Return self!=value. """
-        pass
+        self.set(tuple.__ne__(self.get(), args[0] + 0, **kwargs))
+        return self
 
     def __repr__(self, *args, **kwargs):
-        """ Return repr(self). """
-        pass
+        return tuple.__repr__(self.get(), *args, **kwargs)
 
     def __rmul__(self, *args, **kwargs):
-        """ Return value*self. """
-        pass
+        self.set(tuple.__rmul__(self.get(), args[0] + 0, **kwargs))
+        return self
 
 
 class DyObject(DyObjectMagicMethods, DyObjectConditions, DynamicObjectInterface):

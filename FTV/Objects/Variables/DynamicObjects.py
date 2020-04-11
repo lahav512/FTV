@@ -46,7 +46,7 @@ class DyStr(DyStrMagicMethods, DyStrConditions, DyObject):
 
 if __name__ == '__main__':
     a = DyInt(8)
-    b = DyInt(8)
+    b = 6
     a += b
 
     print(a)

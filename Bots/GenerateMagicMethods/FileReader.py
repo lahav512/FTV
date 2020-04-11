@@ -1,6 +1,26 @@
 import copy
 import os
 
+
+class MethodContentPattern(object):
+    def __init__(self, pattern: str, methods: list):
+        self.methods = methods
+        self.pattern = pattern
+
+    def getContent(self, class_name, method_name):
+        content = "\n".join(list(map(lambda line: " "*8 + line.strip(), self.pattern.split("\n"))))
+        if "{method}" in self.pattern and "{cls}" in self.pattern:
+            content = content.format(cls=class_name, method=method_name)
+
+        elif "{method}" in self.pattern and "{cls}" not in self.pattern:
+            content = content.format(method=method_name)
+
+        elif "{method}" not in self.pattern and "{cls}" in self.pattern:
+            content = content.format(cls=class_name)
+
+        return content
+
+
 class FileString(dict):
 
     SEPARATOR = "%LAHAV%"
@@ -16,6 +36,7 @@ class FileString(dict):
 
         self.classes = []
         self.classesNames = []
+        self.methodsContentPatterns = []
 
         if relevant_classes is None:
             relevant_classes = []
@@ -35,11 +56,20 @@ class FileString(dict):
         self.newFileString = copy.copy(self)
 
     def joinFile(self):
+        self.__updateMethodsContent()
+
         file_data = ""
         for cls in self:
             file_data += cls.joinClass() + "\n\n\n"
 
         return file_data.strip()
+
+    def __updateMethodsContent(self):
+        for cls in self:
+            for method in cls:
+                for pat in self.methodsContentPatterns:
+                    if method.getName() in pat.methods:
+                        method.setContent(pat.getContent(cls.getOriginName(), method.getName()))
 
     def getFileLines(self) -> [str]:
         return self.fileData.split("\n")
@@ -72,6 +102,12 @@ class FileString(dict):
             for old_parent, new_parent in rep_dict.items():
                 cls.replaceParent(old_parent, new_parent)
 
+    def addMethodsContent(self, content_pattern, methods_names):
+        for cls in self:
+            cls.relevant_methods += methods_names
+
+        self.methodsContentPatterns.append(MethodContentPattern(content_pattern, methods_names))
+
     def __iter__(self):
         return iter(map(lambda item: item[-1], self.items()))
 
@@ -79,15 +115,18 @@ class FileString(dict):
 class ClassString(dict):
 
     SEPARATOR = "%LAHAV%"
+    METHOD_SEPARATOR = "%SHANI%"
 
     def __init__(self, class_data: str, relevant_methods: list = None, only_magic_methods = False):
         super(ClassString, self).__init__()
         self.classData = class_data
 
         self.name = None
+        self.originName = None
         self.parents = []
         self.methods = []
         self.methodsNames = []
+        self.decorators = {}
 
         if relevant_methods is None:
             relevant_methods = []
@@ -114,9 +153,18 @@ class ClassString(dict):
     def joinClass(self):
         class_data = ""
         for method in self:
-            class_data += method.joinMethod() + "\n\n"
+            if method.getName() in self.relevant_methods:
+                if method.getName() in self.decorators.keys():
+                    decorator = "    @" + self.getDecorator(method.getName()) + "\n"
+                else:
+                    decorator = ""
 
-        class_data = self.getHeader() + "\n\n" + class_data
+                class_data += decorator + method.joinMethod() + "\n\n"
+
+        if not class_data:
+            class_data = self.getHeader() + "\n    pass"
+        else:
+            class_data = self.getHeader() + "\n\n" + class_data
 
         return class_data.strip()
 
@@ -124,8 +172,20 @@ class ClassString(dict):
         return method.startswith("__") and method.endswith("__")
 
     def __updateMethods(self) -> [str]:
-        methods: list = (self.SEPARATOR + "\n    def ").join(self.classData.split("\n    def ")).split(self.SEPARATOR)[1::]
-        methods[-1] = "\n".join(list(filter(lambda method: method.startswith("    def ") or method.startswith("        "), methods[-1].split("\n"))))
+        class_data = self.classData.replace("\n    def ", self.METHOD_SEPARATOR + "\n    def ").replace("\n    @", self.METHOD_SEPARATOR + "\n    @")
+        methods: list = class_data.split(self.METHOD_SEPARATOR)[1::]
+        methods[-1] = "\n" + "\n".join(list(filter(lambda method: method.startswith("    def ") or method.startswith("        "), methods[-1].split("\n"))))
+
+        k = 0
+        while k < len(methods):
+            method = methods[k]
+            if method.strip().startswith("@"):
+                decorator = method.strip().split(" ", 1)[0].replace("@", "")
+                if k+1 < len(methods):
+                    method_name = methods[k+1].split("(", 1)[0].split("def ", 1)[-1]
+                    self.addDecorator(method_name, decorator)
+
+            k += 1
 
         if self.only_magic_methods:
             methods = list(filter(lambda method: self.__isMagicMethod(method.split("(", 1)[0].split("def ", 1)[-1]), methods))
@@ -146,7 +206,8 @@ class ClassString(dict):
         return self.getMethods()[self.getMethodsNames().index(method_name)]
 
     def __updateName(self):
-        self.name = self.classData.split("(", 1)[0].split("class ", 1)[-1]
+        self.originName = self.classData.split("\n", 1)[0].split("(", 1)[0].split(":", 1)[0].split("class ", 1)[-1]
+        self.name = self.originName
 
     def __updateParents(self):
         if "):" not in self.classData.split("\n", 1)[0]:
@@ -157,6 +218,9 @@ class ClassString(dict):
 
     def getName(self):
         return self.name
+
+    def getOriginName(self):
+        return self.originName
 
     def getParents(self):
         return self.parents
@@ -175,6 +239,12 @@ class ClassString(dict):
     def replaceParent(self, old_parent, new_parent):
         if old_parent in self.parents:
             self.parents[self.parents.index(old_parent)] = new_parent
+
+    def addDecorator(self, method_name, decorator):
+        self.decorators[method_name] = decorator
+
+    def getDecorator(self, method_name):
+        return self.decorators[method_name]
 
     def __iter__(self):
         return iter(map(lambda item: item[-1], self.items()))
@@ -222,6 +292,9 @@ class MethodString(str):
 
     def getArguments(self):
         return self.arguments
+
+    def setContent(self, content: str):
+        self.content = content
 
     def getContent(self):
         return self.content
@@ -321,6 +394,42 @@ if __name__ == '__main__':
     for key in builtin_objects.keys():
         builtin_objects[key] += "MagicMethods"
 
+    compare_methods = [
+        "__eq__",
+        "__ne__",
+        "__ge__",
+        "__le__",
+        "__gt__",
+        "__lt__"
+    ]
+
+    math_methods = [
+        "__add__",
+        "__sub__",
+        "__mul__",
+        "__floordiv__",
+        "__truediv__",  # ???
+        "__divmod__",  # ???
+        "__pow__"  # ???
+    ]
+
+    r_methods = [
+        "__radd__",
+        "__rsub__",
+        "__rmul__",
+        "__rfloordiv__",
+        "__rmod__",
+        "__rlshift__",
+        "__rrshift__",
+        "__rand__",
+        "__ror__",
+        "__rxor__"
+    ]
+
+    string_methods = [
+        "__repr__"
+    ]
+
     # Create the file reader (include filtering)
     fileString = FileString(fileReader.fileData, list(builtin_objects), only_magic_methods=True)
 
@@ -328,6 +437,16 @@ if __name__ == '__main__':
     fileString.replaceClassesNames(builtin_objects)
     fileString.replaceClassParentsNames(builtin_objects)
 
+    fileString.addMethodsContent(
+        "self.set({cls}.{method}(self.get(), args[0] + 0, **kwargs))\n"
+        "return self"
+    , compare_methods + math_methods + r_methods
+    )
+    fileString.addMethodsContent(
+        "return {cls}.{method}(self.get(), *args, **kwargs)"
+    , string_methods
+    )
+
     fileData = fileString.newFileString.joinFile()
     fileReader.saveFile(new_file_name, fileData, demo_file_path, "### CONTENT")
-    # print(fileData)
+    print(fileData)
