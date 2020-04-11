@@ -37,1050 +37,1851 @@ class DynamicObjectInterface(object):
 
 class DyObjectMagicMethods:
 
-    def __delattr__(self, *args, **kwargs) -> None:  # real signature unknown
-        return object.__delattr__(self.get(), *args, **kwargs)
+    def __delattr__(self, *args, **kwargs):
+        """ Implement delattr(self, name). """
+        pass
 
-    def __dir__(self, *args, **kwargs):  # real signature unknown
-        return object.__dir__(self.get(), *args, **kwargs)
+    def __dir__(self, *args, **kwargs):
+        """ Default dir() implementation. """
+        pass
 
-    def __eq__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return object.__eq__(self.get(), args[0] + 0, **kwargs)
+    def __eq__(self, *args, **kwargs):
+        """ Return self==value. """
+        pass
 
-    def __format__(self, *args, **kwargs) -> str:  # real signature unknown
-        return object.__format__(self.get(), *args, **kwargs)
+    def __format__(self, *args, **kwargs):
+        """ Default object formatter. """
+        pass
 
-    # def __getattribute__(self, *args, **kwargs):  # real signature unknown
-    #     return object.__getattribute__(self, *args, **kwargs) # TODO Not Implemented
+    def __getattribute__(self, *args, **kwargs):
+        """ Return getattr(self, name). """
+        pass
 
-    def __ge__(self, *args, **kwargs):  # real signature unknown
-        return object.__ge__(self.get(), args[0] + 0, **kwargs)
+    def __ge__(self, *args, **kwargs):
+        """ Return self>=value. """
+        pass
 
-    def __gt__(self, *args, **kwargs):  # real signature unknown
-        return object.__gt__(self.get(), args[0] + 0, **kwargs)
+    def __gt__(self, *args, **kwargs):
+        """ Return self>value. """
+        pass
 
-    def __hash__(self, *args, **kwargs) -> int:  # real signature unknown
-        return object.__hash__(self.get(), *args, **kwargs)
+    def __hash__(self, *args, **kwargs):
+        """ Return hash(self). """
+        pass
 
-    # def __init_subclass__(self, *args, **kwargs) -> None:  # real signature unknown
-    #     return object.__init_subclass__(self, *args, **kwargs) # TODO Not Implemented
+    def __init_subclass__(self, *args, **kwargs):
+        """
+        This method is called when a class is subclassed.
 
-    # def __init__(self) -> None:  # known special case of object.__init__
-    #     return object.__init__(self, *args, **kwargs) # TODO Not Implemented
+        The default implementation does nothing. It may be
+        overridden to extend subclasses.
+        """
+        pass
 
-    def __le__(self, *args, **kwargs):  # real signature unknown
-        return object.__le__(self.get(), args[0] + 0, **kwargs)
+    def __init__(self):
+        """ Initialize self.  See help(type(self)) for accurate signature. """
+        pass
 
-    def __lt__(self, *args, **kwargs):  # real signature unknown
-        return object.__lt__(self.get(), args[0] + 0, **kwargs)
+    def __le__(self, *args, **kwargs):
+        """ Return self<=value. """
+        pass
 
-    # @staticmethod # known case of __new__
-    # def __new__(cls, *more):  # known special case of object.__new__
-    #     return object.__new__(self, *args, **kwargs) # TODO Not Implemented
+    def __lt__(self, *args, **kwargs):
+        """ Return self<value. """
+        pass
 
-    def __ne__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return object.__ne__(self.get(), args[0] + 0, **kwargs)
+    @staticmethod  # known case of __new__
 
-    def __reduce_ex__(self, *args, **kwargs) -> tuple:  # real signature unknown
-        return object.__reduce_ex__(self.get(), *args, **kwargs)
+    def __new__(cls, *more):
+        """ Create and return a new object.  See help(type) for accurate signature. """
+        pass
 
-    def __reduce__(self, *args, **kwargs) -> tuple:  # real signature unknown
-        return object.__reduce__(self.get(), *args, **kwargs)
+    def __ne__(self, *args, **kwargs):
+        """ Return self!=value. """
+        pass
 
-    # def __repr__(self, *args, **kwargs) -> str:  # real signature unknown
-    #     return object.__repr__(self, *args, **kwargs) # TODO Not Implemented
+    def __reduce_ex__(self, *args, **kwargs):
+        """ Helper for pickle. """
+        pass
 
-    # def __setattr__(self, *args, **kwargs) -> None:  # real signature unknown
-    #     return object.__setattr__(self, *args, **kwargs) # TODO Not Implemented
+    def __reduce__(self, *args, **kwargs):
+        """ Helper for pickle. """
+        pass
 
-    def __sizeof__(self, *args, **kwargs) -> int:  # real signature unknown
-        return object.__sizeof__(self.get(), *args, **kwargs)
+    def __repr__(self, *args, **kwargs):
+        """ Return repr(self). """
+        pass
 
-    def __str__(self, *args, **kwargs) -> str:  # real signature unknown
-        return object.__str__(self.get(), *args, **kwargs)
+    def __setattr__(self, *args, **kwargs):
+        """ Implement setattr(self, name, value). """
+        pass
 
-    @classmethod # known case
-    def __subclasshook__(cls, subclass):  # known special case of object.__subclasshook__
-        pass  # Lahav
+    def __sizeof__(self, *args, **kwargs):
+        """ Size of object in memory, in bytes. """
+        pass
+
+    def __str__(self, *args, **kwargs):
+        """ Return str(self). """
+        pass
+
+    @classmethod  # known case
+
+    def __subclasshook__(cls, subclass):
+        """
+        Abstract classes can override this to customize issubclass().
+        This is invoked early on by abc.ABCMeta.__subclasscheck__().
+        It should return True, False or NotImplemented.  If it returns
+        NotImplemented, the normal algorithm is used.  Otherwise, it
+        overrides the normal algorithm (and the outcome is cached).
+        """
+        pass
 
 
 class DyIntMagicMethods(DyObjectMagicMethods):
 
-    def bit_length(self) -> int:  # real signature unknown; restored from __doc__
-        pass  # Lahav
+    def bit_length(self):
+        """
+        Number of bits necessary to represent self in binary.
 
-    def conjugate(self, *args, **kwargs):  # real signature unknown
-        return int.conjugate(self.get(), *args, **kwargs)
+        >>> bin(37)
+        '0b100101'
+        >>> (37).bit_length()
+        6
+        """
+        pass
 
-    @classmethod # known case
-    def from_bytes(cls, *args, **kwargs):  # real signature unknown
-        pass  # Lahav
+    def conjugate(self, *args, **kwargs):
+        """ Returns self, the complex conjugate of any int. """
+        pass
 
-    def to_bytes(self, *args, **kwargs) -> bytes:  # real signature unknown
-        return int.to_bytes(self.get(), *args, **kwargs)
+    @classmethod  # known case
 
-    def __abs__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__abs__(self.get(), *args, **kwargs)
+    def from_bytes(cls, *args, **kwargs):
+        """
+        Return the integer represented by the given array of bytes.
 
-    def __add__(self, *args, **kwargs) -> int:  # real signature unknown
-        self.set(int.__add__(self.get(), args[0] + 0, **kwargs))
-        return self
+          bytes
+            Holds the array of bytes to convert.  The argument must either
+            support the buffer protocol or be an iterable object producing bytes.
+            Bytes and bytearray are examples of built-in objects that support the
+            buffer protocol.
+          byteorder
+            The byte order used to represent the integer.  If byteorder is 'big',
+            the most significant byte is at the beginning of the byte array.  If
+            byteorder is 'little', the most significant byte is at the end of the
+            byte array.  To request the native byte order of the host system, use
+            `sys.byteorder' as the byte order value.
+          signed
+            Indicates whether two's complement is used to represent the integer.
+        """
+        pass
 
-    def __and__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__and__(self.get(), *args, **kwargs)
+    def to_bytes(self, *args, **kwargs):
+        """
+        Return an array of bytes representing an integer.
 
-    def __bool__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return int.__bool__(self.get(), *args, **kwargs)
+          length
+            Length of bytes object to use.  An OverflowError is raised if the
+            integer is not representable with the given number of bytes.
+          byteorder
+            The byte order used to represent the integer.  If byteorder is 'big',
+            the most significant byte is at the beginning of the byte array.  If
+            byteorder is 'little', the most significant byte is at the end of the
+            byte array.  To request the native byte order of the host system, use
+            `sys.byteorder' as the byte order value.
+          signed
+            Determines whether two's complement is used to represent the integer.
+            If signed is False and a negative integer is given, an OverflowError
+            is raised.
+        """
+        pass
 
-    def __ceil__(self, *args, **kwargs):  # real signature unknown
-        return int.__ceil__(self.get(), *args, **kwargs)
+    def __abs__(self, *args, **kwargs):
+        """ abs(self) """
+        pass
 
-    def __divmod__(self, *args, **kwargs):  # real signature unknown
-        self.set(int.__divmod__(self.get(), args[0] + 0, **kwargs))
-        return self
+    def __add__(self, *args, **kwargs):
+        """ Return self+value. """
+        pass
 
-    def __eq__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return int.__eq__(self.get(), args[0] + 0, **kwargs)
+    def __and__(self, *args, **kwargs):
+        """ Return self&value. """
+        pass
 
-    def __float__(self, *args, **kwargs) -> float:  # real signature unknown
-        return int.__float__(self.get(), *args, **kwargs)
+    def __bool__(self, *args, **kwargs):
+        """ self != 0 """
+        pass
 
-    def __floordiv__(self, *args, **kwargs) -> int:  # real signature unknown
-        self.set(int.__floordiv__(self.get(), args[0] + 0, **kwargs))
-        return self
+    def __ceil__(self, *args, **kwargs):
+        """ Ceiling of an Integral returns itself. """
+        pass
 
-    def __floor__(self, *args, **kwargs):  # real signature unknown
-        return int.__floor__(self.get(), *args, **kwargs)
+    def __divmod__(self, *args, **kwargs):
+        """ Return divmod(self, value). """
+        pass
 
-    def __format__(self, *args, **kwargs):  # real signature unknown
-        return int.__format__(self.get(), *args, **kwargs)
+    def __eq__(self, *args, **kwargs):
+        """ Return self==value. """
+        pass
 
-    # def __getattribute__(self, *args, **kwargs):  # real signature unknown
-    #     return int.__getattribute__(self, *args, **kwargs) # TODO Not Implemented
+    def __float__(self, *args, **kwargs):
+        """ float(self) """
+        pass
 
-    def __getnewargs__(self, *args, **kwargs):  # real signature unknown
-        return int.__getnewargs__(self.get(), *args, **kwargs)
+    def __floordiv__(self, *args, **kwargs):
+        """ Return self//value. """
+        pass
 
-    def __ge__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return int.__ge__(self.get(), args[0] + 0, **kwargs)
+    def __floor__(self, *args, **kwargs):
+        """ Flooring an Integral returns itself. """
+        pass
 
-    def __gt__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return int.__gt__(self.get(), args[0] + 0, **kwargs)
+    def __format__(self, *args, **kwargs):
+        pass
 
-    def __hash__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__hash__(self.get(), *args, **kwargs)
+    def __getattribute__(self, *args, **kwargs):
+        """ Return getattr(self, name). """
+        pass
 
-    def __index__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__index__(self.get(), *args, **kwargs)
+    def __getnewargs__(self, *args, **kwargs):
+        pass
 
-    # def __init__(self, x, base=10) -> None:  # known special case of int.__init__
-    #     return int.__init__(self, *args, **kwargs) # TODO Not Implemented
+    def __ge__(self, *args, **kwargs):
+        """ Return self>=value. """
+        pass
 
-    def __int__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__int__(self.get(), *args, **kwargs)
+    def __gt__(self, *args, **kwargs):
+        """ Return self>value. """
+        pass
 
-    def __invert__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__invert__(self.get(), *args, **kwargs)
+    def __hash__(self, *args, **kwargs):
+        """ Return hash(self). """
+        pass
 
-    def __le__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return int.__le__(self.get(), args[0] + 0, **kwargs)
+    def __index__(self, *args, **kwargs):
+        """ Return self converted to an integer, if self is suitable for use as an index into a list. """
+        pass
 
-    def __lshift__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__lshift__(self.get(), *args, **kwargs)
+    def __init__(self, x, base=10):
+        """
+        int([x]) -> integer
+        int(x, base=10) -> integer
 
-    def __lt__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return int.__lt__(self.get(), args[0] + 0, **kwargs)
+        Convert a number or string to an integer, or return 0 if no arguments
+        are given.  If x is a number, return x.__int__().  For floating point
+        numbers, this truncates towards zero.
 
-    def __mod__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__mod__(self.get(), *args, **kwargs)
+        If x is not a number or if base is given, then x must be a string,
+        bytes, or bytearray instance representing an integer literal in the
+        given base.  The literal can be preceded by '+' or '-' and be surrounded
+        by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+        Base 0 means to interpret the base from the string as an integer literal.
+        >>> int('0b100', base=0)
+        4
+        # (copied from class doc)
+        """
+        pass
 
-    def __mul__(self, *args, **kwargs) -> int:  # real signature unknown
-        self.set(int.__mul__(self.get(), args[0] + 0, **kwargs))
-        return self
+    def __int__(self, *args, **kwargs):
+        """ int(self) """
+        pass
 
-    def __neg__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__neg__(self.get(), *args, **kwargs)
+    def __invert__(self, *args, **kwargs):
+        """ ~self """
+        pass
 
-    # @staticmethod # known case of __new__
-    # def __new__(*args, **kwargs):  # real signature unknown
-    #     return int.__new__(self, *args, **kwargs) # TODO Not Implemented
+    def __le__(self, *args, **kwargs):
+        """ Return self<=value. """
+        pass
 
-    def __ne__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return int.__ne__(self.get(), args[0] + 0, **kwargs)
+    def __lshift__(self, *args, **kwargs):
+        """ Return self<<value. """
+        pass
 
-    def __or__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__or__(self.get(), *args, **kwargs)
+    def __lt__(self, *args, **kwargs):
+        """ Return self<value. """
+        pass
 
-    def __pos__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__pos__(self.get(), *args, **kwargs)
+    def __mod__(self, *args, **kwargs):
+        """ Return self%value. """
+        pass
 
-    def __pow__(self, *args, **kwargs):  # real signature unknown
-        self.set(int.__pow__(self.get(), args[0] + 0, **kwargs))
-        return self
+    def __mul__(self, *args, **kwargs):
+        """ Return self*value. """
+        pass
 
-    def __radd__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__radd__(self.get(), *args, **kwargs)
+    def __neg__(self, *args, **kwargs):
+        """ -self """
+        pass
 
-    def __rand__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__rand__(self.get(), *args, **kwargs)
+    @staticmethod  # known case of __new__
 
-    def __rdivmod__(self, *args, **kwargs):  # real signature unknown
-        return int.__rdivmod__(self.get(), *args, **kwargs)
+    def __new__(*args, **kwargs):
+        """ Create and return a new object.  See help(type) for accurate signature. """
+        pass
 
-    # def __repr__(self, *args, **kwargs):  # real signature unknown
-    #     return int.__repr__(self, *args, **kwargs) # TODO Not Implemented
+    def __ne__(self, *args, **kwargs):
+        """ Return self!=value. """
+        pass
 
-    def __rfloordiv__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__rfloordiv__(self.get(), *args, **kwargs)
+    def __or__(self, *args, **kwargs):
+        """ Return self|value. """
+        pass
 
-    def __rlshift__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__rlshift__(self.get(), *args, **kwargs)
+    def __pos__(self, *args, **kwargs):
+        """ +self """
+        pass
 
-    def __rmod__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__rmod__(self.get(), *args, **kwargs)
+    def __pow__(self, *args, **kwargs):
+        """ Return pow(self, value, mod). """
+        pass
 
-    def __rmul__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__rmul__(self.get(), *args, **kwargs)
+    def __radd__(self, *args, **kwargs):
+        """ Return value+self. """
+        pass
 
-    def __ror__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__ror__(self.get(), *args, **kwargs)
+    def __rand__(self, *args, **kwargs):
+        """ Return value&self. """
+        pass
 
-    def __round__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__round__(self.get(), *args, **kwargs)
+    def __rdivmod__(self, *args, **kwargs):
+        """ Return divmod(value, self). """
+        pass
 
-    def __rpow__(self, *args, **kwargs):  # real signature unknown
-        return int.__rpow__(self.get(), *args, **kwargs)
+    def __repr__(self, *args, **kwargs):
+        """ Return repr(self). """
+        pass
 
-    def __rrshift__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__rrshift__(self.get(), *args, **kwargs)
+    def __rfloordiv__(self, *args, **kwargs):
+        """ Return value//self. """
+        pass
 
-    def __rshift__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__rshift__(self.get(), *args, **kwargs)
+    def __rlshift__(self, *args, **kwargs):
+        """ Return value<<self. """
+        pass
 
-    def __rsub__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__rsub__(self.get(), *args, **kwargs)
+    def __rmod__(self, *args, **kwargs):
+        """ Return value%self. """
+        pass
 
-    def __rtruediv__(self, *args, **kwargs) -> float:  # real signature unknown
-        return int.__rtruediv__(self.get(), *args, **kwargs)
+    def __rmul__(self, *args, **kwargs):
+        """ Return value*self. """
+        pass
 
-    def __rxor__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__rxor__(self.get(), *args, **kwargs)
+    def __ror__(self, *args, **kwargs):
+        """ Return value|self. """
+        pass
 
-    def __sizeof__(self, *args, **kwargs):  # real signature unknown
-        return int.__sizeof__(self.get(), *args, **kwargs)
+    def __round__(self, *args, **kwargs):
+        """
+        Rounding an Integral returns itself.
+        Rounding with an ndigits argument also returns an integer.
+        """
+        pass
 
-    def __str__(self, *args, **kwargs) -> str:  # real signature unknown
-        return int.__str__(self.get(), *args, **kwargs)
+    def __rpow__(self, *args, **kwargs):
+        """ Return pow(value, self, mod). """
+        pass
 
-    def __sub__(self, *args, **kwargs) -> int:  # real signature unknown
-        self.set(int.__sub__(self.get(), args[0] + 0, **kwargs))
-        return self
+    def __rrshift__(self, *args, **kwargs):
+        """ Return value>>self. """
+        pass
 
-    def __truediv__(self, *args, **kwargs) -> float:  # real signature unknown
-        self.set(int.__truediv__(self.get(), args[0] + 0, **kwargs))
-        return self
+    def __rshift__(self, *args, **kwargs):
+        """ Return self>>value. """
+        pass
 
-    def __trunc__(self, *args, **kwargs):  # real signature unknown
-        return int.__trunc__(self.get(), *args, **kwargs)
+    def __rsub__(self, *args, **kwargs):
+        """ Return value-self. """
+        pass
 
-    def __xor__(self, *args, **kwargs) -> int:  # real signature unknown
-        return int.__xor__(self.get(), *args, **kwargs)
+    def __rtruediv__(self, *args, **kwargs):
+        """ Return value/self. """
+        pass
+
+    def __rxor__(self, *args, **kwargs):
+        """ Return value^self. """
+        pass
+
+    def __sizeof__(self, *args, **kwargs):
+        """ Returns size in memory, in bytes. """
+        pass
+
+    def __str__(self, *args, **kwargs):
+        """ Return str(self). """
+        pass
+
+    def __sub__(self, *args, **kwargs):
+        """ Return self-value. """
+        pass
+
+    def __truediv__(self, *args, **kwargs):
+        """ Return self/value. """
+        pass
+
+    def __trunc__(self, *args, **kwargs):
+        """ Truncating an Integral returns itself. """
+        pass
+
+    def __xor__(self, *args, **kwargs):
+        """ Return self^value. """
+        pass
 
 
 class DyBoolMagicMethods(DyIntMagicMethods):
 
-    def __and__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return bool.__and__(self.get(), *args, **kwargs)
+    def __and__(self, *args, **kwargs):
+        """ Return self&value. """
+        pass
 
-    # def __init__(self, x) -> None:  # real signature unknown; restored from __doc__
-    #     return bool.__init__(self, *args, **kwargs) # TODO Not Implemented
+    def __init__(self, x):
+        pass
 
-    # @staticmethod # known case of __new__
-    # def __new__(*args, **kwargs):  # real signature unknown
-    #     return bool.__new__(self, *args, **kwargs) # TODO Not Implemented
+    @staticmethod  # known case of __new__
 
-    def __or__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return bool.__or__(self.get(), *args, **kwargs)
+    def __new__(*args, **kwargs):
+        """ Create and return a new object.  See help(type) for accurate signature. """
+        pass
 
-    def __rand__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return bool.__rand__(self.get(), *args, **kwargs)
+    def __or__(self, *args, **kwargs):
+        """ Return self|value. """
+        pass
 
-    # def __repr__(self, *args, **kwargs):  # real signature unknown
-    #     return bool.__repr__(self, *args, **kwargs) # TODO Not Implemented
+    def __rand__(self, *args, **kwargs):
+        """ Return value&self. """
+        pass
 
-    def __ror__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return bool.__ror__(self.get(), *args, **kwargs)
+    def __repr__(self, *args, **kwargs):
+        """ Return repr(self). """
+        pass
 
-    def __rxor__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return bool.__rxor__(self.get(), *args, **kwargs)
+    def __ror__(self, *args, **kwargs):
+        """ Return value|self. """
+        pass
 
-    def __str__(self, *args, **kwargs):  # real signature unknown
-        return bool.__str__(self.get(), *args, **kwargs)
+    def __rxor__(self, *args, **kwargs):
+        """ Return value^self. """
+        pass
 
-    def __xor__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return bool.__xor__(self.get(), *args, **kwargs)
+    def __str__(self, *args, **kwargs):
+        """ Return str(self). """
+        pass
+
+    def __xor__(self, *args, **kwargs):
+        """ Return self^value. """
+        pass
 
 
 class DyDictMagicMethods(DyObjectMagicMethods):
 
-    def clear(self) -> None:  # real signature unknown; restored from __doc__
-        pass  # Lahav
+    def clear(self):
+        """ D.clear() -> None.  Remove all items from D. """
+        pass
 
-    def copy(self):  # real signature unknown; restored from __doc__
-        pass  # Lahav
+    def copy(self):
+        """ D.copy() -> a shallow copy of D """
+        pass
 
-    @staticmethod # known case
-    def fromkeys(*args, **kwargs):  # real signature unknown
-        pass  # Lahav
+    @staticmethod  # known case
 
-    def get(self, *args, **kwargs):  # real signature unknown
-        return dict.get(self.get(), *args, **kwargs)
+    def fromkeys(*args, **kwargs):
+        """ Create a new dictionary with keys from iterable and values set to value. """
+        pass
 
-    def items(self):  # real signature unknown; restored from __doc__
-        pass  # Lahav
+    def get(self, *args, **kwargs):
+        """ Return the value for key if key is in the dictionary, else default. """
+        pass
 
-    def keys(self):  # real signature unknown; restored from __doc__
-        pass  # Lahav
+    def items(self):
+        """ D.items() -> a set-like object providing a view on D's items """
+        pass
 
-    def pop(self, k, d=None):  # real signature unknown; restored from __doc__
-        pass  # Lahav
+    def keys(self):
+        """ D.keys() -> a set-like object providing a view on D's keys """
+        pass
 
-    def popitem(self):  # real signature unknown; restored from __doc__
-        pass  # Lahav
+    def pop(self, k, d=None):
+        """
+        D.pop(k[,d]) -> v, remove specified key and return the corresponding value.
+        If key is not found, d is returned if given, otherwise KeyError is raised
+        """
+        pass
 
-    def setdefault(self, *args, **kwargs):  # real signature unknown
-        return dict.setdefault(self.get(), *args, **kwargs)
+    def popitem(self):
+        """
+        D.popitem() -> (k, v), remove and return some (key, value) pair as a
+        2-tuple; but raise KeyError if D is empty.
+        """
+        pass
 
-    def update(self, E=None, **F) -> None:  # known special case of dict.update
-        pass  # Lahav
+    def setdefault(self, *args, **kwargs):
+        """
+        Insert key with a value of default if key is not in the dictionary.
 
-    def values(self):  # real signature unknown; restored from __doc__
-        pass  # Lahav
+        Return the value for key if key is in the dictionary, else default.
+        """
+        pass
 
-    def __contains__(self, *args, **kwargs):  # real signature unknown
-        return dict.__contains__(self.get(), *args, **kwargs)
+    def update(self, E=None, **F):
+        """
+        D.update([E, ]**F) -> None.  Update D from dict/iterable E and F.
+        If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k]
+        If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v
+        In either case, this is followed by: for k in F:  D[k] = F[k]
+        """
+        pass
 
-    def __delitem__(self, *args, **kwargs):  # real signature unknown
-        return dict.__delitem__(self.get(), *args, **kwargs)
+    def values(self):
+        """ D.values() -> an object providing a view on D's values """
+        pass
 
-    def __eq__(self, *args, **kwargs):  # real signature unknown
-        return dict.__eq__(self.get(), args[0] + 0, **kwargs)
+    def __contains__(self, *args, **kwargs):
+        """ True if the dictionary has the specified key, else False. """
+        pass
 
-    # def __getattribute__(self, *args, **kwargs):  # real signature unknown
-    #     return dict.__getattribute__(self, *args, **kwargs) # TODO Not Implemented
+    def __delitem__(self, *args, **kwargs):
+        """ Delete self[key]. """
+        pass
 
-    def __getitem__(self, y):  # real signature unknown; restored from __doc__
-        pass  # Lahav
+    def __eq__(self, *args, **kwargs):
+        """ Return self==value. """
+        pass
 
-    def __ge__(self, *args, **kwargs):  # real signature unknown
-        return dict.__ge__(self.get(), args[0] + 0, **kwargs)
+    def __getattribute__(self, *args, **kwargs):
+        """ Return getattr(self, name). """
+        pass
 
-    def __gt__(self, *args, **kwargs):  # real signature unknown
-        return dict.__gt__(self.get(), args[0] + 0, **kwargs)
+    def __getitem__(self, y):
+        """ x.__getitem__(y) <==> x[y] """
+        pass
 
-    # def __init__(self, seq=None, **kwargs) -> None:  # known special case of dict.__init__
-    #     return dict.__init__(self, *args, **kwargs) # TODO Not Implemented
+    def __ge__(self, *args, **kwargs):
+        """ Return self>=value. """
+        pass
 
-    def __iter__(self, *args, **kwargs):  # real signature unknown
-        return dict.__iter__(self.get(), *args, **kwargs)
+    def __gt__(self, *args, **kwargs):
+        """ Return self>value. """
+        pass
 
-    def __len__(self, *args, **kwargs):  # real signature unknown
-        return dict.__len__(self.get(), *args, **kwargs)
+    def __init__(self, seq=None, **kwargs):
+        """
+        dict() -> new empty dictionary
+        dict(mapping) -> new dictionary initialized from a mapping object's
+            (key, value) pairs
+        dict(iterable) -> new dictionary initialized as if via:
+            d = {}
+            for k, v in iterable:
+                d[k] = v
+        dict(**kwargs) -> new dictionary initialized with the name=value pairs
+            in the keyword argument list.  For example:  dict(one=1, two=2)
+        # (copied from class doc)
+        """
+        pass
 
-    def __le__(self, *args, **kwargs):  # real signature unknown
-        return dict.__le__(self.get(), args[0] + 0, **kwargs)
+    def __iter__(self, *args, **kwargs):
+        """ Implement iter(self). """
+        pass
 
-    def __lt__(self, *args, **kwargs):  # real signature unknown
-        return dict.__lt__(self.get(), args[0] + 0, **kwargs)
+    def __len__(self, *args, **kwargs):
+        """ Return len(self). """
+        pass
 
-    # @staticmethod # known case of __new__
-    # def __new__(*args, **kwargs):  # real signature unknown
-    #     return dict.__new__(self, *args, **kwargs) # TODO Not Implemented
+    def __le__(self, *args, **kwargs):
+        """ Return self<=value. """
+        pass
 
-    def __ne__(self, *args, **kwargs):  # real signature unknown
-        return dict.__ne__(self.get(), args[0] + 0, **kwargs)
+    def __lt__(self, *args, **kwargs):
+        """ Return self<value. """
+        pass
 
-    # def __repr__(self, *args, **kwargs):  # real signature unknown
-    #     return dict.__repr__(self, *args, **kwargs) # TODO Not Implemented
+    @staticmethod  # known case of __new__
 
-    def __setitem__(self, *args, **kwargs):  # real signature unknown
-        return dict.__setitem__(self.get(), *args, **kwargs)
+    def __new__(*args, **kwargs):
+        """ Create and return a new object.  See help(type) for accurate signature. """
+        pass
 
-    def __sizeof__(self):  # real signature unknown; restored from __doc__
-        pass  # Lahav
+    def __ne__(self, *args, **kwargs):
+        """ Return self!=value. """
+        pass
+
+    def __repr__(self, *args, **kwargs):
+        """ Return repr(self). """
+        pass
+
+    def __setitem__(self, *args, **kwargs):
+        """ Set self[key] to value. """
+        pass
+
+    def __sizeof__(self):
+        """ D.__sizeof__() -> size of D in memory, in bytes """
+        pass
 
 
 class DyFloatMagicMethods(DyObjectMagicMethods):
 
-    def as_integer_ratio(self):  # real signature unknown; restored from __doc__
-        pass  # Lahav
+    def as_integer_ratio(self):
+        """
+        Return integer ratio.
 
-    def conjugate(self, *args, **kwargs):  # real signature unknown
-        return float.conjugate(self.get(), *args, **kwargs)
+        Return a pair of integers, whose ratio is exactly equal to the original float
+        and with a positive denominator.
 
-    @staticmethod # known case
-    def fromhex(*args, **kwargs) -> float:  # real signature unknown; NOTE: unreliably restored from __doc__ 
-        pass  # Lahav
+        Raise OverflowError on infinities and a ValueError on NaNs.
 
-    def hex(self) -> str:  # real signature unknown; restored from __doc__
-        pass  # Lahav
+        >>> (10.0).as_integer_ratio()
+        (10, 1)
+        >>> (0.0).as_integer_ratio()
+        (0, 1)
+        >>> (-.25).as_integer_ratio()
+        (-1, 4)
+        """
+        pass
 
-    def is_integer(self, *args, **kwargs) -> bool:  # real signature unknown
-        return float.is_integer(self.get(), *args, **kwargs)
+    def conjugate(self, *args, **kwargs):
+        """ Return self, the complex conjugate of any float. """
+        pass
 
-    def __abs__(self, *args, **kwargs) -> float:  # real signature unknown
-        return float.__abs__(self.get(), *args, **kwargs)
+    @staticmethod  # known case
 
-    def __add__(self, *args, **kwargs) -> float:  # real signature unknown
-        self.set(float.__add__(self.get(), args[0] + 0, **kwargs))
-        return self
+    def fromhex(*args, **kwargs):
+        """
+        Create a floating-point number from a hexadecimal string.
 
-    def __bool__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return float.__bool__(self.get(), *args, **kwargs)
+        >>> float.fromhex('0x1.ffffp10')
+        2047.984375
+        >>> float.fromhex('-0x1p-1074')
+        -5e-324
+        """
+        pass
 
-    def __divmod__(self, *args, **kwargs):  # real signature unknown
-        self.set(float.__divmod__(self.get(), args[0] + 0, **kwargs))
-        return self
+    def hex(self):
+        """
+        Return a hexadecimal representation of a floating-point number.
 
-    def __eq__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return float.__eq__(self.get(), args[0] + 0, **kwargs)
+        >>> (-0.1).hex()
+        '-0x1.999999999999ap-4'
+        >>> 3.14159.hex()
+        '0x1.921f9f01b866ep+1'
+        """
+        pass
 
-    def __float__(self, *args, **kwargs) -> float:  # real signature unknown
-        return float.__float__(self.get(), *args, **kwargs)
+    def is_integer(self, *args, **kwargs):
+        """ Return True if the float is an integer. """
+        pass
 
-    def __floordiv__(self, *args, **kwargs) -> float:  # real signature unknown
-        self.set(float.__floordiv__(self.get(), args[0] + 0, **kwargs))
-        return self
+    def __abs__(self, *args, **kwargs):
+        """ abs(self) """
+        pass
 
-    def __format__(self, *args, **kwargs):  # real signature unknown
-        return float.__format__(self.get(), *args, **kwargs)
+    def __add__(self, *args, **kwargs):
+        """ Return self+value. """
+        pass
 
-    # def __getattribute__(self, *args, **kwargs):  # real signature unknown
-    #     return float.__getattribute__(self, *args, **kwargs) # TODO Not Implemented
+    def __bool__(self, *args, **kwargs):
+        """ self != 0 """
+        pass
 
-    def __getformat__(self, *args, **kwargs):  # real signature unknown
-        return float.__getformat__(self.get(), *args, **kwargs)
+    def __divmod__(self, *args, **kwargs):
+        """ Return divmod(self, value). """
+        pass
 
-    def __getnewargs__(self, *args, **kwargs):  # real signature unknown
-        return float.__getnewargs__(self.get(), *args, **kwargs)
+    def __eq__(self, *args, **kwargs):
+        """ Return self==value. """
+        pass
 
-    def __ge__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return float.__ge__(self.get(), args[0] + 0, **kwargs)
+    def __float__(self, *args, **kwargs):
+        """ float(self) """
+        pass
 
-    def __gt__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return float.__gt__(self.get(), args[0] + 0, **kwargs)
+    def __floordiv__(self, *args, **kwargs):
+        """ Return self//value. """
+        pass
 
-    def __hash__(self, *args, **kwargs) -> int:  # real signature unknown
-        return float.__hash__(self.get(), *args, **kwargs)
+    def __format__(self, *args, **kwargs):
+        """ Formats the float according to format_spec. """
+        pass
 
-    # def __init__(self, *args, **kwargs) -> None:  # real signature unknown
-    #     return float.__init__(self, *args, **kwargs) # TODO Not Implemented
+    def __getattribute__(self, *args, **kwargs):
+        """ Return getattr(self, name). """
+        pass
 
-    def __int__(self, *args, **kwargs) -> int:  # real signature unknown
-        return float.__int__(self.get(), *args, **kwargs)
+    def __getformat__(self, *args, **kwargs):
+        """
+        You probably don't want to use this function.
 
-    def __le__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return float.__le__(self.get(), args[0] + 0, **kwargs)
+          typestr
+            Must be 'double' or 'float'.
 
-    def __lt__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return float.__lt__(self.get(), args[0] + 0, **kwargs)
+        It exists mainly to be used in Python's test suite.
 
-    def __mod__(self, *args, **kwargs) -> float:  # real signature unknown
-        return float.__mod__(self.get(), *args, **kwargs)
+        This function returns whichever of 'unknown', 'IEEE, big-endian' or 'IEEE,
+        little-endian' best describes the format of floating point numbers used by the
+        C type named by typestr.
+        """
+        pass
 
-    def __mul__(self, *args, **kwargs) -> float:  # real signature unknown
-        self.set(float.__mul__(self.get(), args[0] + 0, **kwargs))
-        return self
+    def __getnewargs__(self, *args, **kwargs):
+        pass
 
-    def __neg__(self, *args, **kwargs) -> float:  # real signature unknown
-        return float.__neg__(self.get(), *args, **kwargs)
+    def __ge__(self, *args, **kwargs):
+        """ Return self>=value. """
+        pass
 
-    # @staticmethod # known case of __new__
-    # def __new__(*args, **kwargs):  # real signature unknown
-    #     return float.__new__(self, *args, **kwargs) # TODO Not Implemented
+    def __gt__(self, *args, **kwargs):
+        """ Return self>value. """
+        pass
 
-    def __ne__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return float.__ne__(self.get(), args[0] + 0, **kwargs)
+    def __hash__(self, *args, **kwargs):
+        """ Return hash(self). """
+        pass
 
-    def __pos__(self, *args, **kwargs) -> float:  # real signature unknown
-        return float.__pos__(self.get(), *args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        pass
 
-    def __pow__(self, *args, **kwargs) -> float:  # real signature unknown
-        self.set(float.__pow__(self.get(), args[0] + 0, **kwargs))
-        return self
+    def __int__(self, *args, **kwargs):
+        """ int(self) """
+        pass
 
-    def __radd__(self, *args, **kwargs) -> float:  # real signature unknown
-        return float.__radd__(self.get(), *args, **kwargs)
+    def __le__(self, *args, **kwargs):
+        """ Return self<=value. """
+        pass
 
-    def __rdivmod__(self, *args, **kwargs):  # real signature unknown
-        return float.__rdivmod__(self.get(), *args, **kwargs)
+    def __lt__(self, *args, **kwargs):
+        """ Return self<value. """
+        pass
 
-    # def __repr__(self, *args, **kwargs):  # real signature unknown
-    #     return float.__repr__(self, *args, **kwargs) # TODO Not Implemented
+    def __mod__(self, *args, **kwargs):
+        """ Return self%value. """
+        pass
 
-    def __rfloordiv__(self, *args, **kwargs) -> float:  # real signature unknown
-        return float.__rfloordiv__(self.get(), *args, **kwargs)
+    def __mul__(self, *args, **kwargs):
+        """ Return self*value. """
+        pass
 
-    def __rmod__(self, *args, **kwargs) -> float:  # real signature unknown
-        return float.__rmod__(self.get(), *args, **kwargs)
+    def __neg__(self, *args, **kwargs):
+        """ -self """
+        pass
 
-    def __rmul__(self, *args, **kwargs) -> float:  # real signature unknown
-        return float.__rmul__(self.get(), *args, **kwargs)
+    @staticmethod  # known case of __new__
 
-    def __round__(self, *args, **kwargs) -> int:  # real signature unknown
-        return float.__round__(self.get(), *args, **kwargs)
+    def __new__(*args, **kwargs):
+        """ Create and return a new object.  See help(type) for accurate signature. """
+        pass
 
-    def __rpow__(self, *args, **kwargs) -> float:  # real signature unknown
-        return float.__rpow__(self.get(), *args, **kwargs)
+    def __ne__(self, *args, **kwargs):
+        """ Return self!=value. """
+        pass
 
-    def __rsub__(self, *args, **kwargs) -> float:  # real signature unknown
-        return float.__rsub__(self.get(), *args, **kwargs)
+    def __pos__(self, *args, **kwargs):
+        """ +self """
+        pass
 
-    def __rtruediv__(self, *args, **kwargs) -> float:  # real signature unknown
-        return float.__rtruediv__(self.get(), *args, **kwargs)
+    def __pow__(self, *args, **kwargs):
+        """ Return pow(self, value, mod). """
+        pass
 
-    def __set_format__(self, *args, **kwargs):  # real signature unknown
-        return float.__set_format__(self.get(), *args, **kwargs)
+    def __radd__(self, *args, **kwargs):
+        """ Return value+self. """
+        pass
 
-    def __str__(self, *args, **kwargs) -> str:  # real signature unknown
-        return float.__str__(self.get(), *args, **kwargs)
+    def __rdivmod__(self, *args, **kwargs):
+        """ Return divmod(value, self). """
+        pass
 
-    def __sub__(self, *args, **kwargs) -> float:  # real signature unknown
-        self.set(float.__sub__(self.get(), args[0] + 0, **kwargs))
-        return self
+    def __repr__(self, *args, **kwargs):
+        """ Return repr(self). """
+        pass
 
-    def __truediv__(self, *args, **kwargs) -> float:  # real signature unknown
-        self.set(float.__truediv__(self.get(), args[0] + 0, **kwargs))
-        return self
+    def __rfloordiv__(self, *args, **kwargs):
+        """ Return value//self. """
+        pass
 
-    def __trunc__(self, *args, **kwargs):  # real signature unknown
-        return float.__trunc__(self.get(), *args, **kwargs)
+    def __rmod__(self, *args, **kwargs):
+        """ Return value%self. """
+        pass
+
+    def __rmul__(self, *args, **kwargs):
+        """ Return value*self. """
+        pass
+
+    def __round__(self, *args, **kwargs):
+        """
+        Return the Integral closest to x, rounding half toward even.
+
+        When an argument is passed, work like built-in round(x, ndigits).
+        """
+        pass
+
+    def __rpow__(self, *args, **kwargs):
+        """ Return pow(value, self, mod). """
+        pass
+
+    def __rsub__(self, *args, **kwargs):
+        """ Return value-self. """
+        pass
+
+    def __rtruediv__(self, *args, **kwargs):
+        """ Return value/self. """
+        pass
+
+    def __set_format__(self, *args, **kwargs):
+        """
+        You probably don't want to use this function.
+
+          typestr
+            Must be 'double' or 'float'.
+          fmt
+            Must be one of 'unknown', 'IEEE, big-endian' or 'IEEE, little-endian',
+            and in addition can only be one of the latter two if it appears to
+            match the underlying C reality.
+
+        It exists mainly to be used in Python's test suite.
+
+        Override the automatic determination of C-level floating point type.
+        This affects how floats are converted to and from binary strings.
+        """
+        pass
+
+    def __str__(self, *args, **kwargs):
+        """ Return str(self). """
+        pass
+
+    def __sub__(self, *args, **kwargs):
+        """ Return self-value. """
+        pass
+
+    def __truediv__(self, *args, **kwargs):
+        """ Return self/value. """
+        pass
+
+    def __trunc__(self, *args, **kwargs):
+        """ Return the Integral closest to x between 0 and x. """
+        pass
 
 
 class DyListMagicMethods(DyObjectMagicMethods):
 
-    def append(self, *args, **kwargs) -> None:  # real signature unknown
-        return list.append(self.get(), *args, **kwargs)
+    def append(self, *args, **kwargs):
+        """ Append object to the end of the list. """
+        pass
 
-    def clear(self, *args, **kwargs) -> None:  # real signature unknown
-        return list.clear(self.get(), *args, **kwargs)
+    def clear(self, *args, **kwargs):
+        """ Remove all items from list. """
+        pass
 
-    def copy(self, *args, **kwargs):  # real signature unknown
-        return list.copy(self.get(), *args, **kwargs)
+    def copy(self, *args, **kwargs):
+        """ Return a shallow copy of the list. """
+        pass
 
-    def count(self, *args, **kwargs) -> int:  # real signature unknown
-        return list.count(self.get(), *args, **kwargs)
+    def count(self, *args, **kwargs):
+        """ Return number of occurrences of value. """
+        pass
 
-    def extend(self, *args, **kwargs) -> None:  # real signature unknown
-        return list.extend(self.get(), *args, **kwargs)
+    def extend(self, *args, **kwargs):
+        """ Extend list by appending elements from the iterable. """
+        pass
 
-    def index(self, *args, **kwargs) -> int:  # real signature unknown
-        return list.index(self.get(), *args, **kwargs)
+    def index(self, *args, **kwargs):
+        """
+        Return first index of value.
 
-    def insert(self, *args, **kwargs) -> None:  # real signature unknown
-        return list.insert(self.get(), *args, **kwargs)
+        Raises ValueError if the value is not present.
+        """
+        pass
 
-    def pop(self, *args, **kwargs):  # real signature unknown
-        return list.pop(self.get(), *args, **kwargs)
+    def insert(self, *args, **kwargs):
+        """ Insert object before index. """
+        pass
 
-    def remove(self, *args, **kwargs) -> None:  # real signature unknown
-        return list.remove(self.get(), *args, **kwargs)
+    def pop(self, *args, **kwargs):
+        """
+        Remove and return item at index (default last).
 
-    def reverse(self, *args, **kwargs) -> None:  # real signature unknown
-        return list.reverse(self.get(), *args, **kwargs)
+        Raises IndexError if list is empty or index is out of range.
+        """
+        pass
 
-    def sort(self, *args, **kwargs) -> None:  # real signature unknown
-        return list.sort(self.get(), *args, **kwargs)
+    def remove(self, *args, **kwargs):
+        """
+        Remove first occurrence of value.
 
-    def __add__(self, *args, **kwargs):  # real signature unknown
-        self.set(list.__add__(self.get(), args[0] + 0, **kwargs))
-        return self
+        Raises ValueError if the value is not present.
+        """
+        pass
 
-    def __contains__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return list.__contains__(self.get(), *args, **kwargs)
+    def reverse(self, *args, **kwargs):
+        """ Reverse *IN PLACE*. """
+        pass
 
-    def __delitem__(self, *args, **kwargs) -> None:  # real signature unknown
-        return list.__delitem__(self.get(), *args, **kwargs)
+    def sort(self, *args, **kwargs):
+        """ Stable sort *IN PLACE*. """
+        pass
 
-    def __eq__(self, *args, **kwargs):  # real signature unknown
-        return list.__eq__(self.get(), args[0] + 0, **kwargs)
+    def __add__(self, *args, **kwargs):
+        """ Return self+value. """
+        pass
 
-    # def __getattribute__(self, *args, **kwargs):  # real signature unknown
-    #     return list.__getattribute__(self, *args, **kwargs) # TODO Not Implemented
+    def __contains__(self, *args, **kwargs):
+        """ Return key in self. """
+        pass
 
-    def __getitem__(self, y):  # real signature unknown; restored from __doc__
-        pass  # Lahav
+    def __delitem__(self, *args, **kwargs):
+        """ Delete self[key]. """
+        pass
 
-    def __ge__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return list.__ge__(self.get(), args[0] + 0, **kwargs)
+    def __eq__(self, *args, **kwargs):
+        """ Return self==value. """
+        pass
 
-    def __gt__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return list.__gt__(self.get(), args[0] + 0, **kwargs)
+    def __getattribute__(self, *args, **kwargs):
+        """ Return getattr(self, name). """
+        pass
 
-    def __iadd__(self, *args, **kwargs):  # real signature unknown
-        return list.__iadd__(self.get(), *args, **kwargs)
+    def __getitem__(self, y):
+        """ x.__getitem__(y) <==> x[y] """
+        pass
 
-    def __imul__(self, *args, **kwargs):  # real signature unknown
-        return list.__imul__(self.get(), *args, **kwargs)
+    def __ge__(self, *args, **kwargs):
+        """ Return self>=value. """
+        pass
 
-    # def __init__(self, seq=()) -> None:  # known special case of list.__init__
-    #     return list.__init__(self, *args, **kwargs) # TODO Not Implemented
+    def __gt__(self, *args, **kwargs):
+        """ Return self>value. """
+        pass
 
-    def __iter__(self, *args, **kwargs):  # real signature unknown
-        return list.__iter__(self.get(), *args, **kwargs)
+    def __iadd__(self, *args, **kwargs):
+        """ Implement self+=value. """
+        pass
 
-    def __len__(self, *args, **kwargs) -> int:  # real signature unknown
-        return list.__len__(self.get(), *args, **kwargs)
+    def __imul__(self, *args, **kwargs):
+        """ Implement self*=value. """
+        pass
 
-    def __le__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return list.__le__(self.get(), args[0] + 0, **kwargs)
+    def __init__(self, seq=()):
+        """
+        Built-in mutable sequence.
 
-    def __lt__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return list.__lt__(self.get(), args[0] + 0, **kwargs)
+        If no argument is given, the constructor creates a new empty list.
+        The argument must be an iterable if specified.
+        # (copied from class doc)
+        """
+        pass
 
-    def __mul__(self, *args, **kwargs):  # real signature unknown
-        self.set(list.__mul__(self.get(), args[0] + 0, **kwargs))
-        return self
+    def __iter__(self, *args, **kwargs):
+        """ Implement iter(self). """
+        pass
 
-    # @staticmethod # known case of __new__
-    # def __new__(*args, **kwargs):  # real signature unknown
-    #     return list.__new__(self, *args, **kwargs) # TODO Not Implemented
+    def __len__(self, *args, **kwargs):
+        """ Return len(self). """
+        pass
 
-    def __ne__(self, *args, **kwargs):  # real signature unknown
-        return list.__ne__(self.get(), args[0] + 0, **kwargs)
+    def __le__(self, *args, **kwargs):
+        """ Return self<=value. """
+        pass
 
-    # def __repr__(self, *args, **kwargs):  # real signature unknown
-    #     return list.__repr__(self, *args, **kwargs) # TODO Not Implemented
+    def __lt__(self, *args, **kwargs):
+        """ Return self<value. """
+        pass
 
-    def __reversed__(self, *args, **kwargs):  # real signature unknown
-        return list.__reversed__(self.get(), *args, **kwargs)
+    def __mul__(self, *args, **kwargs):
+        """ Return self*value. """
+        pass
 
-    def __rmul__(self, *args, **kwargs):  # real signature unknown
-        return list.__rmul__(self.get(), *args, **kwargs)
+    @staticmethod  # known case of __new__
 
-    def __setitem__(self, *args, **kwargs) -> None:  # real signature unknown
-        return list.__setitem__(self.get(), *args, **kwargs)
+    def __new__(*args, **kwargs):
+        """ Create and return a new object.  See help(type) for accurate signature. """
+        pass
 
-    def __sizeof__(self, *args, **kwargs):  # real signature unknown
-        return list.__sizeof__(self.get(), *args, **kwargs)
+    def __ne__(self, *args, **kwargs):
+        """ Return self!=value. """
+        pass
+
+    def __repr__(self, *args, **kwargs):
+        """ Return repr(self). """
+        pass
+
+    def __reversed__(self, *args, **kwargs):
+        """ Return a reverse iterator over the list. """
+        pass
+
+    def __rmul__(self, *args, **kwargs):
+        """ Return value*self. """
+        pass
+
+    def __setitem__(self, *args, **kwargs):
+        """ Set self[key] to value. """
+        pass
+
+    def __sizeof__(self, *args, **kwargs):
+        """ Return the size of the list in memory, in bytes. """
+        pass
 
 
 class DySetMagicMethods(DyObjectMagicMethods):
 
-    def add(self, *args, **kwargs) -> None:  # real signature unknown
-        return set.add(self.get(), *args, **kwargs)
+    def add(self, *args, **kwargs):
+        """
+        Add an element to a set.
 
-    def clear(self, *args, **kwargs) -> None:  # real signature unknown
-        return set.clear(self.get(), *args, **kwargs)
+        This has no effect if the element is already present.
+        """
+        pass
 
-    def copy(self, *args, **kwargs):  # real signature unknown
-        return set.copy(self.get(), *args, **kwargs)
+    def clear(self, *args, **kwargs):
+        """ Remove all elements from this set. """
+        pass
 
-    def difference(self, *args, **kwargs):  # real signature unknown
-        return set.difference(self.get(), *args, **kwargs)
+    def copy(self, *args, **kwargs):
+        """ Return a shallow copy of a set. """
+        pass
 
-    def difference_update(self, *args, **kwargs) -> None:  # real signature unknown
-        return set.difference_update(self.get(), *args, **kwargs)
+    def difference(self, *args, **kwargs):
+        """
+        Return the difference of two or more sets as a new set.
 
-    def discard(self, *args, **kwargs) -> None:  # real signature unknown
-        return set.discard(self.get(), *args, **kwargs)
+        (i.e. all elements that are in this set but not the others.)
+        """
+        pass
 
-    def intersection(self, *args, **kwargs):  # real signature unknown
-        return set.intersection(self.get(), *args, **kwargs)
+    def difference_update(self, *args, **kwargs):
+        """ Remove all elements of another set from this set. """
+        pass
 
-    def intersection_update(self, *args, **kwargs) -> None:  # real signature unknown
-        return set.intersection_update(self.get(), *args, **kwargs)
+    def discard(self, *args, **kwargs):
+        """
+        Remove an element from a set if it is a member.
 
-    def isdisjoint(self, *args, **kwargs) -> bool:  # real signature unknown
-        return set.isdisjoint(self.get(), *args, **kwargs)
+        If the element is not a member, do nothing.
+        """
+        pass
 
-    def issubset(self, *args, **kwargs) -> bool:  # real signature unknown
-        return set.issubset(self.get(), *args, **kwargs)
+    def intersection(self, *args, **kwargs):
+        """
+        Return the intersection of two sets as a new set.
 
-    def issuperset(self, *args, **kwargs) -> bool:  # real signature unknown
-        return set.issuperset(self.get(), *args, **kwargs)
+        (i.e. all elements that are in both sets.)
+        """
+        pass
 
-    def pop(self, *args, **kwargs):  # real signature unknown
-        return set.pop(self.get(), *args, **kwargs)
+    def intersection_update(self, *args, **kwargs):
+        """ Update a set with the intersection of itself and another. """
+        pass
 
-    def remove(self, *args, **kwargs) -> None:  # real signature unknown
-        return set.remove(self.get(), *args, **kwargs)
+    def isdisjoint(self, *args, **kwargs):
+        """ Return True if two sets have a null intersection. """
+        pass
 
-    def symmetric_difference(self, *args, **kwargs):  # real signature unknown
-        return set.symmetric_difference(self.get(), *args, **kwargs)
+    def issubset(self, *args, **kwargs):
+        """ Report whether another set contains this set. """
+        pass
 
-    def symmetric_difference_update(self, *args, **kwargs) -> None:  # real signature unknown
-        return set.symmetric_difference_update(self.get(), *args, **kwargs)
+    def issuperset(self, *args, **kwargs):
+        """ Report whether this set contains another set. """
+        pass
 
-    def union(self, *args, **kwargs):  # real signature unknown
-        return set.union(self.get(), *args, **kwargs)
+    def pop(self, *args, **kwargs):
+        """
+        Remove and return an arbitrary set element.
+        Raises KeyError if the set is empty.
+        """
+        pass
 
-    def update(self, *args, **kwargs) -> None:  # real signature unknown
-        return set.update(self.get(), *args, **kwargs)
+    def remove(self, *args, **kwargs):
+        """
+        Remove an element from a set; it must be a member.
 
-    def __and__(self, *args, **kwargs):  # real signature unknown
-        return set.__and__(self.get(), *args, **kwargs)
+        If the element is not a member, raise a KeyError.
+        """
+        pass
 
-    def __contains__(self, y) -> bool:  # real signature unknown; restored from __doc__
-        pass  # Lahav
+    def symmetric_difference(self, *args, **kwargs):
+        """
+        Return the symmetric difference of two sets as a new set.
 
-    def __eq__(self, *args, **kwargs):  # real signature unknown
-        return set.__eq__(self.get(), args[0] + 0, **kwargs)
+        (i.e. all elements that are in exactly one of the sets.)
+        """
+        pass
 
-    # def __getattribute__(self, *args, **kwargs):  # real signature unknown
-    #     return set.__getattribute__(self, *args, **kwargs) # TODO Not Implemented
+    def symmetric_difference_update(self, *args, **kwargs):
+        """ Update a set with the symmetric difference of itself and another. """
+        pass
 
-    def __ge__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return set.__ge__(self.get(), args[0] + 0, **kwargs)
+    def union(self, *args, **kwargs):
+        """
+        Return the union of sets as a new set.
 
-    def __gt__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return set.__gt__(self.get(), args[0] + 0, **kwargs)
+        (i.e. all elements that are in either set.)
+        """
+        pass
 
-    def __iand__(self, *args, **kwargs):  # real signature unknown
-        return set.__iand__(self.get(), *args, **kwargs)
+    def update(self, *args, **kwargs):
+        """ Update a set with the union of itself and others. """
+        pass
 
-    # def __init__(self, seq=()) -> None:  # known special case of set.__init__
-    #     return set.__init__(self, *args, **kwargs) # TODO Not Implemented
+    def __and__(self, *args, **kwargs):
+        """ Return self&value. """
+        pass
 
-    def __ior__(self, *args, **kwargs):  # real signature unknown
-        return set.__ior__(self.get(), *args, **kwargs)
+    def __contains__(self, y):
+        """ x.__contains__(y) <==> y in x. """
+        pass
 
-    def __isub__(self, *args, **kwargs):  # real signature unknown
-        return set.__isub__(self.get(), *args, **kwargs)
+    def __eq__(self, *args, **kwargs):
+        """ Return self==value. """
+        pass
 
-    def __iter__(self, *args, **kwargs):  # real signature unknown
-        return set.__iter__(self.get(), *args, **kwargs)
+    def __getattribute__(self, *args, **kwargs):
+        """ Return getattr(self, name). """
+        pass
 
-    def __ixor__(self, *args, **kwargs):  # real signature unknown
-        return set.__ixor__(self.get(), *args, **kwargs)
+    def __ge__(self, *args, **kwargs):
+        """ Return self>=value. """
+        pass
 
-    def __len__(self, *args, **kwargs) -> int:  # real signature unknown
-        return set.__len__(self.get(), *args, **kwargs)
+    def __gt__(self, *args, **kwargs):
+        """ Return self>value. """
+        pass
 
-    def __le__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return set.__le__(self.get(), args[0] + 0, **kwargs)
+    def __iand__(self, *args, **kwargs):
+        """ Return self&=value. """
+        pass
 
-    def __lt__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return set.__lt__(self.get(), args[0] + 0, **kwargs)
+    def __init__(self, seq=()):
+        """
+        set() -> new empty set object
+        set(iterable) -> new set object
 
-    # @staticmethod # known case of __new__
-    # def __new__(*args, **kwargs):  # real signature unknown
-    #     return set.__new__(self, *args, **kwargs) # TODO Not Implemented
+        Build an unordered collection of unique elements.
+        # (copied from class doc)
+        """
+        pass
 
-    def __ne__(self, *args, **kwargs):  # real signature unknown
-        return set.__ne__(self.get(), args[0] + 0, **kwargs)
+    def __ior__(self, *args, **kwargs):
+        """ Return self|=value. """
+        pass
 
-    def __or__(self, *args, **kwargs):  # real signature unknown
-        return set.__or__(self.get(), *args, **kwargs)
+    def __isub__(self, *args, **kwargs):
+        """ Return self-=value. """
+        pass
 
-    def __rand__(self, *args, **kwargs):  # real signature unknown
-        return set.__rand__(self.get(), *args, **kwargs)
+    def __iter__(self, *args, **kwargs):
+        """ Implement iter(self). """
+        pass
 
-    def __reduce__(self, *args, **kwargs):  # real signature unknown
-        return set.__reduce__(self.get(), *args, **kwargs)
+    def __ixor__(self, *args, **kwargs):
+        """ Return self^=value. """
+        pass
 
-    # def __repr__(self, *args, **kwargs):  # real signature unknown
-    #     return set.__repr__(self, *args, **kwargs) # TODO Not Implemented
+    def __len__(self, *args, **kwargs):
+        """ Return len(self). """
+        pass
 
-    def __ror__(self, *args, **kwargs):  # real signature unknown
-        return set.__ror__(self.get(), *args, **kwargs)
+    def __le__(self, *args, **kwargs):
+        """ Return self<=value. """
+        pass
 
-    def __rsub__(self, *args, **kwargs):  # real signature unknown
-        return set.__rsub__(self.get(), *args, **kwargs)
+    def __lt__(self, *args, **kwargs):
+        """ Return self<value. """
+        pass
 
-    def __rxor__(self, *args, **kwargs):  # real signature unknown
-        return set.__rxor__(self.get(), *args, **kwargs)
+    @staticmethod  # known case of __new__
 
-    def __sizeof__(self):  # real signature unknown; restored from __doc__
-        pass  # Lahav
+    def __new__(*args, **kwargs):
+        """ Create and return a new object.  See help(type) for accurate signature. """
+        pass
 
-    def __sub__(self, *args, **kwargs):  # real signature unknown
-        self.set(set.__sub__(self.get(), args[0] + 0, **kwargs))
-        return self
+    def __ne__(self, *args, **kwargs):
+        """ Return self!=value. """
+        pass
 
-    def __xor__(self, *args, **kwargs):  # real signature unknown
-        return set.__xor__(self.get(), *args, **kwargs)
+    def __or__(self, *args, **kwargs):
+        """ Return self|value. """
+        pass
+
+    def __rand__(self, *args, **kwargs):
+        """ Return value&self. """
+        pass
+
+    def __reduce__(self, *args, **kwargs):
+        """ Return state information for pickling. """
+        pass
+
+    def __repr__(self, *args, **kwargs):
+        """ Return repr(self). """
+        pass
+
+    def __ror__(self, *args, **kwargs):
+        """ Return value|self. """
+        pass
+
+    def __rsub__(self, *args, **kwargs):
+        """ Return value-self. """
+        pass
+
+    def __rxor__(self, *args, **kwargs):
+        """ Return value^self. """
+        pass
+
+    def __sizeof__(self):
+        """ S.__sizeof__() -> size of S in memory, in bytes """
+        pass
+
+    def __sub__(self, *args, **kwargs):
+        """ Return self-value. """
+        pass
+
+    def __xor__(self, *args, **kwargs):
+        """ Return self^value. """
+        pass
 
 
 class DyStrMagicMethods(DyObjectMagicMethods):
 
-    def capitalize(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.capitalize(self.get(), *args, **kwargs)
-
-    def casefold(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.casefold(self.get(), *args, **kwargs)
-
-    def center(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.center(self.get(), *args, **kwargs)
-
-    def count(self, sub, start=None, end=None) -> int:  # real signature unknown; restored from __doc__
-        pass  # Lahav
-
-    def encode(self, *args, **kwargs) -> bytes:  # real signature unknown
-        return str.encode(self.get(), *args, **kwargs)
-
-    def endswith(self, suffix, start=None, end=None):  # real signature unknown; restored from __doc__
-        pass  # Lahav
-
-    def expandtabs(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.expandtabs(self.get(), *args, **kwargs)
-
-    def find(self, sub, start=None, end=None) -> int:  # real signature unknown; restored from __doc__
-        pass  # Lahav
-
-    def format(self, *args, **kwargs) -> str:  # known special case of str.format
-        return str.format(self.get(), *args, **kwargs)
-
-    def format_map(self, mapping) -> str:  # real signature unknown; restored from __doc__
-        pass  # Lahav
-
-    def index(self, sub, start=None, end=None) -> int:  # real signature unknown; restored from __doc__
-        pass  # Lahav
-
-    def isalnum(self, *args, **kwargs) -> bool:  # real signature unknown
-        return str.isalnum(self.get(), *args, **kwargs)
-
-    def isalpha(self, *args, **kwargs) -> bool:  # real signature unknown
-        return str.isalpha(self.get(), *args, **kwargs)
-
-    def isascii(self, *args, **kwargs):  # real signature unknown
-        return str.isascii(self.get(), *args, **kwargs)
-
-    def isdecimal(self, *args, **kwargs) -> bool:  # real signature unknown
-        return str.isdecimal(self.get(), *args, **kwargs)
-
-    def isdigit(self, *args, **kwargs) -> bool:  # real signature unknown
-        return str.isdigit(self.get(), *args, **kwargs)
-
-    def isidentifier(self, *args, **kwargs) -> bool:  # real signature unknown
-        return str.isidentifier(self.get(), *args, **kwargs)
-
-    def islower(self, *args, **kwargs) -> bool:  # real signature unknown
-        return str.islower(self.get(), *args, **kwargs)
-
-    def isnumeric(self, *args, **kwargs) -> bool:  # real signature unknown
-        return str.isnumeric(self.get(), *args, **kwargs)
-
-    def isprintable(self, *args, **kwargs) -> bool:  # real signature unknown
-        return str.isprintable(self.get(), *args, **kwargs)
-
-    def isspace(self, *args, **kwargs) -> bool:  # real signature unknown
-        return str.isspace(self.get(), *args, **kwargs)
-
-    def istitle(self, *args, **kwargs) -> bool:  # real signature unknown
-        return str.istitle(self.get(), *args, **kwargs)
-
-    def isupper(self, *args, **kwargs) -> bool:  # real signature unknown
-        return str.isupper(self.get(), *args, **kwargs)
-
-    def join(self, ab=None, pq=None, rs=None) -> str:  # real signature unknown; restored from __doc__
-        pass  # Lahav
-
-    def ljust(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.ljust(self.get(), *args, **kwargs)
-
-    def lower(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.lower(self.get(), *args, **kwargs)
-
-    def lstrip(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.lstrip(self.get(), *args, **kwargs)
-
-    def maketrans(self, *args, **kwargs):  # real signature unknown
-        return str.maketrans(self.get(), *args, **kwargs)
-
-    def partition(self, *args, **kwargs):  # real signature unknown
-        return str.partition(self.get(), *args, **kwargs)
-
-    def replace(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.replace(self.get(), *args, **kwargs)
-
-    def rfind(self, sub, start=None, end=None) -> int:  # real signature unknown; restored from __doc__
-        pass  # Lahav
-
-    def rindex(self, sub, start=None, end=None) -> int:  # real signature unknown; restored from __doc__
-        pass  # Lahav
-
-    def rjust(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.rjust(self.get(), *args, **kwargs)
-
-    def rpartition(self, *args, **kwargs):  # real signature unknown
-        return str.rpartition(self.get(), *args, **kwargs)
-
-    def rsplit(self, *args, **kwargs):  # real signature unknown
-        return str.rsplit(self.get(), *args, **kwargs)
-
-    def rstrip(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.rstrip(self.get(), *args, **kwargs)
-
-    def split(self, *args, **kwargs):  # real signature unknown
-        return str.split(self.get(), *args, **kwargs)
-
-    def splitlines(self, *args, **kwargs):  # real signature unknown
-        return str.splitlines(self.get(), *args, **kwargs)
-
-    def startswith(self, prefix, start=None, end=None):  # real signature unknown; restored from __doc__
-        pass  # Lahav
-
-    def strip(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.strip(self.get(), *args, **kwargs)
-
-    def swapcase(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.swapcase(self.get(), *args, **kwargs)
-
-    def title(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.title(self.get(), *args, **kwargs)
-
-    def translate(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.translate(self.get(), *args, **kwargs)
-
-    def upper(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.upper(self.get(), *args, **kwargs)
-
-    def zfill(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.zfill(self.get(), *args, **kwargs)
-
-    def __add__(self, *args, **kwargs) -> str:  # real signature unknown
-        self.set(str.__add__(self.get(), args[0] + 0, **kwargs))
-        return self
-
-    def __contains__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return str.__contains__(self.get(), *args, **kwargs)
-
-    def __eq__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return str.__eq__(self.get(), args[0] + 0, **kwargs)
-
-    def __format__(self, *args, **kwargs):  # real signature unknown
-        return str.__format__(self.get(), *args, **kwargs)
-
-    # def __getattribute__(self, *args, **kwargs):  # real signature unknown
-    #     return str.__getattribute__(self, *args, **kwargs) # TODO Not Implemented
-
-    def __getitem__(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.__getitem__(self.get(), *args, **kwargs)
-
-    def __getnewargs__(self, *args, **kwargs):  # real signature unknown
-        return str.__getnewargs__(self.get(), *args, **kwargs)
-
-    def __ge__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return str.__ge__(self.get(), args[0] + 0, **kwargs)
-
-    def __gt__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return str.__gt__(self.get(), args[0] + 0, **kwargs)
-
-    def __hash__(self, *args, **kwargs) -> int:  # real signature unknown
-        return str.__hash__(self.get(), *args, **kwargs)
-
-    # def __init__(self, value='', encoding=None, errors='strict') -> None:  # known special case of str.__init__
-    #     return str.__init__(self, *args, **kwargs) # TODO Not Implemented
-
-    def __iter__(self, *args, **kwargs):  # real signature unknown
-        return str.__iter__(self.get(), *args, **kwargs)
-
-    def __len__(self, *args, **kwargs) -> int:  # real signature unknown
-        return str.__len__(self.get(), *args, **kwargs)
-
-    def __le__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return str.__le__(self.get(), args[0] + 0, **kwargs)
-
-    def __lt__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return str.__lt__(self.get(), args[0] + 0, **kwargs)
-
-    def __mod__(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.__mod__(self.get(), *args, **kwargs)
-
-    def __mul__(self, *args, **kwargs) -> str:  # real signature unknown
-        self.set(str.__mul__(self.get(), args[0] + 0, **kwargs))
-        return self
-
-    # @staticmethod # known case of __new__
-    # def __new__(*args, **kwargs):  # real signature unknown
-    #     return str.__new__(self, *args, **kwargs) # TODO Not Implemented
-
-    def __ne__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return str.__ne__(self.get(), args[0] + 0, **kwargs)
-
-    # def __repr__(self, *args, **kwargs) -> str:  # real signature unknown
-    #     return str.__repr__(self, *args, **kwargs) # TODO Not Implemented
-
-    def __rmod__(self, *args, **kwargs):  # real signature unknown
-        return str.__rmod__(self.get(), *args, **kwargs)
-
-    def __rmul__(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.__rmul__(self.get(), *args, **kwargs)
-
-    def __sizeof__(self, *args, **kwargs):  # real signature unknown
-        return str.__sizeof__(self.get(), *args, **kwargs)
-
-    def __str__(self, *args, **kwargs) -> str:  # real signature unknown
-        return str.__str__(self.get(), *args, **kwargs)
+    def capitalize(self, *args, **kwargs):
+        """
+        Return a capitalized version of the string.
+
+        More specifically, make the first character have upper case and the rest lower
+        case.
+        """
+        pass
+
+    def casefold(self, *args, **kwargs):
+        """ Return a version of the string suitable for caseless comparisons. """
+        pass
+
+    def center(self, *args, **kwargs):
+        """
+        Return a centered string of length width.
+
+        Padding is done using the specified fill character (default is a space).
+        """
+        pass
+
+    def count(self, sub, start=None, end=None):
+        """
+        S.count(sub[, start[, end]]) -> int
+
+        Return the number of non-overlapping occurrences of substring sub in
+        string S[start:end].  Optional arguments start and end are
+        interpreted as in slice notation.
+        """
+        return 0
+
+    def encode(self, *args, **kwargs):
+        """
+        Encode the string using the codec registered for encoding.
+
+          encoding
+            The encoding in which to encode the string.
+          errors
+            The error handling scheme to use for encoding errors.
+            The default is 'strict' meaning that encoding errors raise a
+            UnicodeEncodeError.  Other possible values are 'ignore', 'replace' and
+            'xmlcharrefreplace' as well as any other name registered with
+            codecs.register_error that can handle UnicodeEncodeErrors.
+        """
+        pass
+
+    def endswith(self, suffix, start=None, end=None):
+        """
+        S.endswith(suffix[, start[, end]]) -> bool
+
+        Return True if S ends with the specified suffix, False otherwise.
+        With optional start, test S beginning at that position.
+        With optional end, stop comparing S at that position.
+        suffix can also be a tuple of strings to try.
+        """
+        return False
+
+    def expandtabs(self, *args, **kwargs):
+        """
+        Return a copy where all tab characters are expanded using spaces.
+
+        If tabsize is not given, a tab size of 8 characters is assumed.
+        """
+        pass
+
+    def find(self, sub, start=None, end=None):
+        """
+        S.find(sub[, start[, end]]) -> int
+
+        Return the lowest index in S where substring sub is found,
+        such that sub is contained within S[start:end].  Optional
+        arguments start and end are interpreted as in slice notation.
+
+        Return -1 on failure.
+        """
+        return 0
+
+    def format(self, *args, **kwargs):
+        """
+        S.format(*args, **kwargs) -> str
+
+        Return a formatted version of S, using substitutions from args and kwargs.
+        The substitutions are identified by braces ('{' and '}').
+        """
+        pass
+
+    def format_map(self, mapping):
+        """
+        S.format_map(mapping) -> str
+
+        Return a formatted version of S, using substitutions from mapping.
+        The substitutions are identified by braces ('{' and '}').
+        """
+        return ""
+
+    def index(self, sub, start=None, end=None):
+        """
+        S.index(sub[, start[, end]]) -> int
+
+        Return the lowest index in S where substring sub is found,
+        such that sub is contained within S[start:end].  Optional
+        arguments start and end are interpreted as in slice notation.
+
+        Raises ValueError when the substring is not found.
+        """
+        return 0
+
+    def isalnum(self, *args, **kwargs):
+        """
+        Return True if the string is an alpha-numeric string, False otherwise.
+
+        A string is alpha-numeric if all characters in the string are alpha-numeric and
+        there is at least one character in the string.
+        """
+        pass
+
+    def isalpha(self, *args, **kwargs):
+        """
+        Return True if the string is an alphabetic string, False otherwise.
+
+        A string is alphabetic if all characters in the string are alphabetic and there
+        is at least one character in the string.
+        """
+        pass
+
+    def isascii(self, *args, **kwargs):
+        """
+        Return True if all characters in the string are ASCII, False otherwise.
+
+        ASCII characters have code points in the range U+0000-U+007F.
+        Empty string is ASCII too.
+        """
+        pass
+
+    def isdecimal(self, *args, **kwargs):
+        """
+        Return True if the string is a decimal string, False otherwise.
+
+        A string is a decimal string if all characters in the string are decimal and
+        there is at least one character in the string.
+        """
+        pass
+
+    def isdigit(self, *args, **kwargs):
+        """
+        Return True if the string is a digit string, False otherwise.
+
+        A string is a digit string if all characters in the string are digits and there
+        is at least one character in the string.
+        """
+        pass
+
+    def isidentifier(self, *args, **kwargs):
+        """
+        Return True if the string is a valid Python identifier, False otherwise.
+
+        Use keyword.iskeyword() to test for reserved identifiers such as "def" and
+        "class".
+        """
+        pass
+
+    def islower(self, *args, **kwargs):
+        """
+        Return True if the string is a lowercase string, False otherwise.
+
+        A string is lowercase if all cased characters in the string are lowercase and
+        there is at least one cased character in the string.
+        """
+        pass
+
+    def isnumeric(self, *args, **kwargs):
+        """
+        Return True if the string is a numeric string, False otherwise.
+
+        A string is numeric if all characters in the string are numeric and there is at
+        least one character in the string.
+        """
+        pass
+
+    def isprintable(self, *args, **kwargs):
+        """
+        Return True if the string is printable, False otherwise.
+
+        A string is printable if all of its characters are considered printable in
+        repr() or if it is empty.
+        """
+        pass
+
+    def isspace(self, *args, **kwargs):
+        """
+        Return True if the string is a whitespace string, False otherwise.
+
+        A string is whitespace if all characters in the string are whitespace and there
+        is at least one character in the string.
+        """
+        pass
+
+    def istitle(self, *args, **kwargs):
+        """
+        Return True if the string is a title-cased string, False otherwise.
+
+        In a title-cased string, upper- and title-case characters may only
+        follow uncased characters and lowercase characters only cased ones.
+        """
+        pass
+
+    def isupper(self, *args, **kwargs):
+        """
+        Return True if the string is an uppercase string, False otherwise.
+
+        A string is uppercase if all cased characters in the string are uppercase and
+        there is at least one cased character in the string.
+        """
+        pass
+
+    def join(self, ab=None, pq=None, rs=None):
+        """
+        Concatenate any number of strings.
+
+        The string whose method is called is inserted in between each given string.
+        The result is returned as a new string.
+
+        Example: '.'.join(['ab', 'pq', 'rs']) -> 'ab.pq.rs'
+        """
+        pass
+
+    def ljust(self, *args, **kwargs):
+        """
+        Return a left-justified string of length width.
+
+        Padding is done using the specified fill character (default is a space).
+        """
+        pass
+
+    def lower(self, *args, **kwargs):
+        """ Return a copy of the string converted to lowercase. """
+        pass
+
+    def lstrip(self, *args, **kwargs):
+        """
+        Return a copy of the string with leading whitespace removed.
+
+        If chars is given and not None, remove characters in chars instead.
+        """
+        pass
+
+    def maketrans(self, *args, **kwargs):
+        """
+        Return a translation table usable for str.translate().
+
+        If there is only one argument, it must be a dictionary mapping Unicode
+        ordinals (integers) or characters to Unicode ordinals, strings or None.
+        Character keys will be then converted to ordinals.
+        If there are two arguments, they must be strings of equal length, and
+        in the resulting dictionary, each character in x will be mapped to the
+        character at the same position in y. If there is a third argument, it
+        must be a string, whose characters will be mapped to None in the result.
+        """
+        pass
+
+    def partition(self, *args, **kwargs):
+        """
+        Partition the string into three parts using the given separator.
+
+        This will search for the separator in the string.  If the separator is found,
+        returns a 3-tuple containing the part before the separator, the separator
+        itself, and the part after it.
+
+        If the separator is not found, returns a 3-tuple containing the original string
+        and two empty strings.
+        """
+        pass
+
+    def replace(self, *args, **kwargs):
+        """
+        Return a copy with all occurrences of substring old replaced by new.
+
+          count
+            Maximum number of occurrences to replace.
+            -1 (the default value) means replace all occurrences.
+
+        If the optional argument count is given, only the first count occurrences are
+        replaced.
+        """
+        pass
+
+    def rfind(self, sub, start=None, end=None):
+        """
+        S.rfind(sub[, start[, end]]) -> int
+
+        Return the highest index in S where substring sub is found,
+        such that sub is contained within S[start:end].  Optional
+        arguments start and end are interpreted as in slice notation.
+
+        Return -1 on failure.
+        """
+        return 0
+
+    def rindex(self, sub, start=None, end=None):
+        """
+        S.rindex(sub[, start[, end]]) -> int
+
+        Return the highest index in S where substring sub is found,
+        such that sub is contained within S[start:end].  Optional
+        arguments start and end are interpreted as in slice notation.
+
+        Raises ValueError when the substring is not found.
+        """
+        return 0
+
+    def rjust(self, *args, **kwargs):
+        """
+        Return a right-justified string of length width.
+
+        Padding is done using the specified fill character (default is a space).
+        """
+        pass
+
+    def rpartition(self, *args, **kwargs):
+        """
+        Partition the string into three parts using the given separator.
+
+        This will search for the separator in the string, starting at the end. If
+        the separator is found, returns a 3-tuple containing the part before the
+        separator, the separator itself, and the part after it.
+
+        If the separator is not found, returns a 3-tuple containing two empty strings
+        and the original string.
+        """
+        pass
+
+    def rsplit(self, *args, **kwargs):
+        """
+        Return a list of the words in the string, using sep as the delimiter string.
+
+          sep
+            The delimiter according which to split the string.
+            None (the default value) means split according to any whitespace,
+            and discard empty strings from the result.
+          maxsplit
+            Maximum number of splits to do.
+            -1 (the default value) means no limit.
+
+        Splits are done starting at the end of the string and working to the front.
+        """
+        pass
+
+    def rstrip(self, *args, **kwargs):
+        """
+        Return a copy of the string with trailing whitespace removed.
+
+        If chars is given and not None, remove characters in chars instead.
+        """
+        pass
+
+    def split(self, *args, **kwargs):
+        """
+        Return a list of the words in the string, using sep as the delimiter string.
+
+          sep
+            The delimiter according which to split the string.
+            None (the default value) means split according to any whitespace,
+            and discard empty strings from the result.
+          maxsplit
+            Maximum number of splits to do.
+            -1 (the default value) means no limit.
+        """
+        pass
+
+    def splitlines(self, *args, **kwargs):
+        """
+        Return a list of the lines in the string, breaking at line boundaries.
+
+        Line breaks are not included in the resulting list unless keepends is given and
+        true.
+        """
+        pass
+
+    def startswith(self, prefix, start=None, end=None):
+        """
+        S.startswith(prefix[, start[, end]]) -> bool
+
+        Return True if S starts with the specified prefix, False otherwise.
+        With optional start, test S beginning at that position.
+        With optional end, stop comparing S at that position.
+        prefix can also be a tuple of strings to try.
+        """
+        return False
+
+    def strip(self, *args, **kwargs):
+        """
+        Return a copy of the string with leading and trailing whitespace remove.
+
+        If chars is given and not None, remove characters in chars instead.
+        """
+        pass
+
+    def swapcase(self, *args, **kwargs):
+        """ Convert uppercase characters to lowercase and lowercase characters to uppercase. """
+        pass
+
+    def title(self, *args, **kwargs):
+        """
+        Return a version of the string where each word is titlecased.
+
+        More specifically, words start with uppercased characters and all remaining
+        cased characters have lower case.
+        """
+        pass
+
+    def translate(self, *args, **kwargs):
+        """
+        Replace each character in the string using the given translation table.
+
+          table
+            Translation table, which must be a mapping of Unicode ordinals to
+            Unicode ordinals, strings, or None.
+
+        The table must implement lookup/indexing via __getitem__, for instance a
+        dictionary or list.  If this operation raises LookupError, the character is
+        left untouched.  Characters mapped to None are deleted.
+        """
+        pass
+
+    def upper(self, *args, **kwargs):
+        """ Return a copy of the string converted to uppercase. """
+        pass
+
+    def zfill(self, *args, **kwargs):
+        """
+        Pad a numeric string with zeros on the left, to fill a field of the given width.
+
+        The string is never truncated.
+        """
+        pass
+
+    def __add__(self, *args, **kwargs):
+        """ Return self+value. """
+        pass
+
+    def __contains__(self, *args, **kwargs):
+        """ Return key in self. """
+        pass
+
+    def __eq__(self, *args, **kwargs):
+        """ Return self==value. """
+        pass
+
+    def __format__(self, *args, **kwargs):
+        """ Return a formatted version of the string as described by format_spec. """
+        pass
+
+    def __getattribute__(self, *args, **kwargs):
+        """ Return getattr(self, name). """
+        pass
+
+    def __getitem__(self, *args, **kwargs):
+        """ Return self[key]. """
+        pass
+
+    def __getnewargs__(self, *args, **kwargs):
+        pass
+
+    def __ge__(self, *args, **kwargs):
+        """ Return self>=value. """
+        pass
+
+    def __gt__(self, *args, **kwargs):
+        """ Return self>value. """
+        pass
+
+    def __hash__(self, *args, **kwargs):
+        """ Return hash(self). """
+        pass
+
+    def __init__(self, value="", encoding=None, errors="strict"):
+        """
+        str(object='') -> str
+        str(bytes_or_buffer[, encoding[, errors]]) -> str
+
+        Create a new string object from the given object. If encoding or
+        errors is specified, then the object must expose a data buffer
+        that will be decoded using the given encoding and error handler.
+        Otherwise, returns the result of object.__str__() (if defined)
+        or repr(object).
+        encoding defaults to sys.getdefaultencoding().
+        errors defaults to 'strict'.
+        # (copied from class doc)
+        """
+        pass
+
+    def __iter__(self, *args, **kwargs):
+        """ Implement iter(self). """
+        pass
+
+    def __len__(self, *args, **kwargs):
+        """ Return len(self). """
+        pass
+
+    def __le__(self, *args, **kwargs):
+        """ Return self<=value. """
+        pass
+
+    def __lt__(self, *args, **kwargs):
+        """ Return self<value. """
+        pass
+
+    def __mod__(self, *args, **kwargs):
+        """ Return self%value. """
+        pass
+
+    def __mul__(self, *args, **kwargs):
+        """ Return self*value. """
+        pass
+
+    @staticmethod  # known case of __new__
+
+    def __new__(*args, **kwargs):
+        """ Create and return a new object.  See help(type) for accurate signature. """
+        pass
+
+    def __ne__(self, *args, **kwargs):
+        """ Return self!=value. """
+        pass
+
+    def __repr__(self, *args, **kwargs):
+        """ Return repr(self). """
+        pass
+
+    def __rmod__(self, *args, **kwargs):
+        """ Return value%self. """
+        pass
+
+    def __rmul__(self, *args, **kwargs):
+        """ Return value*self. """
+        pass
+
+    def __sizeof__(self, *args, **kwargs):
+        """ Return the size of the string in memory, in bytes. """
+        pass
+
+    def __str__(self, *args, **kwargs):
+        """ Return str(self). """
+        pass
 
 
 class DyTupleMagicMethods(DyObjectMagicMethods):
 
-    def count(self, *args, **kwargs) -> int:  # real signature unknown
-        return tuple.count(self.get(), *args, **kwargs)
+    def count(self, *args, **kwargs):
+        """ Return number of occurrences of value. """
+        pass
 
-    def index(self, *args, **kwargs) -> int:  # real signature unknown
-        return tuple.index(self.get(), *args, **kwargs)
+    def index(self, *args, **kwargs):
+        """
+        Return first index of value.
 
-    def __add__(self, *args, **kwargs):  # real signature unknown
-        self.set(tuple.__add__(self.get(), args[0] + 0, **kwargs))
-        return self
+        Raises ValueError if the value is not present.
+        """
+        pass
 
-    def __contains__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return tuple.__contains__(self.get(), *args, **kwargs)
+    def __add__(self, *args, **kwargs):
+        """ Return self+value. """
+        pass
 
-    def __eq__(self, *args, **kwargs):  # real signature unknown
-        return tuple.__eq__(self.get(), args[0] + 0, **kwargs)
+    def __contains__(self, *args, **kwargs):
+        """ Return key in self. """
+        pass
 
-    # def __getattribute__(self, *args, **kwargs):  # real signature unknown
-    #     return tuple.__getattribute__(self, *args, **kwargs) # TODO Not Implemented
+    def __eq__(self, *args, **kwargs):
+        """ Return self==value. """
+        pass
 
-    def __getitem__(self, *args, **kwargs):  # real signature unknown
-        return tuple.__getitem__(self.get(), *args, **kwargs)
+    def __getattribute__(self, *args, **kwargs):
+        """ Return getattr(self, name). """
+        pass
 
-    def __getnewargs__(self, *args, **kwargs):  # real signature unknown
-        return tuple.__getnewargs__(self.get(), *args, **kwargs)
+    def __getitem__(self, *args, **kwargs):
+        """ Return self[key]. """
+        pass
 
-    def __ge__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return tuple.__ge__(self.get(), args[0] + 0, **kwargs)
+    def __getnewargs__(self, *args, **kwargs):
+        pass
 
-    def __gt__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return tuple.__gt__(self.get(), args[0] + 0, **kwargs)
+    def __ge__(self, *args, **kwargs):
+        """ Return self>=value. """
+        pass
 
-    def __hash__(self, *args, **kwargs):  # real signature unknown
-        return tuple.__hash__(self.get(), *args, **kwargs)
+    def __gt__(self, *args, **kwargs):
+        """ Return self>value. """
+        pass
 
-    # def __init__(self, seq=()):  # known special case of tuple.__init__
-    #     return tuple.__init__(self, *args, **kwargs) # TODO Not Implemented
+    def __hash__(self, *args, **kwargs):
+        """ Return hash(self). """
+        pass
 
-    def __iter__(self, *args, **kwargs):  # real signature unknown
-        return tuple.__iter__(self.get(), *args, **kwargs)
+    def __init__(self, seq=()):
+        """
+        Built-in immutable sequence.
 
-    def __len__(self, *args, **kwargs) -> int:  # real signature unknown
-        return tuple.__len__(self.get(), *args, **kwargs)
+        If no argument is given, the constructor returns an empty tuple.
+        If iterable is specified the tuple is initialized from iterable's items.
 
-    def __le__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return tuple.__le__(self.get(), args[0] + 0, **kwargs)
+        If the argument is a tuple, the return value is the same object.
+        # (copied from class doc)
+        """
+        pass
 
-    def __lt__(self, *args, **kwargs) -> bool:  # real signature unknown
-        return tuple.__lt__(self.get(), args[0] + 0, **kwargs)
+    def __iter__(self, *args, **kwargs):
+        """ Implement iter(self). """
+        pass
 
-    def __mul__(self, *args, **kwargs):  # real signature unknown
-        self.set(tuple.__mul__(self.get(), args[0] + 0, **kwargs))
-        return self
+    def __len__(self, *args, **kwargs):
+        """ Return len(self). """
+        pass
 
-    # @staticmethod # known case of __new__
-    # def __new__(*args, **kwargs):  # real signature unknown
-    #     return tuple.__new__(self, *args, **kwargs) # TODO Not Implemented
+    def __le__(self, *args, **kwargs):
+        """ Return self<=value. """
+        pass
 
-    def __ne__(self, *args, **kwargs):  # real signature unknown
-        return tuple.__ne__(self.get(), args[0] + 0, **kwargs)
+    def __lt__(self, *args, **kwargs):
+        """ Return self<value. """
+        pass
 
-    # def __repr__(self, *args, **kwargs):  # real signature unknown
-    #     return tuple.__repr__(self, *args, **kwargs) # TODO Not Implemented
+    def __mul__(self, *args, **kwargs):
+        """ Return self*value. """
+        pass
 
-    def __rmul__(self, *args, **kwargs):  # real signature unknown
-        return tuple.__rmul__(self.get(), *args, **kwargs)
+    @staticmethod  # known case of __new__
+
+    def __new__(*args, **kwargs):
+        """ Create and return a new object.  See help(type) for accurate signature. """
+        pass
+
+    def __ne__(self, *args, **kwargs):
+        """ Return self!=value. """
+        pass
+
+    def __repr__(self, *args, **kwargs):
+        """ Return repr(self). """
+        pass
+
+    def __rmul__(self, *args, **kwargs):
+        """ Return value*self. """
+        pass
 
 
 class DyObject(DyObjectMagicMethods, DyObjectConditions, DynamicObjectInterface):
