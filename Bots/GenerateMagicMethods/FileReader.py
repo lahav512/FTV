@@ -3,9 +3,15 @@ import os
 
 
 class MethodContentPattern(object):
-    def __init__(self, pattern: str, methods: list):
+    def __init__(self, pattern: str, methods: list, arguments=None):
         self.methods = methods
         self.pattern = pattern
+        self.arguments = []
+        self.header = None
+
+        if arguments is None:
+            self.arguments = arguments
+            self.header = "    def {method}({arguments}):"
 
     def getContent(self, class_name, method_name):
         content = "\n".join(list(map(lambda line: " "*8 + line.strip(), self.pattern.split("\n"))))
@@ -19,6 +25,17 @@ class MethodContentPattern(object):
             content = content.format(cls=class_name)
 
         return content
+
+    def getHeader(self, method_name, arguments):
+        if self.arguments is None:
+            return
+        return self.header.format(method=method_name, arguments=arguments)
+
+
+class IMethodContentPattern(MethodContentPattern):
+    def __init__(self, *args):
+        super(IMethodContentPattern, self).__init__(*args)
+        self.iMethods = [m.replace("__", "__i", 1) for m in self.methods]
 
 
 class FileString(dict):
@@ -37,6 +54,7 @@ class FileString(dict):
         self.classes = []
         self.classesNames = []
         self.methodsContentPatterns = []
+        self.iMethodsContentPatterns = []
 
         if relevant_classes is None:
             relevant_classes = []
@@ -66,10 +84,20 @@ class FileString(dict):
 
     def __updateMethodsContent(self):
         for cls in self:
+            mew_i_methods = {}
             for method in cls:
+                for iPat in self.iMethodsContentPatterns:
+                    if method.getName() in iPat.methods:
+                        i_method = copy.copy(method)
+                        i_method.setName(method.getName().replace("__", "__i", 1))
+                        i_method.setContent(iPat.getContent(cls.getOriginName(), method.getName()))
+                        mew_i_methods[i_method.getName()] = i_method
+
                 for pat in self.methodsContentPatterns:
                     if method.getName() in pat.methods:
                         method.setContent(pat.getContent(cls.getOriginName(), method.getName()))
+
+            cls.update(mew_i_methods)
 
     def getFileLines(self) -> [str]:
         return self.fileData.split("\n")
@@ -107,6 +135,14 @@ class FileString(dict):
             cls.relevant_methods += methods_names
 
         self.methodsContentPatterns.append(MethodContentPattern(content_pattern, methods_names))
+
+    def addNewIMethods(self, content_pattern, methods_names):
+        for cls in self:
+            for method in methods_names:
+                if method in cls.getMethodsNames():
+                    cls.relevant_methods += [method.replace("__", "__i", 1)]
+
+        self.iMethodsContentPatterns.append(IMethodContentPattern(content_pattern, methods_names))
 
     def __iter__(self):
         return iter(map(lambda item: item[-1], self.items()))
@@ -247,7 +283,7 @@ class ClassString(dict):
         return self.decorators[method_name]
 
     def __iter__(self):
-        return iter(map(lambda item: item[-1], self.items()))
+        return iter(self.values())
 
     # def __repr__(self):
     #     return self.classData
@@ -290,8 +326,14 @@ class MethodString(str):
     def getName(self):
         return self.name
 
+    def setName(self, name):
+        self.name = name
+
     def getArguments(self):
         return self.arguments
+
+    def setArguments(self, arguments):
+        self.arguments = arguments
 
     def setContent(self, content: str):
         self.content = content
@@ -403,28 +445,51 @@ if __name__ == '__main__':
         "__lt__"
     ]
 
-    math_methods = [
+    single_math_methods = [
+        "__neg__",  # ???
+        "__pos__",  # ???
+        "__trunc__",  # ???
+        "__round__",  # ???
+        "__ceil__",
+        "__floor__",
+        "__abs__"
+    ]
+
+    dual_math_methods = [
         "__add__",
         "__sub__",
         "__mul__",
-        "__floordiv__",
+        "__floordiv__",  # ???
         "__truediv__",  # ???
         "__divmod__",  # ???
-        "__pow__"  # ???
+        "__pow__",  # ???
+        "__mod__",  # ???
+        "__lshift__",  # ???
+        "__rshift__",  # ???
+        "__and__",  # ???
+        "__or__",  # ???
+        "__xor__"  # ???
     ]
 
-    r_methods = [
-        "__radd__",
-        "__rsub__",
-        "__rmul__",
-        "__rfloordiv__",
-        "__rmod__",
-        "__rlshift__",
-        "__rrshift__",
-        "__rand__",
-        "__ror__",
-        "__rxor__"
+    i_dual_math_methods = [
+        "__add__",
+        "__sub__",
+        "__mul__",
+        # "__floordiv__",  # ???
+        # "__truediv__",  # ???
+        # "__divmod__",  # ???
+        # "__pow__",  # ???
+        # "__mod__",  # ???
+        # "__lshift__",  # ???
+        # "__rshift__",  # ???
+        "__and__",  # ???
+        "__or__",  # ???
+        "__xor__"  # ???
     ]
+
+    r_methods = [method.replace("__", "__r", 1) for method in dual_math_methods]
+
+    # i_methods = [method.replace("__", "__i", 1) for method in dual_math_methods]
 
     string_methods = [
         "__repr__"
@@ -437,14 +502,14 @@ if __name__ == '__main__':
     fileString.replaceClassesNames(builtin_objects)
     fileString.replaceClassParentsNames(builtin_objects)
 
-    fileString.addMethodsContent(
+    fileString.addNewIMethods(
         "self.set({cls}.{method}(self.get(), args[0] + 0, **kwargs))\n"
-        "return self"
-    , compare_methods + math_methods + r_methods
+        "return self",
+        i_dual_math_methods
     )
     fileString.addMethodsContent(
-        "return {cls}.{method}(self.get(), *args, **kwargs)"
-    , string_methods
+        "return {cls}.{method}(self.get(), *args, **kwargs)",
+        compare_methods + single_math_methods + dual_math_methods + r_methods + string_methods
     )
 
     fileData = fileString.newFileString.joinFile()

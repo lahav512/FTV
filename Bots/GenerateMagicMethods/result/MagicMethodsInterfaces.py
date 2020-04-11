@@ -38,28 +38,22 @@ class DynamicObjectInterface(object):
 class DyObjectMagicMethods:
 
     def __eq__(self, *args, **kwargs):
-        self.set(object.__eq__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return object.__eq__(self.get(), *args, **kwargs)
 
     def __ge__(self, *args, **kwargs):
-        self.set(object.__ge__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return object.__ge__(self.get(), *args, **kwargs)
 
     def __gt__(self, *args, **kwargs):
-        self.set(object.__gt__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return object.__gt__(self.get(), *args, **kwargs)
 
     def __le__(self, *args, **kwargs):
-        self.set(object.__le__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return object.__le__(self.get(), *args, **kwargs)
 
     def __lt__(self, *args, **kwargs):
-        self.set(object.__lt__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return object.__lt__(self.get(), *args, **kwargs)
 
     def __ne__(self, *args, **kwargs):
-        self.set(object.__ne__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return object.__ne__(self.get(), *args, **kwargs)
 
     def __repr__(self, *args, **kwargs):
         return object.__repr__(self.get(), *args, **kwargs)
@@ -67,145 +61,206 @@ class DyObjectMagicMethods:
 
 class DyIntMagicMethods(DyObjectMagicMethods):
 
+    def __abs__(self, *args, **kwargs):
+        return int.__abs__(self.get(), *args, **kwargs)
+
     def __add__(self, *args, **kwargs):
-        self.set(int.__add__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__add__(self.get(), *args, **kwargs)
+
+    def __and__(self, *args, **kwargs):
+        return int.__and__(self.get(), *args, **kwargs)
+
+    def __ceil__(self, *args, **kwargs):
+        return int.__ceil__(self.get(), *args, **kwargs)
 
     def __divmod__(self, *args, **kwargs):
-        self.set(int.__divmod__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__divmod__(self.get(), *args, **kwargs)
 
     def __eq__(self, *args, **kwargs):
-        self.set(int.__eq__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__eq__(self.get(), *args, **kwargs)
 
     def __floordiv__(self, *args, **kwargs):
-        self.set(int.__floordiv__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__floordiv__(self.get(), *args, **kwargs)
+
+    def __floor__(self, *args, **kwargs):
+        return int.__floor__(self.get(), *args, **kwargs)
 
     def __ge__(self, *args, **kwargs):
-        self.set(int.__ge__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__ge__(self.get(), *args, **kwargs)
 
     def __gt__(self, *args, **kwargs):
-        self.set(int.__gt__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__gt__(self.get(), *args, **kwargs)
 
     def __le__(self, *args, **kwargs):
-        self.set(int.__le__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__le__(self.get(), *args, **kwargs)
+
+    def __lshift__(self, *args, **kwargs):
+        return int.__lshift__(self.get(), *args, **kwargs)
 
     def __lt__(self, *args, **kwargs):
-        self.set(int.__lt__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__lt__(self.get(), *args, **kwargs)
+
+    def __mod__(self, *args, **kwargs):
+        return int.__mod__(self.get(), *args, **kwargs)
 
     def __mul__(self, *args, **kwargs):
-        self.set(int.__mul__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__mul__(self.get(), *args, **kwargs)
+
+    def __neg__(self, *args, **kwargs):
+        return int.__neg__(self.get(), *args, **kwargs)
 
     def __ne__(self, *args, **kwargs):
-        self.set(int.__ne__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__ne__(self.get(), *args, **kwargs)
+
+    def __or__(self, *args, **kwargs):
+        return int.__or__(self.get(), *args, **kwargs)
+
+    def __pos__(self, *args, **kwargs):
+        return int.__pos__(self.get(), *args, **kwargs)
 
     def __pow__(self, *args, **kwargs):
-        self.set(int.__pow__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__pow__(self.get(), *args, **kwargs)
 
     def __radd__(self, *args, **kwargs):
-        self.set(int.__radd__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__radd__(self.get(), *args, **kwargs)
 
     def __rand__(self, *args, **kwargs):
-        self.set(int.__rand__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__rand__(self.get(), *args, **kwargs)
+
+    def __rdivmod__(self, *args, **kwargs):
+        return int.__rdivmod__(self.get(), *args, **kwargs)
 
     def __repr__(self, *args, **kwargs):
         return int.__repr__(self.get(), *args, **kwargs)
 
     def __rfloordiv__(self, *args, **kwargs):
-        self.set(int.__rfloordiv__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__rfloordiv__(self.get(), *args, **kwargs)
 
     def __rlshift__(self, *args, **kwargs):
-        self.set(int.__rlshift__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__rlshift__(self.get(), *args, **kwargs)
 
     def __rmod__(self, *args, **kwargs):
-        self.set(int.__rmod__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__rmod__(self.get(), *args, **kwargs)
 
     def __rmul__(self, *args, **kwargs):
-        self.set(int.__rmul__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__rmul__(self.get(), *args, **kwargs)
 
     def __ror__(self, *args, **kwargs):
-        self.set(int.__ror__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__ror__(self.get(), *args, **kwargs)
+
+    def __round__(self, *args, **kwargs):
+        return int.__round__(self.get(), *args, **kwargs)
+
+    def __rpow__(self, *args, **kwargs):
+        return int.__rpow__(self.get(), *args, **kwargs)
 
     def __rrshift__(self, *args, **kwargs):
-        self.set(int.__rrshift__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__rrshift__(self.get(), *args, **kwargs)
+
+    def __rshift__(self, *args, **kwargs):
+        return int.__rshift__(self.get(), *args, **kwargs)
 
     def __rsub__(self, *args, **kwargs):
-        self.set(int.__rsub__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__rsub__(self.get(), *args, **kwargs)
+
+    def __rtruediv__(self, *args, **kwargs):
+        return int.__rtruediv__(self.get(), *args, **kwargs)
 
     def __rxor__(self, *args, **kwargs):
-        self.set(int.__rxor__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return int.__rxor__(self.get(), *args, **kwargs)
 
     def __sub__(self, *args, **kwargs):
+        return int.__sub__(self.get(), *args, **kwargs)
+
+    def __truediv__(self, *args, **kwargs):
+        return int.__truediv__(self.get(), *args, **kwargs)
+
+    def __trunc__(self, *args, **kwargs):
+        return int.__trunc__(self.get(), *args, **kwargs)
+
+    def __xor__(self, *args, **kwargs):
+        return int.__xor__(self.get(), *args, **kwargs)
+
+    def __iadd__(self, *args, **kwargs):
+        self.set(int.__add__(self.get(), args[0] + 0, **kwargs))
+        return self
+
+    def __iand__(self, *args, **kwargs):
+        self.set(int.__and__(self.get(), args[0] + 0, **kwargs))
+        return self
+
+    def __imul__(self, *args, **kwargs):
+        self.set(int.__mul__(self.get(), args[0] + 0, **kwargs))
+        return self
+
+    def __ior__(self, *args, **kwargs):
+        self.set(int.__or__(self.get(), args[0] + 0, **kwargs))
+        return self
+
+    def __isub__(self, *args, **kwargs):
         self.set(int.__sub__(self.get(), args[0] + 0, **kwargs))
         return self
 
-    def __truediv__(self, *args, **kwargs):
-        self.set(int.__truediv__(self.get(), args[0] + 0, **kwargs))
+    def __ixor__(self, *args, **kwargs):
+        self.set(int.__xor__(self.get(), args[0] + 0, **kwargs))
         return self
 
 
 class DyBoolMagicMethods(DyIntMagicMethods):
 
+    def __and__(self, *args, **kwargs):
+        return bool.__and__(self.get(), *args, **kwargs)
+
+    def __or__(self, *args, **kwargs):
+        return bool.__or__(self.get(), *args, **kwargs)
+
     def __rand__(self, *args, **kwargs):
-        self.set(bool.__rand__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return bool.__rand__(self.get(), *args, **kwargs)
 
     def __repr__(self, *args, **kwargs):
         return bool.__repr__(self.get(), *args, **kwargs)
 
     def __ror__(self, *args, **kwargs):
-        self.set(bool.__ror__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return bool.__ror__(self.get(), *args, **kwargs)
 
     def __rxor__(self, *args, **kwargs):
-        self.set(bool.__rxor__(self.get(), args[0] + 0, **kwargs))
+        return bool.__rxor__(self.get(), *args, **kwargs)
+
+    def __xor__(self, *args, **kwargs):
+        return bool.__xor__(self.get(), *args, **kwargs)
+
+    def __iand__(self, *args, **kwargs):
+        self.set(bool.__and__(self.get(), args[0] + 0, **kwargs))
+        return self
+
+    def __ior__(self, *args, **kwargs):
+        self.set(bool.__or__(self.get(), args[0] + 0, **kwargs))
+        return self
+
+    def __ixor__(self, *args, **kwargs):
+        self.set(bool.__xor__(self.get(), args[0] + 0, **kwargs))
         return self
 
 
 class DyDictMagicMethods(DyObjectMagicMethods):
 
     def __eq__(self, *args, **kwargs):
-        self.set(dict.__eq__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return dict.__eq__(self.get(), *args, **kwargs)
 
     def __ge__(self, *args, **kwargs):
-        self.set(dict.__ge__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return dict.__ge__(self.get(), *args, **kwargs)
 
     def __gt__(self, *args, **kwargs):
-        self.set(dict.__gt__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return dict.__gt__(self.get(), *args, **kwargs)
 
     def __le__(self, *args, **kwargs):
-        self.set(dict.__le__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return dict.__le__(self.get(), *args, **kwargs)
 
     def __lt__(self, *args, **kwargs):
-        self.set(dict.__lt__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return dict.__lt__(self.get(), *args, **kwargs)
 
     def __ne__(self, *args, **kwargs):
-        self.set(dict.__ne__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return dict.__ne__(self.get(), *args, **kwargs)
 
     def __repr__(self, *args, **kwargs):
         return dict.__repr__(self.get(), *args, **kwargs)
@@ -213,259 +268,293 @@ class DyDictMagicMethods(DyObjectMagicMethods):
 
 class DyFloatMagicMethods(DyObjectMagicMethods):
 
+    def __abs__(self, *args, **kwargs):
+        return float.__abs__(self.get(), *args, **kwargs)
+
     def __add__(self, *args, **kwargs):
-        self.set(float.__add__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return float.__add__(self.get(), *args, **kwargs)
 
     def __divmod__(self, *args, **kwargs):
-        self.set(float.__divmod__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return float.__divmod__(self.get(), *args, **kwargs)
 
     def __eq__(self, *args, **kwargs):
-        self.set(float.__eq__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return float.__eq__(self.get(), *args, **kwargs)
 
     def __floordiv__(self, *args, **kwargs):
-        self.set(float.__floordiv__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return float.__floordiv__(self.get(), *args, **kwargs)
 
     def __ge__(self, *args, **kwargs):
-        self.set(float.__ge__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return float.__ge__(self.get(), *args, **kwargs)
 
     def __gt__(self, *args, **kwargs):
-        self.set(float.__gt__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return float.__gt__(self.get(), *args, **kwargs)
 
     def __le__(self, *args, **kwargs):
-        self.set(float.__le__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return float.__le__(self.get(), *args, **kwargs)
 
     def __lt__(self, *args, **kwargs):
-        self.set(float.__lt__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return float.__lt__(self.get(), *args, **kwargs)
+
+    def __mod__(self, *args, **kwargs):
+        return float.__mod__(self.get(), *args, **kwargs)
 
     def __mul__(self, *args, **kwargs):
-        self.set(float.__mul__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return float.__mul__(self.get(), *args, **kwargs)
+
+    def __neg__(self, *args, **kwargs):
+        return float.__neg__(self.get(), *args, **kwargs)
 
     def __ne__(self, *args, **kwargs):
-        self.set(float.__ne__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return float.__ne__(self.get(), *args, **kwargs)
+
+    def __pos__(self, *args, **kwargs):
+        return float.__pos__(self.get(), *args, **kwargs)
 
     def __pow__(self, *args, **kwargs):
-        self.set(float.__pow__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return float.__pow__(self.get(), *args, **kwargs)
 
     def __radd__(self, *args, **kwargs):
-        self.set(float.__radd__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return float.__radd__(self.get(), *args, **kwargs)
+
+    def __rdivmod__(self, *args, **kwargs):
+        return float.__rdivmod__(self.get(), *args, **kwargs)
 
     def __repr__(self, *args, **kwargs):
         return float.__repr__(self.get(), *args, **kwargs)
 
     def __rfloordiv__(self, *args, **kwargs):
-        self.set(float.__rfloordiv__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return float.__rfloordiv__(self.get(), *args, **kwargs)
 
     def __rmod__(self, *args, **kwargs):
-        self.set(float.__rmod__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return float.__rmod__(self.get(), *args, **kwargs)
 
     def __rmul__(self, *args, **kwargs):
-        self.set(float.__rmul__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return float.__rmul__(self.get(), *args, **kwargs)
+
+    def __round__(self, *args, **kwargs):
+        return float.__round__(self.get(), *args, **kwargs)
+
+    def __rpow__(self, *args, **kwargs):
+        return float.__rpow__(self.get(), *args, **kwargs)
 
     def __rsub__(self, *args, **kwargs):
-        self.set(float.__rsub__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return float.__rsub__(self.get(), *args, **kwargs)
+
+    def __rtruediv__(self, *args, **kwargs):
+        return float.__rtruediv__(self.get(), *args, **kwargs)
 
     def __sub__(self, *args, **kwargs):
-        self.set(float.__sub__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return float.__sub__(self.get(), *args, **kwargs)
 
     def __truediv__(self, *args, **kwargs):
-        self.set(float.__truediv__(self.get(), args[0] + 0, **kwargs))
+        return float.__truediv__(self.get(), *args, **kwargs)
+
+    def __trunc__(self, *args, **kwargs):
+        return float.__trunc__(self.get(), *args, **kwargs)
+
+    def __iadd__(self, *args, **kwargs):
+        self.set(float.__add__(self.get(), args[0] + 0, **kwargs))
+        return self
+
+    def __imul__(self, *args, **kwargs):
+        self.set(float.__mul__(self.get(), args[0] + 0, **kwargs))
+        return self
+
+    def __isub__(self, *args, **kwargs):
+        self.set(float.__sub__(self.get(), args[0] + 0, **kwargs))
         return self
 
 
 class DyListMagicMethods(DyObjectMagicMethods):
 
     def __add__(self, *args, **kwargs):
+        return list.__add__(self.get(), *args, **kwargs)
+
+    def __eq__(self, *args, **kwargs):
+        return list.__eq__(self.get(), *args, **kwargs)
+
+    def __ge__(self, *args, **kwargs):
+        return list.__ge__(self.get(), *args, **kwargs)
+
+    def __gt__(self, *args, **kwargs):
+        return list.__gt__(self.get(), *args, **kwargs)
+
+    def __iadd__(self, *args, **kwargs):
         self.set(list.__add__(self.get(), args[0] + 0, **kwargs))
         return self
 
-    def __eq__(self, *args, **kwargs):
-        self.set(list.__eq__(self.get(), args[0] + 0, **kwargs))
-        return self
-
-    def __ge__(self, *args, **kwargs):
-        self.set(list.__ge__(self.get(), args[0] + 0, **kwargs))
-        return self
-
-    def __gt__(self, *args, **kwargs):
-        self.set(list.__gt__(self.get(), args[0] + 0, **kwargs))
-        return self
-
-    def __le__(self, *args, **kwargs):
-        self.set(list.__le__(self.get(), args[0] + 0, **kwargs))
-        return self
-
-    def __lt__(self, *args, **kwargs):
-        self.set(list.__lt__(self.get(), args[0] + 0, **kwargs))
-        return self
-
-    def __mul__(self, *args, **kwargs):
+    def __imul__(self, *args, **kwargs):
         self.set(list.__mul__(self.get(), args[0] + 0, **kwargs))
         return self
 
+    def __le__(self, *args, **kwargs):
+        return list.__le__(self.get(), *args, **kwargs)
+
+    def __lt__(self, *args, **kwargs):
+        return list.__lt__(self.get(), *args, **kwargs)
+
+    def __mul__(self, *args, **kwargs):
+        return list.__mul__(self.get(), *args, **kwargs)
+
     def __ne__(self, *args, **kwargs):
-        self.set(list.__ne__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return list.__ne__(self.get(), *args, **kwargs)
 
     def __repr__(self, *args, **kwargs):
         return list.__repr__(self.get(), *args, **kwargs)
 
     def __rmul__(self, *args, **kwargs):
-        self.set(list.__rmul__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return list.__rmul__(self.get(), *args, **kwargs)
 
 
 class DySetMagicMethods(DyObjectMagicMethods):
 
+    def __and__(self, *args, **kwargs):
+        return set.__and__(self.get(), *args, **kwargs)
+
     def __eq__(self, *args, **kwargs):
-        self.set(set.__eq__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return set.__eq__(self.get(), *args, **kwargs)
 
     def __ge__(self, *args, **kwargs):
-        self.set(set.__ge__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return set.__ge__(self.get(), *args, **kwargs)
 
     def __gt__(self, *args, **kwargs):
-        self.set(set.__gt__(self.get(), args[0] + 0, **kwargs))
+        return set.__gt__(self.get(), *args, **kwargs)
+
+    def __iand__(self, *args, **kwargs):
+        self.set(set.__and__(self.get(), args[0] + 0, **kwargs))
+        return self
+
+    def __ior__(self, *args, **kwargs):
+        self.set(set.__or__(self.get(), args[0] + 0, **kwargs))
+        return self
+
+    def __isub__(self, *args, **kwargs):
+        self.set(set.__sub__(self.get(), args[0] + 0, **kwargs))
+        return self
+
+    def __ixor__(self, *args, **kwargs):
+        self.set(set.__xor__(self.get(), args[0] + 0, **kwargs))
         return self
 
     def __le__(self, *args, **kwargs):
-        self.set(set.__le__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return set.__le__(self.get(), *args, **kwargs)
 
     def __lt__(self, *args, **kwargs):
-        self.set(set.__lt__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return set.__lt__(self.get(), *args, **kwargs)
 
     def __ne__(self, *args, **kwargs):
-        self.set(set.__ne__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return set.__ne__(self.get(), *args, **kwargs)
+
+    def __or__(self, *args, **kwargs):
+        return set.__or__(self.get(), *args, **kwargs)
 
     def __rand__(self, *args, **kwargs):
-        self.set(set.__rand__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return set.__rand__(self.get(), *args, **kwargs)
 
     def __repr__(self, *args, **kwargs):
         return set.__repr__(self.get(), *args, **kwargs)
 
     def __ror__(self, *args, **kwargs):
-        self.set(set.__ror__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return set.__ror__(self.get(), *args, **kwargs)
 
     def __rsub__(self, *args, **kwargs):
-        self.set(set.__rsub__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return set.__rsub__(self.get(), *args, **kwargs)
 
     def __rxor__(self, *args, **kwargs):
-        self.set(set.__rxor__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return set.__rxor__(self.get(), *args, **kwargs)
 
     def __sub__(self, *args, **kwargs):
-        self.set(set.__sub__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return set.__sub__(self.get(), *args, **kwargs)
+
+    def __xor__(self, *args, **kwargs):
+        return set.__xor__(self.get(), *args, **kwargs)
 
 
 class DyStrMagicMethods(DyObjectMagicMethods):
 
     def __add__(self, *args, **kwargs):
-        self.set(str.__add__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return str.__add__(self.get(), *args, **kwargs)
 
     def __eq__(self, *args, **kwargs):
-        self.set(str.__eq__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return str.__eq__(self.get(), *args, **kwargs)
 
     def __ge__(self, *args, **kwargs):
-        self.set(str.__ge__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return str.__ge__(self.get(), *args, **kwargs)
 
     def __gt__(self, *args, **kwargs):
-        self.set(str.__gt__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return str.__gt__(self.get(), *args, **kwargs)
 
     def __le__(self, *args, **kwargs):
-        self.set(str.__le__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return str.__le__(self.get(), *args, **kwargs)
 
     def __lt__(self, *args, **kwargs):
-        self.set(str.__lt__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return str.__lt__(self.get(), *args, **kwargs)
+
+    def __mod__(self, *args, **kwargs):
+        return str.__mod__(self.get(), *args, **kwargs)
 
     def __mul__(self, *args, **kwargs):
-        self.set(str.__mul__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return str.__mul__(self.get(), *args, **kwargs)
 
     def __ne__(self, *args, **kwargs):
-        self.set(str.__ne__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return str.__ne__(self.get(), *args, **kwargs)
 
     def __repr__(self, *args, **kwargs):
         return str.__repr__(self.get(), *args, **kwargs)
 
     def __rmod__(self, *args, **kwargs):
-        self.set(str.__rmod__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return str.__rmod__(self.get(), *args, **kwargs)
 
     def __rmul__(self, *args, **kwargs):
-        self.set(str.__rmul__(self.get(), args[0] + 0, **kwargs))
+        return str.__rmul__(self.get(), *args, **kwargs)
+
+    def __iadd__(self, *args, **kwargs):
+        self.set(str.__add__(self.get(), args[0] + 0, **kwargs))
+        return self
+
+    def __imul__(self, *args, **kwargs):
+        self.set(str.__mul__(self.get(), args[0] + 0, **kwargs))
         return self
 
 
 class DyTupleMagicMethods(DyObjectMagicMethods):
 
     def __add__(self, *args, **kwargs):
-        self.set(tuple.__add__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return tuple.__add__(self.get(), *args, **kwargs)
 
     def __eq__(self, *args, **kwargs):
-        self.set(tuple.__eq__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return tuple.__eq__(self.get(), *args, **kwargs)
 
     def __ge__(self, *args, **kwargs):
-        self.set(tuple.__ge__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return tuple.__ge__(self.get(), *args, **kwargs)
 
     def __gt__(self, *args, **kwargs):
-        self.set(tuple.__gt__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return tuple.__gt__(self.get(), *args, **kwargs)
 
     def __le__(self, *args, **kwargs):
-        self.set(tuple.__le__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return tuple.__le__(self.get(), *args, **kwargs)
 
     def __lt__(self, *args, **kwargs):
-        self.set(tuple.__lt__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return tuple.__lt__(self.get(), *args, **kwargs)
 
     def __mul__(self, *args, **kwargs):
-        self.set(tuple.__mul__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return tuple.__mul__(self.get(), *args, **kwargs)
 
     def __ne__(self, *args, **kwargs):
-        self.set(tuple.__ne__(self.get(), args[0] + 0, **kwargs))
-        return self
+        return tuple.__ne__(self.get(), *args, **kwargs)
 
     def __repr__(self, *args, **kwargs):
         return tuple.__repr__(self.get(), *args, **kwargs)
 
     def __rmul__(self, *args, **kwargs):
-        self.set(tuple.__rmul__(self.get(), args[0] + 0, **kwargs))
+        return tuple.__rmul__(self.get(), *args, **kwargs)
+
+    def __iadd__(self, *args, **kwargs):
+        self.set(tuple.__add__(self.get(), args[0] + 0, **kwargs))
+        return self
+
+    def __imul__(self, *args, **kwargs):
+        self.set(tuple.__mul__(self.get(), args[0] + 0, **kwargs))
         return self
 
 
