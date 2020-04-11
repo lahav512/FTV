@@ -417,7 +417,7 @@ class DyComplexMagicMethods(DyObjectMagicMethods):
         return complex.__floordiv__(self.get(), *args, **kwargs)
 
     def __format__(self):
-        return complex.__format__(self.get())
+        return complex.__format__(self.get(), *args, **kwargs)
 
     def __ge__(self, *args, **kwargs):
         return complex.__ge__(self.get(), *args, **kwargs)
@@ -710,7 +710,7 @@ class DySetMagicMethods(DyObjectMagicMethods):
         return set.__and__(self.get(), *args, **kwargs)
 
     def __contains__(self, y):
-        return set.__contains__(self.get(), y)
+        return set.__contains__(self.get(), *args, **kwargs)
 
     def __eq__(self, *args, **kwargs):
         return set.__eq__(self.get(), *args, **kwargs)

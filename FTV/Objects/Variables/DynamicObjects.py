@@ -8,13 +8,13 @@ from FTV.Objects.Variables.AbstractConditions import (DyIntConditions, DyBoolCon
 
 class DyBool(DyBoolMagicMethods, DyBoolConditions, DyObject):
     def __init__(self, value, builtin=False):
-        super().__init__(value, builtin)
-        self.__value__: bool
+        super().__init__(bool(value), builtin)
+        self.__value__ = bool(value)
 
 class DySwitch(DyBoolMagicMethods, DyObject):
     def __init__(self, builtin=False):
         super().__init__(False, builtin)
-        self.__value__: bool
+        self.__value__ = False
 
     def set(self, value):
         super(DySwitch, self)._set_empty(value)
@@ -27,33 +27,36 @@ class DySwitch(DyBoolMagicMethods, DyObject):
 
 class DyInt(DyIntMagicMethods, DyIntConditions, DyObject):
     def __init__(self, value: int=None, builtin=False):
-        super().__init__(value, builtin)
-        self.__value__: int = value
+        super().__init__(int(value), builtin)
+        self.__value__ = int(value)
 
     # def __condition__(self, old_val, new_val, *args, **kwargs):
     #     pass
 
 class DyFloat(DyFloatMagicMethods, DyFloatConditions, DyObject):
     def __init__(self, value: float=None, builtin=False):
-        super().__init__(value, builtin)
-        self.__value__: float = value
+        super().__init__(float(value), builtin)
+        self.__value__ = float(value)
 
 class DyStr(DyStrMagicMethods, DyStrConditions, DyObject):
     def __init__(self, value: str=None, builtin=False):
-        super().__init__(value, builtin)
-        self.__value__: str = value
+        super().__init__(str(value), builtin)
+        self.__value__ = str(value)
 
 
 if __name__ == '__main__':
-    a = DyInt(8)
+    a = DyFloat(8)
     b = DyInt(10)
 
     c = DyStr("lahav")
     d = DyStr("svorai")
 
+    a += b
+    b += a
+
     print("a = {}".format(a))
     print("c = {}".format(c))
-    print(len(c))
+    print(a)
 
     # magic_methods = list(filter(lambda method: method.startswith("__") and method.endswith("__"), dir(int)))
     # dy_int_magic_methods = list(filter(lambda method: method not in dir(DyInt), magic_methods))
