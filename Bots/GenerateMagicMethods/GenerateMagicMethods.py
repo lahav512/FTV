@@ -35,6 +35,17 @@ builtin_objects = {
 for key in builtin_objects.keys():
     builtin_objects[key] += "MagicMethods"
 
+numeric_objects = [
+    "int",
+    "float",
+    "complex",
+    "bytes"
+]
+
+string_objects = [
+    "str"
+]
+
 compare_methods = [
     "__eq__",
     "__ne__",
@@ -85,8 +96,12 @@ r_methods = [method.replace("__", "__r", 1) for method in dual_math_methods]
 
 string_methods = [
     "__repr__",
-    "__format__",
     "__hash__",
+    "__str__"
+]
+
+dual_string_methods = [
+    "__format__"
 ]
 
 iterator_methods = [
@@ -100,7 +115,6 @@ iterator_methods = [
 
 type_methods = [
     "__bool__",
-    "__str__",
     "__int__"
 ]
 
@@ -123,12 +137,31 @@ fileString.replaceClassParentsNames(builtin_objects)
 fileString.addNewIMethods(
     "self.set({cls}.{method}(self.get(), args[0] + 0, **kwargs))\n"
     "return self",
-    i_dual_math_methods
+    i_dual_math_methods, classes=numeric_objects
+)
+fileString.addNewIMethods(
+    "self.set({cls}.{method}(self.get(), args[0] + \"\", **kwargs))\n"
+    "return self",
+    i_dual_math_methods, classes=string_objects
+)
+
+fileString.addMethodsContent(
+    "return {cls}.{method}(self.get(), args[0] + 0, **kwargs)",
+    dual_math_methods, classes=numeric_objects
+)
+fileString.addMethodsContent(
+    "return {cls}.{method}(self.get(), args[0] + \"\", **kwargs)",
+    dual_math_methods, classes=string_objects
 )
 
 fileString.addMethodsContent(
     "return {cls}.{method}(self.get(), *args, **kwargs)",
-    compare_methods + single_math_methods + dual_math_methods + r_methods + string_methods + type_methods + iterator_methods
+    compare_methods + single_math_methods + r_methods + string_methods + type_methods + iterator_methods
+)
+
+fileString.addMethodsContent(
+    "return {cls}.{method}(self.get(), args[0] + \"\", **kwargs)",
+    dual_string_methods
 )
 
 fileData = fileString.newFileString.joinFile()

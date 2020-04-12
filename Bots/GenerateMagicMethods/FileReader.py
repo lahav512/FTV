@@ -2,9 +2,10 @@ import copy
 
 
 class MethodContentPattern(object):
-    def __init__(self, pattern: str, methods: list):
+    def __init__(self, pattern: str, methods: list, classes: list=None):
         self.methods = methods
         self.pattern = pattern
+        self.classes = classes
 
     def getContent(self, class_name, method_name):
         content = "\n".join(list(map(lambda line: " "*8 + line.strip(), self.pattern.split("\n"))))
@@ -19,10 +20,15 @@ class MethodContentPattern(object):
 
         return content
 
+    def isClassAllowed(self, cls: str):
+        if self.classes is not None:
+            return cls in self.classes
+        return True
+
 
 class IMethodContentPattern(MethodContentPattern):
-    def __init__(self, *args):
-        super(IMethodContentPattern, self).__init__(*args)
+    def __init__(self, *args, **kwargs):
+        super(IMethodContentPattern, self).__init__(*args, **kwargs)
         self.iMethods = [m.replace("__", "__i", 1) for m in self.methods]
 
 
@@ -75,15 +81,17 @@ class FileString(dict):
             mew_i_methods = {}
             for method in cls:
                 for iPat in self.iMethodsContentPatterns:
-                    if method.getName() in iPat.methods:
-                        i_method = copy.copy(method)
-                        i_method.setName(method.getName().replace("__", "__i", 1))
-                        i_method.setContent(iPat.getContent(cls.getOriginName(), method.getName()))
-                        mew_i_methods[i_method.getName()] = i_method
+                    if iPat.isClassAllowed(cls.getOriginName()):
+                        if method.getName() in iPat.methods:
+                            i_method = copy.copy(method)
+                            i_method.setName(method.getName().replace("__", "__i", 1))
+                            i_method.setContent(iPat.getContent(cls.getOriginName(), method.getName()))
+                            mew_i_methods[i_method.getName()] = i_method
 
                 for pat in self.methodsContentPatterns:
-                    if method.getName() in pat.methods:
-                        method.setContent(pat.getContent(cls.getOriginName(), method.getName()))
+                    if pat.isClassAllowed(cls.getOriginName()):
+                        if method.getName() in pat.methods:
+                            method.setContent(pat.getContent(cls.getOriginName(), method.getName()))
 
             cls.update(mew_i_methods)
 
@@ -118,19 +126,19 @@ class FileString(dict):
             for old_parent, new_parent in rep_dict.items():
                 cls.replaceParent(old_parent, new_parent)
 
-    def addMethodsContent(self, content_pattern, methods_names):
+    def addMethodsContent(self, content_pattern, methods_names, classes=None):
         for cls in self:
             cls.relevant_methods += methods_names
 
-        self.methodsContentPatterns.append(MethodContentPattern(content_pattern, methods_names))
+        self.methodsContentPatterns.append(MethodContentPattern(content_pattern, methods_names, classes=classes))
 
-    def addNewIMethods(self, content_pattern, methods_names):
+    def addNewIMethods(self, content_pattern, methods_names, classes=None):
         for cls in self:
             for method in methods_names:
                 if method in cls.getMethodsNames():
                     cls.relevant_methods += [method.replace("__", "__i", 1)]
 
-        self.iMethodsContentPatterns.append(IMethodContentPattern(content_pattern, methods_names))
+        self.iMethodsContentPatterns.append(IMethodContentPattern(content_pattern, methods_names, classes=classes))
 
     def __iter__(self):
         return iter(map(lambda item: item[-1], self.items()))
