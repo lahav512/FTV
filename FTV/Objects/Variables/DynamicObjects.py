@@ -147,7 +147,7 @@ if __name__ == '__main__':
             self.f = DyList([4, 5, 6])
 
             self.g = DyBool(True)
-            self.h = DyBool(True)
+            self.h = DyBool(False)
 
         def setupTriggers(self):
             self.addTrigger(self.POST_INIT).setAction(self.action)
@@ -203,7 +203,7 @@ if __name__ == '__main__':
             # Log.p(type(self.f))
 
             self.g += self.h
-            Log.p(self.g + self.h)
+            Log.p(self.g and self.h)
 
             Log.p(self.g)
             Log.p(type(self.g))

@@ -58,9 +58,6 @@ class DyObjectMagicMethods:
         else:
             return object.__gt__(self.get(), *args, **kwargs)
 
-    def __hash__(self, *args, **kwargs):
-        return object.__hash__(self.get(), *args, **kwargs)
-
     def __le__(self, *args, **kwargs):
         if isinstance(args[0], DyObject):
             return object.__le__(self.get(), args[0].get(), **kwargs)
@@ -126,9 +123,6 @@ class DyIntMagicMethods(DyObjectMagicMethods):
 
     def __gt__(self, *args, **kwargs):
         return int.__gt__(self.get(), args[0].__int__(), **kwargs)
-
-    def __hash__(self, *args, **kwargs):
-        return int.__hash__(self.get(), *args, **kwargs)
 
     def __index__(self, *args, **kwargs):
         return int.__index__(self.get(), *args, **kwargs)
@@ -457,9 +451,6 @@ class DyBytesMagicMethods(DyObjectMagicMethods):
         else:
             return bytes.__gt__(self.get(), *args, **kwargs)
 
-    def __hash__(self, *args, **kwargs):
-        return bytes.__hash__(self.get(), *args, **kwargs)
-
     def __iter__(self, *args, **kwargs):
         return bytes.__iter__(self.get(), *args, **kwargs)
 
@@ -582,9 +573,6 @@ class DyComplexMagicMethods(DyObjectMagicMethods):
             return complex.__gt__(self.get(), args[0].get(), **kwargs)
         else:
             return complex.__gt__(self.get(), *args, **kwargs)
-
-    def __hash__(self, *args, **kwargs):
-        return complex.__hash__(self.get(), *args, **kwargs)
 
     def __int__(self, *args, **kwargs):
         return complex.__int__(self.get(), *args, **kwargs)
@@ -808,9 +796,6 @@ class DyFloatMagicMethods(DyObjectMagicMethods):
 
     def __gt__(self, *args, **kwargs):
         return float.__gt__(self.get(), args[0].__float__(), **kwargs)
-
-    def __hash__(self, *args, **kwargs):
-        return float.__hash__(self.get(), *args, **kwargs)
 
     def __int__(self, *args, **kwargs):
         return float.__int__(self.get(), *args, **kwargs)
@@ -1137,9 +1122,6 @@ class DyStrMagicMethods(DyObjectMagicMethods):
     def __gt__(self, *args, **kwargs):
         return str.__gt__(self.get(), args[0].__str__(), **kwargs)
 
-    def __hash__(self, *args, **kwargs):
-        return str.__hash__(self.get(), *args, **kwargs)
-
     def __iter__(self, *args, **kwargs):
         return str.__iter__(self.get(), *args, **kwargs)
 
@@ -1220,9 +1202,6 @@ class DyTupleMagicMethods(DyObjectMagicMethods):
             return tuple.__gt__(self.get(), args[0].get(), **kwargs)
         else:
             return tuple.__gt__(self.get(), *args, **kwargs)
-
-    def __hash__(self, *args, **kwargs):
-        return tuple.__hash__(self.get(), *args, **kwargs)
 
     def __iter__(self, *args, **kwargs):
         return tuple.__iter__(self.get(), *args, **kwargs)

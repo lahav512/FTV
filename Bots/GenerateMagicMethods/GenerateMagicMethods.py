@@ -102,7 +102,6 @@ i_dual_math_methods.remove("__divmod__")
 
 string_methods = [
     "__repr__",
-    "__hash__",
     "__str__",
     "__format__"
 ]
