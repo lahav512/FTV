@@ -3,9 +3,25 @@
 from AppPackage.Experiments.Log import Log
 from Bots.GenerateMagicMethods.result.MagicMethodsInterfaces import (DyBoolMagicMethods, DyObject, DyFloatMagicMethods,
                                                                      DyIntMagicMethods, DyStrMagicMethods,
-                                                                     DyListMagicMethods)
+                                                                     DyListMagicMethods, DyByteArrayMagicMethods,
+                                                                     DyBytesMagicMethods, DyComplexMagicMethods,
+                                                                     DyDictMagicMethods, DySetMagicMethods,
+                                                                     DyTupleMagicMethods)
 from FTV.Objects.Variables.AbstractConditions import (DyIntConditions, DyBoolConditions, DyFloatConditions,
-                                                      DyStrConditions)
+                                                      DyStrConditions, DyByteArrayConditions, DyBytesConditions,
+                                                      DyComplexConditions, DyDictConditions, DyListConditions,
+                                                      DySetConditions, DyTupleConditions)
+
+class DyInt(DyIntMagicMethods, DyIntConditions, DyObject):
+    def __init__(self, value: int=None, builtin=False):
+        super().__init__(value.__int__(), builtin)
+        self.__value__ = value.__int__()
+
+    def set(self, value):
+        super(DyInt, self).set(value.__int__())
+
+    # def __condition__(self, old_val, new_val, *args, **kwargs):
+    #     pass
 
 
 class DyBool(DyBoolMagicMethods, DyBoolConditions, DyObject):
@@ -15,6 +31,7 @@ class DyBool(DyBoolMagicMethods, DyBoolConditions, DyObject):
 
     def set(self, value):
         super(DyBool, self).set(value.__bool__())
+
 
 class DySwitch(DyBoolMagicMethods, DyObject):
     def __init__(self, builtin=False):
@@ -30,16 +47,42 @@ class DySwitch(DyBoolMagicMethods, DyObject):
     def __action__(self, *args, **kwargs):
         self.activate()
 
-class DyInt(DyIntMagicMethods, DyIntConditions, DyObject):
-    def __init__(self, value: int=None, builtin=False):
-        super().__init__(value.__int__(), builtin)
-        self.__value__ = value.__int__()
+
+class DyByteArray(DyByteArrayMagicMethods, DyByteArrayConditions, DyObject):
+    def __init__(self, value: bytearray=None, builtin=False):
+        super().__init__(bytearray(value), builtin)
+        self.__value__ = bytearray(value)
 
     def set(self, value):
-        super(DyInt, self).set(value.__int__())
+        super(DyByteArray, self).set(bytearray(value))
 
-    # def __condition__(self, old_val, new_val, *args, **kwargs):
-    #     pass
+
+class DyBytes(DyBytesMagicMethods, DyBytesConditions, DyObject):
+    def __init__(self, value: bytes=None, builtin=False):
+        super().__init__(bytes(value), builtin)
+        self.__value__ = bytes(value)
+
+    def set(self, value):
+        super(DyBytes, self).set(bytearray(value))
+
+
+class DyComplex(DyComplexMagicMethods, DyComplexConditions, DyObject):
+    def __init__(self, value: complex=None, builtin=False):
+        super().__init__(complex(value), builtin)
+        self.__value__ = complex(value)
+
+    def set(self, value):
+        super(DyComplex, self).set(complex(value))
+
+
+class DyDict(DyDictMagicMethods, DyDictConditions, DyObject):
+    def __init__(self, value: dict=None, builtin=False):
+        super().__init__(dict(value), builtin)
+        self.__value__ = dict(value)
+
+    def set(self, value):
+        super(DyDict, self).set(dict(value))
+
 
 class DyFloat(DyFloatMagicMethods, DyFloatConditions, DyObject):
     def __init__(self, value: float=None, builtin=False):
@@ -50,6 +93,24 @@ class DyFloat(DyFloatMagicMethods, DyFloatConditions, DyObject):
         super(DyFloat, self).set(value.__float__())
 
 
+class DyList(DyListMagicMethods, DyListConditions, DyObject):
+    def __init__(self, value: list=None, builtin=False):
+        super().__init__(list(value), builtin)
+        self.__value__ = list(value)
+
+    def set(self, value):
+        super(DyList, self).set(list(value))
+
+
+class DySet(DySetMagicMethods, DySetConditions, DyObject):
+    def __init__(self, value: set=None, builtin=False):
+        super().__init__(set(value), builtin)
+        self.__value__ = set(value)
+
+    def set(self, value):
+        super(DySet, self).set(set(value))
+
+
 class DyStr(DyStrMagicMethods, DyStrConditions, DyObject):
     def __init__(self, value: str=None, builtin=False):
         super().__init__(value.__str__(), builtin)
@@ -58,21 +119,15 @@ class DyStr(DyStrMagicMethods, DyStrConditions, DyObject):
     def set(self, value):
         super(DyStr, self).set(value.__str__())
 
-class DyComplex(DyStrMagicMethods, DyStrConditions, DyObject):
-    def __init__(self, value: complex=None, builtin=False):
-        super().__init__(complex(value), builtin)
-        self.__value__ = complex(value)
+
+class DyTuple(DyTupleMagicMethods, DyTupleConditions, DyObject):
+    def __init__(self, value: tuple=None, builtin=False):
+        super().__init__(tuple(value), builtin)
+        self.__value__ = tuple(value)
 
     def set(self, value):
-        super(DyComplex, self).set(complex(value))
+        super(DyTuple, self).set(tuple(value))
 
-class DyList(DyListMagicMethods, DyStrConditions, DyObject):
-    def __init__(self, value: list=None, builtin=False):
-        super().__init__(value + [], builtin)
-        self.__value__ = value + []
-
-    def set(self, value):
-        super(DyList, self).set(value + [])
 
 
 if __name__ == '__main__':
@@ -85,11 +140,14 @@ if __name__ == '__main__':
             self.b = DyFloat(5)
             # self.com = DyComplex(10)
 
-            self.c = DyStr("lahav")
+            self.c = DyStr("lahav {}")
             self.d = DyStr("svorai")
 
             self.e = DyList([1, 2, 3])
             self.f = DyList([4, 5, 6])
+
+            self.g = DyBool(True)
+            self.h = DyBool(True)
 
         def setupTriggers(self):
             self.addTrigger(self.POST_INIT).setAction(self.action)
@@ -127,22 +185,30 @@ if __name__ == '__main__':
             # Log.p(type(self.b))
 
             # self.c += self.d
-            #
-            # Log.p(self.d.get() in "lahavs")
+
+            # Log.p("{}...".format(self.d))
             #
             # Log.p(self.c)
             # Log.p(type(self.c))
             # Log.p(self.d)
             # Log.p(type(self.d))
 
-            self.e += self.f
+            # self.e += self.f
+            #
+            # Log.p(self.c in [4])
+            #
+            # Log.p(self.e)
+            # Log.p(type(self.e))
+            # Log.p(self.f)
+            # Log.p(type(self.f))
 
-            Log.p(self.c in [4])
+            self.g += self.h
+            Log.p(self.g + self.h)
 
-            Log.p(self.e)
-            Log.p(type(self.e))
-            Log.p(self.f)
-            Log.p(type(self.f))
+            Log.p(self.g)
+            Log.p(type(self.g))
+            Log.p(self.h)
+            Log.p(type(self.h))
 
     VM()
 

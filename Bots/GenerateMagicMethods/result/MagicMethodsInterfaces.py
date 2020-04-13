@@ -38,34 +38,46 @@ class DynamicObjectInterface(object):
 class DyObjectMagicMethods:
 
     def __eq__(self, *args, **kwargs):
-        """ Return self==value. """
-        pass
+        if isinstance(args[0], DyObject):
+            return object.__eq__(self.get(), args[0].get(), **kwargs)
+        else:
+            return object.__eq__(self.get(), *args, **kwargs)
 
     def __format__(self, *args, **kwargs):
         return object.__format__(self.get(), *args, **kwargs)
 
     def __ge__(self, *args, **kwargs):
-        """ Return self>=value. """
-        pass
+        if isinstance(args[0], DyObject):
+            return object.__ge__(self.get(), args[0].get(), **kwargs)
+        else:
+            return object.__ge__(self.get(), *args, **kwargs)
 
     def __gt__(self, *args, **kwargs):
-        """ Return self>value. """
-        pass
+        if isinstance(args[0], DyObject):
+            return object.__gt__(self.get(), args[0].get(), **kwargs)
+        else:
+            return object.__gt__(self.get(), *args, **kwargs)
 
     def __hash__(self, *args, **kwargs):
         return object.__hash__(self.get(), *args, **kwargs)
 
     def __le__(self, *args, **kwargs):
-        """ Return self<=value. """
-        pass
+        if isinstance(args[0], DyObject):
+            return object.__le__(self.get(), args[0].get(), **kwargs)
+        else:
+            return object.__le__(self.get(), *args, **kwargs)
 
     def __lt__(self, *args, **kwargs):
-        """ Return self<value. """
-        pass
+        if isinstance(args[0], DyObject):
+            return object.__lt__(self.get(), args[0].get(), **kwargs)
+        else:
+            return object.__lt__(self.get(), *args, **kwargs)
 
     def __ne__(self, *args, **kwargs):
-        """ Return self!=value. """
-        pass
+        if isinstance(args[0], DyObject):
+            return object.__ne__(self.get(), args[0].get(), **kwargs)
+        else:
+            return object.__ne__(self.get(), *args, **kwargs)
 
     def __repr__(self, *args, **kwargs):
         return object.__repr__(self.get(), *args, **kwargs)
@@ -90,6 +102,9 @@ class DyIntMagicMethods(DyObjectMagicMethods):
 
     def __ceil__(self, *args, **kwargs):
         return int.__ceil__(self.get(), *args, **kwargs)
+
+    def __divmod__(self, *args, **kwargs):
+        return int.__divmod__(self.get(), args[0].__int__(), **kwargs)
 
     def __eq__(self, *args, **kwargs):
         return int.__eq__(self.get(), args[0].__int__(), **kwargs)
@@ -158,6 +173,9 @@ class DyIntMagicMethods(DyObjectMagicMethods):
         return args[0].__int__()
 
     def __rand__(self, *args, **kwargs):
+        return args[0].__int__()
+
+    def __rdivmod__(self, *args, **kwargs):
         return args[0].__int__()
 
     def __repr__(self, *args, **kwargs):
@@ -335,11 +353,17 @@ class DyByteArrayMagicMethods(DyObjectMagicMethods):
             return bytearray.__gt__(self.get(), *args, **kwargs)
 
     def __iadd__(self, *args, **kwargs):
-        self.set(bytearray.__add__(self.get(), bytearray(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(bytearray.__add__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(bytearray.__add__(self.get(), *args, **kwargs))
         return self
 
     def __imul__(self, *args, **kwargs):
-        self.set(bytearray.__mul__(self.get(), bytearray(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(bytearray.__mul__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(bytearray.__mul__(self.get(), *args, **kwargs))
         return self
 
     def __iter__(self, *args, **kwargs):
@@ -391,7 +415,10 @@ class DyByteArrayMagicMethods(DyObjectMagicMethods):
         return bytearray.__str__(self.get(), *args, **kwargs)
 
     def __imod__(self, *args, **kwargs):
-        self.set(bytearray.__mod__(self.get(), bytearray(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(bytearray.__mod__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(bytearray.__mod__(self.get(), *args, **kwargs))
         return self
 
     def __radd__(self, *args, **kwargs):
@@ -482,15 +509,24 @@ class DyBytesMagicMethods(DyObjectMagicMethods):
         return bytes.__str__(self.get(), *args, **kwargs)
 
     def __iadd__(self, *args, **kwargs):
-        self.set(bytes.__add__(self.get(), bytes(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(bytes.__add__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(bytes.__add__(self.get(), *args, **kwargs))
         return self
 
     def __imod__(self, *args, **kwargs):
-        self.set(bytes.__mod__(self.get(), bytes(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(bytes.__mod__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(bytes.__mod__(self.get(), *args, **kwargs))
         return self
 
     def __imul__(self, *args, **kwargs):
-        self.set(bytes.__mul__(self.get(), bytes(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(bytes.__mul__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(bytes.__mul__(self.get(), *args, **kwargs))
         return self
 
     def __radd__(self, *args, **kwargs):
@@ -511,6 +547,12 @@ class DyComplexMagicMethods(DyObjectMagicMethods):
     def __bool__(self, *args, **kwargs):
         return complex.__bool__(self.get(), *args, **kwargs)
 
+    def __divmod__(self, *args, **kwargs):
+        if isinstance(args[0], DyObject):
+            return complex.__divmod__(self.get(), args[0].get(), **kwargs)
+        else:
+            return complex.__divmod__(self.get(), *args, **kwargs)
+
     def __eq__(self, *args, **kwargs):
         if isinstance(args[0], DyObject):
             return complex.__eq__(self.get(), args[0].get(), **kwargs)
@@ -526,7 +568,7 @@ class DyComplexMagicMethods(DyObjectMagicMethods):
         else:
             return complex.__floordiv__(self.get(), *args, **kwargs)
 
-    def __format__(self):
+    def __format__(self, *args, **kwargs):
         return complex.__format__(self.get(), *args, **kwargs)
 
     def __ge__(self, *args, **kwargs):
@@ -592,6 +634,9 @@ class DyComplexMagicMethods(DyObjectMagicMethods):
     def __radd__(self, *args, **kwargs):
         return int(*args, **kwargs)
 
+    def __rdivmod__(self, *args, **kwargs):
+        return int(*args, **kwargs)
+
     def __repr__(self, *args, **kwargs):
         return complex.__repr__(self.get(), *args, **kwargs)
 
@@ -629,31 +674,52 @@ class DyComplexMagicMethods(DyObjectMagicMethods):
             return complex.__truediv__(self.get(), *args, **kwargs)
 
     def __iadd__(self, *args, **kwargs):
-        self.set(complex.__add__(self.get(), complex(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(complex.__add__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(complex.__add__(self.get(), *args, **kwargs))
         return self
 
     def __ifloordiv__(self, *args, **kwargs):
-        self.set(complex.__floordiv__(self.get(), complex(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(complex.__floordiv__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(complex.__floordiv__(self.get(), *args, **kwargs))
         return self
 
     def __imod__(self, *args, **kwargs):
-        self.set(complex.__mod__(self.get(), complex(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(complex.__mod__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(complex.__mod__(self.get(), *args, **kwargs))
         return self
 
     def __imul__(self, *args, **kwargs):
-        self.set(complex.__mul__(self.get(), complex(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(complex.__mul__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(complex.__mul__(self.get(), *args, **kwargs))
         return self
 
     def __ipow__(self, *args, **kwargs):
-        self.set(complex.__pow__(self.get(), complex(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(complex.__pow__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(complex.__pow__(self.get(), *args, **kwargs))
         return self
 
     def __isub__(self, *args, **kwargs):
-        self.set(complex.__sub__(self.get(), complex(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(complex.__sub__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(complex.__sub__(self.get(), *args, **kwargs))
         return self
 
     def __itruediv__(self, *args, **kwargs):
-        self.set(complex.__truediv__(self.get(), complex(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(complex.__truediv__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(complex.__truediv__(self.get(), *args, **kwargs))
         return self
 
 
@@ -722,6 +788,9 @@ class DyFloatMagicMethods(DyObjectMagicMethods):
     def __bool__(self, *args, **kwargs):
         return float.__bool__(self.get(), *args, **kwargs)
 
+    def __divmod__(self, *args, **kwargs):
+        return float.__divmod__(self.get(), args[0].__float__(), **kwargs)
+
     def __eq__(self, *args, **kwargs):
         return float.__eq__(self.get(), args[0].__float__(), **kwargs)
 
@@ -771,6 +840,9 @@ class DyFloatMagicMethods(DyObjectMagicMethods):
         return float.__pow__(self.get(), args[0].__float__(), **kwargs)
 
     def __radd__(self, *args, **kwargs):
+        return args[0].__float__()
+
+    def __rdivmod__(self, *args, **kwargs):
         return args[0].__float__()
 
     def __repr__(self, *args, **kwargs):
@@ -871,11 +943,17 @@ class DyListMagicMethods(DyObjectMagicMethods):
             return list.__gt__(self.get(), *args, **kwargs)
 
     def __iadd__(self, *args, **kwargs):
-        self.set(list.__add__(self.get(), list(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(list.__add__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(list.__add__(self.get(), *args, **kwargs))
         return self
 
     def __imul__(self, *args, **kwargs):
-        self.set(list.__mul__(self.get(), list(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(list.__mul__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(list.__mul__(self.get(), *args, **kwargs))
         return self
 
     def __iter__(self, *args, **kwargs):
@@ -930,10 +1008,10 @@ class DySetMagicMethods(DyObjectMagicMethods):
             return set.__and__(self.get(), *args, **kwargs)
 
     def __contains__(self, y):
-        if isinstance(args[0], DyObject):
-            return set.__contains__(self.get(), args[0].get(), **kwargs)
+        if isinstance(y, DyObject):
+            return set.__contains__(self.get(), y.get())
         else:
-            return set.__contains__(self.get(), *args, **kwargs)
+            return set.__contains__(self.get(), y)
 
     def __eq__(self, *args, **kwargs):
         if isinstance(args[0], DyObject):
@@ -954,22 +1032,34 @@ class DySetMagicMethods(DyObjectMagicMethods):
             return set.__gt__(self.get(), *args, **kwargs)
 
     def __iand__(self, *args, **kwargs):
-        self.set(set.__and__(self.get(), set(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(set.__and__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(set.__and__(self.get(), *args, **kwargs))
         return self
 
     def __ior__(self, *args, **kwargs):
-        self.set(set.__or__(self.get(), set(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(set.__or__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(set.__or__(self.get(), *args, **kwargs))
         return self
 
     def __isub__(self, *args, **kwargs):
-        self.set(set.__sub__(self.get(), set(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(set.__sub__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(set.__sub__(self.get(), *args, **kwargs))
         return self
 
     def __iter__(self, *args, **kwargs):
         return set.__iter__(self.get(), *args, **kwargs)
 
     def __ixor__(self, *args, **kwargs):
-        self.set(set.__xor__(self.get(), set(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(set.__xor__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(set.__xor__(self.get(), *args, **kwargs))
         return self
 
     def __len__(self, *args, **kwargs):
@@ -1171,11 +1261,17 @@ class DyTupleMagicMethods(DyObjectMagicMethods):
         return int(*args, **kwargs)
 
     def __iadd__(self, *args, **kwargs):
-        self.set(tuple.__add__(self.get(), tuple(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(tuple.__add__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(tuple.__add__(self.get(), *args, **kwargs))
         return self
 
     def __imul__(self, *args, **kwargs):
-        self.set(tuple.__mul__(self.get(), tuple(*args), **kwargs))
+        if isinstance(args[0], DyObject):
+            self.set(tuple.__mul__(self.get(), args[0].get(), **kwargs))
+        else:
+            self.set(tuple.__mul__(self.get(), *args, **kwargs))
         return self
 
     def __radd__(self, *args, **kwargs):

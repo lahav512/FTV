@@ -2,10 +2,11 @@ import copy
 
 
 class MethodContentPattern(object):
-    def __init__(self, pattern: str, methods: list, classes: list=None):
+    def __init__(self, pattern: str, methods: list, classes: list=None, arguments=None):
         self.methods = methods
         self.pattern = pattern
         self.classes = classes
+        self.arguments = arguments
 
     def getContent(self, class_name, method_name):
         content = "\n".join(list(map(lambda line: " "*8 + line, self.pattern.split("\n"))))
@@ -24,6 +25,9 @@ class MethodContentPattern(object):
         if self.classes is not None:
             return cls in self.classes
         return True
+
+    def areArgumentsExist(self):
+        return self.arguments is not None
 
 class IMethodContentPattern(MethodContentPattern):
     def __init__(self, *args, **kwargs):
@@ -91,6 +95,9 @@ class FileString(dict):
                             i_method = copy.copy(method)
                             i_method.setName(method.getName().replace("__", "__i", 1))
                             i_method.setContent(iPat.getContent(cls.getOriginName(), method.getName()))
+                            if iPat.areArgumentsExist():
+                                method.setArguments(iPat.arguments)
+
                             mew_i_methods[i_method.getName()] = i_method
 
                 for rPat in self.rMethodsContentPatterns:
@@ -99,12 +106,17 @@ class FileString(dict):
                             r_method = copy.copy(method)
                             r_method.setName(method.getName().replace("__", "__r", 1))
                             r_method.setContent(rPat.getContent(cls.getOriginName(), method.getName()))
+                            if rPat.areArgumentsExist():
+                                r_method.setArguments(rPat.arguments)
+
                             mew_r_methods[r_method.getName()] = r_method
 
                 for pat in self.methodsContentPatterns:
                     if pat.isClassAllowed(cls.getOriginName()):
                         if method.getName() in pat.methods:
                             method.setContent(pat.getContent(cls.getOriginName(), method.getName()))
+                            if pat.areArgumentsExist():
+                                method.setArguments(pat.arguments)
 
             cls.update(mew_i_methods)
             cls.update(mew_r_methods)
@@ -140,25 +152,25 @@ class FileString(dict):
             for old_parent, new_parent in rep_dict.items():
                 cls.replaceParent(old_parent, new_parent)
 
-    def addMethodsContent(self, content_pattern, methods_names, classes=None):
+    def addMethodsContent(self, content_pattern, methods_names, classes=None, arguments=None):
         for cls in self:
             cls.relevant_methods += methods_names
 
-        self.methodsContentPatterns.append(MethodContentPattern(content_pattern, methods_names, classes=classes))
+        self.methodsContentPatterns.append(MethodContentPattern(content_pattern, methods_names, classes=classes, arguments=arguments))
 
-    def __addNewCharMethod(self, content_pattern, methods_names, classes=None, char=""):
+    def __addNewCharMethod(self, content_pattern, methods_names, char=""):
         for cls in self:
             for method in methods_names:
                 if method in cls.getMethodsNames():
                     cls.relevant_methods += [method.replace("__", f"__{char}", 1)]
 
-    def addNewIMethods(self, content_pattern, methods_names, classes=None):
-        self.__addNewCharMethod(content_pattern, methods_names, classes, "i")
-        self.iMethodsContentPatterns.append(IMethodContentPattern(content_pattern, methods_names, classes=classes))
+    def addNewIMethods(self, content_pattern, methods_names, classes=None, arguments=None):
+        self.__addNewCharMethod(content_pattern, methods_names, "i")
+        self.iMethodsContentPatterns.append(IMethodContentPattern(content_pattern, methods_names, classes=classes, arguments=arguments))
 
-    def addNewRMethods(self,content_pattern, methods_names, classes=None):
-        self.__addNewCharMethod(content_pattern, methods_names, classes, "r")
-        self.rMethodsContentPatterns.append(RMethodContentPattern(content_pattern, methods_names, classes=classes))
+    def addNewRMethods(self,content_pattern, methods_names, classes=None, arguments=None):
+        self.__addNewCharMethod(content_pattern, methods_names, "r")
+        self.rMethodsContentPatterns.append(RMethodContentPattern(content_pattern, methods_names, classes=classes, arguments=arguments))
 
     def __iter__(self):
         return iter(map(lambda item: item[-1], self.items()))

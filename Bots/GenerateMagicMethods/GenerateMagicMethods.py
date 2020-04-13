@@ -55,7 +55,8 @@ iterator_objects = [
 
 other_objects = [
     "complex",
-    "bytes"
+    "bytes",
+    "object"
 ]
 
 compare_methods = [
@@ -96,7 +97,7 @@ dual_math_methods = [
 
 r_dual_math_methods = dual_math_methods
 
-i_dual_math_methods = dual_math_methods
+i_dual_math_methods = dual_math_methods.copy()
 i_dual_math_methods.remove("__divmod__")
 
 string_methods = [
@@ -136,8 +137,11 @@ for obj in iterator_objects + other_objects:
         dual_math_methods + compare_methods, classes=[obj]
     )
     fileString.addNewIMethods(
-        f"self.set({'{'}cls{'}'}.{'{'}method{'}'}(self.get(), {obj}(*args), **kwargs))\n"
-        "return self",
+        f"if isinstance(args[0], DyObject):\n"
+        f"    self.set({'{'}cls{'}'}.{'{'}method{'}'}(self.get(), args[0].get(), **kwargs))\n"
+        f"else:\n"
+        f"    self.set({'{'}cls{'}'}.{'{'}method{'}'}(self.get(), *args, **kwargs))\n"
+        f"return self",
         i_dual_math_methods, classes=[obj]
     )
     fileString.addNewRMethods(
@@ -165,35 +169,20 @@ fileString.addMethodsContent(
     string_methods + type_methods + iterator_methods + single_math_methods
 )
 
-# fileString.addNewIMethods(
-#     "self.set({cls}.{method}(self.get(), args[0] + 0, **kwargs))\n"
-#     "return self",
-#     i_dual_math_methods, classes=numeric_objects
-# )
-# fileString.addNewIMethods(
-#     "self.set({cls}.{method}(self.get(), args[0] + \"\", **kwargs))\n"
-#     "return self",
-#     i_dual_math_methods, classes=string_objects
-# )
-#
-# fileString.addMethodsContent(
-#     "return {cls}.{method}(self.get(), args[0] + 0, **kwargs)",
-#     dual_math_methods, classes=numeric_objects
-# )
-# fileString.addMethodsContent(
-#     "return {cls}.{method}(self.get(), args[0] + \"\", **kwargs)",
-#     dual_math_methods, classes=string_objects
-# )
+### Exceptions
 
-# fileString.addMethodsContent(
-#     "return {cls}.{method}(self.get(), *args, **kwargs)",
-#     compare_methods + single_math_methods + r_dual_math_method + iterator_methods
-# )
+fileString.addMethodsContent(
+    "return {cls}.{method}(self.get(), *args, **kwargs)",
+    ["__format__"], classes=["complex"], arguments=["self", "*args", "**kwargs"]
+)
 
-# fileString.addMethodsContent(
-#     "return {cls}.{method}(self.get(), args[0] + \"\", **kwargs)",
-#     dual_string_methods
-# )
+fileString.addMethodsContent(
+    f"if isinstance(y, DyObject):\n"
+    f"    return {'{'}cls{'}'}.{'{'}method{'}'}(self.get(), y.get())\n"
+    f"else:\n"
+    f"    return {'{'}cls{'}'}.{'{'}method{'}'}(self.get(), y)",
+    ["__contains__"], classes=["set"], arguments=["self", "y"]
+)
 
 fileData = fileString.newFileString.joinFile()
 fileReader.saveFile(new_file_name, fileData, demo_file_path, "### CONTENT")
