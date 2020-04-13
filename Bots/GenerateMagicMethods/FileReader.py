@@ -8,7 +8,7 @@ class MethodContentPattern(object):
         self.classes = classes
 
     def getContent(self, class_name, method_name):
-        content = "\n".join(list(map(lambda line: " "*8 + line.strip(), self.pattern.split("\n"))))
+        content = "\n".join(list(map(lambda line: " "*8 + line, self.pattern.split("\n"))))
         if "{method}" in self.pattern and "{cls}" in self.pattern:
             content = content.format(cls=class_name, method=method_name)
 
@@ -25,12 +25,15 @@ class MethodContentPattern(object):
             return cls in self.classes
         return True
 
-
 class IMethodContentPattern(MethodContentPattern):
     def __init__(self, *args, **kwargs):
         super(IMethodContentPattern, self).__init__(*args, **kwargs)
-        self.iMethods = [m.replace("__", "__i", 1) for m in self.methods]
+        self.iMethods = [m.replace("__", f"__i", 1) for m in self.methods]
 
+class RMethodContentPattern(MethodContentPattern):
+    def __init__(self, *args, **kwargs):
+        super(RMethodContentPattern, self).__init__(*args, **kwargs)
+        self.rMethods = [m.replace("__", f"__r", 1) for m in self.methods]
 
 class FileString(dict):
 
@@ -49,6 +52,7 @@ class FileString(dict):
         self.classesNames = []
         self.methodsContentPatterns = []
         self.iMethodsContentPatterns = []
+        self.rMethodsContentPatterns = []
 
         if relevant_classes is None:
             relevant_classes = []
@@ -79,6 +83,7 @@ class FileString(dict):
     def __updateMethodsContent(self):
         for cls in self:
             mew_i_methods = {}
+            mew_r_methods = {}
             for method in cls:
                 for iPat in self.iMethodsContentPatterns:
                     if iPat.isClassAllowed(cls.getOriginName()):
@@ -88,12 +93,21 @@ class FileString(dict):
                             i_method.setContent(iPat.getContent(cls.getOriginName(), method.getName()))
                             mew_i_methods[i_method.getName()] = i_method
 
+                for rPat in self.rMethodsContentPatterns:
+                    if rPat.isClassAllowed(cls.getOriginName()):
+                        if method.getName() in rPat.methods:
+                            r_method = copy.copy(method)
+                            r_method.setName(method.getName().replace("__", "__r", 1))
+                            r_method.setContent(rPat.getContent(cls.getOriginName(), method.getName()))
+                            mew_r_methods[r_method.getName()] = r_method
+
                 for pat in self.methodsContentPatterns:
                     if pat.isClassAllowed(cls.getOriginName()):
                         if method.getName() in pat.methods:
                             method.setContent(pat.getContent(cls.getOriginName(), method.getName()))
 
             cls.update(mew_i_methods)
+            cls.update(mew_r_methods)
 
     def getFileLines(self) -> [str]:
         return self.fileData.split("\n")
@@ -132,13 +146,19 @@ class FileString(dict):
 
         self.methodsContentPatterns.append(MethodContentPattern(content_pattern, methods_names, classes=classes))
 
-    def addNewIMethods(self, content_pattern, methods_names, classes=None):
+    def __addNewCharMethod(self, content_pattern, methods_names, classes=None, char=""):
         for cls in self:
             for method in methods_names:
                 if method in cls.getMethodsNames():
-                    cls.relevant_methods += [method.replace("__", "__i", 1)]
+                    cls.relevant_methods += [method.replace("__", f"__{char}", 1)]
 
+    def addNewIMethods(self, content_pattern, methods_names, classes=None):
+        self.__addNewCharMethod(content_pattern, methods_names, classes, "i")
         self.iMethodsContentPatterns.append(IMethodContentPattern(content_pattern, methods_names, classes=classes))
+
+    def addNewRMethods(self,content_pattern, methods_names, classes=None):
+        self.__addNewCharMethod(content_pattern, methods_names, classes, "r")
+        self.rMethodsContentPatterns.append(RMethodContentPattern(content_pattern, methods_names, classes=classes))
 
     def __iter__(self):
         return iter(map(lambda item: item[-1], self.items()))

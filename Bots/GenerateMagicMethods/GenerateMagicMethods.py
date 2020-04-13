@@ -38,12 +38,24 @@ for key in builtin_objects.keys():
 numeric_objects = [
     "int",
     "float",
-    "complex",
-    "bytes"
+    "bool"
 ]
 
 string_objects = [
     "str"
+]
+
+iterator_objects = [
+    "list",
+    "set",
+    "dict",
+    "tuple",
+    "bytearray"
+]
+
+other_objects = [
+    "complex",
+    "bytes"
 ]
 
 compare_methods = [
@@ -52,14 +64,15 @@ compare_methods = [
     "__ge__",
     "__le__",
     "__gt__",
-    "__lt__"
+    "__lt__",
+    "__contains__"
 ]
 
 single_math_methods = [
     "__neg__",  # ???
     "__pos__",  # ???
-    "__trunc__",  # ???
-    "__round__",  # ???
+    "__trunc__",
+    "__round__",
     "__ceil__",
     "__floor__",
     "__abs__"
@@ -69,59 +82,39 @@ dual_math_methods = [
     "__add__",
     "__sub__",
     "__mul__",
-    "__floordiv__",  # ???
-    "__truediv__",  # ???
-    "__divmod__",  # ???
-    "__pow__",  # ???
-    "__mod__",  # ???
-    "__lshift__",  # ???
-    "__rshift__",  # ???
-    "__and__",  # ???
-    "__or__",  # ???
-    "__xor__"  # ???
+    "__floordiv__",
+    "__truediv__",
+    "__divmod__",
+    "__pow__",
+    "__mod__",
+    "__lshift__",
+    "__rshift__",
+    "__and__",
+    "__or__",
+    "__xor__"
 ]
 
-i_dual_math_methods = [
-    "__add__",
-    "__sub__",
-    "__mul__",
-    "__and__",  # ???
-    "__or__",  # ???
-    "__xor__"  # ???
-]
+r_dual_math_methods = dual_math_methods
 
-r_methods = [method.replace("__", "__r", 1) for method in dual_math_methods]
-
-# i_methods = [method.replace("__", "__i", 1) for method in dual_math_methods]
+i_dual_math_methods = dual_math_methods
+i_dual_math_methods.remove("__divmod__")
 
 string_methods = [
     "__repr__",
     "__hash__",
-    "__str__"
+    "__str__",
+    "__format__"
 ]
 
-dual_string_methods = [
-    "__format__"
+type_methods = [
+    "__bool__",
+    "__int__",
+    "__float__"
 ]
 
 iterator_methods = [
     "__index__",
     "__invert__",
-    "__contains__",
-    "__reversed__",
-    "__iter__",
-    "__len__"
-]
-
-type_methods = [
-    "__bool__",
-    "__int__"
-]
-
-other_methods = [
-    "__index__",
-    "__invert__",
-    "__contains__",
     "__reversed__",
     "__iter__",
     "__len__"
@@ -134,35 +127,73 @@ fileString = FileString(fileReader.fileData, list(builtin_objects), only_magic_m
 fileString.replaceClassesNames(builtin_objects)
 fileString.replaceClassParentsNames(builtin_objects)
 
-fileString.addNewIMethods(
-    "self.set({cls}.{method}(self.get(), args[0] + 0, **kwargs))\n"
-    "return self",
-    i_dual_math_methods, classes=numeric_objects
-)
-fileString.addNewIMethods(
-    "self.set({cls}.{method}(self.get(), args[0] + \"\", **kwargs))\n"
-    "return self",
-    i_dual_math_methods, classes=string_objects
-)
+for obj in iterator_objects + other_objects:
+    fileString.addMethodsContent(
+        f"if isinstance(args[0], DyObject):\n"
+        f"    return {'{'}cls{'}'}.{'{'}method{'}'}(self.get(), args[0].get(), **kwargs)\n"
+        f"else:\n"
+        f"    return {'{'}cls{'}'}.{'{'}method{'}'}(self.get(), *args, **kwargs)",
+        dual_math_methods + compare_methods, classes=[obj]
+    )
+    fileString.addNewIMethods(
+        f"self.set({'{'}cls{'}'}.{'{'}method{'}'}(self.get(), {obj}(*args), **kwargs))\n"
+        "return self",
+        i_dual_math_methods, classes=[obj]
+    )
+    fileString.addNewRMethods(
+        f"return int(*args, **kwargs)",
+        r_dual_math_methods, classes=[obj]
+    )
 
-fileString.addMethodsContent(
-    "return {cls}.{method}(self.get(), args[0] + 0, **kwargs)",
-    dual_math_methods, classes=numeric_objects
-)
-fileString.addMethodsContent(
-    "return {cls}.{method}(self.get(), args[0] + \"\", **kwargs)",
-    dual_math_methods, classes=string_objects
-)
+for obj in numeric_objects + string_objects:
+    fileString.addMethodsContent(
+        f"return {'{'}cls{'}'}.{'{'}method{'}'}(self.get(), args[0].__{obj}__(), **kwargs)",
+        dual_math_methods + compare_methods, classes=[obj]
+    )
+    fileString.addNewIMethods(
+        f"self.set({'{'}cls{'}'}.{'{'}method{'}'}(self.get(), args[0].__{obj}__(), **kwargs))\n"
+        "return self",
+        i_dual_math_methods, classes=[obj]
+    )
+    fileString.addNewRMethods(
+        f"return args[0].__{obj}__()",
+        r_dual_math_methods, classes=[obj]
+    )
 
 fileString.addMethodsContent(
     "return {cls}.{method}(self.get(), *args, **kwargs)",
-    compare_methods + single_math_methods + r_methods + string_methods + type_methods + iterator_methods
+    string_methods + type_methods + iterator_methods + single_math_methods
 )
 
-fileString.addMethodsContent(
-    "return {cls}.{method}(self.get(), args[0] + \"\", **kwargs)",
-    dual_string_methods
-)
+# fileString.addNewIMethods(
+#     "self.set({cls}.{method}(self.get(), args[0] + 0, **kwargs))\n"
+#     "return self",
+#     i_dual_math_methods, classes=numeric_objects
+# )
+# fileString.addNewIMethods(
+#     "self.set({cls}.{method}(self.get(), args[0] + \"\", **kwargs))\n"
+#     "return self",
+#     i_dual_math_methods, classes=string_objects
+# )
+#
+# fileString.addMethodsContent(
+#     "return {cls}.{method}(self.get(), args[0] + 0, **kwargs)",
+#     dual_math_methods, classes=numeric_objects
+# )
+# fileString.addMethodsContent(
+#     "return {cls}.{method}(self.get(), args[0] + \"\", **kwargs)",
+#     dual_math_methods, classes=string_objects
+# )
+
+# fileString.addMethodsContent(
+#     "return {cls}.{method}(self.get(), *args, **kwargs)",
+#     compare_methods + single_math_methods + r_dual_math_method + iterator_methods
+# )
+
+# fileString.addMethodsContent(
+#     "return {cls}.{method}(self.get(), args[0] + \"\", **kwargs)",
+#     dual_string_methods
+# )
 
 fileData = fileString.newFileString.joinFile()
 fileReader.saveFile(new_file_name, fileData, demo_file_path, "### CONTENT")
