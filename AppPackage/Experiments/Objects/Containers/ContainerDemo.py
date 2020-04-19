@@ -1,10 +1,9 @@
 from PyQt5 import QtCore
-from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import (QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QFrame, QWidget, QStackedLayout, QLayout,
-                             QStackedWidget)
+from PyQt5.QtWidgets import (QHBoxLayout, QLabel)
 
-from AppPackage.Experiments.GeneralObjects.Container import Container, MyCell
+from AppPackage.Experiments.GeneralObjects.Container import Container
+
 
 FONT = "Arial"
 FONT_SIZE = 14

@@ -8,6 +8,10 @@ from FTV.Objects.Variables.DynamicObjects import DyInt, DyBool
 
 class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyModule):
 
+    def _setupBuiltinMethods(self):
+        self._BUILTIN_METHODS |= {"_update_len_true", "_update_value"}
+        super(DyBoolList, self)._setupBuiltinMethods()
+
     def _setupBuiltinVariables(self):
         super(DyBoolList, self)._setupBuiltinVariables()
         self.__value__: bool
@@ -15,7 +19,8 @@ class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyModule):
         self.__iterator__ = []
         self.__len_true__ = DyInt(0, builtin=True)
 
-    def setupTriggers(self):
+    def _setupBuiltinTriggers(self):
+        super(DyBoolList, self)._setupBuiltinTriggers()
         self.addTrigger(self.__len_true__)\
             .setCondition(DyBoolList.IsEqualToLenOf, self)\
             .setAction(self._update_value, True)
