@@ -1,106 +1,110 @@
 class DataStructures:
     class Users:
         account = {
-        "username": str,
-        "password": str,
-        "first_name": str,
-        "last_name": str
-    }  # user name
+            "username": str,
+            "password": str,
+            "first_name": str,
+            "last_name": str
+        }  # user name
 
         workshop = {
-        "username":str,
-        "workshop_name":str,
-        "next_ids":{
-            "station":0,
-            "controller":0,
-            "printer":0,
-            "filament_changer":0,
-            "filament":0
-        },
-        "stations":[],
-        "controllers":[],
-        "printers":[],
-        "filament_changers":[],
-        "filaments":[]
-    }  # workshop name
+            "username": str,
+            "workshop_name": str,
+            "next_ids": {
+                "station": 0,
+                "controller": 0,
+                "printer": 0,
+                "filament_changer": 0,
+                "filament": 0
+            },
+            "stations": [],
+            "controllers": [],
+            "printers": [],
+            "filament_changers": [],
+            "filaments": []
+        }  # workshop name
 
     class Workshops:
         station = {
-            "id": int,
-            "capacity": int,  # max amount of controllers
+            "username": str,
+            "workshop_name": str,  # id
+            "station_name": str,
+            "machine_version": str,
+            "firmware_version": str,
+            "capacity": None,  # str(int)  # max amount of controllers
             "filament_changers": []  # ids of the filament changers
         }  # station name
 
         controller = {
-            "id": int,
-            "printer": int,  # printer id
-            "bed": int,
-            "filament_link": [int, int, int]  # [id of the filament changer, id of the channel, id of the filament]
+            "id": None,  # str(int)
+            "printer": None,  # str(int)  # printer id
+            "bed": None,  # str(int)
+            "filament_link": [str(int), str(int), str(int)]  # [id of the filament changer, id of the channel, id of the filament]
         }
 
         printer = {
-            "id": int,
+            "id": None,  # str(int)
             "name": str,
             "manufacturer": str,
             "firmware": str,
-            "bitrate": int,
+            "bitrate": None,  # str(int)
             "build_size": [
-                float,
-                float,
-                float
+                None,  # str(float)
+                None,  # str(float)
+                str(float)
             ],
-            "nozzle_diameter": float,
-            "head_max_temp": int,
-            "bed_max_temp": int,  # None/0 if there is no bed
-            "min_layer_height": float,  # mm
-            "max_layer_height": float,  # mm
+            "nozzle_diameter": None,  # str(float)
+            "head_max_temp": None,  # str(int)
+            "bed_max_temp": None,  # str(int)  # None/0 if there is no bed
+            "min_layer_height": None,  # str(float)  # mm
+            "max_layer_height": None,  # str(float)  # mm
             "max_velocity": [
-                float,
-                float,
-                float
+                None,  # str(float)
+                None,  # str(float)
+                str(float)
             ],
             "max_print_velocity": [
-                float,
-                float,
-                float
+                None,  # str(float)
+                None,  # str(float)
+                str(float)
             ],  # recommended
             "max_acceleration": [
-                float,
-                float,
-                float
+                None,  # str(float)
+                None,  # str(float)
+                str(float)
             ],
             "statistics": {
-                "entire_life": float,  # hours
-                "print_life_total": float,  # hours
-                "print_life_success": float,  # hours
-                "print_life_failure": float,  # hours
-                "prints_total": int,
-                "prints_success": int,
-                "prints_failure": int
+                "entire_life": None,  # str(float)  # hours
+                "print_life_total": None,  # str(float)  # hours
+                "print_life_success": None,  # str(float)  # hours
+                "print_life_failure": None,  # str(float)  # hours
+                "prints_total": None,  # str(int)
+                "prints_success": None,  # str(int)
+                "prints_failure": str(int)
             }
         }
 
         filament_changer = {
-            "id": int,
-            "capacity": int,  # max amount of channels
-            "min_temp": int,
-            "max_temp": int,
+            "id": None,  # str(int)
+            "capacity": None,  # str(int)  # max amount of channels
+            "min_temp": None,  # str(int)
+            "max_temp": None,  # str(int)
             "channels": {}
         }  # ids of the channels: ids of the filaments
 
         filament = {
-        "id": int,
-        "material": str,
-        "color": str,  # color
-        "min_temp": int,
-        "max_temp": int,
-        "opacity": float,  # 0 < x < 100
-        "diameter": float,  # mm
-        "density": float,  # g/cm^3
-        "initial_weight": float,  # g
-        "initial_length": float,  # mm
-        "spool_weight": float,  # g
-        "current_weight": float,  # g
-        "current_length": float,  # mm
-        "currency": float  # $/g
-    }
+            "id": None,  # str(int)
+            "material": str,
+            "color": str,  # color
+            "min_temp": None,  # str(int)
+            "max_temp": None,  # str(int)
+            "opacity": None,  # str(float)  # 0 < x < 100
+            "diameter": None,  # str(float)  # mm
+            "density": None,  # str(float)  # g/cm^3
+            "initial_weight": None,  # str(float)  # g
+            "initial_length": None,  # str(float)  # mm
+            "spool_weight": None,  # str(float)  # g
+            "current_weight": None,  # str(float)  # g
+            "current_length": None,  # str(float)  # mm
+            "currency": str(float)  # $/g
+        }

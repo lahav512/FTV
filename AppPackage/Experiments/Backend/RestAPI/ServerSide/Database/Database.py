@@ -9,7 +9,8 @@ from AppPackage.Experiments.Backend.RestAPI.ServerSide.Database.DatabaseExceptio
                                                                                            UsernameNotExist,
                                                                                            DatabaseError,
                                                                                            WorkshopNotExist,
-                                                                                           WorkshopExist)
+                                                                                           WorkshopExist, StationExist,
+                                                                                           StationNotExist)
 
 
 DS = copy.copy(DS)
@@ -26,6 +27,8 @@ class Database:
         self.accounts: Collection = self.mongo_db.User.accounts
         self.workshops: Collection = self.mongo_db.User.workshops
 
+        self.stations: Collection = self.mongo_db.Workshop.stations
+
     def getAccount(self, username):
         return self.accounts.find_one({"username": username})
 
@@ -37,6 +40,9 @@ class Database:
 
     def isWorkshopExist(self, username, workshop_name):
         return self.workshops.find_one({"username": username, "workshop_name": workshop_name}) is not None
+
+    def isStationExist(self, username, workshop_name, station_name):
+        return self.stations.find_one({"username": username, "workshop_name": workshop_name, "station_name": station_name}) is not None
 
     def checkUser(self, username, password=None):
         if not self.isUserExist(username):
@@ -97,7 +103,39 @@ class Database:
         if not self.workshops.update_one(filter, {"$set": {"workshop_name": new_workshop_name}}).modified_count:
             raise WorkshopNotExist(username, old_workshop_name)
 
+    def addStation(self, username, password, workshop_name, station_name, **kwargs):
+        self.checkUser(username, password)
 
+        if not self.isWorkshopExist(username, workshop_name):
+            raise WorkshopNotExist(username, workshop_name)
+
+        if self.isStationExist(username, workshop_name, station_name):
+            raise StationExist(username, workshop_name, station_name)
+
+        station = DS.Workshops.station
+        station["username"] = username
+        station["workshop_name"] = workshop_name
+        station["station_name"] = station_name
+        station.update(kwargs)
+
+        self.stations.insert_one(station)
+
+    def removeStation(self, username, password, workshop_name, station_name):
+        self.checkUser(username, password)
+        filter = {"username": username, "workshop_name": workshop_name, "station_name": station_name}
+
+        if not self.stations.delete_one(filter).deleted_count:
+            raise StationNotExist(username, workshop_name, station_name)
+
+    def renameStation(self, username, password, workshop_name, old_station_name, new_station_name):
+        self.checkUser(username, password)
+        filter = {"username": username, "workshop_name": workshop_name, "station_name": old_station_name}
+
+        if self.isStationExist(username, workshop_name, new_station_name):
+            raise StationExist(username, workshop_name, new_station_name)
+
+        if not self.stations.update_one(filter, {"$set": {"station_name": new_station_name}}).modified_count:
+            raise StationNotExist(username, workshop_name, old_station_name)
 
 class DatabaseServer(Database):
     pass
@@ -116,6 +154,13 @@ if __name__ == '__main__':
 
         # dbs.renameWorkshop("daniel360", "1234", "apartment", "Apartment")
         # dbs.renameWorkshop("lahav512", "1234", "apartment", "Apartment")
+
+        # station = {"machine_version": "0.1", "firmware_version": "0.1"}
+        # dbs.addStation("lahav512", "1234", "Apartment", "Main", **station)
+        # dbs.addStation("lahav512", "1234", "Hamama", "Hexagon Room", **station)
+        # dbs.removeStation("lahav512", "1234", "Hamama", "Hexagon Room")
+        # dbs.renameStation("lahav512", "1234", "Apartment", "main", "Main")
+
         pass
 
     except DatabaseError as e:

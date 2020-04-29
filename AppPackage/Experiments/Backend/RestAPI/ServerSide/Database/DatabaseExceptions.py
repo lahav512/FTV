@@ -46,3 +46,23 @@ class WorkshopNotExist(DatabaseError):
 
     def __str__(self):
         return f"The workshop, \"{self.workshop_name}\", is not exist in the username, \"{self.username}\"."
+
+# StationError
+
+class StationExist(DatabaseError):
+    def __init__(self, username, workshop_name, station_name):
+        self.username = username
+        self.workshop_name = workshop_name
+        self.station_name = station_name
+
+    def __str__(self):
+        return f"The station, \"{self.station_name}\", is already exist in the workshop, \"{self.workshop_name}\", of the username, \"{self.username}\"."
+
+class StationNotExist(DatabaseError):
+    def __init__(self, username, workshop_name, station_name):
+        self.username = username
+        self.workshop_name = workshop_name
+        self.station_name = station_name
+
+    def __str__(self):
+        return f"The station, \"{self.station_name}\", is not exist in the workshop, \"{self.workshop_name}\", of the username, \"{self.username}\"."
