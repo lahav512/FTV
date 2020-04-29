@@ -66,6 +66,7 @@ class Database:
 
         self.checkUser(username, password)
         self.accounts.delete_one({"username": username})
+        self.workshops.delete_many({"username": username})
 
     def addWorkshop(self, username, password, workshop_name):
         self.checkUser(username, password)
@@ -86,6 +87,18 @@ class Database:
         if not self.workshops.delete_one(filter).deleted_count:
             raise WorkshopNotExist(username, workshop_name)
 
+    def renameWorkshop(self, username, password, old_workshop_name, new_workshop_name):
+        self.checkUser(username, password)
+        filter = {"username": username, "workshop_name": old_workshop_name}
+
+        if self.isWorkshopExist(username, new_workshop_name):
+            raise WorkshopExist(username, new_workshop_name)
+
+        if not self.workshops.update_one(filter, {"$set": {"workshop_name": new_workshop_name}}).modified_count:
+            raise WorkshopNotExist(username, old_workshop_name)
+
+
+
 class DatabaseServer(Database):
     pass
 
@@ -95,28 +108,15 @@ if __name__ == '__main__':
     try:
         # dbs.addUser("daniel360", "1234", "Daniel", "Shtibel")
         # dbs.addUser("lahav512", "1234", "Lahav", "Svorai")
-        dbs.addWorkshop("daniel360", "1234", "apartment")
-        # dbs.removeWorkshop(username, password, "apartment")
-        # dbs.removeUser(username, password)
+        # dbs.removeUser("daniel360", "1234")
+
+        # dbs.addWorkshop("daniel360", "1234", "Hamama")
+        # dbs.addWorkshop("daniel360", "1234", "Apartment")
+        # dbs.addWorkshop("lahav512", "1234", "Hamama")
+
+        # dbs.renameWorkshop("daniel360", "1234", "apartment", "Apartment")
+        # dbs.renameWorkshop("lahav512", "1234", "apartment", "Apartment")
+        pass
 
     except DatabaseError as e:
         print(e)
-    #
-    # dbs.saveToFile()
-
-    # user_1 = {
-    #     "username": "lahav512",
-    #     "password": "1234",
-    #     "first_name": "Lahav",
-    #     "last_name": "Svorai"
-    # }
-    # user_2 = {
-    #     "username": "daniel360",
-    #     "password": "1234",
-    #     "first_name": "Daniel",
-    #     "last_name": "Shtibel"
-    # }
-    # accounts.insert_many([user_1, user_2])
-
-    # ans = accounts.find_one({"username": "lahav512"})
-    # print(ans)
