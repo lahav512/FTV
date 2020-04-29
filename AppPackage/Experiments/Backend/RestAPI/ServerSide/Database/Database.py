@@ -73,11 +73,27 @@ if __name__ == '__main__':
         username = "daniel360"
         password = "1234"
 
-        # dbs.addUser(username, password, "Daniel", "Shtibel")
+        dbs.addUser(username, password, "Daniel", "Shtibel")
         dbs.addWorkshop(username, password, "apartment")
+        # dbs.removeWorkshop(username, password, "apartment")
         # dbs.removeUser(username, password)
 
     except DatabaseError as e:
         print(e)
 
     dbs.saveToFile()
+
+    # client = MongoClient('', 27017)
+    # db = client.auto_print
+    # users = db.users
+    #
+    # user_1 = {
+    #     "username": "lahav512",
+    #     "password": "1234",
+    #     "first_name": "Lahav",
+    #     "last_name": "Svorai"
+    # }
+    # users.insert_one(user_1)
+    #
+    # ans = users.find_one(user_1)
+    # print(ans)
