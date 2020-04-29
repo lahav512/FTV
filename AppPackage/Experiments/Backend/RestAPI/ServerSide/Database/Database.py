@@ -3,7 +3,9 @@ import json
 import os
 
 from AppPackage.Experiments.Backend.RestAPI.ServerSide.Database.DataStructures import DataStructures as DS
-from AppPackage.Experiments.Backend.RestAPI.ServerSide.Database.DatabaseExceptions import UsernameExists
+from AppPackage.Experiments.Backend.RestAPI.ServerSide.Database.DatabaseExceptions import (UsernameExist, WrongPassword,
+                                                                                           UsernameNotExist,
+                                                                                           DatabaseError)
 
 
 DS = copy.copy(DS)
@@ -26,17 +28,36 @@ class Database:
     def isUserExist(self, username):
         return username in self.users.keys()
 
+    def checkUser(self, username, password=None):
+        if not self.isUserExist(username):
+            raise UsernameNotExist(username)
+
+        if password is not None:
+            if self.users[username]["account"]["password"] == password:
+                return "User has been approved."
+            else:
+                raise WrongPassword(username)
+
     def addUser(self, username, password, first_name="", last_name=""):
         if self.isUserExist(username):
-            raise UsernameExists(username)
+            raise UsernameExist(username)
 
         self.users[username] = DS.user
-
         account = self.users[username]["account"]
         account["first_name"] = first_name
         account["last_name"] = last_name
         account["password"] = password
 
+    def removeUser(self, username, password):
+        if not self.isUserExist(username):
+            raise UsernameNotExist(username)
+
+        self.checkUser(username, password)
+        del self.users[username]
+
+    def addWorkshop(self, username, password, workshop):
+        self.checkUser(username, password)
+        self.users[username]["workshops"][workshop] = DS.workshop
 
 class DatabaseServer(Database):
     pass
@@ -45,8 +66,14 @@ class DatabaseServer(Database):
 if __name__ == '__main__':
     dbs = DatabaseServer()
     try:
-        dbs.addUser("daniel360", "1234", "Daniel", "Shtibel")
-    except UsernameExists as e:
+        username = "daniel360"
+        password = "1234"
+
+        # dbs.addUser(username, password, "Daniel", "Shtibel")
+        # dbs.addWorkshop(username, password, "apartment")
+        dbs.removeUser(username, password)
+
+    except DatabaseError as e:
         print(e)
 
     dbs.saveToFile()
