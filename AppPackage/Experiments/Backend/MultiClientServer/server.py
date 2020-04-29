@@ -41,7 +41,7 @@ def bind_socket():
 
 
 # Handling connection from multiple clients and saving to a list
-# Closing previous connections when server.py file is restarted
+# Closing previous connections when Server.py file is restarted
 
 def accepting_connections():
     for c in connections:
