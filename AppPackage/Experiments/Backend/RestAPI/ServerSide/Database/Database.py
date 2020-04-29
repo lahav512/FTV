@@ -59,6 +59,10 @@ class Database:
         self.checkUser(username, password)
         self.users[username]["workshops"][workshop] = DS.workshop
 
+    def removeWorkshop(self, username, password, workshop):
+        self.checkUser(username, password)
+        del self.users[username]["workshops"][workshop]
+
 class DatabaseServer(Database):
     pass
 
@@ -70,8 +74,8 @@ if __name__ == '__main__':
         password = "1234"
 
         # dbs.addUser(username, password, "Daniel", "Shtibel")
-        # dbs.addWorkshop(username, password, "apartment")
-        dbs.removeUser(username, password)
+        dbs.addWorkshop(username, password, "apartment")
+        # dbs.removeUser(username, password)
 
     except DatabaseError as e:
         print(e)
