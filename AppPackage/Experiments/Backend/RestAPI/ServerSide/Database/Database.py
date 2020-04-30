@@ -1,6 +1,7 @@
 import copy
 import os
 
+import wrapt
 from pymongo import MongoClient
 from pymongo.collection import Collection
 
@@ -16,6 +17,38 @@ from AppPackage.Experiments.Backend.RestAPI.ServerSide.Database.DatabaseExceptio
 DS = copy.copy(DS)
 current_dir = os.getcwd().replace("\\", "/")
 database_path = current_dir + "/database.json"
+
+class WorkshopAddChild(object):
+    def __init__(self, child_type):
+        super(WorkshopAddChild, self).__init__()
+        self.child_type = child_type
+
+    @wrapt.decorator
+    def __call__(self, wrapped, instance, args, kwargs):
+        _args = tuple(list(args) + [self.child_type])
+        instance._addWorkshopChild(*_args, **kwargs)
+        ans = wrapped(*args, **kwargs)
+        return ans
+
+class WorkshopRemoveChild(object):
+    def __init__(self, child_type):
+        super(WorkshopRemoveChild, self).__init__()
+        self.child_type = child_type
+
+    @wrapt.decorator
+    def __call__(self, wrapped, instance, args, kwargs):
+        _args = tuple(list(args) + [self.child_type])
+        instance._removeWorkshopChild(*_args, **kwargs)
+        ans = wrapped(*args, **kwargs)
+        return ans
+
+class WorkshopChildType:
+    station = {"type":"Station", "tag":"station"}
+    controller = {"type":"Controller", "tag":"controller"}
+    printer = {"type":"Printer", "tag":"printer"}
+    filament_changer = {"type":"FilamentChanger", "tag":"filament_changer"}
+    filament = {"type":"Filament", "tag":"filament"}
+
 
 class Database:
     def __init__(self):
@@ -103,29 +136,43 @@ class Database:
         if not self.workshops.update_one(filter, {"$set": {"workshop_name": new_workshop_name}}).modified_count:
             raise WorkshopNotExist(username, old_workshop_name)
 
-    def addStation(self, username, password, workshop_name, station_name, **kwargs):
+    def _addWorkshopChild(self, username, password, workshop_name, child_type, child_name=None, **kwargs):
         self.checkUser(username, password)
 
         if not self.isWorkshopExist(username, workshop_name):
             raise WorkshopNotExist(username, workshop_name)
 
-        if self.isStationExist(username, workshop_name, station_name):
-            raise StationExist(username, workshop_name, station_name)
+        is_child_exist_func = getattr(self, f"is{child_type['type']}Exist")
+        child_exception = eval(f"{child_type['type']}Exist")
 
-        station = DS.Workshops.station
-        station["username"] = username
-        station["workshop_name"] = workshop_name
-        station["station_name"] = station_name
-        station.update(kwargs)
+        if is_child_exist_func(username, workshop_name, child_name):
+            raise child_exception(username, workshop_name, child_name)
 
-        self.stations.insert_one(station)
+        child = getattr(DS.Workshops, child_type["tag"])
+        child["username"] = username
+        child["workshop_name"] = workshop_name
+        child[f"{child_type['tag']}_name"] = child_name
+        child.update(kwargs)
 
-    def removeStation(self, username, password, workshop_name, station_name):
+        self.stations.insert_one(child)
+
+    def _removeWorkshopChild(self, username, password, workshop_name, child_type, child_name=None):
         self.checkUser(username, password)
-        filter = {"username": username, "workshop_name": workshop_name, "station_name": station_name}
+        filter = {"username": username, "workshop_name": workshop_name, f"{child_type['tag']}_name": child_name}
 
-        if not self.stations.delete_one(filter).deleted_count:
-            raise StationNotExist(username, workshop_name, station_name)
+        child_obj = getattr(self, f"{child_type['tag']}s")
+        child_exception = eval(f"{child_type['type']}NotExist")
+
+        if not child_obj.delete_one(filter).deleted_count:
+            raise child_exception(username, workshop_name, child_name)
+
+    @WorkshopAddChild(WorkshopChildType.station)
+    def addStation(self, username, password, workshop_name, station_name, **kwargs):
+        pass
+
+    @WorkshopRemoveChild(WorkshopChildType.station)
+    def removeStation(self, username, password, workshop_name, station_name):
+        pass
 
     def renameStation(self, username, password, workshop_name, old_station_name, new_station_name):
         self.checkUser(username, password)
@@ -136,6 +183,14 @@ class Database:
 
         if not self.stations.update_one(filter, {"$set": {"station_name": new_station_name}}).modified_count:
             raise StationNotExist(username, workshop_name, old_station_name)
+
+    @WorkshopAddChild(WorkshopChildType.controller)
+    def addController(self, username, password, workshop_name, station_name, **kwargs):
+        pass
+
+    @WorkshopRemoveChild(WorkshopChildType.controller)
+    def removeController(self, username, password, workshop_name, station_name):
+        pass
 
 class DatabaseServer(Database):
     pass
@@ -156,10 +211,13 @@ if __name__ == '__main__':
         # dbs.renameWorkshop("lahav512", "1234", "apartment", "Apartment")
 
         # station = {"machine_version": "0.1", "firmware_version": "0.1"}
-        # dbs.addStation("lahav512", "1234", "Apartment", "Main", **station)
+        # dbs.addStation("lahav512", "1234", "Apartment", "Secondary", **station)
         # dbs.addStation("lahav512", "1234", "Hamama", "Hexagon Room", **station)
-        # dbs.removeStation("lahav512", "1234", "Hamama", "Hexagon Room")
+        # dbs.removeStation("lahav512", "1234", "Apartment", "Secondary")
         # dbs.renameStation("lahav512", "1234", "Apartment", "main", "Main")
+
+        controller = {"machine_version": "0.1", "firmware_version": "0.1"}
+        dbs.addStation("lahav512", "1234", "Apartment", **controller)
 
         pass
 
