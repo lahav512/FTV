@@ -6,33 +6,33 @@ from pymongo import MongoClient
 from pymongo.collection import Collection
 
 from AppPackage.Experiments.Backend.RestAPI.ServerSide.Database.DataStructures import DataStructures as DS
-from AppPackage.Experiments.Backend.RestAPI.ServerSide.Database.DatabaseExceptions import (UsernameExist, WrongPassword,
-                                                                                           UsernameNotExist,
-                                                                                           DatabaseError,
-                                                                                           WorkshopNotExist,
-                                                                                           WorkshopExist, StationExist,
-                                                                                           StationNotExist)
+from AppPackage.Experiments.Backend.RestAPI.ServerSide.Database.DatabaseExceptions import *
 
 
 DS = copy.copy(DS)
 current_dir = os.getcwd().replace("\\", "/")
 database_path = current_dir + "/database.json"
 
-class WorkshopAddChild(object):
-    def __init__(self, child_type):
-        super(WorkshopAddChild, self).__init__()
+class WorkshopAddDevice(object):
+    def __init__(self, child_type, allow_name=False):
+        super(WorkshopAddDevice, self).__init__()
         self.child_type = child_type
+        self.allow_name = allow_name
 
     @wrapt.decorator
     def __call__(self, wrapped, instance, args, kwargs):
+        args = tuple(str(arg) for arg in args)
         _args = tuple(list(args) + [self.child_type])
-        instance._addWorkshopChild(*_args, **kwargs)
-        ans = wrapped(*args, **kwargs)
-        return ans
+        _kwargs = kwargs
+        _kwargs["allow_name"] = self.allow_name
+        instance._addWorkshopChild(*_args, **_kwargs)
+        # ans = wrapped(*args, **kwargs)
+        # return ans
 
-class WorkshopRemoveChild(object):
+
+class WorkshopRemoveDevice(object):
     def __init__(self, child_type):
-        super(WorkshopRemoveChild, self).__init__()
+        super(WorkshopRemoveDevice, self).__init__()
         self.child_type = child_type
 
     @wrapt.decorator
@@ -41,6 +41,7 @@ class WorkshopRemoveChild(object):
         instance._removeWorkshopChild(*_args, **kwargs)
         ans = wrapped(*args, **kwargs)
         return ans
+
 
 class WorkshopChildType:
     station = {"type":"Station", "tag":"station"}
@@ -61,12 +62,24 @@ class Database:
         self.workshops: Collection = self.mongo_db.User.workshops
 
         self.stations: Collection = self.mongo_db.Workshop.stations
+        self.controllers: Collection = self.mongo_db.Workshop.controllers
+        self.filament_changers: Collection = self.mongo_db.Workshop.filament_changers
 
     def getAccount(self, username):
         return self.accounts.find_one({"username": username})
 
     def getWorkshops(self, username):
-        return self.workshops.find_one({"username": username})
+        return self.workshops.find_many({"username": username})
+
+    def getStations(self, username):
+        return self.stations.find_many({"username": username})
+
+    def getStation(self, username, workshop_name, station_name, station_id=None):
+        _filter = {"username": username, "workshop_name": workshop_name, "station_name": station_name}
+        if station_id is not None:
+            _filter["device_id"] = station_id
+
+        return self.stations.find_one(_filter)
 
     def isUserExist(self, username):
         return self.accounts.find_one({"username": username}) is not None
@@ -76,6 +89,15 @@ class Database:
 
     def isStationExist(self, username, workshop_name, station_name):
         return self.stations.find_one({"username": username, "workshop_name": workshop_name, "station_name": station_name}) is not None
+
+    def isStationRegistered(self, station_id):
+        return self.stations.find_one({"device_id": str(station_id)}) is not None
+
+    def isControllerRegistered(self, controller_id):
+        return self.controllers.find_one({"device_id": str(controller_id)}) is not None
+
+    def isFilamentChangerRegistered(self, filament_changer_id):
+        return self.filament_changers.find_one({"device_id": str(filament_changer_id)}) is not None
 
     def checkUser(self, username, password=None):
         if not self.isUserExist(username):
@@ -121,76 +143,107 @@ class Database:
 
     def removeWorkshop(self, username, password, workshop_name):
         self.checkUser(username, password)
-        filter = {"username": username, "workshop_name": workshop_name}
+        _filter = {"username": username, "workshop_name": workshop_name}
 
-        if not self.workshops.delete_one(filter).deleted_count:
+        if not self.workshops.delete_one(_filter).deleted_count:
             raise WorkshopNotExist(username, workshop_name)
 
     def renameWorkshop(self, username, password, old_workshop_name, new_workshop_name):
         self.checkUser(username, password)
-        filter = {"username": username, "workshop_name": old_workshop_name}
+        _filter = {"username": username, "workshop_name": old_workshop_name}
 
         if self.isWorkshopExist(username, new_workshop_name):
             raise WorkshopExist(username, new_workshop_name)
 
-        if not self.workshops.update_one(filter, {"$set": {"workshop_name": new_workshop_name}}).modified_count:
+        if not self.workshops.update_one(_filter, {"$set": {"workshop_name": new_workshop_name}}).modified_count:
             raise WorkshopNotExist(username, old_workshop_name)
 
-    def _addWorkshopChild(self, username, password, workshop_name, child_type, child_name=None, **kwargs):
+    def _addWorkshopChild(self, username, password, workshop_name, child_id, child_type, child_name=None, allow_name=False, **kwargs):
         self.checkUser(username, password)
 
         if not self.isWorkshopExist(username, workshop_name):
             raise WorkshopNotExist(username, workshop_name)
 
-        is_child_exist_func = getattr(self, f"is{child_type['type']}Exist")
-        child_exception = eval(f"{child_type['type']}Exist")
+        is_child_registered_func = getattr(self, f"is{child_type['type']}Registered")
+        child_registered_exception = eval(f"{child_type['type']}Registered")
 
-        if is_child_exist_func(username, workshop_name, child_name):
-            raise child_exception(username, workshop_name, child_name)
+        if is_child_registered_func(child_id):
+            raise child_registered_exception(child_id)
+
+        if allow_name:
+            is_child_exist_func = getattr(self, f"is{child_type['type']}Exist")
+            child_exist_exception = eval(f"{child_type['type']}Exist")
+
+            if is_child_exist_func(username, workshop_name, child_name):
+                raise child_exist_exception(username, workshop_name, child_name)
 
         child = getattr(DS.Workshops, child_type["tag"])
         child["username"] = username
         child["workshop_name"] = workshop_name
+        child["device_id"] = child_id
         child[f"{child_type['tag']}_name"] = child_name
         child.update(kwargs)
 
-        self.stations.insert_one(child)
+        child_obj = getattr(self, f"{child_type['tag']}s")
+        return child_obj.insert_one(child)
 
-    def _removeWorkshopChild(self, username, password, workshop_name, child_type, child_name=None):
+    def _removeWorkshopChild(self, username, password, workshop_name, child_id, child_type):
         self.checkUser(username, password)
-        filter = {"username": username, "workshop_name": workshop_name, f"{child_type['tag']}_name": child_name}
+        _filter = {"username": username, "device_id": str(child_id), "workshop_name": workshop_name}
+        # if workshop_name is not None:
+        #     _filter["workshop_name"] = workshop_name
+        # if child_name is not None:
+        #     _filter[f"{child_type['tag']}_name"] = child_name
+
+        if not self.isWorkshopExist(username, workshop_name):
+            raise WorkshopNotExist(username, workshop_name)
 
         child_obj = getattr(self, f"{child_type['tag']}s")
-        child_exception = eval(f"{child_type['type']}NotExist")
+        child_exception = eval(f"{child_type['type']}NotRegistered")
 
-        if not child_obj.delete_one(filter).deleted_count:
-            raise child_exception(username, workshop_name, child_name)
+        result = child_obj.delete_one(_filter)
 
-    @WorkshopAddChild(WorkshopChildType.station)
-    def addStation(self, username, password, workshop_name, station_name, **kwargs):
+        if not result.deleted_count:
+            raise child_exception(child_id)
+
+        return result
+
+    @WorkshopAddDevice(WorkshopChildType.station, allow_name=True)
+    def addStation(self, username, password, workshop_name, station_id, station_name=None, **kwargs):
         pass
 
-    @WorkshopRemoveChild(WorkshopChildType.station)
-    def removeStation(self, username, password, workshop_name, station_name):
+    @WorkshopRemoveDevice(WorkshopChildType.station)
+    def removeStation(self, username, password, workshop_name, station_id):
         pass
 
-    def renameStation(self, username, password, workshop_name, old_station_name, new_station_name):
+    def renameStation(self, username, password, workshop_name, station_id, new_station_name):
         self.checkUser(username, password)
-        filter = {"username": username, "workshop_name": workshop_name, "station_name": old_station_name}
+
+        if not self.isStationRegistered(station_id):
+            raise StationNotRegistered(station_id)
 
         if self.isStationExist(username, workshop_name, new_station_name):
             raise StationExist(username, workshop_name, new_station_name)
 
-        if not self.stations.update_one(filter, {"$set": {"station_name": new_station_name}}).modified_count:
-            raise StationNotExist(username, workshop_name, old_station_name)
+        _filter = {"username": username, "workshop_name": workshop_name, "device_id": str(station_id)}
+        self.stations.update_one(_filter, {"$set": {"station_name": new_station_name}})
 
-    @WorkshopAddChild(WorkshopChildType.controller)
-    def addController(self, username, password, workshop_name, station_name, **kwargs):
+    @WorkshopAddDevice(WorkshopChildType.controller)
+    def addController(self, username, password, workshop_name, controller_id, controller_name=None, **kwargs):
         pass
 
-    @WorkshopRemoveChild(WorkshopChildType.controller)
-    def removeController(self, username, password, workshop_name, station_name):
+    @WorkshopRemoveDevice(WorkshopChildType.controller)
+    def removeController(self, username, password, workshop_name, controller_id):
         pass
+
+    @WorkshopAddDevice(WorkshopChildType.filament_changer)
+    def addFilamentChanger(self, username, password, workshop_name, filament_changer_id, filament_changer_name=None, **kwargs):
+        pass
+
+    @WorkshopRemoveDevice(WorkshopChildType.filament_changer)
+    def removeFilamentChanger(self, username, password, workshop_name, filament_changer_id):
+        pass
+
 
 class DatabaseServer(Database):
     pass
@@ -213,13 +266,14 @@ if __name__ == '__main__':
         # station = {"machine_version": "0.1", "firmware_version": "0.1"}
         # dbs.addStation("lahav512", "1234", "Apartment", "Secondary", **station)
         # dbs.addStation("lahav512", "1234", "Hamama", "Hexagon Room", **station)
-        # dbs.removeStation("lahav512", "1234", "Apartment", "Secondary")
-        # dbs.renameStation("lahav512", "1234", "Apartment", "main", "Main")
+        # dbs.removeStation("lahav512", "1234", "Apartment", 1)
+        # dbs.renameStation("lahav512", "1234", "Apartment", 0, "Frist Floor")
 
-        controller = {"machine_version": "0.1", "firmware_version": "0.1"}
-        dbs.addStation("lahav512", "1234", "Apartment", **controller)
+        # controller = {"machine_version": "0.1", "firmware_version": "0.1"}
+        # dbs.addController("lahav512", "1234", "Apartment", 1, **controller)
+        # dbs.removeController("lahav512", "1234", "Apartment", 1)
 
-        pass
+        print("Action completed successfully.")
 
     except DatabaseError as e:
         print(e)

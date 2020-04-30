@@ -29,7 +29,7 @@ class DataStructures:
             "username": str,
             "workshop_name": str,  # id
             "station_name": str,
-            "machine_id": str,  # str(int)
+            "device_id": str,  # str(int)
             "machine_version": str,
             "firmware_version": str,
             "capacity": None,  # str(int)  # max amount of controllers
@@ -37,11 +37,19 @@ class DataStructures:
         }  # station name
 
         controller = {
-            "machine_id": str,  # str(int)
+            "device_id": str,  # str(int)
             "printer": None,  # str(int)  # printer id
             "bed": None,  # str(int)
             "filament_link": [str(int), str(int), str(int)]  # [id of the filament changer, id of the channel, id of the filament]
         }
+
+        filament_changer = {
+            "device_id": None,  # str(int)
+            "capacity": None,  # str(int)  # max amount of channels
+            "min_temp": None,  # str(int)
+            "max_temp": None,  # str(int)
+            "channels": {}
+        }  # ids of the channels: ids of the filaments
 
         printer = {
             "id": None,  # str(int)
@@ -84,14 +92,6 @@ class DataStructures:
                 "prints_failure": str(int)
             }
         }
-
-        filament_changer = {
-            "id": None,  # str(int)
-            "capacity": None,  # str(int)  # max amount of channels
-            "min_temp": None,  # str(int)
-            "max_temp": None,  # str(int)
-            "channels": {}
-        }  # ids of the channels: ids of the filaments
 
         filament = {
             "id": None,  # str(int)
