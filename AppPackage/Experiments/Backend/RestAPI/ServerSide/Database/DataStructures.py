@@ -21,7 +21,7 @@ class DataStructures:
             "filaments": []
         }  # workshop name
 
-    class Workshops:
+    class Devices:
         station = {
             "username": None,  # str
             "workshop_name": None,  # str
@@ -58,7 +58,8 @@ class DataStructures:
             "username": None,  # str
             "workshop_name": None,  # str
             "printer_name": None,  # str
-            "id": None,  # str(int)
+            "device_id": None,  # str(int)
+            "model": None,  # str
             "manufacturer": None,  # str
             "firmware": None,  # str
             "bitrate": None,  # str(int)

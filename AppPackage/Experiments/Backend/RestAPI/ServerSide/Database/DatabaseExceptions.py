@@ -1,9 +1,14 @@
 class DatabaseError(Exception):
     pass
 
+class DeviceChildError(DatabaseError):
+    def __init__(self, child_id, workshop_name=None):
+        self.workshop_name = workshop_name
+        self.printer_id = child_id
+
 # UserError
 
-class UsernameExist(DatabaseError):
+class UsernameExist(DeviceChildError):
 
     def __init__(self, username):
         self.username = username
@@ -11,7 +16,7 @@ class UsernameExist(DatabaseError):
     def __str__(self):
         return f"The username, \"{self.username}\", is already exist."
 
-class UsernameNotExist(DatabaseError):
+class UsernameNotExist(DeviceChildError):
 
     def __init__(self, username):
         self.username = username
@@ -19,7 +24,7 @@ class UsernameNotExist(DatabaseError):
     def __str__(self):
         return f"The username, \"{self.username}\", is not exist."
 
-class WrongPassword(DatabaseError):
+class WrongPassword(DeviceChildError):
 
     def __init__(self, username):
         self.username = username
@@ -27,9 +32,9 @@ class WrongPassword(DatabaseError):
     def __str__(self):
         return f"The password for the username, \"{self.username}\", is wrong."
 
-# WorkshopError
+# DeviceError
 
-class WorkshopExist(DatabaseError):
+class DeviceExist(DeviceChildError):
 
     def __init__(self, username, workshop_name):
         self.username = username
@@ -38,7 +43,7 @@ class WorkshopExist(DatabaseError):
     def __str__(self):
         return f"The workshop, \"{self.workshop_name}\", is already exist in the username, \"{self.username}\"."
 
-class WorkshopNotExist(DatabaseError):
+class DeviceNotExist(DeviceChildError):
 
     def __init__(self, username, workshop_name):
         self.username = username
@@ -49,7 +54,7 @@ class WorkshopNotExist(DatabaseError):
 
 # StationError
 
-class StationExist(DatabaseError):
+class StationExist(DeviceChildError):
     def __init__(self, username, workshop_name, station_name):
         self.username = username
         self.workshop_name = workshop_name
@@ -58,7 +63,7 @@ class StationExist(DatabaseError):
     def __str__(self):
         return f"The station, \"{self.station_name}\", is already exist in the workshop, \"{self.workshop_name}\", of the username, \"{self.username}\"."
 
-class StationNotExist(DatabaseError):
+class StationNotExist(DeviceChildError):
     def __init__(self, username, workshop_name, station_name):
         self.username = username
         self.workshop_name = workshop_name
@@ -67,14 +72,14 @@ class StationNotExist(DatabaseError):
     def __str__(self):
         return f"The station, \"{self.station_name}\", is not exist in the workshop, \"{self.workshop_name}\", of the username, \"{self.username}\"."
 
-class StationRegistered(DatabaseError):
+class StationRegistered(DeviceChildError):
     def __init__(self, station_id):
         self.station_id = station_id
 
     def __str__(self):
         return f"The station id, \"{self.station_id}\", is already registered."
 
-class StationNotRegistered(DatabaseError):
+class StationNotRegistered(DeviceChildError):
     def __init__(self, station_id):
         self.station_id = station_id
 
@@ -83,14 +88,14 @@ class StationNotRegistered(DatabaseError):
 
 # ControllerError
 
-class ControllerRegistered(DatabaseError):
+class ControllerRegistered(DeviceChildError):
     def __init__(self, controller_id):
         self.controller_id = controller_id
 
     def __str__(self):
         return f"The controller id, \"{self.controller_id}\", is already registered."
 
-class ControllerNotRegistered(DatabaseError):
+class ControllerNotRegistered(DeviceChildError):
     def __init__(self, controller_id):
         self.controller_id = controller_id
 
@@ -99,16 +104,34 @@ class ControllerNotRegistered(DatabaseError):
 
 # FilamentChangerError
 
-class FilamentChangerRegistered(DatabaseError):
+class FilamentChangerRegistered(DeviceChildError):
     def __init__(self, filament_changer_id):
         self.filament_changer_id = filament_changer_id
 
     def __str__(self):
         return f"The filament changer id, \"{self.filament_changer_id}\", is already registered."
 
-class FilamentChangerNotRegistered(DatabaseError):
+class FilamentChangerNotRegistered(DeviceChildError):
     def __init__(self, filament_changer_id):
         self.filament_changer_id = filament_changer_id
 
     def __str__(self):
         return f"The filament changer id, \"{self.filament_changer_id}\", is not registered."
+
+# PrinterError
+
+class PrinterRegistered(DeviceChildError):
+    def __init__(self, workshop_name, printer_id):
+        self.workshop_name = workshop_name
+        self.printer_id = printer_id
+
+    def __str__(self):
+        return f"The printer id, \"{self.printer_id}\", is already registered in the workshop, \"{self.workshop_name}\"."
+
+class PrinterNotRegistered(DeviceChildError):
+    def __init__(self, workshop_name, printer_id):
+        self.workshop_name = workshop_name
+        self.printer_id = printer_id
+
+    def __str__(self):
+        return f"The printer id, \"{self.printer_id}\", is not registered in the workshop, \"{self.workshop_name}\"."
