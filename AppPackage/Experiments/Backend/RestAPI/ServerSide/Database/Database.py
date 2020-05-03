@@ -70,8 +70,8 @@ class Database:
     def setupMongoDB(self):
         self.mongo_db = MongoClient("mongodb+srv://lahavs512:lsd360@autoprint-2kiyr.azure.mongodb.net/test?retryWrites=true&w=majority")
 
-        self.accounts: Collection = self.mongo_db.User.accounts
-        self.workshops: Collection = self.mongo_db.User.workshops
+        self.accounts: Collection = self.mongo_db.Users.accounts
+        self.workshops: Collection = self.mongo_db.Users.workshops
 
         self.stations: Collection = self.mongo_db.Devices.stations
         self.controllers: Collection = self.mongo_db.Devices.controllers
@@ -303,7 +303,6 @@ if __name__ == '__main__':
                 mongo_db[new_name][collection_name].insert_one(doc)
 
     try:
-        # dbs.addUser("doron", "1234", "Doron", "Mashiach")
         # dbs.addUser("lahav512", "1234", "Lahav", "Svorai")
         # dbs.removeUser("daniel360", "1234")
 
@@ -373,6 +372,8 @@ if __name__ == '__main__':
         #     ]
         # }
         # dbs.addPrinter(username, password, workshop_name, printer_id, **printer)
+
+        # copyDatabase(dbs.mongo_db, "User", "Users")
 
         print("Action completed successfully.")
 
