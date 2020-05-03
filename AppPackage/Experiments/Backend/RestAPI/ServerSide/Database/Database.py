@@ -20,12 +20,12 @@ class WorkshopAddDevice(object):
         self.allow_name = allow_name
 
     @wrapt.decorator
-    def __call__(self, wrapped, instance, args, kwargs):
+    def __call__(self, wrapped, instance, args, kwargs: dict):
         args = tuple(str(arg) for arg in args)
         _args = tuple(list(args) + [self.child_type])
         _kwargs = kwargs
         _kwargs["allow_name"] = self.allow_name
-        instance._addWorkshopChild(*_args, **_kwargs)
+        return instance._addWorkshopChild(*_args, **_kwargs)
         # ans = wrapped(*args, **kwargs)
         # return ans
 
@@ -160,6 +160,9 @@ class Database:
 
     def _addWorkshopChild(self, username, password, workshop_name, child_id, child_type, child_name=None, allow_name=False, **kwargs):
         self.checkUser(username, password)
+        name_key = f"{child_type['tag']}_name"
+        if name_key in kwargs.keys():
+            child_name = kwargs[name_key]
 
         if not self.isWorkshopExist(username, workshop_name):
             raise WorkshopNotExist(username, workshop_name)
@@ -177,11 +180,12 @@ class Database:
             if is_child_exist_func(username, workshop_name, child_name):
                 raise child_exist_exception(username, workshop_name, child_name)
 
-        child = getattr(DS.Workshops, child_type["tag"])
+        child = getattr(DS.Workshops, child_type["tag"]).copy()
         child["username"] = username
         child["workshop_name"] = workshop_name
+        if child_name is not None:
+            child[f"{child_type['tag']}_name"] = child_name
         child["device_id"] = child_id
-        child[f"{child_type['tag']}_name"] = child_name
         child.update(kwargs)
 
         child_obj = getattr(self, f"{child_type['tag']}s")
@@ -252,7 +256,7 @@ class DatabaseServer(Database):
 if __name__ == '__main__':
     dbs = DatabaseServer()
     try:
-        # dbs.addUser("daniel360", "1234", "Daniel", "Shtibel")
+        # dbs.addUser("doron", "1234", "Doron", "Mashiach")
         # dbs.addUser("lahav512", "1234", "Lahav", "Svorai")
         # dbs.removeUser("daniel360", "1234")
 
@@ -264,14 +268,24 @@ if __name__ == '__main__':
         # dbs.renameWorkshop("lahav512", "1234", "apartment", "Apartment")
 
         # station = {"machine_version": "0.1", "firmware_version": "0.1"}
-        # dbs.addStation("lahav512", "1234", "Apartment", "Secondary", **station)
-        # dbs.addStation("lahav512", "1234", "Hamama", "Hexagon Room", **station)
-        # dbs.removeStation("lahav512", "1234", "Apartment", 1)
+        # dbs.addStation("lahav512", "1234", "Apartment", 1, station_name="Second Floor", **station)
+        # dbs.addStation("daniel360", "1234", "Apartment", 2, station_name="Room", **station)
+        # dbs.addStation("lahav512", "1234", "Hamama", 3, station_name="Hexagon Room", **station)
+        # dbs.removeStation("daniel360", "1234", "Apartment", 2)
+        # dbs.removeStation("lahav512", "1234", "Hamama", 3)
         # dbs.renameStation("lahav512", "1234", "Apartment", 0, "Frist Floor")
 
         # controller = {"machine_version": "0.1", "firmware_version": "0.1"}
         # dbs.addController("lahav512", "1234", "Apartment", 1, **controller)
+        # dbs.addController("lahav512", "1234", "Apartment", 2, **controller)
+        # dbs.addController("lahav512", "1234", "Hamama", 3, **controller)
         # dbs.removeController("lahav512", "1234", "Apartment", 1)
+
+        filament_changer = {"min_temp": "205", "max_temp": "240"}
+        # dbs.addFilamentChanger("lahav512", "1234", "Apartment", 0, **filament_changer)
+        # dbs.addFilamentChanger("lahav512", "1234", "Apartment", 1, **filament_changer)
+        dbs.addFilamentChanger("lahav512", "1234", "Apartment", 3, **filament_changer)
+        # dbs.removeFilamentChanger("lahav512", "1234", "Apartment", 2)
 
         print("Action completed successfully.")
 

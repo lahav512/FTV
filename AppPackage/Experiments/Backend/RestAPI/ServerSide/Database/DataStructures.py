@@ -1,20 +1,17 @@
 class DataStructures:
     class Users:
         account = {
-            "username": str,
-            "password": str,
-            "first_name": str,
-            "last_name": str
+            "username": None,
+            "password": None,
+            "first_name": None,
+            "last_name": None
         }  # user name
 
         workshop = {
-            "username": str,
-            "workshop_name": str,
+            "username": None,
+            "workshop_name": None,
             "next_ids": {
-                "station": 0,
-                "controller": 0,
                 "printer": 0,
-                "filament_changer": 0,
                 "filament": 0
             },
             "stations": [],
@@ -26,24 +23,30 @@ class DataStructures:
 
     class Workshops:
         station = {
-            "username": str,
-            "workshop_name": str,  # id
-            "station_name": str,
-            "device_id": str,  # str(int)
-            "machine_version": str,
-            "firmware_version": str,
+            "username": None,  # str
+            "workshop_name": None,  # str
+            "station_name": None,  # str
+            "device_id": None,  # str(int)
+            "machine_version": None,  # str
+            "firmware_version": None,  # str
             "capacity": None,  # str(int)  # max amount of controllers
             "filament_changers": []  # ids of the filament changers
         }  # station name
 
         controller = {
-            "device_id": str,  # str(int)
+            "username": None,  # str
+            "workshop_name": None,  # str
+            # "controller_name": None,  # str
+            "device_id": None,  # str(int)
             "printer": None,  # str(int)  # printer id
             "bed": None,  # str(int)
-            "filament_link": [str(int), str(int), str(int)]  # [id of the filament changer, id of the channel, id of the filament]
+            "filament_link": [None, None, None]  # [id of the filament changer, id of the channel, id of the filament]
         }
 
         filament_changer = {
+            "username": None,  # str
+            "workshop_name": None,  # str
+            # "filament_changer_name": None,  # str
             "device_id": None,  # str(int)
             "capacity": None,  # str(int)  # max amount of channels
             "min_temp": None,  # str(int)
@@ -52,15 +55,17 @@ class DataStructures:
         }  # ids of the channels: ids of the filaments
 
         printer = {
+            "username": None,  # str
+            "workshop_name": None,  # str
+            "printer_name": None,  # str
             "id": None,  # str(int)
-            "name": str,
-            "manufacturer": str,
-            "firmware": str,
+            "manufacturer": None,  # str
+            "firmware": None,  # str
             "bitrate": None,  # str(int)
             "build_size": [
                 None,  # str(float)
                 None,  # str(float)
-                str(float)
+                None  # str(float)
             ],
             "nozzle_diameter": None,  # str(float)
             "head_max_temp": None,  # str(int)
@@ -70,17 +75,17 @@ class DataStructures:
             "max_velocity": [
                 None,  # str(float)
                 None,  # str(float)
-                str(float)
+                None  # str(float)
             ],
             "max_print_velocity": [
                 None,  # str(float)
                 None,  # str(float)
-                str(float)
+                None  # str(float)
             ],  # recommended
             "max_acceleration": [
                 None,  # str(float)
                 None,  # str(float)
-                str(float)
+                None  # str(float)
             ],
             "statistics": {
                 "entire_life": None,  # str(float)  # hours
@@ -89,14 +94,14 @@ class DataStructures:
                 "print_life_failure": None,  # str(float)  # hours
                 "prints_total": None,  # str(int)
                 "prints_success": None,  # str(int)
-                "prints_failure": str(int)
+                "prints_failure": None,  # str(int)
             }
         }
 
         filament = {
             "id": None,  # str(int)
-            "material": str,
-            "color": str,  # color
+            "material": None,  # str
+            "color": None,  # str  # color
             "min_temp": None,  # str(int)
             "max_temp": None,  # str(int)
             "opacity": None,  # str(float)  # 0 < x < 100
@@ -107,5 +112,5 @@ class DataStructures:
             "spool_weight": None,  # str(float)  # g
             "current_weight": None,  # str(float)  # g
             "current_length": None,  # str(float)  # mm
-            "currency": str(float)  # $/g
+            "currency": None,  # str(float)  # $/g
         }
