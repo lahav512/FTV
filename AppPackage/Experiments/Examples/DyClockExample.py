@@ -66,11 +66,15 @@ class ClockFeature(DyModule):
         self.setupManagers()
 
     def setupTriggers(self):
-        self.addTrigger(self.POST_INIT).setAction(self.tick)
-        self.addTrigger(self.tick).setAction(self.tick)
+        self.addTrigger(self.POST_INIT).setAction(self.startClock)
+        # self.addTrigger(self.tick).setAction(self.tick)
 
     def getTimeStamp(self):
         return f"{self.vm.hours}:{self.vm.minutes}:{self.vm.seconds}:{self.vm.tenth_seconds}"
+
+    def startClock(self):
+        while True:
+            self.tick()
 
     @DyMethod()
     def tick(self):

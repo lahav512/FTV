@@ -12,6 +12,8 @@ class DynamicObjectInterface(object):
 
     @staticmethod
     def _distributeTriggers(dy_object):
+        dy_object.__active_triggers__.clear()
+
         for trigger in dy_object.__triggers__:
             if trigger.thread is None:
                 dy_object.__active_triggers__.put_nowait(trigger)
