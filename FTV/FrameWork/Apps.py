@@ -4,13 +4,14 @@ from FTV.FrameWork.Features import NIFeature, UIFeature
 
 
 class __AbstractApp:
+
     @classmethod
     def startApp(cls):
-        cls.START = True
+        cls.vm.START.activate()
 
     @classmethod
     def stopApp(cls):
-        cls.EXIT = True
+        cls.vm.EXIT.activate()
 
 
 class NIApp(__AbstractApp, NIFeature):

@@ -40,6 +40,26 @@ class DyNumericConditions(DyObjectConditions):
         def __condition__(old_val, new_val, *args, **kwargs):
             return new_val != args[0]
 
+    class IsGraterEqualTo(Condition):
+        @staticmethod
+        def __condition__(old_val, new_val, *args, **kwargs):
+            return new_val >= args[0]
+
+    class IsLessEqualTo(Condition):
+        @staticmethod
+        def __condition__(old_val, new_val, *args, **kwargs):
+            return new_val <= args[0]
+
+    class IsGraterThan(Condition):
+        @staticmethod
+        def __condition__(old_val, new_val, *args, **kwargs):
+            return new_val > args[0]
+
+    class IsLessThan(Condition):
+        @staticmethod
+        def __condition__(old_val, new_val, *args, **kwargs):
+            return new_val < args[0]
+
 
 class DyIteratorConditions(DyObjectConditions):
 

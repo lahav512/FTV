@@ -2,7 +2,8 @@ import abc
 
 # global variableManager
 # global featureManager
-from FTV.Objects.Variables.AbstractDynamicObject import DynamicModuleParent, FTVMethod
+from FTV.Objects.Variables.AbstractDynamicModule import DynamicModuleParent
+from FTV.Objects.Variables.DynamicMethods import DyBuiltinMethod
 from FTV.Objects.Variables.DynamicObjects import DyBool, DySwitch
 
 
@@ -19,19 +20,24 @@ class Feature(DynamicModuleParent):
     def _setupEnvironment(self):
         self._loadBuiltinSelf()
 
-    @FTVMethod
+    @DyBuiltinMethod()
     def _loadBuiltinSelf(self):
         self._setupBuiltinManagers()
         self._setupBuiltinVariables()
+        self._setupBuiltinMethods()
         self._setupBuiltinTriggers()
 
-    @FTVMethod
+    @DyBuiltinMethod()
     def _loadSelf(self):
         self.setupManagers()
         self.vm.setupVariables()
         self.vm.setupTriggers()
         self.setupTriggers()
         self.vm.IS_SELF_LOADED = True
+
+    def _setupBuiltinMethods(self):
+        self._BUILTIN_METHODS |= {"_loadChildren"}
+        super(Feature, self)._setupBuiltinMethods()
 
     @abc.abstractmethod
     def setupSettings(self):
@@ -58,21 +64,20 @@ class Feature(DynamicModuleParent):
         self.vm.POST_LOAD_FEATURES = DySwitch()
 
     def _setupBuiltinTriggers(self):
-        self.addTrigger(self._loadBuiltinSelf, True, self.vm.POST_BUILTIN_INIT, "thread.main")
-        self.addTrigger(self.vm.POST_BUILTIN_INIT, True, self.vm.PRE_INIT)
-        self.addTrigger(self.vm.PRE_INIT, True, self._loadSelf)
-        self.addTrigger(self._loadSelf, True, self.vm.POST_INIT)
+        self.addTrigger(self._loadBuiltinSelf).setAction(self.vm.POST_BUILTIN_INIT).setThread("thread.main")
+        self.addTrigger(self.vm.POST_BUILTIN_INIT).setAction(self.vm.PRE_INIT)
+        self.addTrigger(self.vm.PRE_INIT).setAction(self._loadSelf)
+        self.addTrigger(self._loadSelf).setAction(self.vm.POST_INIT)
 
-        self.addTrigger(self.vm.POST_INIT, True, self.vm.PRE_LOAD_FEATURES)  # Must be overridden in the UIFeature
+        self.addTrigger(self.vm.POST_INIT).setAction(self.vm.PRE_LOAD_FEATURES)
+        self.addTrigger(self.vm.PRE_LOAD_FEATURES).setAction(self._loadChildren)
+        self.addTrigger(self._loadChildren).setAction(self.vm.POST_LOAD_FEATURES)
+        self.addTrigger(self.vm.POST_LOAD_FEATURES).setAction(self.vm.START)
 
-        self.addTrigger(self.vm.PRE_LOAD_FEATURES, True, self._loadChildren)
-        self.addTrigger(self._loadChildren, True, self.vm.POST_LOAD_FEATURES)
-        self.addTrigger(self.vm.POST_LOAD_FEATURES, True, self.vm.START)
-
-    @FTVMethod
+    @DyBuiltinMethod()
     def _loadChildren(self):
         self.setupFeatures()
-        self.vm.IS_CHILDREN_LOADED = DyBool(False)
+        self.vm.IS_CHILDREN_LOADED.set(False)
 
     @classmethod
     @abc.abstractmethod
@@ -146,7 +151,7 @@ class UIFeature(NIFeature):
         self.addTrigger(self._loadUISelf, True, self.vm.POST_UI_LOAD)
         self.addTrigger(self.vm.POST_UI_LOAD, True, self.vm.PRE_LOAD_FEATURES)
 
-    @FTVMethod
+    @DyBuiltinMethod()
     def _loadUISelf(self):
         self.uim.setupVariables()
         self.uim.setupTriggers()

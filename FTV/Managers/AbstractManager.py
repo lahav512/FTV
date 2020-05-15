@@ -1,9 +1,9 @@
 import abc
 
-from FTV.Objects.Variables.AbstractDynamicObject import DynamicModule
+from FTV.Objects.Variables.DynamicModules import DyModule
 
 
-class AbstractManager(DynamicModule):
+class AbstractManager(DyModule):
 
     def init(self):
         pass

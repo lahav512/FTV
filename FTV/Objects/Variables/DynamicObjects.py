@@ -12,6 +12,7 @@ from FTV.Objects.Variables.AbstractConditions import (DyIntConditions, DyBoolCon
                                                       DyComplexConditions, DyDictConditions, DyListConditions,
                                                       DySetConditions, DyTupleConditions)
 
+
 class DyInt(DyIntMagicMethods, DyIntConditions, DyObject):
     def __init__(self, value: int=None, builtin=False):
         super().__init__(value.__int__(), builtin)
