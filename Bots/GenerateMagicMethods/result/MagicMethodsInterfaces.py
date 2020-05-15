@@ -1,3 +1,5 @@
+from queue import Queue
+
 from AppPackage.Experiments.Log import Log
 from AppPackage.Experiments.PickleTests.DataObject import TempQueue
 from FTV.Objects.Variables.AbstractConditions import DyObjectConditions
@@ -12,16 +14,14 @@ class DynamicObjectInterface(object):
 
     @staticmethod
     def _distributeTriggers(dy_object):
-        if dy_object.__name__ == "seconds" and dy_object == 10:
-            print()
+        dy_object.__active_triggers__.clear()
+
         for trigger in dy_object.__triggers__:
             if trigger.thread is None:
                 dy_object.__active_triggers__.put_nowait(trigger)
             else:
                 trigger.thread.__active_triggers__.put_nowait(trigger)
 
-        if len(dy_object.__active_triggers__.__list__) == 3:
-            print()
 
     @staticmethod
     def _runActiveTriggers(dy_object, old_val=None, new_val=None):
