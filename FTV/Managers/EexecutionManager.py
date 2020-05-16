@@ -2,7 +2,7 @@ import abc
 
 from AppPackage.Experiments.Log import Log
 from FTV.Managers.AbstractManager import AbstractManager
-from FTV.Objects.SystemObjects.Executions import Thread
+from FTV.Objects.SystemObjects.Executions import DyThread
 
 
 class ExecutionManager(AbstractManager):
@@ -20,7 +20,7 @@ class ExecutionManager(AbstractManager):
 
     def _setupBuiltinThreads(self):
         self.threads = {}
-        self.addThread("main")
+        self.addThread("Main")
 
     def setupVariables(self):
         self.setupThreads()
@@ -29,7 +29,7 @@ class ExecutionManager(AbstractManager):
         pass
 
     def addThread(self, name):
-        self.threads[name] = Thread()
+        self.threads[name] = DyThread(name=name)
 
     def setupSettings(self):
         pass

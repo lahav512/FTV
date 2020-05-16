@@ -71,7 +71,7 @@ class IntegratedClock(NIFeature):
 
     @DyMethod()
     def startClock(self):
-        while True:
+        while self.vm.seconds < 5:
             self.tick()
 
     @DyMethod()

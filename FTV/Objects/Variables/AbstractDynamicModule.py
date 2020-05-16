@@ -119,6 +119,27 @@ class DynamicModuleParent(object):
     def removeTrigger(self, *args):
         pass  # TODO lahav Must be redefined.
 
+    def overrideTriggers(self, dy_object, parent=None):
+
+        # # TODO lahav This solution is temporary.
+
+        if callable(dy_object):
+            if parent is None:
+                parent = self
+            else:
+                pass
+                # print()
+
+            modified_dy_object = parent.__get_by_method__(dy_object)
+        else:
+            modified_dy_object = dy_object
+
+        trigger = Trigger(self).setCondition(modified_dy_object)
+        modified_dy_object.__triggers__.clear()
+        modified_dy_object.__triggers__.append(trigger)
+
+        return trigger
+
     def __get_by_method__(self, method):
         return self.__dynamic_methods__[method.__name__]
 

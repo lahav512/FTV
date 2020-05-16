@@ -49,6 +49,11 @@ class DyThread(object):
     def start(self):
         self.thread.start()
 
+    def restart(self):
+        daemon = self.thread.daemon
+        self.thread = Thread(target=self.thread_loop, daemon=daemon, name=self.name)
+        self.start()
+
     def stop(self):
         self.addAction(None)
 
@@ -68,14 +73,16 @@ if __name__ == '__main__':
             self.main_thread = DyThread(name="main")
             self.sub_thread = DyThread(name="sub", daemon=True)
 
-            self.main_action = Action(self.addActionsToThread, self.sub_thread)
-
-            self.main_thread.addAction(self.main_action)
+            main_action = Action(self.addActionsToThread, self.main_thread)
+            self.main_thread.addAction(main_action)
 
             self.main_thread.start()
-            self.sub_thread.start()
+            # self.sub_thread.start()
 
             print("\nLast thread: " + str(threading.get_ident()))
+
+            # while True:
+            #     time.sleep(1)
 
         def addActionsToThread(self, thread: DyThread):
             print(f"{self.main_thread.name} id: {threading.get_ident()}")
@@ -88,9 +95,11 @@ if __name__ == '__main__':
                 thread.addAction(Action(self.printTest, thread, count))
                 time.sleep(1)
 
+            # self.sub_thread.stop()
+
             print(threading.enumerate())
 
-            # self.main_thread.stop()
+            self.main_thread.stop()
 
         def printTest(self, thread, num):
             thread_name = thread.name
@@ -98,4 +107,11 @@ if __name__ == '__main__':
             print(f"{thread_name}: {num}")
             # sleep(5)
 
-    App()
+    app = App()
+
+    time.sleep(5)
+    print("-"*30)
+
+    main_action = Action(app.addActionsToThread, app.main_thread)
+    app.main_thread.addAction(main_action)
+    app.main_thread.restart()

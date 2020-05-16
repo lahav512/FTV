@@ -71,7 +71,7 @@ class Feature(DynamicModuleParent):
         self.vm.POST_LOAD_FEATURES = DySwitch()
 
     def _setupBuiltinTriggers(self):
-        self.addTrigger(self._loadBuiltinSelf).setAction(self.vm.POST_BUILTIN_LOAD).setThread(self.em.threads["main"])
+        self.addTrigger(self._loadBuiltinSelf).setAction(self.vm.POST_BUILTIN_LOAD)
         self.addTrigger(self.vm.POST_BUILTIN_LOAD).setAction(self.vm.PRE_LOAD)
         self.addTrigger(self.vm.PRE_LOAD).setAction(self._loadSelf)
         self.addTrigger(self._loadSelf).setAction(self.vm.POST_LOAD)

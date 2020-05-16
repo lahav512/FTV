@@ -1,3 +1,5 @@
+from threading import current_thread
+
 from AppPackage.Experiments.Log import Log
 from AppPackage.Experiments.PickleTests.DataObject import Queue
 from FTV.Objects.Variables.AbstractConditions import DyObjectConditions
@@ -19,13 +21,14 @@ class DynamicObjectInterface(object):
                 dy_object.__active_triggers__.put_nowait(trigger)
             else:
                 # TODO lahav Add trigger to its designated thread
-                trigger.thread.addTrigger(trigger)
+                trigger.thread.addActiveTrigger(trigger)
 
     @staticmethod
     def _runActiveTriggers(dy_object, old_val=None, new_val=None):
         while not dy_object.__active_triggers__.empty():
             trigger = dy_object.__active_triggers__.get_nowait()
             if trigger.runCondition(old_val, new_val):
+                Log.p(f"threadName(Object): {current_thread().name}")
                 trigger.runAction()
 
     def _prepareAndRunTriggers(self, dy_object, old_val=None, new_val=None):

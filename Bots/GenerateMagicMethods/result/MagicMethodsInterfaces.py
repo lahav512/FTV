@@ -1,4 +1,5 @@
 from queue import Queue
+from threading import current_thread
 
 from AppPackage.Experiments.Log import Log
 from AppPackage.Experiments.PickleTests.DataObject import Queue
@@ -28,6 +29,7 @@ class DynamicObjectInterface(object):
         while not dy_object.__active_triggers__.empty():
             trigger = dy_object.__active_triggers__.get_nowait()
             if trigger.runCondition(old_val, new_val):
+                Log.p(f"threadName(Object): {current_thread().name}")
                 trigger.runAction()
 
     def _prepareAndRunTriggers(self, dy_object, old_val=None, new_val=None):
