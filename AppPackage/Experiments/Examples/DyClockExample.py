@@ -87,8 +87,19 @@ class VisualClockVM(VariableManager):
 
     def setupTriggers(self):
         self.addTrigger(IntegratedClock.vm.seconds).setCondition(DyInt.IsChanged).setAction(self.updateSecondsRadius)
+        self.addTrigger(IntegratedClock.vm.minutes).setCondition(DyInt.IsChanged).setAction(self.updateMinutesRadius)
+        self.addTrigger(IntegratedClock.vm.hours).setCondition(DyInt.IsChanged).setAction(self.updateHoursRadius)
 
+    @DyMethod()
     def updateSecondsRadius(self):
+        Log.p("FTV Works!!!")
+
+    @DyMethod()
+    def updateMinutesRadius(self):
+        Log.p("FTV Works!!!")
+
+    @DyMethod()
+    def updateHoursRadius(self):
         Log.p("FTV Works!!!")
 
 
@@ -98,7 +109,7 @@ class VisualClock(NIFeature):
 
     @classmethod
     def setupManagers(cls):
-        pass
+        cls.setVariableManager(VisualClockVM)
 
 
 class EM(ExecutionManager):

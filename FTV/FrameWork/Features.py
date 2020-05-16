@@ -33,14 +33,9 @@ class Feature(DynamicModuleParent):
     @DyBuiltinMethod()
     def _loadSelf(self):
         self.setupManagers()
-        self.vm.setupVariables()
-        self.vm._setupMethods()
-        self.vm.setupTriggers()
-
         self._setupMethods()
         self.setupTriggers()
-
-        self.vm.IS_SELF_LOADED = True
+        self.vm.IS_SELF_LOADED.set(True)
 
     def _setupBuiltinMethods(self):
         self._BUILTIN_METHODS |= {"_loadChildren"}

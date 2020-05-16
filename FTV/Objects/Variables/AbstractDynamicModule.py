@@ -96,12 +96,18 @@ class DynamicModuleParent(object):
     def setupTriggers(self):
         pass
 
-    def addTrigger(self, dy_object):
+    def addTrigger(self, dy_object, parent=None):
 
         # # TODO lahav This solution is temporary.
 
         if callable(dy_object):
-            modified_dy_object = self.__get_by_method__(dy_object)
+            if parent is None:
+                parent = self
+            else:
+                pass
+                # print()
+
+            modified_dy_object = parent.__get_by_method__(dy_object)
         else:
             modified_dy_object = dy_object
 
