@@ -126,7 +126,8 @@ class ClockApp(NIApp):
 
     @classmethod
     def setupManagers(cls):
-        cls.em = EM()
+        pass
+        # cls.setVariableManager(EM)
 
 
 if __name__ == '__main__':

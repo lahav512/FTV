@@ -1,5 +1,6 @@
-from queue import Queue
 from threading import Thread as BaseThread
+
+from AppPackage.Experiments.PickleTests.DataObject import Queue
 
 
 class Process(object):
@@ -16,10 +17,11 @@ class Thread(object):
         self.__active_triggers__ = Queue()
 
     def addTrigger(self, trigger):
-        pass
+        self.__active_triggers__.put_nowait(trigger)
 
-    def runTrigger(self, trigger):
-        pass
+    @staticmethod
+    def runTrigger(trigger):
+        trigger.runAction()
 
     def start(self):
         pass

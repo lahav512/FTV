@@ -3,6 +3,7 @@ import abc
 # global variableManager
 # global featureManager
 from AppPackage.Experiments.Log import Log
+from FTV.Managers.EexecutionManager import ExecutionManager
 from FTV.Objects.Variables.AbstractDynamicModule import DynamicModuleParent
 from FTV.Objects.Variables.DynamicMethods import DyBuiltinMethod
 from FTV.Objects.Variables.DynamicObjects import DyBool, DySwitch
@@ -52,6 +53,7 @@ class Feature(DynamicModuleParent):
 
         cls.vm: VariableManager = VariableManager()
         cls.fm: FeatureManager = FeatureManager()
+        cls.em: ExecutionManager = ExecutionManager()
 
         # cls.vm.setBuiltin(True)
         # cls.fm.setBuiltin(True)
@@ -69,7 +71,7 @@ class Feature(DynamicModuleParent):
         self.vm.POST_LOAD_FEATURES = DySwitch()
 
     def _setupBuiltinTriggers(self):
-        self.addTrigger(self._loadBuiltinSelf).setAction(self.vm.POST_BUILTIN_LOAD)  # .setThread("thread.main")
+        self.addTrigger(self._loadBuiltinSelf).setAction(self.vm.POST_BUILTIN_LOAD).setThread(self.em.threads["main"])
         self.addTrigger(self.vm.POST_BUILTIN_LOAD).setAction(self.vm.PRE_LOAD)
         self.addTrigger(self.vm.PRE_LOAD).setAction(self._loadSelf)
         self.addTrigger(self._loadSelf).setAction(self.vm.POST_LOAD)
