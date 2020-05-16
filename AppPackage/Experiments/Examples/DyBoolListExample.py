@@ -16,7 +16,7 @@ class VariableManager(DyModule):
     def setupTriggers(self):
         self.list_1.add(self.a, self.b, self.c)
 
-        self.addTrigger(self.POST_INIT).setAction(self.updateABC, True, True, True)
+        self.addTrigger(self.POST_LOAD).setAction(self.updateABC, True, True, True)
         self.addTrigger(self.list_1).setAction(self.printWorks)
 
     @DyMethod()

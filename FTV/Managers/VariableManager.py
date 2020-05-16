@@ -6,8 +6,8 @@ from FTV.Managers.AbstractManager import AbstractManager
 
 class VariableManager(AbstractManager):
     def __init__(self):
-        super().__init__()
         Log.p("initVM: " + str(self.__class__.__name__))
+        super().__init__()
         self.init()
 
     def init(self):

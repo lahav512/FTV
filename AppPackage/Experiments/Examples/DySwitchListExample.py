@@ -20,7 +20,7 @@ class VariableManager(DyModule):
         self.master.add(self.a_master)
         self.list.add(self.a, self.b, self.c, self.master)
 
-        self.addTrigger(self.POST_INIT).setAction(self.updateABC, True, True, True)
+        self.addTrigger(self.POST_LOAD).setAction(self.updateABC, True, True, True)
         self.addTrigger(self.updateABC).setAction(self.updateABC2, True, True, True)
         self.addTrigger(self.list).setAction(self.printWorks)
 

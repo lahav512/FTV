@@ -1,9 +1,11 @@
 from abc import abstractmethod
 
 from FTV.FrameWork.Features import NIFeature, UIFeature
+from FTV.Objects.Variables.DynamicObjects import DySwitch
 
 
 class __AbstractApp:
+    type = "App"
 
     @classmethod
     def startApp(cls):
@@ -22,6 +24,15 @@ class NIApp(__AbstractApp, NIFeature):
     @abstractmethod
     def setupSettings(self):
         pass
+
+    def _setupBuiltinVariables(self):
+        super(NIApp, self)._setupBuiltinVariables()
+        self.vm.START = DySwitch()
+        self.vm.EXIT = DySwitch()
+
+    def _setupBuiltinTriggers(self):
+        super(NIApp, self)._setupBuiltinTriggers()
+        self.addTrigger(self.vm.POST_LOAD_FEATURES).setAction(self.vm.START)
 
 
 class UIApp(__AbstractApp, UIFeature):

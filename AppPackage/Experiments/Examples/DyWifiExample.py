@@ -28,7 +28,7 @@ class DyWifiExample(DyModule):
         self.onDataReceived = DySwitch()
 
     def setupTriggers(self):
-        self.addTrigger(self.POST_INIT).setAction(self.onStartWifiConnection)
+        self.addTrigger(self.POST_LOAD).setAction(self.onStartWifiConnection)
         self.addTrigger(self.onStartWifiConnection).setAction(self.turnWifiOn)
         self.addTrigger(self.onWifiTurnedOn).setAction(self.connectSSID)
         self.addTrigger(self.onWifiConnected).setAction(self.requestData)

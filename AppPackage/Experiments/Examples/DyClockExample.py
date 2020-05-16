@@ -10,7 +10,7 @@ from FTV.Objects.Variables.DynamicModules import DyModule
 from FTV.Objects.Variables.DynamicObjects import DyInt
 
 
-class VM(VariableManager):
+class IntegratedClockVM(VariableManager):
 
     def setupVariables(self):
         self.tenth_seconds_mode = 10
@@ -54,33 +54,51 @@ class VM(VariableManager):
         var += val.get() // mod
 
 
-class ClockFeature(DyModule):
+class IntegratedClock(NIFeature):
     def setupSettings(self):
         pass
 
     @classmethod
     def setupManagers(cls):
-        cls.vm = VM()
-
-    def setupVariables(self):
-        self.setupManagers()
+        cls.setVariableManager(IntegratedClockVM)
 
     def setupTriggers(self):
-        self.addTrigger(self.POST_INIT).setAction(self.startClock)
+        self.addTrigger(ClockApp.vm.START).setAction(self.startClock)
         # self.addTrigger(self.tick).setAction(self.tick)
 
     def getTimeStamp(self):
         return f"{self.vm.hours}:{self.vm.minutes}:{self.vm.seconds}:{self.vm.tenth_seconds}"
 
+    @DyMethod()
     def startClock(self):
         while True:
             self.tick()
 
     @DyMethod()
     def tick(self):
-        self.vm.tenth_seconds += 1
+        self.vm.seconds += 1
         Log.p(self.getTimeStamp())
-        time.sleep(0.1)
+        time.sleep(1)
+
+
+class VisualClockVM(VariableManager):
+    def setupVariables(self):
+        pass
+
+    def setupTriggers(self):
+        self.addTrigger(IntegratedClock.vm.seconds).setCondition(DyInt.IsChanged).setAction(self.updateSecondsRadius)
+
+    def updateSecondsRadius(self):
+        Log.p("FTV Works!!!")
+
+
+class VisualClock(NIFeature):
+    def setupSettings(self):
+        pass
+
+    @classmethod
+    def setupManagers(cls):
+        pass
 
 
 class EM(ExecutionManager):
@@ -89,22 +107,17 @@ class EM(ExecutionManager):
 
 class ClockApp(NIApp):
     def setupFeatures(self):
-        self.addFeature(ClockFeature)
+        self.addFeatures(IntegratedClock)
+        self.addFeature(VisualClock)
 
     def setupSettings(self):
         pass
 
     @classmethod
     def setupManagers(cls):
-        # cls.fm = FM()
         cls.em = EM()
-        cls.vm = VM()
-        # cls.lm = LM()
 
 
 if __name__ == '__main__':
-    # app = ClockApp()
-    # app.startApp()
-
-    feature = ClockFeature()
-    # feature.vm.START.activate()
+    app = ClockApp()
+    # feature = ClockFeature()

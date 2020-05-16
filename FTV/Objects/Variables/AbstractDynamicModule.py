@@ -9,32 +9,37 @@ class DynamicModuleParent(object):
     type = "DynamicModuleParent"
     # _ACTIVE_METHOD = ""
 
-    _BUILTIN_METHODS = {
-        "_setupEnvironment",
-        "_loadBuiltinSelf",
-        "_loadSelf"
-    }
+    def __init__(self, value=None):
+        self.__setupMethodsLists()
+        self._setupEnvironment()
 
-    _IGNORE_METHODS = {
-        "__setattr__",
-        "__init__",
-        "_setupBuiltinMethods",
-        "_setupMethods",
-        "_setupBuiltinTriggers",
-        "setupTriggers",
-        "_setupMethods",
-        "addTrigger",
-        "removeTrigger",
-        "_DynamicModuleParent__initMethodsVariables",
-        "_DynamicModuleParent__setupMethod",
-        "_getDySwitchAction",  # TODO lahav Temporary!
-        "_get",
-        "_set",
-        "get",
-        "set",
-        "_setupBuiltinVariables",
-        "setupVariables",
-    }
+    def __setupMethodsLists(self):
+        self._BUILTIN_METHODS = {
+            "_setupEnvironment",
+            "_loadBuiltinSelf",
+            "_loadSelf"
+        }
+
+        self._IGNORE_METHODS = {
+            "__setattr__",
+            "__init__",
+            "_setupBuiltinMethods",
+            "_setupMethods",
+            "_setupBuiltinTriggers",
+            "setupTriggers",
+            "_setupMethods",
+            "addTrigger",
+            "removeTrigger",
+            "_DynamicModuleParent__initMethodsVariables",
+            "_DynamicModuleParent__setupMethod",
+            "_getDySwitchAction",  # TODO lahav Temporary!
+            "_get",
+            "_set",
+            "get",
+            "set",
+            "_setupBuiltinVariables",
+            "setupVariables",
+        }
 
     # def __setattr__(self, key, value):
     #     if key in dir(self) and callable(getattr(self, key)):
@@ -43,9 +48,6 @@ class DynamicModuleParent(object):
     #                 key, self.__class__.__name__))
     #
     #     super().__setattr__(key, value)
-
-    def __init__(self, value=None):
-        self._setupEnvironment()
 
     def __setupMethod(self, method_key):
         # print(method_key)
@@ -99,7 +101,7 @@ class DynamicModuleParent(object):
         # # TODO lahav This solution is temporary.
 
         if callable(dy_object):
-            modified_dy_object = self.__get_dy_method__(dy_object)
+            modified_dy_object = self.__get_by_method__(dy_object)
         else:
             modified_dy_object = dy_object
 
@@ -111,7 +113,7 @@ class DynamicModuleParent(object):
     def removeTrigger(self, *args):
         pass  # TODO lahav Must be redefined.
 
-    def __get_dy_method__(self, method):
+    def __get_by_method__(self, method):
         return self.__dynamic_methods__[method.__name__]
 
     # def _getDySwitchAction(self, action):

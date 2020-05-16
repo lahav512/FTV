@@ -41,7 +41,13 @@ class Trigger:
 
     def setAction(self, action, *args, **kwargs):
         if callable(action):
-            modified_action = self.dy_module_parent.__get_dy_method__(action)
+            parent = None
+            if "parent" in kwargs:
+                parent = kwargs["parent"]
+            if parent is None:
+                parent = self.dy_module_parent
+
+            modified_action = parent.__get_by_method__(action)
             self.action_name = action.__name__
         else:
             modified_action = action

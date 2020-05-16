@@ -151,7 +151,7 @@ if __name__ == '__main__':
             self.h = DyBool(False)
 
         def setupTriggers(self):
-            self.addTrigger(self.POST_INIT).setAction(self.action)
+            self.addTrigger(self.POST_LOAD).setAction(self.action)
 
         @DyMethod()
         def action(self):

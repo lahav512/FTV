@@ -18,8 +18,8 @@ from FTV.Objects.Variables.AbstractDynamicObject import DynamicObjectInterface
 
 
 class DyMethod(DynamicObjectInterface):
-    # def __init__(self):
-    #     super(DyMethod, self).__init__(self.__wrapped__)
+    def __init__(self):
+        super(DyMethod, self).__init__()
     #
     # def __copy__(self):
     #     pass
@@ -37,14 +37,19 @@ class DyMethod(DynamicObjectInterface):
 
     @wrapt.decorator
     def __call__(self, wrapped, instance, args, kwargs):
-        self.__log_p__("->"" {}".format(wrapped.__name__))
+        if "parent" in kwargs:
+            del kwargs["parent"]
+
+        # self.__log_p__(f"-> {wrapped.__name__}")
+        self.__log_p__(f"-> {instance.__class__.__name__}.{wrapped.__name__}")
         self.__log_step__(1)
         # instance._ACTIVE_METHOD = wrapped.__name__
         ans = wrapped(*args, **kwargs)
         # instance._ACTIVE_METHOD = ""
         self.__log_step__(-1)
-        self.__log_p__("<-"" {}".format(wrapped.__name__))
-        self._prepareAndRunTriggers(instance.__get_dy_method__(wrapped))
+        # self.__log_p__(f"<- {wrapped.__name__}")
+        self.__log_p__(f"<- {instance.__class__.__name__}.{wrapped.__name__}")
+        self._prepareAndRunTriggers(instance.__get_by_method__(wrapped))
         return ans
 
     @staticmethod
@@ -78,5 +83,5 @@ def dyMethod(wrapped, instance, args, kwargs):
     # # instance._ACTIVE_METHOD = ""
     # DyMethod.__log_step__(-1)
     # DyMethod.__log_p__("<-"" {}".format(wrapped.__name__))
-    DynamicObjectInterface._prepareAndRunTriggers(instance, instance.__get_dy_method__(wrapped))
+    DynamicObjectInterface._prepareAndRunTriggers(instance, instance.__get_by_method__(wrapped))
     return ans

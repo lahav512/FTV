@@ -32,7 +32,7 @@ class DynamicModule(DyModule):
         self.third = DySwitch()
 
     def setupTriggers(self):
-        self.addTrigger(self.POST_INIT).setAction(self.firstMethod)
+        self.addTrigger(self.POST_LOAD).setAction(self.firstMethod)
         self.addTrigger(self.first).setAction(self.secondMethod)
         self.addTrigger(self.second).setAction(self.thirdMethod)
         self.addTrigger(self.third).setAction(self.ftvWorks)
