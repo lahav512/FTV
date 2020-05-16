@@ -1,5 +1,5 @@
 from AppPackage.Experiments.Log import Log
-from AppPackage.Experiments.PickleTests.DataObject import TempQueue
+from AppPackage.Experiments.PickleTests.DataObject import Queue
 from FTV.Objects.Variables.AbstractConditions import DyObjectConditions
 
 
@@ -8,7 +8,7 @@ class DynamicObjectInterface(object):
 
     def __init__(self):
         self.__triggers__ = []
-        self.__active_triggers__ = TempQueue()
+        self.__active_triggers__ = Queue()
 
     @staticmethod
     def _distributeTriggers(dy_object):
