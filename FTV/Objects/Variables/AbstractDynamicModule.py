@@ -83,6 +83,9 @@ class DynamicModuleParent(object):
         methods = inspect.getmembers(self, inspect.ismethod)
         # map(lambda func: self.__setupMethod(func[0]) if func[0] not in ignore_methods | builtin_methods else None, methods)
 
+        # Keep only new methods
+        # methods = [method for method in methods if method.__qualname__.split(".")[0] == self.__class__.__name__]
+
         filtered_methods = list(filter(lambda obj: obj[0] not in ignore_methods | builtin_methods, methods))
 
         for func in filtered_methods:

@@ -23,7 +23,6 @@ class DynamicObjectInterface(object):
             else:
                 trigger.thread.__active_triggers__.put_nowait(trigger)
 
-
     @staticmethod
     def _runActiveTriggers(dy_object, old_val=None, new_val=None):
         while not dy_object.__active_triggers__.empty():

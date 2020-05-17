@@ -7,6 +7,8 @@ from FTV.Objects.Variables.DynamicObjects import DyInt, DyBool
 
 
 class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyModule):
+    def __init__(self, builtin=False):
+        super(DyBoolList, self).__init__(builtin=builtin)
 
     def _setupBuiltinMethods(self):
         self._BUILTIN_METHODS |= {"_update_len_true", "_update_value"}
@@ -31,13 +33,12 @@ class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyModule):
 
     @DyMethod()
     def add(self, *dy_bools):
-        self.__iterator__ += dy_bools
+        self.__iterator__ += dy_bools[0].__name__
         # self.__len__ = len(self.__iterator__)
         self._update_len_true(len(list(filter(lambda dy_bool: dy_bool, dy_bools))))
 
         for dy_bool in dy_bools:
-            self.addTrigger(dy_bool).setCondition(DyBool.IsChangedTo, True).setAction(self._update_len_true, 1)
-            self.addTrigger(dy_bool).setCondition(DyBool.IsChangedTo, False).setAction(self._update_len_true, -1)
+            self.addTrigger(dy_bool).setCondition(DyBool.IsChangedTo, dy_bool).setAction(self._update_len_true, dy_bool)
 
     def set(self, value):
         Log.p("This object is a dependent variable. Therefore, it cannot be updated directly.", Log.color.RED)
@@ -46,8 +47,11 @@ class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyModule):
         return self.__iterator__
 
     @DyBuiltinMethod()
-    def _update_len_true(self, change):
-        self.__len_true__ += change
+    def _update_len_true(self, _bool):
+        if _bool:
+            self.__len_true__ += 1
+        else:
+            self.__len_true__ -= 1
 
     @DyBuiltinMethod()
     def _update_value(self, value):

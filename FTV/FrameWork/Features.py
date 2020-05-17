@@ -3,7 +3,7 @@ import abc
 # global variableManager
 # global featureManager
 from AppPackage.Experiments.Log import Log
-from FTV.Managers.EexecutionManager import ExecutionManager
+from FTV.Managers.ExecutionManager import ExecutionManager
 from FTV.Objects.Variables.AbstractDynamicModule import DynamicModuleParent
 from FTV.Objects.Variables.DynamicMethods import DyBuiltinMethod
 from FTV.Objects.Variables.DynamicObjects import DyBool, DySwitch
@@ -52,8 +52,8 @@ class Feature(DynamicModuleParent):
         from FTV.Managers.FeatureManager import FeatureManager
 
         cls.vm: VariableManager = VariableManager()
+        # cls.em: ExecutionManager = ExecutionManager()
         cls.fm: FeatureManager = FeatureManager()
-        cls.em: ExecutionManager = ExecutionManager()
 
         # cls.vm.setBuiltin(True)
         # cls.fm.setBuiltin(True)
@@ -104,6 +104,10 @@ class Feature(DynamicModuleParent):
     @classmethod
     def setVariableManager(cls, Manager):
         cls._setAbstractManager(cls.vm, Manager)
+
+    @classmethod
+    def setExecutionManager(cls, Manager):
+        cls._setAbstractManager(cls.em, Manager)
 
     @classmethod
     def setFeatureManager(cls, Manager):

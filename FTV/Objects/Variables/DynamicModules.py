@@ -8,9 +8,9 @@ from FTV.Objects.Variables.DynamicObjects import DySwitch, DyObject
 class DyModule(DynamicModuleParent, DyObject):
     type = "DynamicModule"
     
-    def __init__(self, value=None, setup_mode=False):
+    def __init__(self, value=None, builtin=False, setup_mode=False):
         self._setup_mode = setup_mode
-        DyObject.__init__(self, value)
+        DyObject.__init__(self, value, builtin=builtin)
         super(DyModule, self).__init__(value)
 
     @DyBuiltinMethod()

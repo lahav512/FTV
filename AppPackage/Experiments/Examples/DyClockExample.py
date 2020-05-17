@@ -1,9 +1,10 @@
 import  time
+from threading import current_thread
 
 from AppPackage.Experiments.Log import Log
 from FTV.FrameWork.Apps import NIApp
 from FTV.FrameWork.Features import NIFeature
-from FTV.Managers.EexecutionManager import ExecutionManager
+from FTV.Managers.ExecutionManager import ExecutionManager
 from FTV.Managers.VariableManager import VariableManager
 from FTV.Objects.Variables.DynamicMethods import DyMethod
 from FTV.Objects.Variables.DynamicModules import DyModule
@@ -71,7 +72,7 @@ class IntegratedClock(NIFeature):
 
     @DyMethod()
     def startClock(self):
-        while self.vm.seconds < 5:
+        while self.vm.seconds < 1:
             self.tick()
 
     @DyMethod()
@@ -86,9 +87,9 @@ class VisualClockVM(VariableManager):
         pass
 
     def setupTriggers(self):
-        self.addTrigger(IntegratedClock.vm.seconds).setCondition(DyInt.IsChanged).setAction(self.updateSecondsRadius)
-        self.addTrigger(IntegratedClock.vm.minutes).setCondition(DyInt.IsChanged).setAction(self.updateMinutesRadius)
-        self.addTrigger(IntegratedClock.vm.hours).setCondition(DyInt.IsChanged).setAction(self.updateHoursRadius)
+        self.addTrigger(IntegratedClock.vm.seconds).setCondition(DyInt.IsChanged).setAction(self.updateSecondsRadius)  # .setThread(ClockApp.em.getThread("Clock"))
+        self.addTrigger(IntegratedClock.vm.minutes).setCondition(DyInt.IsChanged).setAction(self.updateMinutesRadius)  # .setThread(ClockApp.em.getThread("Clock"))
+        self.addTrigger(IntegratedClock.vm.hours).setCondition(DyInt.IsChanged).setAction(self.updateHoursRadius)  # .setThread(ClockApp.em.getThread("Clock"))
 
     @DyMethod()
     def updateSecondsRadius(self):
@@ -105,15 +106,16 @@ class VisualClockVM(VariableManager):
 
 class VisualClock(NIFeature):
     def setupSettings(self):
-        pass
+        self.settings.setEnabled()
 
     @classmethod
     def setupManagers(cls):
         cls.setVariableManager(VisualClockVM)
 
 
-class EM(ExecutionManager):
-    pass
+# class EM(ExecutionManager):
+#     def setupThreads(self):
+#         self.addThread("Clock")
 
 
 class ClockApp(NIApp):
@@ -127,9 +129,9 @@ class ClockApp(NIApp):
     @classmethod
     def setupManagers(cls):
         pass
-        # cls.setVariableManager(EM)
+        # cls.setExecutionManager(EM)
 
 
 if __name__ == '__main__':
     app = ClockApp()
-    # feature = ClockFeature()
+    Log.p(f"threadName: {current_thread().name}")

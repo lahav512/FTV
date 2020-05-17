@@ -1,7 +1,7 @@
 class Log:
     """This class is temporary!"""
     ENABLED = True
-    BUILTIN_ENABLED = True
+    BUILTIN_ENABLED = False
     __BLANK_SPACE = 0
 
     @staticmethod

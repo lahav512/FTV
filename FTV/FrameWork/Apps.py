@@ -25,6 +25,16 @@ class NIApp(__AbstractApp, NIFeature):
     def setupSettings(self):
         pass
 
+    @classmethod
+    def _setupBuiltinManagers(cls):
+        from FTV.Managers.VariableManager import VariableManager
+        from FTV.Managers.ExecutionManager import ExecutionManager
+        from FTV.Managers.FeatureManager import FeatureManager
+
+        cls.vm: VariableManager = VariableManager()
+        cls.em: ExecutionManager = ExecutionManager()
+        cls.fm: FeatureManager = FeatureManager()
+
     def _setupBuiltinVariables(self):
         super(NIApp, self)._setupBuiltinVariables()
         self.vm.START = DySwitch()
@@ -32,7 +42,7 @@ class NIApp(__AbstractApp, NIFeature):
 
     def _setupBuiltinTriggers(self):
         super(NIApp, self)._setupBuiltinTriggers()
-        self.overrideTriggers(self._loadBuiltinSelf).setAction(self.vm.POST_BUILTIN_LOAD).setThread(self.em.threads["Main"])
+        self.overrideTriggers(self._loadBuiltinSelf).setAction(self.vm.POST_BUILTIN_LOAD).setThread(self.em.getThread("Main"))
         self.addTrigger(self.vm.POST_LOAD_FEATURES).setAction(self.vm.START)
 
 
