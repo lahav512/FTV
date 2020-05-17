@@ -46,6 +46,7 @@ class DyThread(DyModule):
                 self.runActiveTrigger(trigger)
             else:
                 self.isQueueEmpty.set(True)
+                break
                 # self.thread.setDaemon(True)
 
     def addActiveTrigger(self, trigger):
