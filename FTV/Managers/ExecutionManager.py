@@ -42,7 +42,7 @@ class ExecutionManager(AbstractManager):
         self.addTrigger(self.areQueuesEmpty).setCondition(DyBoolList.IsChangedTo, True).setAction(self._stopAllThreads)
 
     def _setupBuiltinThreads(self):
-        self.areQueuesEmpty = DyBoolList(builtin=False)
+        self.areQueuesEmpty = DyBoolList(builtin=True)
 
         self.threads = {}
         self.addThread("Main")
