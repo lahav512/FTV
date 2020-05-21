@@ -72,14 +72,14 @@ class IntegratedClock(NIFeature):
 
     @DyMethod()
     def startClock(self):
-        while self.vm.seconds < 1:
+        while self.vm.seconds < 100:
             self.tick()
 
     @DyMethod()
     def tick(self):
         self.vm.seconds += 1
         Log.p(self.getTimeStamp())
-        time.sleep(1)
+        time.sleep(0.1)
 
 
 class VisualClockVM(VariableManager):
@@ -120,7 +120,7 @@ class VisualClock(NIFeature):
 
 class ClockApp(NIApp):
     def setupFeatures(self):
-        self.addFeatures(IntegratedClock)
+        self.addFeature(IntegratedClock)
         self.addFeature(VisualClock)
 
     def setupSettings(self):
@@ -134,4 +134,4 @@ class ClockApp(NIApp):
 
 if __name__ == '__main__':
     app = ClockApp()
-    Log.p(f"threadName: {current_thread().name}")
+    # Log.p(f"threadName: {current_thread().name}")
