@@ -1,4 +1,5 @@
-from threading import Thread as BaseThread, current_thread
+from threading import Thread as BaseThread
+from threading import current_thread
 
 from AppPackage.Experiments.Log import Log
 from AppPackage.Experiments.PickleTests.DataObject import Queue
@@ -29,6 +30,7 @@ class DyThread(DyModule):
             self.thread.setName(self.name)
 
         self.is_new = True
+        # self.start()
 
     def setupTriggers(self):
         pass
@@ -36,6 +38,7 @@ class DyThread(DyModule):
     def thread_loop(self):
         self.is_new = False
         while True:
+            Log.p(f"{self.name}: thread_loop()")
             if not self.__active_triggers__.empty():
                 self.isQueueEmpty.set(False)
                 trigger = self.__active_triggers__.get_nowait()
@@ -53,7 +56,6 @@ class DyThread(DyModule):
         self.__active_triggers__.put_nowait(trigger)
 
         if not self.isAlive():
-            Log.p(f"startThread: {self.name}")
             self.start()
 
     # @staticmethod
@@ -62,6 +64,7 @@ class DyThread(DyModule):
         trigger.runAction()
 
     def start(self):
+        Log.p(f"startThread: {self.name}")
         self.thread.start()
 
     def stop(self):

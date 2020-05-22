@@ -72,14 +72,14 @@ class IntegratedClock(NIFeature):
 
     @DyMethod()
     def startClock(self):
-        while self.vm.seconds < 100:
+        while self.vm.seconds < 3:
             self.tick()
 
     @DyMethod()
     def tick(self):
         self.vm.seconds += 1
         Log.p(self.getTimeStamp())
-        time.sleep(0.1)
+        time.sleep(0.25)
 
 
 class VisualClockVM(VariableManager):
@@ -87,7 +87,7 @@ class VisualClockVM(VariableManager):
         pass
 
     def setupTriggers(self):
-        self.addTrigger(IntegratedClock.vm.seconds).setCondition(DyInt.IsChanged).setAction(self.updateSecondsRadius)  # .setThread(ClockApp.em.getThread("Clock"))
+        self.addTrigger(IntegratedClock.vm.seconds).setCondition(DyInt.IsChanged).setAction(self.updateSecondsRadius).setThread(ClockApp.em.getThread("Clock"))
         self.addTrigger(IntegratedClock.vm.minutes).setCondition(DyInt.IsChanged).setAction(self.updateMinutesRadius)  # .setThread(ClockApp.em.getThread("Clock"))
         self.addTrigger(IntegratedClock.vm.hours).setCondition(DyInt.IsChanged).setAction(self.updateHoursRadius)  # .setThread(ClockApp.em.getThread("Clock"))
 
@@ -113,9 +113,9 @@ class VisualClock(NIFeature):
         cls.setVariableManager(VisualClockVM)
 
 
-# class EM(ExecutionManager):
-#     def setupThreads(self):
-#         self.addThread("Clock")
+class EM(ExecutionManager):
+    def setupThreads(self):
+        self.addThread("Clock")
 
 
 class ClockApp(NIApp):
@@ -128,8 +128,8 @@ class ClockApp(NIApp):
 
     @classmethod
     def setupManagers(cls):
-        pass
-        # cls.setExecutionManager(EM)
+        # pass
+        cls.setExecutionManager(EM)
 
 
 if __name__ == '__main__':

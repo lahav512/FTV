@@ -57,6 +57,7 @@ class ExecutionManager(AbstractManager):
         if name not in self.threads:
             self.threads[name] = DyThread(name=name, daemon=daemon)
             self.areQueuesEmpty.add(self.threads[name].isQueueEmpty)
+            # self.threads[name].start()
 
     def getThread(self, name):
         return self.threads[name]

@@ -20,6 +20,7 @@
           <option value="unittest.TestCase" />
           <option value="unittest.case.TestCase" />
           <option value="object" />
+          <option value="AppPackage.Experiments.Threads.ExcecutionTest.ClockApp" />
         </list>
       </option>
     </inspection_tool>

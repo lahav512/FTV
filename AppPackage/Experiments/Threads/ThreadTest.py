@@ -1,7 +1,7 @@
 import threading
 import time
 from queue import Queue
-from threading import Thread
+from threading import Thread, current_thread
 
 
 class Action(object):
@@ -34,6 +34,7 @@ class DyThread(object):
 
     def thread_loop(self):
         while True:
+            # print("thread_loop()")
             if not self.__actions__.empty():
                 self.is_new = False
                 action = self.__actions__.get_nowait()
@@ -70,13 +71,16 @@ if __name__ == '__main__':
         def __init__(self):
             print("First thread: " + str(threading.get_ident()))
 
-            self.main_thread = DyThread(name="main")
-            self.sub_thread = DyThread(name="sub", daemon=True)
+            self.main_thread = DyThread(name="Main")
+            self.sub_thread = DyThread(name="Sub", daemon=True)
+
+            self.main_thread.start()
+
+            time.sleep(0.5)
 
             main_action = Action(self.addActionsToThread, self.main_thread)
             self.main_thread.addAction(main_action)
 
-            self.main_thread.start()
             # self.sub_thread.start()
 
             print("\nLast thread: " + str(threading.get_ident()))
@@ -85,14 +89,15 @@ if __name__ == '__main__':
             #     time.sleep(1)
 
         def addActionsToThread(self, thread: DyThread):
-            print(f"{self.main_thread.name} id: {threading.get_ident()}")
-
+            print(f"{thread.name} id: {threading.get_ident()}")
+            if not self.sub_thread.thread.isAlive():
+                self.sub_thread.start()
             # time.sleep(0.1)
 
             count = 0
             while count < 3:
                 count += 1
-                thread.addAction(Action(self.printTest, thread, count))
+                self.sub_thread.addAction(Action(self.printTest, count))
                 time.sleep(1)
 
             # self.sub_thread.stop()
@@ -101,8 +106,8 @@ if __name__ == '__main__':
 
             self.main_thread.stop()
 
-        def printTest(self, thread, num):
-            thread_name = thread.name
+        def printTest(self, num):
+            thread_name = current_thread().name
             print(f"{thread_name} id: {threading.get_ident()}")
             print(f"{thread_name}: {num}")
             # sleep(5)
