@@ -33,12 +33,12 @@ class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyModule):
 
     @DyMethod()
     def add(self, *dy_bools):
-        self.__iterator__ += dy_bools[0].__name__
+        self.__iterator__ += dy_bools
         # self.__len__ = len(self.__iterator__)
-        self._update_len_true(len(list(filter(lambda dy_bool: dy_bool, dy_bools))))
+        self._update_len_true(value=len(list(filter(lambda dy_bool: dy_bool, dy_bools))))
 
         for dy_bool in dy_bools:
-            self.addTrigger(dy_bool).setCondition(DyBool.IsChangedTo, dy_bool).setAction(self._update_len_true, dy_bool)
+            self.addTrigger(dy_bool).setCondition(DyBool.IsChanged).setAction(self._update_len_true, dy_bool, 1)
 
     def set(self, value):
         Log.p("This object is a dependent variable. Therefore, it cannot be updated directly.", Log.color.RED)
@@ -47,11 +47,11 @@ class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyModule):
         return self.__iterator__
 
     @DyBuiltinMethod()
-    def _update_len_true(self, _bool):
-        if _bool:
-            self.__len_true__ += 1
+    def _update_len_true(self, sign=True, value=1):
+        if sign:
+            self.__len_true__ += value
         else:
-            self.__len_true__ -= 1
+            self.__len_true__ -= value
 
     @DyBuiltinMethod()
     def _update_value(self, value):

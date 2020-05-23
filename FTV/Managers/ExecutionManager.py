@@ -39,10 +39,13 @@ class ExecutionManager(AbstractManager):
 
     def _setupBuiltinTriggers(self):
         super(ExecutionManager, self)._setupBuiltinTriggers()
-        self.addTrigger(self.areQueuesEmpty).setCondition(DyBoolList.IsChangedTo, True).setAction(self._stopAllThreads)
+        self.addTrigger(self.areQueuesEmpty)\
+            .setCondition(DyBoolList.IsChangedTo, True)\
+            .setAction(self._stopAllThreads)\
+            # .setThread(self.getThread("Main"))
 
     def _setupBuiltinThreads(self):
-        self.areQueuesEmpty = DyBoolList(builtin=True)
+        self.areQueuesEmpty = DyBoolList(builtin=False)
 
         self.threads = {}
         self.addThread("Main")
@@ -65,7 +68,7 @@ class ExecutionManager(AbstractManager):
     def setupSettings(self):
         pass
 
-    @DyBuiltinMethod()
+    @DyMethod()
     def _stopAllThreads(self):
         for thread in self.threads.values():
             if not thread.daemon:

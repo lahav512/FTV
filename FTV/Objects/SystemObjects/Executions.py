@@ -19,6 +19,7 @@ class DyThread(DyModule):
     def __init__(self, name=None, daemon=False):
         self.name = name
         self.daemon = daemon
+        self.isStopped = False
         super(DyThread, self).__init__()
 
     def setupVariables(self):
@@ -37,19 +38,19 @@ class DyThread(DyModule):
 
     def thread_loop(self):
         self.is_new = False
-        while True:
+        while not self.isStopped:
             Log.p(f"{self.name}: thread_loop()")
             if not self.__active_triggers__.empty():
                 self.isQueueEmpty.set(False)
                 trigger = self.__active_triggers__.get_nowait()
 
-                if trigger is None:
-                    break
+                # if trigger is None:
+                #     break
 
                 self.runActiveTrigger(trigger)
             else:
                 self.isQueueEmpty.set(True)
-                break
+                # break
                 # self.thread.setDaemon(True)
 
     def addActiveTrigger(self, trigger):
@@ -68,7 +69,8 @@ class DyThread(DyModule):
         self.thread.start()
 
     def stop(self):
-        self.__active_triggers__.put_nowait(None)
+        Log.p(f"stopThread: {self.name}")
+        self.isStopped = True
 
     def sleep(self):
         pass

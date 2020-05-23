@@ -1,4 +1,5 @@
 import time
+from threading import current_thread
 
 from AppPackage.Experiments.Log import Log
 from FTV.FrameWork.Apps import NIApp
@@ -65,3 +66,4 @@ class App(NIApp):
 
 if __name__ == '__main__':
     App()
+    Log.p(f"threadName(Object): {current_thread().name}")
