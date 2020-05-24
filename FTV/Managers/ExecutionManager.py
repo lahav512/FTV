@@ -1,16 +1,14 @@
-import abc
-
 from AppPackage.Experiments.Log import Log
 from FTV.Managers.AbstractManager import AbstractManager
 from FTV.Objects.SystemObjects.Executions import DyThread
 from FTV.Objects.Variables.DynamicIterators import DyBoolList
-from FTV.Objects.Variables.DynamicMethods import DyMethod, DyBuiltinMethod
+from FTV.Objects.Variables.DynamicMethods import DyBuiltinMethod
 
 
 class ExecutionManager(AbstractManager):
-    def __init__(self):
+    def __init__(self, _is_parent_app=False):
         Log.p("initEM: " + str(self.__class__.__name__))
-        super().__init__()
+        super().__init__(_is_parent_app=_is_parent_app)
         self.init()
 
     def init(self):
@@ -34,9 +32,6 @@ class ExecutionManager(AbstractManager):
         self._BUILTIN_METHODS |= {"_stopAllThreads"}
         super(ExecutionManager, self)._setupBuiltinMethods()
 
-    def _setupBuiltinVariables(self):
-        super(ExecutionManager, self)._setupBuiltinVariables()
-
     def _setupBuiltinTriggers(self):
         super(ExecutionManager, self)._setupBuiltinTriggers()
         self.addTrigger(self.areQueuesEmpty)\
@@ -45,10 +40,12 @@ class ExecutionManager(AbstractManager):
             # .setThread(self.getThread("Main"))
 
     def _setupBuiltinThreads(self):
-        self.areQueuesEmpty = DyBoolList(builtin=False)
+        self.areQueuesEmpty = DyBoolList(builtin=True)
 
         self.threads = {}
-        self.addThread("Main")
+
+        if self._is_parent_app:
+            self.addThread("Main")
 
     def setupVariables(self):
         pass
@@ -57,6 +54,7 @@ class ExecutionManager(AbstractManager):
         pass
 
     def addThread(self, name, daemon=False):
+        # if self._is_parent_app:
         if name not in self.threads:
             self.threads[name] = DyThread(name=name, daemon=daemon)
             self.areQueuesEmpty.add(self.threads[name].isQueueEmpty)
@@ -68,7 +66,7 @@ class ExecutionManager(AbstractManager):
     def setupSettings(self):
         pass
 
-    @DyMethod()
+    @DyBuiltinMethod()
     def _stopAllThreads(self):
         for thread in self.threads.values():
             if not thread.daemon:

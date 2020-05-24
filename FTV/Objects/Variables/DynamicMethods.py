@@ -1,3 +1,5 @@
+from threading import current_thread
+
 import wrapt
 
 from AppPackage.Experiments.Log import Log
@@ -39,9 +41,9 @@ class DyMethod(DynamicObjectInterface):
     def __call__(self, wrapped, instance, args, kwargs):
         if "parent" in kwargs:
             del kwargs["parent"]
-
+        
         # self.__log_p__(f"-> {wrapped.__name__}")
-        self.__log_p__(f"-> {instance.__class__.__name__}.{wrapped.__name__}")
+        self.__log_p__(f"-> {instance.__class__.__name__}.{wrapped.__name__}: {current_thread().name}")
         self.__log_step__(1)
         # instance._ACTIVE_METHOD = wrapped.__name__
         ans = wrapped(*args, **kwargs)

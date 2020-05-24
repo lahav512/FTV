@@ -28,7 +28,6 @@ class DynamicObjectInterface(object):
         while not dy_object.__active_triggers__.empty():
             trigger = dy_object.__active_triggers__.get_nowait()
             if trigger.runCondition(old_val, new_val):
-                Log.p(f"threadName(Object): {current_thread().name}")
                 trigger.runAction()
 
     def _prepareAndRunTriggers(self, dy_object, old_val=None, new_val=None):
@@ -542,7 +541,7 @@ class DyObject(DyObjectMagicMethods, DyObjectConditions, DynamicObjectInterface)
 
     def _set_empty(self, value):
         old_val = self._get()
-        self.__log_p__("{} = {}".format(self.__name__, value))
+        self.__log_p__(f"{self.__name__} = {value}: {current_thread().name}")
         self._prepareAndRunTriggers(self, old_val, value)
 
     def _set(self, value):
@@ -551,7 +550,7 @@ class DyObject(DyObjectMagicMethods, DyObjectConditions, DynamicObjectInterface)
     def set(self, value):
         old_val = self._get()
         self._set(value)
-        self.__log_p__("{} = {}".format(self.__name__, value))
+        self.__log_p__(f"{self.__name__} = {value}: {current_thread().name}")
         self._prepareAndRunTriggers(self, old_val, value)
 
     def _get(self):

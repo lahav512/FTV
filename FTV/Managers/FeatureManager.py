@@ -1,18 +1,13 @@
-from abc import abstractmethod
-
-from past.builtins import apply
-
 from AppPackage.Experiments.Log import Log
-from FTV.FrameWork.Features import Feature
 from FTV.Managers.AbstractManager import AbstractManager
 
 
 class FeatureManager(AbstractManager):
     features = []
 
-    def __init__(self):
+    def __init__(self, _is_parent_app=None):
         Log.p("initFM: " + str(self.__class__.__name__))
-        super().__init__()
+        super().__init__(_is_parent_app=_is_parent_app)
         self.init()
 
     def init(self):

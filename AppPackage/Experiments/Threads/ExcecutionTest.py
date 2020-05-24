@@ -1,5 +1,4 @@
 import time
-from threading import current_thread
 
 from AppPackage.Experiments.Log import Log
 from FTV.FrameWork.Apps import NIApp
@@ -21,9 +20,9 @@ class Feature1(NIFeature):
     def setupSettings(self):
         self.settings.setEnabled()
 
-    @classmethod
-    def setupManagers(cls):
-        cls.setVariableManager(VM)
+    # @classmethod
+    def setupManagers(self):
+        self.setVariableManager(VM)
 
     def setupTriggers(self):
         self.addTrigger(App.vm.START).setAction(self.loopA)
@@ -32,9 +31,9 @@ class Feature1(NIFeature):
 
     @DyMethod()
     def loopA(self):
-        # while self.vm.a < 10:
-        self.increaseA()
-        # time.sleep(0.5)
+        while self.vm.a < 10:
+            self.increaseA()
+            time.sleep(0.5)
 
     @DyMethod()
     def increaseA(self):
@@ -48,22 +47,21 @@ class Feature1(NIFeature):
 class EM(ExecutionManager):
     def setupThreads(self):
         self.addThread("Sub")
-        # self.addThread("Sub", True)
 
 
 class App(NIApp):
     def setupFeatures(self):
+        # pass
         self.addFeature(Feature1)
 
     def setupSettings(self):
         pass
 
-    @classmethod
-    def setupManagers(cls):
-        # pass
-        cls.setExecutionManager(EM)
+    # @classmethod
+    def setupManagers(self):
+        self.setExecutionManager(EM)
+        pass
 
 
 if __name__ == '__main__':
     App()
-    Log.p(f"threadName(Object): {current_thread().name}")

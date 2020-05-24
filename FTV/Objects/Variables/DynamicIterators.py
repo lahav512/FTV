@@ -2,11 +2,11 @@ from AppPackage.Experiments.Log import Log
 from FTV.Objects.SystemObjects.TriggerObjects import Condition
 from FTV.Objects.Variables.AbstractDynamicObject import DyListMagicMethods, DyBoolMagicMethods
 from FTV.Objects.Variables.DynamicMethods import DyMethod, DyBuiltinMethod
-from FTV.Objects.Variables.DynamicModules import DyModule
+from FTV.Objects.Variables.DynamicModules import DyBuiltinModule
 from FTV.Objects.Variables.DynamicObjects import DyInt, DyBool
 
 
-class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyModule):
+class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyBuiltinModule):
     def __init__(self, builtin=False):
         super(DyBoolList, self).__init__(builtin=builtin)
 
@@ -31,7 +31,7 @@ class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyModule):
             .setCondition(DyBoolList.IsNotEqualToLenOf, self)\
             .setAction(self._update_value, False)
 
-    @DyMethod()
+    @DyBuiltinMethod()
     def add(self, *dy_bools):
         self.__iterator__ += dy_bools
         # self.__len__ = len(self.__iterator__)

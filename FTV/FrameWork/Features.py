@@ -1,9 +1,9 @@
 import abc
-
 # global variableManager
 # global featureManager
+import importlib
+
 from AppPackage.Experiments.Log import Log
-from FTV.Managers.ExecutionManager import ExecutionManager
 from FTV.Objects.Variables.AbstractDynamicModule import DynamicModuleParent
 from FTV.Objects.Variables.DynamicMethods import DyBuiltinMethod
 from FTV.Objects.Variables.DynamicObjects import DyBool, DySwitch
@@ -12,8 +12,16 @@ from FTV.Objects.Variables.DynamicObjects import DyBool, DySwitch
 class Feature(DynamicModuleParent):
     type = "Feature"
 
+    _builtin_managers = {
+        "em": "ExecutionManager",
+        "vm": "VariableManager",
+        "fm": "FeatureManager",
+    }
+
     def __init__(self):
         Log.p(f"init{self.__class__.type}: " + str(self.__class__.__name__))
+
+        self._managers = {}
 
         self.settings = self._Settings()
         self.setupSettings()
@@ -33,7 +41,7 @@ class Feature(DynamicModuleParent):
 
     @DyBuiltinMethod()
     def _loadSelf(self):
-        self.setupManagers()
+        self._setupResumeManagers()
         self._setupMethods()
         self.setupTriggers()
         self.vm.IS_SELF_LOADED.set(True)
@@ -46,29 +54,40 @@ class Feature(DynamicModuleParent):
     def setupSettings(self):
         pass
 
+    def _setupBuiltinManagers(self):
+        self.setupManagers()
+        from FTV.FrameWork.Apps import NIApp
+
+        for var_name in self.__class__._builtin_managers.keys():
+            if var_name in self._managers.keys():
+                continue
+
+            cls_name = self.__class__._builtin_managers[var_name]
+            is_parent_app = issubclass(self.__class__, NIApp)
+            manager = self._getBaseAbstractManagerClass(cls_name)(_is_parent_app=is_parent_app)
+            setattr(self.__class__, var_name, manager)
+
+        for var_name, cls_name in self._managers.items():
+            is_parent_app = issubclass(self.__class__, NIApp)
+            manager = cls_name(_is_parent_app=is_parent_app)
+            setattr(self.__class__, var_name, manager)
+
     @classmethod
-    def _setupBuiltinManagers(cls):
-        from FTV.Managers.VariableManager import VariableManager
-        from FTV.Managers.FeatureManager import FeatureManager
-
-        cls.vm: VariableManager = VariableManager()
-        # cls.em: ExecutionManager = ExecutionManager()
-        cls.fm: FeatureManager = FeatureManager()
-
-        # cls.vm.setBuiltin(True)
-        # cls.fm.setBuiltin(True)
+    def _setupResumeManagers(cls):
+        for key in cls._builtin_managers.keys():
+            getattr(getattr(cls, key), "PRE_INIT").activate()
 
     def _setupBuiltinVariables(self):
         self.vm.POST_BUILTIN_LOAD = DySwitch(builtin=True)
         self.vm.PRE_LOAD = DySwitch(builtin=True)
-        self.vm.IS_SELF_LOADED = DyBool(False)
+        self.vm.IS_SELF_LOADED = DyBool(True, builtin=True)
         self.vm.POST_LOAD = DySwitch(builtin=True)
         # self.vm.START = DySwitch()
         # self.vm.EXIT = DySwitch()
 
-        self.vm.PRE_LOAD_FEATURES = DySwitch()
+        self.vm.PRE_LOAD_FEATURES = DySwitch(builtin=True)
         self.vm.IS_CHILDREN_LOADED = DyBool(False, builtin=True)
-        self.vm.POST_LOAD_FEATURES = DySwitch()
+        self.vm.POST_LOAD_FEATURES = DySwitch(builtin=True)
 
     def _setupBuiltinTriggers(self):
         self.addTrigger(self._loadBuiltinSelf).setAction(self.vm.POST_BUILTIN_LOAD)
@@ -86,32 +105,38 @@ class Feature(DynamicModuleParent):
         self.setupFeatures()
         self.vm.IS_CHILDREN_LOADED.set(True)
 
-    @classmethod
+    # @classmethod
     @abc.abstractmethod
-    def setupManagers(cls):
+    def setupManagers(self):
         pass
 
-    @staticmethod
-    def _setAbstractManager(abstract_manager, Manager):
-        manager = Manager()
-        methods_list = [method for method in dir(manager) if callable(getattr(manager, method))
-                        and not (method.startswith("__") and method.endswith("__"))]
+    def _getBaseAbstractManagerClass(self, cls_name):
+        # manager_class = __import__(f"FTV.Managers.{cls_name}")
+        manager_class = importlib.import_module(f"FTV.Managers.{cls_name}")
+        manager_class = getattr(manager_class, cls_name)
+        return manager_class
 
-        abstract_manager.__dict__.update(manager.__dict__)
-        for method in methods_list:
-            setattr(abstract_manager, method, getattr(manager, method))
+    def _setAbstractManager(self, manager_name, Manager):
+        self._managers[manager_name] = Manager
+        # manager = Manager()
+        # methods_list = [method for method in dir(manager) if callable(getattr(manager, method))
+        #                 and not (method.startswith("__") and method.endswith("__"))]
+        #
+        # abstract_manager.__dict__.update(manager.__dict__)
+        # for method in methods_list:
+        #     setattr(abstract_manager, method, getattr(manager, method))
 
-    @classmethod
-    def setVariableManager(cls, Manager):
-        cls._setAbstractManager(cls.vm, Manager)
+    # @classmethod
+    def setVariableManager(self, Manager):
+        self._setAbstractManager("vm", Manager)
 
-    @classmethod
-    def setExecutionManager(cls, Manager):
-        cls._setAbstractManager(cls.em, Manager)
+    # @classmethod
+    def setExecutionManager(self, Manager):
+        self._setAbstractManager("em", Manager)
 
-    @classmethod
-    def setFeatureManager(cls, Manager):
-        cls._setAbstractManager(cls.fm, Manager)
+    # @classmethod
+    def setFeatureManager(self, Manager):
+        self._setAbstractManager("fm", Manager)
 
     def setupTriggers(self):
         pass

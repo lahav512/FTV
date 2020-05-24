@@ -103,3 +103,9 @@ class DyModule(DynamicModuleParent, DyObject):
         @staticmethod
         def __condition__(old_val, new_val, *args, **kwargs):
             return not args[0]._setup_mode
+
+
+class DyBuiltinModule(DyModule):
+    def _setupBuiltinVariables(self):
+        super(DyBuiltinModule, self)._setupBuiltinVariables()
+        self.POST_INIT.setBuiltin(True)

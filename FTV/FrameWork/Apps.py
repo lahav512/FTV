@@ -25,16 +25,6 @@ class NIApp(__AbstractApp, NIFeature):
     def setupSettings(self):
         pass
 
-    @classmethod
-    def _setupBuiltinManagers(cls):
-        from FTV.Managers.VariableManager import VariableManager
-        from FTV.Managers.ExecutionManager import ExecutionManager
-        from FTV.Managers.FeatureManager import FeatureManager
-
-        cls.vm: VariableManager = VariableManager()
-        cls.em: ExecutionManager = ExecutionManager()
-        cls.fm: FeatureManager = FeatureManager()
-
     def _setupBuiltinVariables(self):
         super(NIApp, self)._setupBuiltinVariables()
         self.vm.START = DySwitch()

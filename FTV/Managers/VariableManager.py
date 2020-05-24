@@ -5,9 +5,9 @@ from FTV.Managers.AbstractManager import AbstractManager
 
 
 class VariableManager(AbstractManager):
-    def __init__(self):
+    def __init__(self, _is_parent_app=None):
         Log.p("initVM: " + str(self.__class__.__name__))
-        super().__init__()
+        super().__init__(_is_parent_app=_is_parent_app)
         self.init()
 
     def init(self):
