@@ -1,6 +1,6 @@
 from AppPackage.FrameWork.Features.UIFeature1 import UIFeature1
 from FTV.FrameWork.Apps import UIApp, NIApp
-from FTV.Managers.EexecutionManager import ExecutionManager
+from FTV.Managers.ExecutionManager import ExecutionManager
 from FTV.Managers.FeatureManager import FeatureManager
 from FTV.Managers.LogManager import LogManager
 from FTV.Managers.UIManager import UIManager

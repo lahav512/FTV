@@ -5,10 +5,18 @@ from FTV.Managers.AbstractManager import AbstractManager
 
 
 class VariableManager(AbstractManager):
-    def __init__(self):
-        super().__init__()
-        Log.i("initVM: " + str(self.__class__.__name__))
+    def __init__(self, _is_parent_app=None):
+        Log.p("initVM: " + str(self.__class__.__name__))
+        super().__init__(_is_parent_app=_is_parent_app)
         self.init()
 
     def init(self):
+        pass
+
+    @abstractmethod
+    def setupVariables(self):
+        pass
+
+    @abstractmethod
+    def setupTriggers(self):
         pass

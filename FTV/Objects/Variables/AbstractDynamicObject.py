@@ -1,14 +1,8 @@
-import inspect
-import time
-from abc import abstractmethod, ABC
-from functools import wraps, partial
-from queue import Queue
-
-import wrapt as wrapt
+from threading import current_thread
 
 from AppPackage.Experiments.Log import Log
-from FTV.Objects.SystemObjects.Trigger import Action, Trigger
-from AppPackage.Experiments import Efficiency
+from AppPackage.Experiments.PickleTests.DataObject import Queue
+from FTV.Objects.Variables.AbstractConditions import DyObjectConditions
 
 
 class DynamicObjectInterface(object):
@@ -20,51 +14,544 @@ class DynamicObjectInterface(object):
 
     @staticmethod
     def _distributeTriggers(dy_object):
+        dy_object.__active_triggers__.clear()
+
         for trigger in dy_object.__triggers__:
             if trigger.thread is None:
                 dy_object.__active_triggers__.put_nowait(trigger)
             else:
                 # TODO lahav Add trigger to its designated thread
-                pass
+                trigger.thread.addActiveTrigger(trigger)
 
     @staticmethod
-    def _runActiveTriggers(dy_object):
+    def _runActiveTriggers(dy_object, old_val=None, new_val=None):
         while not dy_object.__active_triggers__.empty():
-            dy_object.__active_triggers__.get_nowait().action()
+            trigger = dy_object.__active_triggers__.get_nowait()
+            if trigger.runCondition(old_val, new_val):
+                trigger.runAction()
+
+    def _prepareAndRunTriggers(self, dy_object, old_val=None, new_val=None):
+        self._distributeTriggers(dy_object)
+        self._runActiveTriggers(dy_object, old_val, new_val)
+
+    # @abstractmethod
+    def __action__(self, *args, **kwargs) -> object:
+        pass
 
 
-class DynamicMethod(DynamicObjectInterface):
-    # __slots__ = ()
+class DyObjectMagicMethods(object):
 
-    def __init__(self):
-        super(DynamicMethod, self).__init__()
+    # def __delattr__() -> Irrelevant
 
-    @wrapt.decorator
-    def __call__(self, wrapped, instance, args, kwargs):
-        Log.i("-> " + wrapped.__name__)
-        ans = wrapped(*args, **kwargs)
-        Log.i("<- " + wrapped.__name__)
-        self._distributeTriggers(wrapped)
-        self._runActiveTriggers(wrapped)
-        return ans
+    # def __dir__() -> Irrelevant
+
+    def __eq__(self, *args, **kwargs) -> bool:
+        return object.__eq__(self.get(), args[0] + 0, **kwargs)
+
+    def __format__(self, *args, **kwargs) -> str:
+        return object.__format__(self.get(), *args, **kwargs)
+
+    # def __getattribute__() -> Irrelevant
+
+    def __ge__(self, *args, **kwargs):
+        return object.__ge__(self.get(), *args, **kwargs)
+
+    def __gt__(self, *args, **kwargs):
+        return object.__gt__(self.get(), *args, **kwargs)
+
+    def __hash__(self, *args, **kwargs) -> int:
+        return object.__hash__(self.get(), *args, **kwargs)
+
+    # def __init_subclass__() -> Irrelevant
+
+    # def __init__() -> Irrelevant
+
+    def __le__(self, *args, **kwargs):
+        return object.__le__(self.get(), *args, **kwargs)
+
+    def __lt__(self, *args, **kwargs):
+        return object.__lt__(self.get(), *args, **kwargs)
+
+    # def __new__() -> Irrelevant
+
+    def __ne__(self, *args, **kwargs) -> int:
+        return object.__ne__(self.get(), *args, **kwargs)
 
 
-class DynamicObject(DynamicObjectInterface):
+
+
+    # # # String Magic Methods
+
+    def __str__(self):
+        return object.__str__(self.get())
+
+
+class DyBoolMagicMethods(DyObjectMagicMethods):
+
+    # # # Operator Magic Methods
+
+    def __lt__(self, other):
+        return bool.__lt__(self.get(), other + 0)
+
+    def __le__(self, other):
+        return bool.__le__(self.get(), other + 0)
+
+    # def __eq__(self, other):
+    #     return bool.__eq__(self.get(), other + 0)
+
+    def __ne__(self, other):
+        return bool.__ne__(self.get(), other + 0)
+
+    def __gt__(self, other):
+        return bool.__gt__(self.get(), other + 0)
+
+    def __ge__(self, other):
+        return bool.__ge__(self.get(), other + 0)
+
+    # # # Operator Magic Methods
+
+    def __add__(self, other):
+        return bool.__add__(self.get(), other + 0)
+
+    def __sub__(self, other):
+        return bool.__sub__(self.get(), other + 0)
+
+    def __mul__(self, other):
+        return bool.__mul__(self.get(), other + 0)
+
+    def __floordiv__(self, other):
+        return bool.__floordiv__(self.get(), other + 0)
+
+    def __truediv__(self, other):
+        return bool.__truediv__(self.get(), other + 0)
+
+    def __mod__(self, other):
+        return bool.__mod__(self.get(), other + 0)
+
+    def __divmod__(self, other):
+        return bool.__divmod__(self.get(), other + 0)
+
+    def __pow__(self, other):
+        return bool.__pow__(self.get(), other + 0)
+
+    def __lshift__(self, other):
+        return bool.__lshift__(self.get(), other + 0)
+
+    def __rshift__(self, other):
+        return bool.__rshift__(self.get(), other + 0)
+
+    def __and__(self, other):
+        return bool.__and__(self.get(), other + 0)
+
+    def __or__(self, other):
+        return bool.__or__(self.get(), other + 0)
+
+    def __xor__(self, other):
+        return bool.__xor__(self.get(), other + 0)
+
+    # def __div__(self, other):
+    #     return int.__div__(self.__value__, other)
+
+    # # # Type Conversion Magic Methods
+
+    def __bool__(self):
+        return bool.__bool__(self.get())
+
+    def __float__(self):
+        return bool.__float__(self.get())
+
+    def __index__(self):
+        return bool.__index__(self.get())
+
+    # def __complex__(self):
+    #     return int.__complex__(self.__value__)
+
+    # def __oct__(self):
+    #     return int.__oct__(self.__value__)
+
+    # def __hex__(self):
+    #     return int.__hex__(self.__value__)
+
+    # # # Augmented Assignment
+
+    def __iadd__(self, other):
+        self.set(self.__add__(other))
+        return self
+
+    def __radd__(self, other):
+        return bool.__radd__(self.get(), other)
+
+    def __isub__(self, other):
+        self.set(self.__sub__(other))
+        return self
+
+    def __rsub__(self, other):
+        return bool.__rsub__(self.get(), other)
+
+    def __imul__(self, other):
+        self.set(self.__mul__(other))
+        return self
+
+    def __rmul__(self, other):
+        return bool.__rmul__(self.get(), other)
+
+    def __ifloordiv__(self, other):
+        self.set(self.__floordiv__(other))
+        return self
+
+    def __rfloordiv__(self, other):
+        return bool.__rfloordiv__(self.get(), other)
+
+    def __itruediv__(self, other):
+        self.set(self.__truediv__(other))
+        return self
+
+    def __rtruediv__(self, other):
+        return bool.__rtruediv__(self.get(), other)
+
+    def __imod__(self, other):
+        self.set(self.__mod__(other))
+        return self
+
+    def __rmod__(self, other):
+        return bool.__rmod__(self.get(), other)
+
+    def __ipow__(self, other):
+        self.set(self.__pow__(other))
+        return self
+
+    def __rpow__(self, other):
+        return bool.__rpow__(self.get(), other)
+
+    def __ilshift__(self, other):
+        self.set(self.__lshift__(other))
+        return self
+
+    def __rlshift__(self, other):
+        return bool.__rlshift__(self.get(), other)
+
+    def __irshift__(self, other):
+        self.set(self.__rshift__(other))
+        return self
+
+    def __rrshift__(self, other):
+        return bool.__rrshift__(self.get(), other)
+
+    def __iand__(self, other):
+        self.set(self.__and__(other))
+        return self
+
+    def __rand__(self, other):
+        return bool.__rand__(self.get(), other)
+
+    def __ior__(self, other):
+        self.set(self.__or__(other))
+        return self
+
+    def __ror__(self, other):
+        return bool.__ror__(self.get(), other)
+
+    def __ixor__(self, other):
+        self.set(self.__xor__(other))
+        return self
+
+    def __rxor__(self, other):
+        return bool.__rxor__(self.get(), other)
+
+    # def __idiv__(self, other):
+    #     return int.__rdiv__(self.__value__, other)
+
+    # # # Unary operators and functions
+
+    def __pos__(self):
+        return bool.__pos__(self.get())
+
+    def __neg__(self):
+        return bool.__neg__(self.get())
+
+    def __abs__(self):
+        return bool.__abs__(self.get())
+
+    def __invert__(self):
+        return bool.__invert__(self.get())
+
+    def __round__(self):
+        return bool.__round__(self.get())
+
+    def __trunc__(self):
+        return self.get() # True for int only!!!
+
+    def __hash__(self):
+        return bool.__hash__(self.get())
+
+    # def __floor__(self):
+    #     return int.__floor__(self.__value__)
+
+    # def __ceil__(self):
+    #     return int.__ceil__(self.__value__)
+
+
+class DyNumericMagicMethods(DyObjectMagicMethods):
+
+    # # # Operator Magic Methods
+
+    def __lt__(self, other):
+        return int.__lt__(self.get(), other + 0)
+
+    def __le__(self, other):
+        return int.__le__(self.get(), other + 0)
+
+    # def __eq__(self, other):
+    #     return int.__eq__(self.get(), other + 0)
+
+    def __ne__(self, other):
+        return int.__ne__(self.get(), other + 0)
+
+    def __gt__(self, other):
+        return int.__gt__(self.get(), other + 0)
+
+    def __ge__(self, other):
+        return int.__ge__(self.get(), other + 0)
+
+    # # # Operator Magic Methods
+
+    def __add__(self, *args, **kwargs):
+        return int.__add__(self.get(), *args, **kwargs)
+
+    def __sub__(self, other):
+        return int.__sub__(self.get(), other + 0)
+
+    def __mul__(self, other):
+        return int.__mul__(self.get(), other + 0)
+
+    def __floordiv__(self, other):
+        return int.__floordiv__(self.get(), other + 0)
+
+    def __truediv__(self, other):
+        return int.__truediv__(self.get(), other + 0)
+
+    def __mod__(self, other):
+        return int.__mod__(self.get(), other + 0)
+
+    def __divmod__(self, other):
+        return int.__divmod__(self.get(), other + 0)
+
+    def __pow__(self, other):
+        return int.__pow__(self.get(), other + 0)
+
+    def __lshift__(self, other):
+        return int.__lshift__(self.get(), other + 0)
+
+    def __rshift__(self, other):
+        return int.__rshift__(self.get(), other + 0)
+
+    def __and__(self, other):
+        return int.__and__(self.get(), other + 0)
+
+    def __or__(self, other):
+        return int.__or__(self.get(), other + 0)
+
+    def __xor__(self, other):
+        return int.__xor__(self.get(), other + 0)
+
+    def __bool__(self):
+        return int.__bool__(self.get())
+
+    # def __div__(self, other):
+    #     return int.__div__(self.__value__, other)
+
+    # # # Type Conversion Magic Methods
+
+    def __int__(self):
+        return int.__int__(self.get())
+
+    def __float__(self):
+        return int.__float__(self.get())
+
+    def __index__(self):
+        return int.__index__(self.get())
+
+    # def __complex__(self):
+    #     return int.__complex__(self.__value__)
+
+    # def __oct__(self):
+    #     return int.__oct__(self.__value__)
+
+    # def __hex__(self):
+    #     return int.__hex__(self.__value__)
+
+    # # # Augmented Assignment
+
+    def __iadd__(self, other):
+        self.set(self.__add__(other))
+        return self
+
+    def __radd__(self, other):
+        return int.__radd__(self.get(), other)
+
+    def __isub__(self, other):
+        self.set(self.__sub__(other))
+        return self
+
+    def __rsub__(self, other):
+        return int.__rsub__(self.get(), other)
+
+    def __imul__(self, other):
+        self.set(self.__mul__(other))
+        return self
+
+    def __rmul__(self, other):
+        return int.__rmul__(self.get(), other)
+
+    def __ifloordiv__(self, other):
+        self.set(self.__floordiv__(other))
+        return self
+
+    def __rfloordiv__(self, other):
+        return int.__rfloordiv__(self.get(), other)
+
+    def __itruediv__(self, other):
+        self.set(self.__truediv__(other))
+        return self
+
+    def __rtruediv__(self, other):
+        return int.__rtruediv__(self.get(), other)
+
+    def __imod__(self, other):
+        self.set(self.__mod__(other))
+        return self
+
+    def __rmod__(self, other):
+        return int.__rmod__(self.get(), other)
+
+    def __ipow__(self, other):
+        self.set(self.__pow__(other))
+        return self
+
+    def __rpow__(self, other):
+        return int.__rpow__(self.get(), other)
+
+    def __ilshift__(self, other):
+        self.set(self.__lshift__(other))
+        return self
+
+    def __rlshift__(self, other):
+        return int.__rlshift__(self.get(), other)
+
+    def __irshift__(self, other):
+        self.set(self.__rshift__(other))
+        return self
+
+    def __rrshift__(self, other):
+        return int.__rrshift__(self.get(), other)
+
+    def __iand__(self, other):
+        self.set(self.__and__(other))
+        return self
+
+    def __rand__(self, other):
+        return int.__rand__(self.get(), other)
+
+    def __ior__(self, other):
+        self.set(self.__or__(other))
+        return self
+
+    def __ror__(self, other):
+        return int.__ror__(self.get(), other)
+
+    def __ixor__(self, other):
+        self.set(self.__xor__(other))
+        return self
+
+    def __rxor__(self, other):
+        return int.__rxor__(self.get(), other)
+
+    # def __idiv__(self, other):
+    #     return int.__rdiv__(self.__value__, other)
+
+    # # # Unary operators and functions
+
+    def __pos__(self):
+        return int.__pos__(self.get())
+
+    def __neg__(self):
+        return int.__neg__(self.get())
+
+    def __abs__(self):
+        return int.__abs__(self.get())
+
+    def __invert__(self):
+        return int.__invert__(self.get())
+
+    def __round__(self):
+        return int.__round__(self.get())
+
+    def __trunc__(self):
+        return int.__trunc__(self.get())  # True for int only!!!
+
+    # def __floor__(self):
+    #     return int.__floor__(self.__value__)
+
+    # def __ceil__(self):
+    #     return int.__ceil__(self.__value__)
+
+
+class DyIntMagicMethods(DyNumericMagicMethods):
+    pass
+
+
+class DyFloatMagicMethods(DyNumericMagicMethods):
+    pass
+
+
+class DyListMagicMethods(DyObjectMagicMethods):
+
+    def __len__(self):
+        return list.__len__(self.__iterator__)
+
+    def __contains__(self, item):
+        raise Exception("This attribute is irrelevant for a list of DyObjects.")
+
+    def __delitem__(self, item):
+        raise Exception("This attribute is irrelevant for a list of DyObjects.")
+        # TODO lahav Define whether you want to use this attribute or not.
+
+    def __getitem__(self, item):
+        raise Exception("This attribute is irrelevant for a list of DyObjects.")
+
+    def __setitem__(self, item):
+        raise Exception("This attribute is irrelevant for a list of DyObjects.")
+
+    def __iter__(self):
+        return list.__iter__(self.__iterator__)
+
+    def __reversed__(self):
+        return list.__reversed__(self.__iterator__)
+
+
+class DyObject(DyObjectMagicMethods, DyObjectConditions, DynamicObjectInterface):
+
     type = "DynamicObject"
 
-    def __init__(self, value=None):
-        super(DynamicObject, self).__init__()
+    def __init__(self, value=None, builtin=False):
+        super(DyObject, self).__init__()
         self.__value__: object = value
-        # self.__name__: str
+        self.__name__: str = "__name__"
+        self._is_builtin: bool = builtin
+
+    def _set_empty(self, value):
+        old_val = self._get()
+        self.__log_p__(f"{self.__name__} = {value}: {current_thread().name}")
+        self._prepareAndRunTriggers(self, old_val, value)
 
     def _set(self, value):
         self.__value__ = value
 
     def set(self, value):
+        old_val = self._get()
         self._set(value)
-        # Log.i("Activated: " + self.__name__)
-        self._distributeTriggers()
-        self._runActiveTriggers()
+        self.__log_p__(f"{self.__name__} = {value}: {current_thread().name}")
+        self._prepareAndRunTriggers(self, old_val, value)
 
     def _get(self):
         return self.__value__
@@ -72,241 +559,21 @@ class DynamicObject(DynamicObjectInterface):
     def get(self):
         return self._get()
 
-    def _distributeTriggers(self):
-        super(DynamicObject, self)._distributeTriggers(self)
-
-    def _runActiveTriggers(self):
-        super(DynamicObject, self)._runActiveTriggers(self)
+    def setBuiltin(self, ans):
+        self._is_builtin = ans
 
     # def __repr__(self):
     #     return self.get()
 
+    @staticmethod
+    def __get_other__(other):
+        if isinstance(other, DyObject):
+            return other.get()
+        return other
 
-class DynamicModuleParent(object):
-    type = "DynamicModuleParent"
+    def __log_p__(self, message):
+        if not (self._is_builtin and not Log.BUILTIN_ENABLED):
+            Log.p(message, Log.color.BLUE)
 
-    _BUILTIN_METHODS = {
-        "_setupEnvironment",
-        "_loadBuiltinSelf",
-        "_loadSelf"
-    }
-
-    _IGNORE_METHODS = {
-        "__setattr__",
-        "__init__",
-        "_setupBuiltinMethods",
-        "_setupMethods",
-        "_setupBuiltinTriggers",
-        "setupTriggers",
-        "_setupMethods",
-        "addTrigger",
-        "removeTrigger",
-        "_DynamicModuleParent__initMethodsVariables",
-        "_DynamicModuleParent__setupMethod",
-        "_getDySwitchAction",  # TODO lahav Temporary!
-        "_get",
-        "_set",
-        "get",
-        "set",
-        "_setupBuiltinVariables",
-        "setupVariables",
-    }
-
-    # def __setattr__(self, key, value):
-    #     if key in dir(self) and callable(getattr(self, key)):
-    #         raise Exception(
-    #             "Can't add the attribute \"{}\" to the object \"{}\", since it is already exists as a method.".format(
-    #                 key, self.__class__.__name__))
-    #
-    #     super().__setattr__(key, value)
-
-    def __init__(self):
-        self._setupEnvironment()
-
-    def __setupMethod(self, method_key):
-        # print(method_key)
-        method = getattr(self.__class__, method_key)
-        setattr(method, "__triggers__", [])
-        setattr(method, "__active_triggers__", Queue())
-
-    @abstractmethod
-    def _setupEnvironment(self):
-        pass
-
-    @abstractmethod
-    def _loadBuiltinSelf(self):
-        pass
-
-    @abstractmethod
-    def _loadSelf(self):
-        pass
-
-    def _setupBuiltinMethods(self):
-        # self.__dynamic_methods__ = set()
-        self.__dynamic_methods__ = set()
-
-        # map(lambda method_key: self.__setupMethod(method_key), getattr(self, "_DynamicModuleParent__BUILTIN_METHODS"))
-
-        # [self.__setupMethod(method_key) for method_key in getattr(self, "_DynamicModuleParent__BUILTIN_METHODS")]
-
-        for method_key in self._BUILTIN_METHODS:
-            self.__setupMethod(method_key)
-
-    def _setupMethods(self):
-        ignore_methods = self._IGNORE_METHODS
-        builtin_methods = self._BUILTIN_METHODS
-
-        methods = inspect.getmembers(self, inspect.ismethod)
-        # map(lambda func: self.__setupMethod(func[0]) if func[0] not in ignore_methods | builtin_methods else None, methods)
-
-        filtered_methods = list(filter(lambda obj: obj[0] not in ignore_methods | builtin_methods, methods))
-
-        for func in filtered_methods:
-            self.__setupMethod(func[0])
-
-    @abstractmethod
-    def _setupBuiltinTriggers(self):
-        pass
-
-    @abstractmethod
-    def setupTriggers(self):
-        pass
-
-    def addTrigger(self, dy_variable, condition, action, thread=None):
-
-        modified_action: function
-
-        # TODO lahav This solution is temporary.
-        if callable(action):
-            modified_action = Action(getattr(self, action.__name__))
-        else:
-            modified_action = Action(action.activate)
-
-        dy_variable.__triggers__.append(Trigger(self, condition, modified_action, thread))
-        # TODO lahav Please choose a proper way to add triggers.
-
-    def removeTrigger(self, *args):
-        pass  # TODO lahav Must be redefined.
-
-    # def _getDySwitchAction(self, action):
-    #     return self.__temp_action.activate()
-
-
-# if __name__ == '__main__':
-
-    # class DyModule(DynamicModule):
-    #
-    #     @staticmethod
-    #     def print(message):
-    #         Log.i(message)
-    #
-    #     @DynamicMethod()
-    #     def ftvWorks(self):
-    #         self.print("FTV Works!")
-    #
-    #     @DynamicMethod()
-    #     def firstMethod(self):
-    #         # self.print("firstMethod")
-    #         self.first.activate()
-    #
-    #     @DynamicMethod()
-    #     def secondMethod(self):
-    #         # self.print("secondMethod")
-    #         self.second.activate()
-    #
-    #     @DynamicMethod()
-    #     def thirdMethod(self):
-    #         # self.print("thirdMethod")
-    #         self.third.activate()
-    #
-    #     def setupVariables(self):
-    #         self.first = DySwitch()
-    #         self.second = DySwitch()
-    #         self.third = DySwitch()
-    #
-    #     def setupTriggers(self):
-    #         self.addTrigger(self.POST_INIT, True, self.firstMethod)
-    #         self.addTrigger(self.firstMethod, True, self.secondMethod)
-    #         # self.addTrigger(self.second, True, self.thirdMethod)
-    #         # self.addTrigger(self.third, True, self.ftvWorks)
-    #
-    # class SimpleDyModule(DynamicModule):
-    #     def __init__(self):
-    #         super(SimpleDyModule, self).__init__()
-    #         self.first = DySwitch()
-    #         self.second = DySwitch()
-    #         self.third = DySwitch()
-    #
-    #         self.firstMethod()
-    #         if self.first.get():
-    #             self.secondMethod()
-    #             if self.second.get():
-    #                 self.thirdMethod()
-    #                 if self.third.get():
-    #                     self.ftvWorks()
-    #
-    #     # def _setupBuiltinMethods(self):
-    #     #     super(SimpleDyModule, self)._setupBuiltinMethods()
-    #     #     self.__dynamic_methods__.add("firstMethod")
-    #     #     self.__dynamic_methods__.add("secondMethod")
-    #     #     self.__dynamic_methods__.add("thirdMethod")
-    #     #     self.__dynamic_methods__.add("ftvWorks")
-    #
-    #     @staticmethod
-    #     def print(message):
-    #         Log.i(message)
-    #
-    #     # @DynamicMethod()
-    #     def ftvWorks(self):
-    #         self.print("FTV Works!")
-    #
-    #     # @DynamicMethod()
-    #     def firstMethod(self):
-    #         # self.print("firstMethod")
-    #         self.first.activate()
-    #
-    #     # @DynamicMethod()
-    #     def secondMethod(self):
-    #         # self.print("secondMethod")
-    #         self.second.activate()
-    #
-    #     # @DynamicMethod()
-    #     def thirdMethod(self):
-    #         # self.print("thirdMethod")
-    #         self.third.activate()
-    #
-    # class SimpleModule(object):
-    #     def __init__(self):
-    #         super(SimpleModule, self).__init__()
-    #         self.first = False
-    #         self.second = False
-    #         self.third = False
-    #
-    #         self.firstMethod()
-    #         if self.first:
-    #             self.secondMethod()
-    #             if self.second:
-    #                 self.thirdMethod()
-    #                 if self.third:
-    #                     self.ftvWorks()
-    #
-    #     @staticmethod
-    #     def print(message):
-    #         Log.i(message)
-    #
-    #     def ftvWorks(self):
-    #         self.print("FTV Works!")
-    #
-    #     def firstMethod(self):
-    #         # self.print("firstMethod")
-    #         self.first = True
-    #
-    #     def secondMethod(self):
-    #         # self.print("secondMethod")
-    #         self.second = True
-    #
-    #     def thirdMethod(self):
-    #         # self.print("thirdMethod")
-    #         self.third = True
-    #
-    # DyModule()
+    def __action__(self, *args, **kwargs):
+        return self.set(args[0])

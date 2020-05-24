@@ -7,7 +7,7 @@ from FTV.Managers.AbstractManager import AbstractManager
 class UIManager(AbstractManager):
     def __init__(self):
         super().__init__()
-        Log.i("initUIM: " + str(self.__class__.__name__))
+        Log.p("initUIM: " + str(self.__class__.__name__))
         self.init()
 
     def init(self):
