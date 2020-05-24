@@ -76,7 +76,7 @@ class IntegratedClock(NIFeature):
     def tick(self):
         self.vm.seconds += 1
         Log.p(self.getTimeStamp())
-        time.sleep(0.2)
+        time.sleep(1)
 
 
 class VisualClockVM(VariableManager):
