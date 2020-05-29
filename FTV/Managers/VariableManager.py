@@ -1,12 +1,12 @@
 from abc import abstractmethod
 
-from AppPackage.Experiments.Log import Log
 from FTV.Managers.AbstractManager import AbstractManager
 
 
 class VariableManager(AbstractManager):
+    __short_name__ = "VM"
+
     def __init__(self, _is_parent_app=None):
-        Log.p("initVM: " + str(self.__class__.__name__))
         super().__init__(_is_parent_app=_is_parent_app)
         self.init()
 

@@ -3,7 +3,6 @@ import abc
 # global featureManager
 import importlib
 
-from AppPackage.Experiments.Log import Log
 from FTV.Objects.Variables.AbstractDynamicModule import DynamicModuleParent
 from FTV.Objects.Variables.DynamicMethods import DyBuiltinMethod
 from FTV.Objects.Variables.DynamicObjects import DyBool, DySwitch
@@ -19,7 +18,8 @@ class Feature(DynamicModuleParent):
     }
 
     def __init__(self):
-        Log.p(f"init{self.__class__.type}: " + str(self.__class__.__name__))
+        # Log.p(f"init{self.__class__.type}: " + str(self.__class__.__name__))
+        self.__name__ = self.__class__.__name__
 
         self._managers = {}
 

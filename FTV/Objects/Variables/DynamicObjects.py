@@ -95,12 +95,17 @@ class DyFloat(DyFloatMagicMethods, DyFloatConditions, DyObject):
 
 
 class DyList(DyListMagicMethods, DyListConditions, DyObject):
-    def __init__(self, value: list=None, builtin=False):
+    def __init__(self, value=None, builtin=False):
+        if value is None:
+            value = []
         super().__init__(list(value), builtin)
         self.__value__ = list(value)
 
     def set(self, value):
         super(DyList, self).set(list(value))
+
+    def append(self, item):
+        self.__value__.append(item)
 
 
 class DySet(DySetMagicMethods, DySetConditions, DyObject):

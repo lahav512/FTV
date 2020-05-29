@@ -1,4 +1,3 @@
-from AppPackage.Experiments.Log import Log
 from FTV.Managers.AbstractManager import AbstractManager
 from FTV.Objects.SystemObjects.Executions import DyThread
 from FTV.Objects.Variables.DynamicIterators import DyBoolList
@@ -6,8 +5,9 @@ from FTV.Objects.Variables.DynamicMethods import DyBuiltinMethod
 
 
 class ExecutionManager(AbstractManager):
+    __short_name__ = "EM"
+
     def __init__(self, _is_parent_app=False):
-        Log.p("initEM: " + str(self.__class__.__name__))
         super().__init__(_is_parent_app=_is_parent_app)
         self.init()
 

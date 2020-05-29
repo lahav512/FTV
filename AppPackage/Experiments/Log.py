@@ -37,6 +37,7 @@ class Log:
         PURPLE = "\033[0;35m"
         PINK = "\033[0;95m"
         RED = "\033[0;31m"
+        GREEN = "\033[0;32m"
 
 
 if __name__ == '__main__':
