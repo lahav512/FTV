@@ -866,7 +866,7 @@ class DyFloatMagicMethods(DyObjectMagicMethods):
         return float.__sub__(self.get(), args[0].__float__(), **kwargs)
 
     def __truediv__(self, *args, **kwargs):
-        return float.__truediv__(self.get(), args[0].__float__(), **kwargs)
+        return float.__truediv__(float(self.get()), args[0].__float__(), **kwargs)
 
     def __trunc__(self, *args, **kwargs):
         return float.__trunc__(self.get(), *args, **kwargs)

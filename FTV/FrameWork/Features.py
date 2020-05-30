@@ -98,6 +98,8 @@ class Feature(DynamicModuleParent):
         self.addTrigger(self.vm.POST_LOAD).setAction(self.vm.PRE_LOAD_FEATURES)
         self.addTrigger(self.vm.PRE_LOAD_FEATURES).setAction(self._loadChildren)
         self.addTrigger(self._loadChildren).setAction(self.vm.POST_LOAD_FEATURES)
+        # self.addTrigger(self._loadChildren).setAction(self.fm.loading_progress, 1)
+        # self.addTrigger(self.fm.loading_progress).setAction(self.vm.POST_LOAD_FEATURES)
         # self.addTrigger(self.vm.POST_LOAD_FEATURES).setAction(self.vm.START)
 
     @DyBuiltinMethod()

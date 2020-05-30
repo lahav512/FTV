@@ -1,12 +1,16 @@
 from AppPackage.Experiments.Log import Log
+from Bots.GenerateMagicMethods.result.MagicMethodsInterfaces import DyFloatMagicMethods
 from FTV.Objects.SystemObjects.TriggerObjects import Condition
 from FTV.Objects.Variables.AbstractDynamicObject import DyListMagicMethods, DyBoolMagicMethods
 from FTV.Objects.Variables.DynamicMethods import DyMethod, DyBuiltinMethod
 from FTV.Objects.Variables.DynamicModules import DyBuiltinModule
 from FTV.Objects.Variables.DynamicObjects import DyInt, DyBool
 
+class DyObjectList(DyListMagicMethods, DyBuiltinModule):
+    pass
 
-class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyBuiltinModule):
+
+class DyBoolList(DyBoolMagicMethods, DyObjectList):
     def __init__(self, builtin=False):
         super(DyBoolList, self).__init__(builtin=builtin)
 
@@ -34,8 +38,7 @@ class DyBoolList(DyListMagicMethods, DyBoolMagicMethods, DyBuiltinModule):
     @DyBuiltinMethod()
     def add(self, *dy_bools):
         self.__iterator__ += dy_bools
-        # self.__len__ = len(self.__iterator__)
-        self._update_len_true(value=len(list(filter(lambda dy_bool: dy_bool, dy_bools))))
+        self._update_len_true(value=len(list(filter(lambda dy_bool: dy_bool, self.__iterator__))))
 
         for dy_bool in dy_bools:
             self.addTrigger(dy_bool).setCondition(DyBool.IsChanged).setAction(self._update_len_true, dy_bool, 1)
@@ -79,7 +82,6 @@ class DySwitchList(DyBoolList):
         super(DySwitchList, self).__init__(False)
 
     def setupTriggers(self):
-
         self.addTrigger(self.__len_true__) \
             .setCondition(DySwitchList.IsEqualToLenOf, self) \
             .setAction(self.deactivateAll)
@@ -117,6 +119,65 @@ class DySwitchList(DyBoolList):
     @DyBuiltinMethod()
     def _update_value(self, value):
         super(DySwitchList, self)._set_empty(value)
+
+
+class DyFloatList(DyFloatMagicMethods, DyObjectList):
+    def __init__(self, value=None, builtin=False):
+        super(DyFloatList, self).__init__(value=value, builtin=builtin)
+
+    def _setupBuiltinMethods(self):
+        self._BUILTIN_METHODS |= {"_update_ave_value", "_update_value"}
+        super(DyFloatList, self)._setupBuiltinMethods()
+
+    def _setupBuiltinVariables(self):
+        super(DyFloatList, self)._setupBuiltinVariables()
+        self.__value__: float
+        self.__iterator__ = []
+        # self.__len_true__ = DyInt(0, builtin=True)
+
+    def _setupBuiltinTriggers(self):
+        super(DyFloatList, self)._setupBuiltinTriggers()
+
+    @DyBuiltinMethod()
+    def add(self, *dy_floats):
+        self.__iterator__ += dy_floats
+        self._update_value(value=self.getItemsAverage(self.__iterator__))
+        # self._update_value(value=len(list(filter(lambda dy_bool: dy_bool, self.__iterator__))))
+
+        for dy_float in dy_floats:
+            self.addTrigger(dy_float).setCondition(DyBool.IsChanged).setAction(self._update_ave_value)
+
+    def set(self, value):
+        if not self.__iterator__:
+            super(DyFloatList, self).set(value)
+        else:
+            Log.p("This object is a dependent variable. Therefore, it cannot be updated directly.", Log.color.RED)
+
+    def getList(self):
+        return self.__iterator__
+
+    @DyBuiltinMethod()
+    def _update_ave_value(self):
+        # self.__value__ += self._getItemAverageChange(old_val, new_val, self.__iterator__)
+        super(DyFloatList, self).set(self.getItemsAverage(self.__iterator__))
+
+    @DyBuiltinMethod()
+    def _update_value(self, value):
+        super(DyFloatList, self).set(value)
+
+    @staticmethod
+    def getItemAverage(item, items=None):
+        """This method can be overridden according to the required purpose"""
+        return item/len(items)
+
+    def getItemsAverage(self, items):
+        return sum([self.getItemAverage(item, items) for item in items])
+
+    def _getItemAverageChange(self, old_item, new_item, items):
+        return self.getItemAverage(new_item, items) - self.getItemAverage(old_item, items)
+
+    def __action__(self, *args, **kwargs):
+        self.set(args[0])
 
 
 if __name__ == '__main__':

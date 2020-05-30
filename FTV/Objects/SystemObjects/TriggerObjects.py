@@ -13,6 +13,8 @@ class Trigger:
                  "condition",
                  "condition_args",
                  "condition_kwargs",
+                 "old_val",
+                 "new_val",
                  "action",
                  "action_name",
                  "action_args",
@@ -25,6 +27,9 @@ class Trigger:
         self.condition: function = None
         self.condition_args = []
         self.condition_kwargs = dict()
+
+        self.old_val = None
+        self.new_val = None
 
         self.action: function = None
         self.action_name = None
@@ -62,6 +67,8 @@ class Trigger:
         return self
 
     def runCondition(self, old_val, new_val):
+        # self.old_val = old_val
+        # self.new_val = new_val
         return self.__condition__(old_val, new_val, *self.condition_args, **self.condition_kwargs)
 
     def runAction(self):
