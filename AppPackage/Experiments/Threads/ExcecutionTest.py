@@ -5,6 +5,7 @@ from FTV.FrameWork.Apps import NIApp
 from FTV.FrameWork.Features import NIFeature
 from FTV.Managers.ExecutionManager import ExecutionManager
 from FTV.Managers.VariableManager import VariableManager
+from FTV.Objects.SystemObjects.Executions import DyThread
 from FTV.Objects.Variables.DynamicMethods import DyMethod
 from FTV.Objects.Variables.DynamicObjects import DyInt
 
@@ -27,7 +28,7 @@ class Feature1(NIFeature):
     def setupTriggers(self):
         self.addTrigger(App.vm.START).setAction(self.loopA)
         self.addTrigger(self.vm.a).setCondition(DyInt.IsChanged).setAction(self.printWorks)\
-            .setThread(App.em.getThread("Sub"))
+            .setThread(App.em.sub)
 
     @DyMethod()
     def loopA(self):
@@ -46,7 +47,7 @@ class Feature1(NIFeature):
 
 class EM(ExecutionManager):
     def setupThreads(self):
-        self.addThread("Sub")
+        self.sub = DyThread()
 
 
 class App(NIApp):

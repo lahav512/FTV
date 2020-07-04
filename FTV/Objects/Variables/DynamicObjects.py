@@ -1,5 +1,3 @@
-# from FTV.Objects.Variables.AbstractDynamicObject import (DyObject, DyBoolMagicMethods, DyIntMagicMethods,
-#                                                          DyFloatMagicMethods)
 from AppPackage.Experiments.Log import Log
 from Bots.GenerateMagicMethods.result.MagicMethodsInterfaces import (DyBoolMagicMethods, DyObject, DyFloatMagicMethods,
                                                                      DyIntMagicMethods, DyStrMagicMethods,
@@ -133,7 +131,6 @@ class DyTuple(DyTupleMagicMethods, DyTupleConditions, DyObject):
 
     def set(self, value):
         super(DyTuple, self).set(tuple(value))
-
 
 
 if __name__ == '__main__':

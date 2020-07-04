@@ -5,6 +5,7 @@ from FTV.FrameWork.Apps import NIApp
 from FTV.FrameWork.Features import NIFeature
 from FTV.Managers.ExecutionManager import ExecutionManager
 from FTV.Managers.VariableManager import VariableManager
+from FTV.Objects.SystemObjects.Executions import DyThread
 from FTV.Objects.Variables.DynamicMethods import DyMethod
 from FTV.Objects.Variables.DynamicObjects import DyInt
 
@@ -85,11 +86,11 @@ class VisualClockVM(VariableManager):
 
     def setupTriggers(self):
         self.addTrigger(IntegratedClock.vm.seconds).setCondition(DyInt.IsChanged).setAction(self.updateSecondsRadius)\
-            .setThread(ClockApp.em.getThread("Clock"))
+            .setThread(ClockApp.em.mainUI)
         self.addTrigger(IntegratedClock.vm.minutes).setCondition(DyInt.IsChanged).setAction(self.updateMinutesRadius)\
-            .setThread(ClockApp.em.getThread("Clock"))
+            .setThread(ClockApp.em.mainUI)
         self.addTrigger(IntegratedClock.vm.hours).setCondition(DyInt.IsChanged).setAction(self.updateHoursRadius)\
-            .setThread(ClockApp.em.getThread("Clock"))
+            .setThread(ClockApp.em.mainUI)
 
     @DyMethod()
     def updateSecondsRadius(self):
@@ -114,7 +115,7 @@ class VisualClock(NIFeature):
 
 class EM(ExecutionManager):
     def setupThreads(self):
-        self.addThread("Clock")
+        self.mainUI = DyThread()
 
 
 class ClockApp(NIApp):

@@ -209,6 +209,7 @@ class UIFeature(NIFeature):
     @DyBuiltinMethod()
     def _loadUISelf(self):
         self.uim.setupVariables()
+        self.uim.setupVariables()
         self.uim.setupTriggers()
         self.setupUITriggers()
         self.uim.IS_SELF_UI_LOADED = DyBool(False)

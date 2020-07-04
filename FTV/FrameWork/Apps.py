@@ -32,7 +32,7 @@ class NIApp(__AbstractApp, NIFeature):
 
     def _setupBuiltinTriggers(self):
         super(NIApp, self)._setupBuiltinTriggers()
-        self.overrideTriggers(self._loadBuiltinSelf).setAction(self.vm.POST_BUILTIN_LOAD).setThread(self.em.getThread("Main"))
+        self.overrideTriggers(self._loadBuiltinSelf).setAction(self.vm.POST_BUILTIN_LOAD).setThread(self.em.main)
         self.addTrigger(self.vm.POST_LOAD_FEATURES).setAction(self.vm.START)
 
 

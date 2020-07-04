@@ -11,6 +11,17 @@ class ExecutionManager(AbstractManager):
         super().__init__(_is_parent_app=_is_parent_app)
         self.init()
 
+    def __setattr__(self, key, value):
+        if isinstance(value, DyThread):
+            value(key)
+            if not self._isThreadExist(key):
+                super(ExecutionManager, self).__setattr__(key, value)
+                self._addThread(value)
+            else:
+                Exception("There is already a thread called \"{}\".".format(key))
+        else:
+            super(ExecutionManager, self).__setattr__(key, value)
+
     def init(self):
         pass
 
@@ -45,7 +56,7 @@ class ExecutionManager(AbstractManager):
         self.threads = {}
 
         if self._is_parent_app:
-            self.addThread("Main")
+            self.main = DyThread()
 
     def setupVariables(self):
         pass
@@ -53,12 +64,12 @@ class ExecutionManager(AbstractManager):
     def setupThreads(self):
         pass
 
-    def addThread(self, name, daemon=False):
-        # if self._is_parent_app:
-        if name not in self.threads:
-            self.threads[name] = DyThread(name=name, daemon=daemon)
-            self.areQueuesEmpty.add(self.threads[name].isQueueEmpty)
-            # self.threads[name].start()
+    def _addThread(self, thread: DyThread):
+        self.threads[thread.__name__] = thread
+        self.areQueuesEmpty.add(self.threads[thread.__name__].isQueueEmpty)
+
+    def _isThreadExist(self, name):
+        return name in self.threads
 
     def getThread(self, name):
         return self.threads[name]

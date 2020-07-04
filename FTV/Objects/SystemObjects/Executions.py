@@ -15,7 +15,10 @@ class DyProcessList(object):
 
 
 class DyThread(DyBuiltinModule):
-    def __init__(self, name=None, daemon=False):
+    def __init__(self, daemon=False):
+        self.daemon = daemon
+
+    def __call__(self, name=None, daemon=False):
         Log.p(f"DyThread.__init__({name})")
         self.name = name
         self.daemon = daemon
@@ -76,6 +79,9 @@ class DyThread(DyBuiltinModule):
     def isAlive(self):
         return self.thread.is_alive()
 
+    def _setName(self, name):
+        self.name = name
+        self.__name__ = name
 
 class DyThreadList(object):
     pass

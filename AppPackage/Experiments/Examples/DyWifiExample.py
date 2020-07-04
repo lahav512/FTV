@@ -3,7 +3,6 @@ from FTV.FrameWork.Apps import NIApp
 from FTV.FrameWork.Features import NIFeature
 from FTV.Managers.VariableManager import VariableManager
 from FTV.Objects.Variables.DynamicMethods import DyMethod
-from FTV.Objects.Variables.DynamicModules import DyModule
 from FTV.Objects.Variables.DynamicObjects import DySwitch
 
 
@@ -22,9 +21,8 @@ class DyWifiExample(NIFeature):
     def setupSettings(self):
         pass
 
-    @classmethod
-    def setupManagers(cls):
-        cls.setVariableManager(VM)
+    def setupManagers(self):
+        self.setVariableManager(VM)
 
     @DyMethod()
     def turnWifiOn(self):
