@@ -8,7 +8,7 @@ from FTV.Objects.SystemObjects.Executions import DyThread
 class EM(ExecutionManager):
     def _setupBuiltinThreads(self):
         super(EM, self)._setupBuiltinThreads()
-        self.loadFeatures = DyThread()
+        self.LoadFeatures = DyThread()
 
 class App(NIApp):
     def setupFeatures(self):

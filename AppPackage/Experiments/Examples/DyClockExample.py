@@ -86,11 +86,11 @@ class VisualClockVM(VariableManager):
 
     def setupTriggers(self):
         self.addTrigger(IntegratedClock.vm.seconds).setCondition(DyInt.IsChanged).setAction(self.updateSecondsRadius)\
-            .setThread(ClockApp.em.mainUI)
+            .setThread(ClockApp.em.MainUI)
         self.addTrigger(IntegratedClock.vm.minutes).setCondition(DyInt.IsChanged).setAction(self.updateMinutesRadius)\
-            .setThread(ClockApp.em.mainUI)
+            .setThread(ClockApp.em.MainUI)
         self.addTrigger(IntegratedClock.vm.hours).setCondition(DyInt.IsChanged).setAction(self.updateHoursRadius)\
-            .setThread(ClockApp.em.mainUI)
+            .setThread(ClockApp.em.MainUI)
 
     @DyMethod()
     def updateSecondsRadius(self):
@@ -115,7 +115,7 @@ class VisualClock(NIFeature):
 
 class EM(ExecutionManager):
     def setupThreads(self):
-        self.mainUI = DyThread()
+        self.MainUI = DyThread()
 
 
 class ClockApp(NIApp):

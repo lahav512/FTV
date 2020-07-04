@@ -56,7 +56,7 @@ class ExecutionManager(AbstractManager):
         self.threads = {}
 
         if self._is_parent_app:
-            self.main = DyThread()
+            self.Main = DyThread()
 
     def setupVariables(self):
         pass

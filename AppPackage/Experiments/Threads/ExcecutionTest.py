@@ -28,7 +28,7 @@ class Feature1(NIFeature):
     def setupTriggers(self):
         self.addTrigger(App.vm.START).setAction(self.loopA)
         self.addTrigger(self.vm.a).setCondition(DyInt.IsChanged).setAction(self.printWorks)\
-            .setThread(App.em.sub)
+            .setThread(App.em.Sub)
 
     @DyMethod()
     def loopA(self):
@@ -47,7 +47,7 @@ class Feature1(NIFeature):
 
 class EM(ExecutionManager):
     def setupThreads(self):
-        self.sub = DyThread()
+        self.Sub = DyThread()
 
 
 class App(NIApp):
