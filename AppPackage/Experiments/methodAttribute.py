@@ -1,5 +1,4 @@
 import inspect
-from functools import wraps, partial
 
 
 class DynamicModuleParent(object):
@@ -15,7 +14,7 @@ class DynamicModuleParent(object):
     def __setattr__(self, key, value):
         if key in dir(self) and callable(getattr(self, key)):
             raise Exception(
-                "Can't add the attribute \"{}\" to the object \"{}\", since it is already exists as a method.".format(
+                "Can't addFeatures the attribute \"{}\" to the object \"{}\", since it is already exists as a method.".format(
                     key, self.__class__.__name__))
         else:
             super().__setattr__(key, value)

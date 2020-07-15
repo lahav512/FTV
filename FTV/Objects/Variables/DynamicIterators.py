@@ -92,7 +92,7 @@ class DySwitchList(DyBoolList):
 
     @DyMethod()
     def add(self, *dy_bools):
-        # super(DySwitchList, self).add(*dy_bools)
+        # super(DySwitchList, self).addFeatures(*dy_bools)
         self.__iterator__ += dy_bools
         # self.__len__ = len(self.__iterator__)
         self._update_len_true(len(list(filter(lambda dy_bool: dy_bool, dy_bools))))
@@ -103,7 +103,7 @@ class DySwitchList(DyBoolList):
                 self.addTrigger(dy_bool).setCondition(DyBool.IsChangedTo, True).setAction(self._update_len_true, 1)
                 self.addTrigger(dy_bool).setCondition(DyBool.IsChangedTo, False).setAction(self._update_len_true, -1)
             else:
-                Log.p("This object is a DySwitchList iterator. Therefore, it cannot add child that is not DyBool or DyBoolList.", Log.color.RED)
+                Log.p("This object is a DySwitchList iterator. Therefore, it cannot addFeatures child that is not DyBool or DyBoolList.", Log.color.RED)
 
     def activate(self):
         self.set(True)

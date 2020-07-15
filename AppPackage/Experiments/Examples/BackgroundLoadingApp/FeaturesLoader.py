@@ -7,6 +7,13 @@ from FTV.Managers.VariableManager import VariableManager
 
 
 class FM(FeatureManager):
+    def setupFeatures(self):
+        self.addFeatures(
+            Feature1,
+            Feature2,
+            Feature3
+        )
+
     def setupVariables(self):
         self.loading_progress.setBuiltin(False)
 
@@ -26,9 +33,3 @@ class FeaturesLoader(NIFeature):
         self.setVariableManager(VM)
         self.setFeatureManager(FM)
 
-    def setupFeatures(self):
-        self.addFeatures(
-            Feature1,
-            Feature2,
-            Feature3
-        )

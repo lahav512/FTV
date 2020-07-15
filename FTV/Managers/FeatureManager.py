@@ -18,7 +18,10 @@ class FeatureManager(AbstractManager):
         self.features = []
         self.loading_progress = DyFloatList(0, builtin=True)
 
-    def add(self, *features):
+    def setupFeatures(self):
+        pass
+
+    def addFeatures(self, *features):
         from FTV.FrameWork.Features import Feature
 
         for feature in features:
@@ -29,6 +32,9 @@ class FeatureManager(AbstractManager):
                 temp_feature.fm.loading_progress.set(1)
 
         # print()
+
+    def addFeature(self, feature):
+        self.addFeatures(feature)
 
     def setupSettings(self):
         pass

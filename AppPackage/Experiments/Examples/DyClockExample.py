@@ -4,6 +4,7 @@ from AppPackage.Experiments.Log import Log
 from FTV.FrameWork.Apps import NIApp
 from FTV.FrameWork.Features import NIFeature
 from FTV.Managers.ExecutionManager import ExecutionManager
+from FTV.Managers.FeatureManager import FeatureManager
 from FTV.Managers.VariableManager import VariableManager
 from FTV.Objects.SystemObjects.Executions import DyThread
 from FTV.Objects.Variables.DynamicMethods import DyMethod
@@ -118,16 +119,20 @@ class EM(ExecutionManager):
         self.MainUI = DyThread()
 
 
-class ClockApp(NIApp):
+class FM(FeatureManager):
     def setupFeatures(self):
         self.addFeature(IntegratedClock)
         self.addFeature(VisualClock)
+
+
+class ClockApp(NIApp):
 
     def setupSettings(self):
         pass
 
     def setupManagers(self):
         self.setExecutionManager(EM)
+        self.setFeatureManager(FM)
 
 
 if __name__ == '__main__':

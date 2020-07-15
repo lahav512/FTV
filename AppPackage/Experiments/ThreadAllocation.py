@@ -1,6 +1,6 @@
-from multiprocessing import Lock, Process, Queue, current_process
+import queue  # imported for using queue.Empty exception
 import time
-import queue # imported for using queue.Empty exception
+from multiprocessing import Process, Queue, current_process
 
 
 def do_job(tasks_to_accomplish, tasks_that_are_done):
@@ -17,7 +17,7 @@ def do_job(tasks_to_accomplish, tasks_that_are_done):
             break
         else:
             '''
-                if no exception has been raised, add the task completion 
+                if no exception has been raised, addFeatures the task completion 
                 message to task_that_are_done queue
             '''
             print(task)

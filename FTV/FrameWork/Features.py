@@ -24,7 +24,7 @@ class Feature(DynamicModuleParent):
         self._managers = {}
 
         self.settings = self._Settings()
-        self.setupSettings()
+        self._fm_setupSettings()
 
         if self.settings.enabled:
             super(Feature, self).__init__()
@@ -102,9 +102,17 @@ class Feature(DynamicModuleParent):
         # self.addTrigger(self.fm.loading_progress).setAction(self.vm.POST_LOAD_FEATURES)
         # self.addTrigger(self.vm.POST_LOAD_FEATURES).setAction(self.vm.START)
 
+    def _fm_setupFeatures(self):
+        self.fm.setupFeatures()
+        self.setupFeatures()
+
+    def _fm_setupSettings(self):
+        # self.fm.setupSettings()
+        self.setupSettings()
+
     @DyBuiltinMethod()
     def _loadChildren(self):
-        self.setupFeatures()
+        self._fm_setupFeatures()
         self.vm.IS_CHILDREN_LOADED.set(True)
 
     # @classmethod
@@ -143,14 +151,17 @@ class Feature(DynamicModuleParent):
     def setupTriggers(self):
         pass
 
+    """This method is deprecated. Please use the method "setupFeatures" in the FeatureManager instead."""
     def setupFeatures(self):
         pass
 
+    """This method is deprecated. Please use the method "addFeatures" in the FeatureManager instead."""
     def addFeatures(self, *features):
-        self.fm.add(*features)
+        self.fm.addFeatures(*features)
 
+    """This method is deprecated. Please use the method "addFeature" in the FeatureManager instead."""
     def addFeature(self, feature):
-        self.fm.add(feature)
+        self.fm.addFeatures(feature)
 
     class _Settings:
         ui_platform = None
@@ -169,12 +180,14 @@ class Feature(DynamicModuleParent):
 class NIFeature(Feature):
     # type = "NIFeature"
 
-    @abc.abstractmethod
+    """This method is deprecated. Please use the method "setupSettings" in the FeatureManager instead."""
+    # @abc.abstractmethod
     def setupSettings(self):
         pass
 
+    """This method is deprecated. Please use the method "setupManagers" in the FeatureManager instead."""
     @classmethod
-    @abc.abstractmethod
+    # @abc.abstractmethod
     def setupManagers(cls):
         pass
 
@@ -214,12 +227,14 @@ class UIFeature(NIFeature):
         self.setupUITriggers()
         self.uim.IS_SELF_UI_LOADED = DyBool(False)
 
+    """This method is deprecated. Please use the method "setupManagers" in the FeatureManager instead."""
     @classmethod
-    @abc.abstractmethod
+    # @abc.abstractmethod
     def setupManagers(cls):
         pass
 
-    @abc.abstractmethod
+    """This method is deprecated. Please use the method "setupSettings" in the FeatureManager instead."""
+    # @abc.abstractmethod
     def setupSettings(self):
         pass
 

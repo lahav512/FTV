@@ -1,5 +1,3 @@
-from abc import abstractmethod
-
 from FTV.FrameWork.Features import NIFeature, UIFeature
 from FTV.Objects.Variables.DynamicObjects import DySwitch
 
@@ -17,11 +15,13 @@ class __AbstractApp:
 
 
 class NIApp(__AbstractApp, NIFeature):
-    @abstractmethod
+    """This method is deprecated. Please use the method "setupFeatures" in the FeatureManager instead."""
+    # @abstractmethod
     def setupFeatures(self):
         pass
 
-    @abstractmethod
+    """This method is deprecated. Please use the method "setupSettings" in the FeatureManager instead."""
+    # @abstractmethod
     def setupSettings(self):
         pass
 
@@ -37,11 +37,13 @@ class NIApp(__AbstractApp, NIFeature):
 
 
 class UIApp(__AbstractApp, UIFeature):
-    @abstractmethod
+    """This method is deprecated. Please use the method "setupFeatures" in the FeatureManager instead."""
+    # @abstractmethod
     def setupFeatures(self):
         pass
 
-    @abstractmethod
+    """This method is deprecated. Please use the method "setupSettings" in the FeatureManager instead."""
+    # @abstractmethod
     def setupSettings(self):
         pass
 

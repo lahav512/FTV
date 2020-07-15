@@ -32,7 +32,7 @@ class AutoPrintServerCommands:
         selectController = "selectController"
         getControllers = "getControllers"
         getOnlineControllers = "getOnlineControllers"
-        addController = "add"
+        addController = "addFeatures"
         removeController = "remove"
 
     class Controller(Command):
