@@ -18,6 +18,7 @@ class Feature(DynamicModuleParent):
     }
 
     def __init__(self):
+
         # Log.p(f"init{self.__class__.type}: " + str(self.__class__.__name__))
         self.__name__ = self.__class__.__name__
 
@@ -28,6 +29,10 @@ class Feature(DynamicModuleParent):
 
         if self.settings.enabled:
             super(Feature, self).__init__()
+
+    def _setupMethodsLists(self):
+        super(Feature, self)._setupMethodsLists()
+        self._BUILTIN_METHODS |= {"_loadChildren"}
 
     def _setupEnvironment(self):
         self._loadBuiltinSelf()
@@ -41,14 +46,10 @@ class Feature(DynamicModuleParent):
 
     @DyBuiltinMethod()
     def _loadSelf(self):
-        self._setupResumeManagers()
+        self._resumeSetupManagers()
         self._setupMethods()
         self.setupTriggers()
         self.vm.IS_SELF_LOADED.set(True)
-
-    def _setupBuiltinMethods(self):
-        self._BUILTIN_METHODS |= {"_loadChildren"}
-        super(Feature, self)._setupBuiltinMethods()
 
     @abc.abstractmethod
     def setupSettings(self):
@@ -73,15 +74,16 @@ class Feature(DynamicModuleParent):
             setattr(self.__class__, var_name, manager)
 
     @classmethod
-    def _setupResumeManagers(cls):
+    def _resumeSetupManagers(cls):
         for key in cls._builtin_managers.keys():
-            getattr(getattr(cls, key), "PRE_INIT").activate()
+            getattr(cls, key)._resumeSetupEnvironment()
 
     def _setupBuiltinVariables(self):
         self.vm.POST_BUILTIN_LOAD = DySwitch(builtin=True)
         self.vm.PRE_LOAD = DySwitch(builtin=True)
         self.vm.IS_SELF_LOADED = DyBool(True, builtin=True)
         self.vm.POST_LOAD = DySwitch(builtin=True)
+        self.vm.POST_SETUP = DySwitch(builtin=True)
         # self.vm.START = DySwitch()
         # self.vm.EXIT = DySwitch()
 
@@ -98,6 +100,7 @@ class Feature(DynamicModuleParent):
         self.addTrigger(self.vm.POST_LOAD).setAction(self.vm.PRE_LOAD_FEATURES)
         self.addTrigger(self.vm.PRE_LOAD_FEATURES).setAction(self._loadChildren)
         self.addTrigger(self._loadChildren).setAction(self.vm.POST_LOAD_FEATURES)
+        self.addTrigger(self._setupEnvironment).setAction(self.vm.POST_SETUP)
         # self.addTrigger(self._loadChildren).setAction(self.fm.loading_progress, 1)
         # self.addTrigger(self.fm.loading_progress).setAction(self.vm.POST_LOAD_FEATURES)
         # self.addTrigger(self.vm.POST_LOAD_FEATURES).setAction(self.vm.START)

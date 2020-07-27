@@ -25,6 +25,10 @@ class ExecutionManager(AbstractManager):
     def init(self):
         pass
 
+    def _setupMethodsLists(self):
+        super(ExecutionManager, self)._setupMethodsLists()
+        self._BUILTIN_METHODS |= {"_stopAllThreads"}
+
     @DyBuiltinMethod()
     def _loadBuiltinSelf(self):
         self._setupBuiltinVariables()
@@ -38,10 +42,6 @@ class ExecutionManager(AbstractManager):
         self.setupThreads()
         self._setupMethods()
         self.setupTriggers()
-
-    def _setupBuiltinMethods(self):
-        self._BUILTIN_METHODS |= {"_stopAllThreads"}
-        super(ExecutionManager, self)._setupBuiltinMethods()
 
     def _setupBuiltinTriggers(self):
         super(ExecutionManager, self)._setupBuiltinTriggers()

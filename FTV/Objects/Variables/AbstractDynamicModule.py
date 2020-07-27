@@ -10,10 +10,10 @@ class DynamicModuleParent(object):
     # _ACTIVE_METHOD = ""
 
     def __init__(self, value=None):
-        self.__setupMethodsLists()
+        self._setupMethodsLists()
         self._setupEnvironment()
 
-    def __setupMethodsLists(self):
+    def _setupMethodsLists(self):
         self._BUILTIN_METHODS = {
             "_setupEnvironment",
             "_loadBuiltinSelf",

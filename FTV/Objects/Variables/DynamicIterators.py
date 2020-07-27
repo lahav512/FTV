@@ -14,9 +14,9 @@ class DyBoolList(DyBoolMagicMethods, DyObjectList):
     def __init__(self, builtin=False):
         super(DyBoolList, self).__init__(builtin=builtin)
 
-    def _setupBuiltinMethods(self):
+    def _setupMethodsLists(self):
+        super(DyBoolList, self)._setupMethodsLists()
         self._BUILTIN_METHODS |= {"_update_len_true", "_update_value"}
-        super(DyBoolList, self)._setupBuiltinMethods()
 
     def _setupBuiltinVariables(self):
         super(DyBoolList, self)._setupBuiltinVariables()
@@ -125,9 +125,9 @@ class DyFloatList(DyFloatMagicMethods, DyObjectList):
     def __init__(self, value=None, builtin=False):
         super(DyFloatList, self).__init__(value=value, builtin=builtin)
 
-    def _setupBuiltinMethods(self):
+    def _setupMethodsLists(self):
+        super(DyFloatList, self)._setupMethodsLists()
         self._BUILTIN_METHODS |= {"_update_ave_value", "_update_value"}
-        super(DyFloatList, self)._setupBuiltinMethods()
 
     def _setupBuiltinVariables(self):
         super(DyFloatList, self)._setupBuiltinVariables()
