@@ -34,6 +34,7 @@ class Feature(DynamicModuleParent):
         super(Feature, self)._setupMethodsLists()
         self._BUILTIN_METHODS |= {"_loadChildren"}
 
+    @DyBuiltinMethod()
     def _setupEnvironment(self):
         self._loadBuiltinSelf()
 
