@@ -1,5 +1,3 @@
-from AppPackage.Experiments.Examples.BackgroundLoadingApp.FeaturesLoader import FeaturesLoader
-from AppPackage.Experiments.Examples.BackgroundLoadingApp.FeaturesLoaderProgress import FeaturesLoaderProgress
 from FTV.FrameWork.Apps import NIApp
 from FTV.Managers.ExecutionManager import ExecutionManager
 from FTV.Objects.SystemObjects.Executions import DyThread
@@ -8,12 +6,16 @@ from FTV.Objects.SystemObjects.Executions import DyThread
 class EM(ExecutionManager):
     def _setupBuiltinThreads(self):
         super(EM, self)._setupBuiltinThreads()
-        self.LoadFeatures = DyThread()
+        self.MainUI = DyThread()
 
 class App(NIApp):
     def setupFeatures(self):
-        self.addFeature(FeaturesLoader)
+        from AppPackage.Experiments.Examples.BackgroundLoadingApp.Features.FeaturesLoader import FeaturesLoader
+        from AppPackage.Experiments.Examples.BackgroundLoadingApp.Features.FeaturesLoaderProgress import \
+            FeaturesLoaderProgress
+
         self.addFeature(FeaturesLoaderProgress)
+        self.addFeature(FeaturesLoader)
 
     def setupSettings(self):
         pass

@@ -61,8 +61,6 @@ class Feature(DynamicModuleParent):
         pass
 
     def _setupBuiltinManagers(self):
-        print("_setupBuiltinManagers(): " + self.__class__.__name__)
-
         from FTV.Managers.ExecutionManager import ExecutionManager
         from FTV.Managers.VariableManager import VariableManager
         from FTV.Managers.FeatureManager import FeatureManager
@@ -75,7 +73,7 @@ class Feature(DynamicModuleParent):
         from FTV.FrameWork.Apps import NIApp
         is_parent_app = issubclass(self.__class__, NIApp)
 
-        self.__class__.vm = self.vm_class(_is_parent_app=is_parent_app)
+        self.__class__.vm = self.__vm_class(_is_parent_app=is_parent_app)
         self.__class__.em = self.__em_class(_is_parent_app=is_parent_app)
         self.__class__.fm = self.__fm_class(_is_parent_app=is_parent_app)
 
@@ -111,6 +109,7 @@ class Feature(DynamicModuleParent):
 
     def _fm_setupFeatures(self):
         self.fm.setupFeatures()
+        self.fm._setupFeatures()
         self.setupFeatures()
 
     def _fm_setupSettings(self):
@@ -145,7 +144,7 @@ class Feature(DynamicModuleParent):
 
     # @classmethod
     def setVariableManager(self, Manager):
-        self.vm_class = Manager
+        self.__vm_class = Manager
 
     # @classmethod
     def setExecutionManager(self, Manager):

@@ -1,3 +1,4 @@
+from AppPackage.Experiments.Examples.BackgroundLoadingApp.BackgroundLoadingApp import App
 from AppPackage.Experiments.Log import Log
 from FTV.FrameWork.Features import NIFeature
 from FTV.Managers.VariableManager import VariableManager
@@ -24,7 +25,7 @@ class FeaturesLoaderProgress(NIFeature):
         pass
 
     def setupTriggers(self):
-        self.addTrigger(self.vm.progress).setAction(self.printProgress)
+        self.addTrigger(self.vm.progress).setAction(self.printProgress).setThread(App.em.MainUI)
 
     @DyMethod()
     def updateProgress(self):
