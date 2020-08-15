@@ -21,22 +21,22 @@ class Feature(DynamicModuleParent):
     vm = None
     fm = None
 
+    # def __new__(cls, *args, **kwargs):
+    #     cls.settings = cls._Settings()
+    #     cls._fm_setupSettings()
+
     def __init__(self):
-
-        # Log.p(f"init{self.__class__.type}: " + str(self.__class__.__name__))
         self.__name__ = self.__class__.__name__
-
         self._managers = {}
 
         self.settings = self._Settings()
         self._fm_setupSettings()
 
-        if self.settings.enabled:
-            super(Feature, self).__init__()
-
     def _setupMethodsLists(self):
         super(Feature, self)._setupMethodsLists()
         self._BUILTIN_METHODS |= {"_loadChildren"}
+        self._BUILTIN_METHODS |= {"_startSetupEnvironment"}
+        self._BUILTIN_METHODS |= {"_resumeSetupEnvironment"}
 
     @DyBuiltinMethod()
     def _setupEnvironment(self):
@@ -83,6 +83,14 @@ class Feature(DynamicModuleParent):
         cls.vm._resumeSetupEnvironment()
         cls.fm._resumeSetupEnvironment()
 
+    @DyBuiltinMethod()
+    def _startSetupEnvironment(self):
+        super(Feature, self).__init__()
+
+    @DyBuiltinMethod()
+    def _resumeSetupEnvironment(self):
+        self.vm.PRE_LOAD.activate()
+
     def _setupBuiltinVariables(self):
         self.vm.POST_BUILTIN_LOAD = DySwitch(builtin=True)
         self.vm.PRE_LOAD = DySwitch(builtin=True)
@@ -94,22 +102,20 @@ class Feature(DynamicModuleParent):
         self.vm.POST_SETUP = DySwitch(builtin=True)
 
     def _setupBuiltinTriggers(self):
-        self.addTrigger(self._loadBuiltinSelf).setAction(self.vm.POST_BUILTIN_LOAD)
-        self.addTrigger(self.vm.POST_BUILTIN_LOAD).setAction(self.vm.PRE_LOAD)
+        self.addTrigger(self._setupEnvironment).setAction(self.vm.POST_BUILTIN_LOAD)
+
         self.addTrigger(self.vm.PRE_LOAD).setAction(self._loadSelf)
         self.addTrigger(self._loadSelf).setAction(self.vm.POST_LOAD)
-
         self.addTrigger(self.vm.POST_LOAD).setAction(self.vm.PRE_LOAD_FEATURES)
         self.addTrigger(self.vm.PRE_LOAD_FEATURES).setAction(self._loadChildren)
         self.addTrigger(self._loadChildren).setAction(self.vm.POST_LOAD_FEATURES)
-        self.addTrigger(self._setupEnvironment).setAction(self.vm.POST_SETUP)
+        self.addTrigger(self._resumeSetupEnvironment).setAction(self.vm.POST_SETUP)
         # self.addTrigger(self._loadChildren).setAction(self.fm.loading_progress, 1)
         # self.addTrigger(self.fm.loading_progress).setAction(self.vm.POST_LOAD_FEATURES)
         # self.addTrigger(self.vm.POST_LOAD_FEATURES).setAction(self.vm.START)
 
     def _fm_setupFeatures(self):
         self.fm.setupFeatures()
-        self.fm._setupFeatures()
         self.setupFeatures()
 
     def _fm_setupSettings(self):
@@ -119,6 +125,7 @@ class Feature(DynamicModuleParent):
     @DyBuiltinMethod()
     def _loadChildren(self):
         self._fm_setupFeatures()
+        self.fm._resumeSetupFeatures()
         self.vm.IS_CHILDREN_LOADED.set(True)
 
     # @classmethod
@@ -175,11 +182,11 @@ class Feature(DynamicModuleParent):
         def __init__(self):
             self.enabled = True
 
-        def setEnabled(self):
-            self.enabled = True
+        def setEnabled(self, enabled=True):
+            self.enabled = enabled
 
-        def setDisabled(self):
-            self.enabled = False
+        def setDisabled(self, disabled=True):
+            self.enabled = not disabled
 
 
 # TODO lahav Add a proper mechanism for the loaded features tree.

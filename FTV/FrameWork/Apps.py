@@ -1,4 +1,4 @@
-from FTV.FrameWork.Features import NIFeature, UIFeature
+from FTV.FrameWork.Features import NIFeature, UIFeature, Feature
 from FTV.Objects.Variables.DynamicObjects import DySwitch
 
 
@@ -15,6 +15,10 @@ class __AbstractApp:
 
 
 class NIApp(__AbstractApp, NIFeature):
+    def __init__(self):
+        super(NIApp, self).__init__()
+        super(Feature, self).__init__()
+
     """This method is deprecated. Please use the method "setupFeatures" in the FeatureManager instead."""
     # @abstractmethod
     def setupFeatures(self):
@@ -32,7 +36,9 @@ class NIApp(__AbstractApp, NIFeature):
 
     def _setupBuiltinTriggers(self):
         super(NIApp, self)._setupBuiltinTriggers()
-        self.overrideTriggers(self._loadBuiltinSelf).setAction(self.vm.POST_BUILTIN_LOAD).setThread(self.em.Main)
+        self.addTrigger(self.vm.POST_BUILTIN_LOAD).setAction(self._resumeSetupEnvironment)
+
+        self.overrideTriggers(self._setupEnvironment).setAction(self.vm.POST_BUILTIN_LOAD).setThread(self.em.Main)
         self.addTrigger(self.vm.POST_LOAD_FEATURES).setAction(self.vm.START)
 
 

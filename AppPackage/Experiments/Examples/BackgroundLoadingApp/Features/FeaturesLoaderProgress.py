@@ -3,13 +3,11 @@ from AppPackage.Experiments.Log import Log
 from FTV.FrameWork.Features import NIFeature
 from FTV.Managers.VariableManager import VariableManager
 from FTV.Objects.Variables.DynamicMethods import DyMethod
-from FTV.Objects.Variables.DynamicObjects import DyFloat
 
 
 class VM(VariableManager):
-
     def setupVariables(self):
-        self.progress = DyFloat(0)
+        self.progress = App.fm.features[1].fm.loading_progress  # TODO lahav Please access this variable properly.
 
     def setupTriggers(self):
         pass
@@ -25,12 +23,8 @@ class FeaturesLoaderProgress(NIFeature):
         pass
 
     def setupTriggers(self):
-        self.addTrigger(self.vm.progress).setAction(self.printProgress).setThread(App.em.MainUI)
-
-    @DyMethod()
-    def updateProgress(self):
-        self.progress += 100/3
+        self.addTrigger(self.vm.progress, first=True).setAction(self.printProgress).setThread(App.em.MainUI)
 
     @DyMethod()
     def printProgress(self):
-        Log.p(f"{self.progress}%")
+        Log.p(f"{round(self.vm.progress * 100, 1)}%")

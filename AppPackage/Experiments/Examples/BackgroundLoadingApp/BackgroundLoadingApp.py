@@ -4,9 +4,9 @@ from FTV.Objects.SystemObjects.Executions import DyThread
 
 
 class EM(ExecutionManager):
-    def _setupBuiltinThreads(self):
-        super(EM, self)._setupBuiltinThreads()
+    def setupThreads(self):
         self.MainUI = DyThread()
+
 
 class App(NIApp):
     def setupFeatures(self):

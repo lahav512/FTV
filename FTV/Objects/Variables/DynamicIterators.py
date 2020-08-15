@@ -44,7 +44,8 @@ class DyBoolList(DyBoolMagicMethods, DyObjectList):
             self.addTrigger(dy_bool).setCondition(DyBool.IsChanged).setAction(self._update_len_true, dy_bool, 1)
 
     def set(self, value):
-        Log.p("This object is a dependent variable. Therefore, it cannot be updated directly.", Log.color.RED)
+        pass  # TODO lahav Please provide an exception
+        # Log.p("This object is a dependent variable. Therefore, it cannot be updated directly.", Log.color.RED)
 
     def getList(self):
         return self.__iterator__
@@ -149,9 +150,10 @@ class DyFloatList(DyFloatMagicMethods, DyObjectList):
 
     def set(self, value):
         if not self.__iterator__:
-            super(DyFloatList, self).set(value)
+            super(DyFloatList, self).set(value.__float__())
         else:
-            Log.p("This object is a dependent variable. Therefore, it cannot be updated directly.", Log.color.RED)
+            pass  # TODO lahav Please provide an exception
+            # Log.p("This object is a dependent variable. Therefore, it cannot be updated directly.", Log.color.RED)
 
     def getList(self):
         return self.__iterator__
@@ -159,11 +161,11 @@ class DyFloatList(DyFloatMagicMethods, DyObjectList):
     @DyBuiltinMethod()
     def _update_ave_value(self):
         # self.__value__ += self._getItemAverageChange(old_val, new_val, self.__iterator__)
-        super(DyFloatList, self).set(self.getItemsAverage(self.__iterator__))
+        super(DyFloatList, self).set(self.getItemsAverage(self.__iterator__).__float__())
 
     @DyBuiltinMethod()
     def _update_value(self, value):
-        super(DyFloatList, self).set(value)
+        super(DyFloatList, self).set(value.__float__())
 
     @staticmethod
     def getItemAverage(item, items=None):

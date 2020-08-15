@@ -99,7 +99,7 @@ class DynamicModuleParent(object):
     def setupTriggers(self):
         pass
 
-    def addTrigger(self, dy_object, parent=None):
+    def addTrigger(self, dy_object, parent=None, first=False):
 
         # # TODO lahav This solution is temporary.
 
@@ -115,7 +115,10 @@ class DynamicModuleParent(object):
             modified_dy_object = dy_object
 
         trigger = Trigger(self).setCondition(modified_dy_object)
-        modified_dy_object.__triggers__.append(trigger)
+        if first:
+            modified_dy_object.__triggers__.insert(0, trigger)
+        else:
+            modified_dy_object.__triggers__.append(trigger)
 
         return trigger
 

@@ -1,5 +1,3 @@
-import functools
-
 from AppPackage.Experiments.Log import Log
 from FTV.Objects.Variables.DynamicObjects import DyObject
 
@@ -25,8 +23,8 @@ class TriggerManager:
             if link.trigger.condition():
                 triggered_links.append(link)
 
-        if triggered_links:
-            print()
+        # if triggered_links:
+        #     print()
 
         map(lambda _link: _link.runAction(), triggered_links)
 

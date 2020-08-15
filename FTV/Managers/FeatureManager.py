@@ -15,7 +15,6 @@ class FeatureManager(AbstractManager):
 
     def _setupBuiltinVariables(self):
         super(FeatureManager, self)._setupBuiltinVariables()
-        self.__features_classes = []
         self.features = []
         self.loading_progress = DyFloatList(0, builtin=True)
 
@@ -23,20 +22,20 @@ class FeatureManager(AbstractManager):
         pass
 
     def addFeatures(self, *features):
-        from FTV.FrameWork.Features import Feature
-
         for feature in features:
-            temp_feature: Feature = feature
-            if temp_feature.settings.enabled:
-                self.__features_classes.append(feature)
+            feature = feature()
+            if feature.settings.enabled:
+                feature._startSetupEnvironment()
+                self.features.append(feature)
 
     def addFeature(self, feature):
         self.addFeatures(feature)
 
-    def _setupFeatures(self):
-        for feature in self.__features_classes:
-            self.features.append(feature())
-            self.loading_progress.add(feature.fm.loading_progress)
+    def _resumeSetupFeatures(self):
+        self.loading_progress.add(*[feature.fm.loading_progress for feature in self.features])
+
+        for feature in self.features:
+            feature._resumeSetupEnvironment()
             feature.fm.loading_progress.set(1)
 
     def setupSettings(self):
