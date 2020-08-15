@@ -1,6 +1,7 @@
 import time
 
 from AppPackage.Experiments.Log import Log
+from Bots.GenerateMagicMethods.result.MagicMethodsInterfaces import DyObject
 from FTV.FrameWork.Apps import NIApp
 from FTV.FrameWork.Features import NIFeature
 from FTV.Managers.ExecutionManager import ExecutionManager
@@ -11,18 +12,50 @@ from FTV.Objects.Variables.DynamicMethods import DyMethod
 from FTV.Objects.Variables.DynamicObjects import DyInt
 
 
-class IntegratedClockVM(VariableManager):
+class VisualClockVM(VariableManager):
+    def setupVariables(self):
+        pass
 
+    def setupTriggers(self):
+        self.addTrigger(ClockApp.vm.seconds).setCondition(DyInt.IsChanged).setAction(self.updateSecondsRadius)\
+            .setThread(ClockApp.em.MainUI)
+        self.addTrigger(ClockApp.vm.minutes).setCondition(DyInt.IsChanged).setAction(self.updateMinutesRadius)\
+            .setThread(ClockApp.em.MainUI)
+        self.addTrigger(ClockApp.vm.hours).setCondition(DyInt.IsChanged).setAction(self.updateHoursRadius)\
+            .setThread(ClockApp.em.MainUI)
+
+    @DyMethod()
+    def updateSecondsRadius(self):
+        Log.p("FTV Works!!!")
+
+    @DyMethod()
+    def updateMinutesRadius(self):
+        Log.p("FTV Works!!!")
+
+    @DyMethod()
+    def updateHoursRadius(self):
+        Log.p("FTV Works!!!")
+
+
+class VisualClock(NIFeature):
+    def setupSettings(self):
+        self.settings.setEnabled()
+
+    def setupManagers(self):
+        self.setVariableManager(VisualClockVM)
+
+
+class IntegratedClockVM(VariableManager):
     def setupVariables(self):
         self.tenth_seconds_mode = 10
         self.seconds_mode = 60
         self.minutes_mode = 60
         self.hours_mode = 24
 
-        self.tenth_seconds = DyInt(0)
-        self.seconds = DyInt(0)
-        self.minutes = DyInt(0)
-        self.hours = DyInt(0)
+        self.tenth_seconds = ClockApp.vm.tenth_seconds
+        self.seconds = ClockApp.vm.seconds
+        self.minutes = ClockApp.vm.minutes
+        self.hours = ClockApp.vm.hours
 
     def setupTriggers(self):
         self.addTrigger(self.tenth_seconds)\
@@ -64,10 +97,13 @@ class IntegratedClock(NIFeature):
 
     def setupTriggers(self):
         self.addTrigger(ClockApp.vm.START).setAction(self.startClock)
-        # self.addTrigger(self.tick).setAction(self.tick)
 
     def getTimeStamp(self):
         return f"{self.vm.hours}:{self.vm.minutes}:{self.vm.seconds}:{self.vm.tenth_seconds}"
+
+    @DyMethod()
+    def updateDyObject(self, obj: DyObject, new_obj: DyObject):
+        obj.set(new_obj.get())
 
     @DyMethod()
     def startClock(self):
@@ -81,48 +117,28 @@ class IntegratedClock(NIFeature):
         time.sleep(1)
 
 
-class VisualClockVM(VariableManager):
+class ClockAppVM(VariableManager):
     def setupVariables(self):
-        pass
+        self.tenth_seconds = DyInt(0)
+        self.seconds = DyInt(0)
+        self.minutes = DyInt(0)
+        self.hours = DyInt(0)
 
     def setupTriggers(self):
-        self.addTrigger(IntegratedClock.vm.seconds).setCondition(DyInt.IsChanged).setAction(self.updateSecondsRadius)\
-            .setThread(ClockApp.em.MainUI)
-        self.addTrigger(IntegratedClock.vm.minutes).setCondition(DyInt.IsChanged).setAction(self.updateMinutesRadius)\
-            .setThread(ClockApp.em.MainUI)
-        self.addTrigger(IntegratedClock.vm.hours).setCondition(DyInt.IsChanged).setAction(self.updateHoursRadius)\
-            .setThread(ClockApp.em.MainUI)
-
-    @DyMethod()
-    def updateSecondsRadius(self):
-        Log.p("FTV Works!!!")
-
-    @DyMethod()
-    def updateMinutesRadius(self):
-        Log.p("FTV Works!!!")
-
-    @DyMethod()
-    def updateHoursRadius(self):
-        Log.p("FTV Works!!!")
+        pass
 
 
-class VisualClock(NIFeature):
-    def setupSettings(self):
-        self.settings.setEnabled()
-
-    def setupManagers(self):
-        self.setVariableManager(VisualClockVM)
-
-
-class EM(ExecutionManager):
+class ClockAppEM(ExecutionManager):
     def setupThreads(self):
         self.MainUI = DyThread()
 
 
-class FM(FeatureManager):
+class ClockAppFM(FeatureManager):
     def setupFeatures(self):
+        Log.p("-> setupFeatures")
         self.addFeature(IntegratedClock)
         self.addFeature(VisualClock)
+        Log.p("<- setupFeatures")
 
 
 class ClockApp(NIApp):
@@ -131,8 +147,11 @@ class ClockApp(NIApp):
         pass
 
     def setupManagers(self):
-        self.setExecutionManager(EM)
-        self.setFeatureManager(FM)
+        Log.p("-> setupManagers")
+        self.setExecutionManager(ClockAppEM)
+        self.setFeatureManager(ClockAppFM)
+        self.setVariableManager(ClockAppVM)
+        Log.p("<- setupManagers")
 
 
 if __name__ == '__main__':
