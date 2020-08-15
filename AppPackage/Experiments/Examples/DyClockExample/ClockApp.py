@@ -1,4 +1,3 @@
-from AppPackage.Experiments.Log import Log
 from FTV.FrameWork.Apps import NIApp
 from FTV.Managers.ExecutionManager import ExecutionManager
 from FTV.Managers.FeatureManager import FeatureManager
@@ -25,13 +24,11 @@ class EM(ExecutionManager):
 
 class FM(FeatureManager):
     def setupFeatures(self):
-        Log.p("-> setupFeatures")
         from AppPackage.Experiments.Examples.DyClockExample.Features.IntegratedClock import IntegratedClock
         from AppPackage.Experiments.Examples.DyClockExample.Features.VisualClock import VisualClock
 
         self.addFeature(IntegratedClock)
         self.addFeature(VisualClock)
-        Log.p("<- setupFeatures")
 
 
 class ClockApp(NIApp):
@@ -40,8 +37,6 @@ class ClockApp(NIApp):
         pass
 
     def setupManagers(self):
-        Log.p("-> setupManagers")
         self.setExecutionManager(EM)
         self.setFeatureManager(FM)
         self.setVariableManager(VM)
-        Log.p("<- setupManagers")

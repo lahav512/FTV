@@ -17,6 +17,10 @@ class Feature(DynamicModuleParent):
         "fm": "FeatureManager",
     }
 
+    em = None
+    vm = None
+    fm = None
+
     def __init__(self):
 
         # Log.p(f"init{self.__class__.type}: " + str(self.__class__.__name__))
@@ -57,40 +61,39 @@ class Feature(DynamicModuleParent):
         pass
 
     def _setupBuiltinManagers(self):
+        print("_setupBuiltinManagers(): " + self.__class__.__name__)
+
+        from FTV.Managers.ExecutionManager import ExecutionManager
+        from FTV.Managers.VariableManager import VariableManager
+        from FTV.Managers.FeatureManager import FeatureManager
+
+        self.__vm_class = VariableManager
+        self.__em_class = ExecutionManager
+        self.__fm_class = FeatureManager
+
         self.setupManagers()
         from FTV.FrameWork.Apps import NIApp
+        is_parent_app = issubclass(self.__class__, NIApp)
 
-        for var_name in self.__class__._builtin_managers.keys():
-            if var_name in self._managers.keys():
-                continue
-
-            cls_name = self.__class__._builtin_managers[var_name]
-            is_parent_app = issubclass(self.__class__, NIApp)
-            manager = self._getBaseAbstractManagerClass(cls_name)(_is_parent_app=is_parent_app)
-            setattr(self.__class__, var_name, manager)
-
-        for var_name, cls_name in self._managers.items():
-            is_parent_app = issubclass(self.__class__, NIApp)
-            manager = cls_name(_is_parent_app=is_parent_app)
-            setattr(self.__class__, var_name, manager)
+        self.__class__.vm = self.vm_class(_is_parent_app=is_parent_app)
+        self.__class__.em = self.__em_class(_is_parent_app=is_parent_app)
+        self.__class__.fm = self.__fm_class(_is_parent_app=is_parent_app)
 
     @classmethod
     def _resumeSetupManagers(cls):
-        for key in cls._builtin_managers.keys():
-            getattr(cls, key)._resumeSetupEnvironment()
+        cls.em._resumeSetupEnvironment()
+        cls.vm._resumeSetupEnvironment()
+        cls.fm._resumeSetupEnvironment()
 
     def _setupBuiltinVariables(self):
         self.vm.POST_BUILTIN_LOAD = DySwitch(builtin=True)
         self.vm.PRE_LOAD = DySwitch(builtin=True)
         self.vm.IS_SELF_LOADED = DyBool(True, builtin=True)
         self.vm.POST_LOAD = DySwitch(builtin=True)
-        self.vm.POST_SETUP = DySwitch(builtin=True)
-        # self.vm.START = DySwitch()
-        # self.vm.EXIT = DySwitch()
-
         self.vm.PRE_LOAD_FEATURES = DySwitch(builtin=True)
         self.vm.IS_CHILDREN_LOADED = DyBool(False, builtin=True)
         self.vm.POST_LOAD_FEATURES = DySwitch(builtin=True)
+        self.vm.POST_SETUP = DySwitch(builtin=True)
 
     def _setupBuiltinTriggers(self):
         self.addTrigger(self._loadBuiltinSelf).setAction(self.vm.POST_BUILTIN_LOAD)
@@ -130,8 +133,8 @@ class Feature(DynamicModuleParent):
         manager_class = getattr(manager_class, cls_name)
         return manager_class
 
-    def _setAbstractManager(self, manager_name, Manager):
-        self._managers[manager_name] = Manager
+    def _setAbstractManager(self, manager_parameter, Manager):
+        manager_parameter = Manager
         # manager = Manager()
         # methods_list = [method for method in dir(manager) if callable(getattr(manager, method))
         #                 and not (method.startswith("__") and method.endswith("__"))]
@@ -142,15 +145,15 @@ class Feature(DynamicModuleParent):
 
     # @classmethod
     def setVariableManager(self, Manager):
-        self._setAbstractManager("vm", Manager)
+        self.vm_class = Manager
 
     # @classmethod
     def setExecutionManager(self, Manager):
-        self._setAbstractManager("em", Manager)
+        self.__em_class = Manager
 
     # @classmethod
     def setFeatureManager(self, Manager):
-        self._setAbstractManager("fm", Manager)
+        self.__fm_class = Manager
 
     def setupTriggers(self):
         pass
