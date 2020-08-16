@@ -7,7 +7,7 @@ class MathPuzzle:
     def setList(self, *a):
         self.a = list(a)
         self.k = len(self.a)
-        assert self.k >= 3
+        assert self.k > 1
         self.__updateInitM()
 
     def __updateInitM(self):
@@ -22,5 +22,5 @@ class MathPuzzle:
         return (self.m(n-1) + self.m(n+1-self.k)) / 2
 
 math = MathPuzzle()
-math.setList(1, 2, 3, 4, 5)
-print(math.m(30))
+math.setList(1, 3, 5, 7, 9, 11, 13)
+print(math.m(20))
