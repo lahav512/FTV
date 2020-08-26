@@ -70,8 +70,8 @@ class Feature(DynamicModuleParent):
         self.__fm_class = FeatureManager
 
         self.setupManagers()
-        from FTV.FrameWork.Apps import NIApp
-        is_parent_app = issubclass(self.__class__, NIApp)
+        from FTV.FrameWork.Apps import _AbstractApp
+        is_parent_app = issubclass(self.__class__, _AbstractApp)
 
         self.__class__.vm = self.__vm_class(_is_parent_app=is_parent_app)
         self.__class__.em = self.__em_class(_is_parent_app=is_parent_app)
@@ -110,9 +110,6 @@ class Feature(DynamicModuleParent):
         self.addTrigger(self.vm.PRE_LOAD_FEATURES).setAction(self._loadChildren)
         self.addTrigger(self._loadChildren).setAction(self.vm.POST_LOAD_FEATURES)
         self.addTrigger(self._resumeSetupEnvironment).setAction(self.vm.POST_SETUP)
-        # self.addTrigger(self._loadChildren).setAction(self.fm.loading_progress, 1)
-        # self.addTrigger(self.fm.loading_progress).setAction(self.vm.POST_LOAD_FEATURES)
-        # self.addTrigger(self.vm.POST_LOAD_FEATURES).setAction(self.vm.START)
 
     def _fm_setupFeatures(self):
         self.fm.setupFeatures()
@@ -161,6 +158,10 @@ class Feature(DynamicModuleParent):
     def setFeatureManager(self, Manager):
         self.__fm_class = Manager
 
+    # @classmethod
+    def setUIManager(self, Manager):
+        self.__uim_class = Manager
+
     def setupTriggers(self):
         pass
 
@@ -208,12 +209,19 @@ class NIFeature(Feature):
 class UIFeature(NIFeature):
     # type = "UIFeature"
 
-    @classmethod
-    def _setupBuiltinManagers(cls):
-        super(UIFeature, cls)._setupBuiltinManagers()
-        from FTV.Managers.UIManager import UIManager
+    def _setupMethodsLists(self):
+        super(UIFeature, self)._setupMethodsLists()
+        self._BUILTIN_METHODS |= {"_loadUISelf"}
 
-        cls.uim: UIManager = UIManager()
+    def _setupBuiltinManagers(self):
+        from FTV.Managers.UIManager import UIManager
+        self.__uim_class = UIManager
+        super(UIFeature, self)._setupBuiltinManagers()
+
+        from FTV.FrameWork.Apps import NIApp
+        is_parent_app = issubclass(self.__class__, NIApp)
+
+        self.__class__.uim = self.__uim_class(_is_parent_app=is_parent_app)
 
     def _setupBuiltinVariables(self):
         super(UIFeature, self)._setupBuiltinVariables()
@@ -222,19 +230,15 @@ class UIFeature(NIFeature):
         self.vm.POST_UI_LOAD = DySwitch()
 
     def _setupBuiltinTriggers(self):
-        super(NIFeature, self)._setupBuiltinTriggers()
-        self.removeTrigger(self.vm.POST_LOAD, self.vm.PRE_LOAD_FEATURES)  # Must be redefined
-        self.addTrigger(self.vm.POST_LOAD, True, self.vm.PRE_UI_LOAD)
-        self.addTrigger(self.vm.PRE_UI_LOAD, True, self.vm.PRE_LOAD_FEATURES)
+        super(UIFeature, self)._setupBuiltinTriggers()
+        self.overrideTriggers(self.vm.POST_LOAD).setAction(self.vm.PRE_UI_LOAD)
+        self.addTrigger(self.vm.PRE_UI_LOAD).setAction(self._loadUISelf)
 
-        self.addTrigger(self.vm.POST_LOAD, True, self.vm.PRE_UI_LOAD)
-        self.addTrigger(self.vm.PRE_UI_LOAD, True, self._loadUISelf)
-        self.addTrigger(self._loadUISelf, True, self.vm.POST_UI_LOAD)
-        self.addTrigger(self.vm.POST_UI_LOAD, True, self.vm.PRE_LOAD_FEATURES)
+        self.addTrigger(self._loadUISelf).setAction(self.vm.POST_UI_LOAD)
+        self.addTrigger(self.vm.POST_UI_LOAD).setAction(self.vm.PRE_LOAD_FEATURES)
 
     @DyBuiltinMethod()
     def _loadUISelf(self):
-        self.uim.setupVariables()
         self.uim.setupVariables()
         self.uim.setupTriggers()
         self.setupUITriggers()

@@ -163,7 +163,10 @@ class DynamicModuleParent(object):
         return trigger
 
     def __get_by_method__(self, method):
+        # try:
         return self.__dynamic_methods__[method.__name__]
+        # except:
+        #     return None
 
     # def _getDySwitchAction(self, action):
     #     return self.__temp_action.activate()

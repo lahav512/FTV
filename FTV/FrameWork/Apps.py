@@ -2,7 +2,7 @@ from FTV.FrameWork.Features import NIFeature, UIFeature, Feature
 from FTV.Objects.Variables.DynamicObjects import DySwitch
 
 
-class __AbstractApp:
+class _AbstractApp:
     type = "App"
 
     @classmethod
@@ -14,7 +14,7 @@ class __AbstractApp:
         cls.vm.EXIT.activate()
 
 
-class NIApp(__AbstractApp, NIFeature):
+class NIApp(_AbstractApp, NIFeature):
     def __init__(self):
         super(NIApp, self).__init__()
         super(Feature, self).__init__()
@@ -39,10 +39,18 @@ class NIApp(__AbstractApp, NIFeature):
         self.addTrigger(self.vm.POST_BUILTIN_LOAD).setAction(self._resumeSetupEnvironment)
 
         self.overrideTriggers(self._setupEnvironment).setAction(self.vm.POST_BUILTIN_LOAD).setThread(self.em.Main)
-        self.addTrigger(self.vm.POST_LOAD_FEATURES).setAction(self.vm.START)
+        self.addTrigger(self.vm.POST_SETUP).setAction(self.vm.START)
 
 
-class UIApp(__AbstractApp, UIFeature):
+class UIApp(_AbstractApp, UIFeature):
+    def __init__(self):
+        super(UIApp, self).__init__()
+        super(Feature, self).__init__()
+
+    def _setupMethodsLists(self):
+        super(UIApp, self)._setupMethodsLists()
+        self._BUILTIN_METHODS |= {"_setupUIServices"}
+
     """This method is deprecated. Please use the method "setupFeatures" in the FeatureManager instead."""
     # @abstractmethod
     def setupFeatures(self):
@@ -53,5 +61,18 @@ class UIApp(__AbstractApp, UIFeature):
     def setupSettings(self):
         pass
 
+    def _setupUIServices(self):
+        self.uim._startServices()
 
+    def _setupBuiltinVariables(self):
+        super(UIApp, self)._setupBuiltinVariables()
+        self.vm.START = DySwitch()
+        self.vm.EXIT = DySwitch()
 
+    def _setupBuiltinTriggers(self):
+        super(UIApp, self)._setupBuiltinTriggers()
+        self.addTrigger(self.vm.POST_BUILTIN_LOAD).setAction(self._resumeSetupEnvironment)
+
+        self.overrideTriggers(self._setupEnvironment).setAction(self.vm.POST_BUILTIN_LOAD).setThread(self.em.Main)
+        self.addTrigger(self.vm.POST_SETUP).setAction(self._setupUIServices)
+        self.addTrigger(self._setupUIServices).setAction(self.vm.START)

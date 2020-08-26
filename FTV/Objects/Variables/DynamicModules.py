@@ -33,8 +33,7 @@ class DyModule(DynamicModuleParent, DyObject):
 
     def _setupBuiltinTriggers(self):
         self.addTrigger(self._loadBuiltinSelf)\
-            .setAction(self.POST_BUILTIN_INIT)\
-            # .setThread("thread.main")  # TODO lahav use this line: , "thread.main")
+            .setAction(self.POST_BUILTIN_INIT)
         self.addTrigger(self.POST_BUILTIN_INIT)\
             .setAction(self.PRE_INIT)
         self.addTrigger(self.PRE_INIT)\

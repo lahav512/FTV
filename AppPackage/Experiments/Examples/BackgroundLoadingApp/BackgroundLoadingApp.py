@@ -1,4 +1,4 @@
-from FTV.FrameWork.Apps import NIApp
+from FTV.FrameWork.Apps import UIApp
 from FTV.Managers.ExecutionManager import ExecutionManager
 from FTV.Objects.SystemObjects.Executions import DyThread
 
@@ -8,7 +8,7 @@ class EM(ExecutionManager):
         self.MainUI = DyThread()
 
 
-class App(NIApp):
+class App(UIApp):
     def setupFeatures(self):
         from AppPackage.Experiments.Examples.BackgroundLoadingApp.Features.FeaturesLoader import FeaturesLoader
         from AppPackage.Experiments.Examples.BackgroundLoadingApp.Features.FeaturesLoaderProgress import \
