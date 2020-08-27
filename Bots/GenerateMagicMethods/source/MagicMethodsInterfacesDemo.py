@@ -1,5 +1,5 @@
-from AppPackage.Experiments.Log import Log
-from AppPackage.Experiments.PickleTests.DataObject import Queue
+from Experiments.Log import Log
+from Experiments.PickleTests.DataObject import Queue
 from FTV.Objects.Variables.AbstractConditions import DyObjectConditions
 
 

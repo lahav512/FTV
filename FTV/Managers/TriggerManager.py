@@ -1,4 +1,4 @@
-from AppPackage.Experiments.Log import Log
+from Experiments.Log import Log
 from FTV.Objects.Variables.DynamicObjects import DyObject
 
 

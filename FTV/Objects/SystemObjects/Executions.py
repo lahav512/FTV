@@ -1,7 +1,7 @@
 from threading import Thread as BaseThread
 
-from AppPackage.Experiments.Log import Log
-from AppPackage.Experiments.PickleTests.DataObject import Queue
+from Experiments.Log import Log
+from Experiments.PickleTests.DataObject import Queue
 from FTV.Objects.Variables.DynamicModules import DyBuiltinModule
 from FTV.Objects.Variables.DynamicObjects import DyBool
 

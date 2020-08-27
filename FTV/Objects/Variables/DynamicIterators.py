@@ -1,10 +1,11 @@
-from AppPackage.Experiments.Log import Log
 from Bots.GenerateMagicMethods.result.MagicMethodsInterfaces import DyFloatMagicMethods
+from Experiments.Log import Log
 from FTV.Objects.SystemObjects.TriggerObjects import Condition
 from FTV.Objects.Variables.AbstractDynamicObject import DyListMagicMethods, DyBoolMagicMethods
 from FTV.Objects.Variables.DynamicMethods import DyMethod, DyBuiltinMethod
 from FTV.Objects.Variables.DynamicModules import DyBuiltinModule
 from FTV.Objects.Variables.DynamicObjects import DyInt, DyBool
+
 
 class DyObjectList(DyListMagicMethods, DyBuiltinModule):
     pass
