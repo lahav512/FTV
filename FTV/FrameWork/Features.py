@@ -225,9 +225,9 @@ class UIFeature(NIFeature):
 
     def _setupBuiltinVariables(self):
         super(UIFeature, self)._setupBuiltinVariables()
-        self.vm.PRE_UI_LOAD = DySwitch()
-        self.vm.IS_SELF_UI_LOADED = DyBool(False)
-        self.vm.POST_UI_LOAD = DySwitch()
+        self.vm.PRE_UI_LOAD = DySwitch(builtin=True)
+        self.vm.IS_SELF_UI_LOADED = DyBool(False, builtin=True)
+        self.vm.POST_UI_LOAD = DySwitch(builtin=True)
 
     def _setupBuiltinTriggers(self):
         super(UIFeature, self)._setupBuiltinTriggers()
