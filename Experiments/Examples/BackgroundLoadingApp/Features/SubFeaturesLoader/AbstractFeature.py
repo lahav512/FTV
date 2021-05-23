@@ -14,5 +14,5 @@ class AbstractFeature(UIFeature):
         pass
 
     def setupFeatures(self):
-        # pass
-        time.sleep(1)
+        pass
+        # time.sleep(1)
