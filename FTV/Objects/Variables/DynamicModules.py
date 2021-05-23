@@ -76,7 +76,7 @@ class DyModule(DynamicModuleParent, DyObject):
 
         is_new_var = key not in locals()
         # is_new_var = True
-
+        # print("# " + key)
         super(DyModule, self).__setattr__(key, value)
         _object = getattr(self, key)
         try:

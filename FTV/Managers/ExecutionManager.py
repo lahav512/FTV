@@ -2,6 +2,7 @@ from FTV.Managers.AbstractManager import AbstractManager
 from FTV.Objects.SystemObjects.Executions import DyThread
 from FTV.Objects.Variables.DynamicIterators import DyBoolList
 from FTV.Objects.Variables.DynamicMethods import DyBuiltinMethod
+from FTV.Objects.Variables.DynamicObjects import DySwitch
 
 
 class ExecutionManager(AbstractManager):
@@ -43,12 +44,17 @@ class ExecutionManager(AbstractManager):
         self._setupMethods()
         self.setupTriggers()
 
+    def _setupBuiltinVariables(self):
+        super(ExecutionManager, self)._setupBuiltinVariables()
+        self.STOP_THREADS = DySwitch(builtin=True)
+
     def _setupBuiltinTriggers(self):
         super(ExecutionManager, self)._setupBuiltinTriggers()
         self.addTrigger(self.areQueuesEmpty)\
             .setCondition(DyBoolList.IsChangedTo, True)\
-            .setAction(self._stopAllThreads)\
+            .setAction(self.STOP_THREADS)\
             # .setThread(self.getThread("Main"))
+        self.addTrigger(self.STOP_THREADS).setAction(self._stopAllThreads)
 
     def _setupBuiltinThreads(self):
         self.areQueuesEmpty = DyBoolList(builtin=True)

@@ -23,7 +23,8 @@ class FeaturesLoaderProgress(NIFeature):
         pass
 
     def setupTriggers(self):
-        self.addTrigger(self.vm.progress, first=True).setAction(self.printProgress).setThread(App.em.MainUI)
+        self.addTrigger(self.vm.progress, first=True).setAction(self.printProgress)\
+            # .setThread(App.em.MainUI)
 
     @DyMethod()
     def printProgress(self):

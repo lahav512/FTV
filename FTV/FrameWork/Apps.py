@@ -1,4 +1,5 @@
 from FTV.FrameWork.Features import NIFeature, UIFeature, Feature
+from FTV.Objects.Variables.DynamicMethods import DyBuiltinMethod
 from FTV.Objects.Variables.DynamicObjects import DySwitch
 
 
@@ -40,6 +41,7 @@ class NIApp(_AbstractApp, NIFeature):
 
         self.overrideTriggers(self._setupEnvironment).setAction(self.vm.POST_BUILTIN_LOAD).setThread(self.em.Main)
         self.addTrigger(self.vm.POST_SETUP).setAction(self.vm.START)
+        self.addTrigger(self.em.STOP_THREADS, parent=self.em).setAction(self.vm.EXIT)
 
 
 class UIApp(_AbstractApp, UIFeature):
@@ -61,6 +63,7 @@ class UIApp(_AbstractApp, UIFeature):
     def setupSettings(self):
         pass
 
+    @DyBuiltinMethod()
     def _setupUIServices(self):
         self.uim._startServices()
 
@@ -76,3 +79,4 @@ class UIApp(_AbstractApp, UIFeature):
         self.overrideTriggers(self._setupEnvironment).setAction(self.vm.POST_BUILTIN_LOAD).setThread(self.em.Main)
         self.addTrigger(self.vm.POST_SETUP).setAction(self._setupUIServices)
         self.addTrigger(self._setupUIServices).setAction(self.vm.START)
+        self.addTrigger(self.em.STOP_THREADS, parent=self.em).setAction(self.vm.EXIT)
