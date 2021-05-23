@@ -20,7 +20,6 @@ class DynamicObjectInterface(object):
             if trigger.thread is None:
                 dy_object.__active_triggers__.put_nowait(trigger)
             else:
-                # TODO lahav Add trigger to its designated thread
                 trigger.thread.addActiveTrigger(trigger)
 
     @staticmethod

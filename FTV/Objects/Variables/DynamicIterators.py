@@ -21,7 +21,7 @@ class DyBoolList(DyBoolMagicMethods, DyObjectList):
 
     def _setupBuiltinVariables(self):
         super(DyBoolList, self)._setupBuiltinVariables()
-        self.__value__: bool
+        self.__value__: bool  # TODO lahav Please change it to be more generic.
         # self.__len__: int = 0
         self.__iterator__ = []
         self.__len_true__ = DyInt(0, builtin=True)

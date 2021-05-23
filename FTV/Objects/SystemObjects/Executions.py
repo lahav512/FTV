@@ -2,19 +2,25 @@ from threading import Thread as BaseThread
 
 from Experiments.Log import Log
 from Experiments.PickleTests.DataObject import Queue
+from FTV.Objects.Variables.DynamicIterators import DyBoolList
 from FTV.Objects.Variables.DynamicModules import DyBuiltinModule
 from FTV.Objects.Variables.DynamicObjects import DyBool
 
 
-class DyProcess(object):
+class DyExecution(DyBuiltinModule):
+    def runActiveTrigger(self, trigger):
+        trigger.runAction()
+
+
+class DyProcess(DyExecution):
     pass
 
 
-class DyProcessList(object):
+class DyProcessList(DyExecution):
     pass
 
 
-class DyThread(DyBuiltinModule):
+class DyThread(DyExecution):
     def __init__(self, daemon=False):
         self.daemon = daemon
 
@@ -22,7 +28,7 @@ class DyThread(DyBuiltinModule):
         Log.p(f"DyThread.__init__({name})")
         self.name = name
         self.daemon = daemon
-        super(DyThread, self).__init__()
+        super(DyExecution, self).__init__()
 
     def setupVariables(self):
         self.isQueueEmpty = DyBool(True, builtin=True)
@@ -33,7 +39,6 @@ class DyThread(DyBuiltinModule):
             self.thread.setName(self.name)
 
         self.is_new = True
-        # self.start()
 
     def setupTriggers(self):
         pass
@@ -58,10 +63,6 @@ class DyThread(DyBuiltinModule):
         if not self.isAlive():
             self.start()
 
-    # @staticmethod
-    def runActiveTrigger(self, trigger):
-        trigger.runAction()
-
     def start(self):
         # Log.p(f"startThread: {self.name}")
         self.thread.start()
@@ -84,5 +85,33 @@ class DyThread(DyBuiltinModule):
         self.__name__ = name
 
 
-class DyThreadList(object):
-    pass
+class DyThreadList(DyExecution):
+    def __call__(self, name=None, **kwargs):
+        Log.p(f"DyThreadList.__init__({name})")
+        self.name = name
+        super(DyBuiltinModule, self).__init__()
+
+    def setupVariables(self):
+        # Create the dict of dyThreads and other relevant variables.
+        self.dyThreads = {}
+        self.__available_thread_ids = [0]  # TODO lahav The efficiency of this mechanism can be improved by using stack.
+
+        self.isQueueEmpty = DyBoolList(builtin=True)
+        self.isQueueEmpty._set(True)
+
+    def addActiveTrigger(self, trigger):
+        # Create a new DyThread and add it to the dict and then start it.
+
+        # Update the the available thread ids
+        thread_id = self.__available_thread_ids.pop(0)
+        if not self.__available_thread_ids:
+            self.__available_thread_ids.append(thread_id + 1)
+
+        dyThread = self.dyThreads[thread_id] = DyThread()
+        dyThread(name=f"{self.name} #{thread_id}")
+        dyThread.addActiveTrigger(trigger)
+        self.isQueueEmpty.add(dyThread.isQueueEmpty)
+
+    def stop(self):
+        for dy_thread in self.dyThreads.values():
+            dy_thread.stop()

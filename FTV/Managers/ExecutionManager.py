@@ -1,5 +1,5 @@
 from FTV.Managers.AbstractManager import AbstractManager
-from FTV.Objects.SystemObjects.Executions import DyThread
+from FTV.Objects.SystemObjects.Executions import DyThread, DyThreadList, DyExecution
 from FTV.Objects.Variables.DynamicIterators import DyBoolList
 from FTV.Objects.Variables.DynamicMethods import DyBuiltinMethod
 from FTV.Objects.Variables.DynamicObjects import DySwitch
@@ -13,7 +13,7 @@ class ExecutionManager(AbstractManager):
         self.init()
 
     def __setattr__(self, key, value):
-        if isinstance(value, DyThread):
+        if isinstance(value, DyExecution):
             value(key)
             if not self._isThreadExist(key):
                 super(ExecutionManager, self).__setattr__(key, value)
@@ -86,5 +86,8 @@ class ExecutionManager(AbstractManager):
     @DyBuiltinMethod()
     def _stopAllThreads(self):
         for thread in self.threads.values():
-            if not thread.daemon:
+            if isinstance(thread, DyThreadList):
                 thread.stop()
+            else:
+                if not thread.daemon:
+                    thread.stop()

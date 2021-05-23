@@ -29,5 +29,7 @@ class VariableManager(DyModule):
         self.b.set(b)
         self.c.set(c)
 
+        Log.p(f"{self.list_1}")
+
 
 vm = VariableManager()

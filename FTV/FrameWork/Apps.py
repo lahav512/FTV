@@ -41,7 +41,7 @@ class NIApp(_AbstractApp, NIFeature):
 
         self.overrideTriggers(self._setupEnvironment).setAction(self.vm.POST_BUILTIN_LOAD).setThread(self.em.Main)
         self.addTrigger(self.vm.POST_SETUP).setAction(self.vm.START)
-        self.addTrigger(self.em.STOP_THREADS, parent=self.em).setAction(self.vm.EXIT)
+        self.addTrigger(self.em.STOP_THREADS, parent=self.em).setAction(self.vm.EXIT).setThread(self.em.Main)
 
 
 class UIApp(_AbstractApp, UIFeature):
@@ -79,4 +79,4 @@ class UIApp(_AbstractApp, UIFeature):
         self.overrideTriggers(self._setupEnvironment).setAction(self.vm.POST_BUILTIN_LOAD).setThread(self.em.Main)
         self.addTrigger(self.vm.POST_SETUP).setAction(self._setupUIServices)
         self.addTrigger(self._setupUIServices).setAction(self.vm.START)
-        self.addTrigger(self.em.STOP_THREADS, parent=self.em).setAction(self.vm.EXIT)
+        self.addTrigger(self.em.STOP_THREADS, parent=self.em).setAction(self.vm.EXIT).setThread(self.em.Main)
