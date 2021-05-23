@@ -39,7 +39,7 @@ class DyBoolList(DyBoolMagicMethods, DyObjectList):
     @DyBuiltinMethod()
     def add(self, *dy_bools):
         self.__iterator__ += dy_bools
-        self._update_len_true(value=len(list(filter(lambda dy_bool: dy_bool, self.__iterator__))))
+        self._update_len_true(value=len(list(filter(lambda dy_bool: dy_bool, dy_bools))))
 
         for dy_bool in dy_bools:
             self.addTrigger(dy_bool).setCondition(DyBool.IsChanged).setAction(self._update_len_true, dy_bool, 1)

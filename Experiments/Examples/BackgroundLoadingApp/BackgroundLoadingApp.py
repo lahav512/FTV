@@ -8,6 +8,7 @@ from FTV.Objects.Variables.DynamicMethods import DyMethod
 class EM(ExecutionManager):
     def setupThreads(self):
         self.MainUI = DyThread()
+        self.MainApplication = DyThread()
 
 
 class App(UIApp):
@@ -26,7 +27,8 @@ class App(UIApp):
         self.setExecutionManager(EM)
 
     def setupTriggers(self):
-        self.addTrigger(self.vm.START).setAction(self.startAppOperations)
+        self.addTrigger(self.vm.START).setAction(self.startAppOperations)\
+            .setThread(self.em.MainApplication)
         self.addTrigger(self.vm.EXIT).setAction(self.printRuntime)
 
     @DyMethod()

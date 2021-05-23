@@ -27,5 +27,6 @@ class FeaturesLoaderProgress(NIFeature):
             # .setThread(App.em.MainUI)
 
     @DyMethod()
+
     def printProgress(self):
         Log.p(f"{round(self.vm.progress * 100, 1)}%")
