@@ -19,14 +19,10 @@ class FeaturesLoaderProgress(NIFeature):
     def setupManagers(self):
         self.setVariableManager(VM)
 
-    def setupFeatures(self):
-        pass
-
     def setupTriggers(self):
         self.addTrigger(self.vm.progress, first=True).setAction(self.printProgress)\
-            # .setThread(App.em.MainUI)
+            .setThread(App.em.MainUI)
 
     @DyMethod()
-
     def printProgress(self):
         Log.p(f"{round(self.vm.progress * 100, 1)}%")

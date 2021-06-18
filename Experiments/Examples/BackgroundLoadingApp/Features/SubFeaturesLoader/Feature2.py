@@ -1,15 +1,9 @@
 from Experiments.Examples.BackgroundLoadingApp.Features.SubFeaturesLoader.AbstractFeature import \
     AbstractFeature
+from FTV.Managers.FeatureManager import FeatureManager
 
 
-class Feature2(AbstractFeature):
-    def setupSettings(self):
-        pass
-        # self.settings.setDisabled()
-
-    def setupManagers(self):
-        pass
-
+class FM(FeatureManager):
     def setupFeatures(self):
         from Experiments.Examples.BackgroundLoadingApp.Features.SubFeaturesLoader.SubFeature2.Feature2_1 import \
             Feature2_1
@@ -26,3 +20,13 @@ class Feature2(AbstractFeature):
             Feature2_3,
             Feature2_4
         )
+
+
+class Feature2(AbstractFeature):
+    def setupSettings(self):
+        pass
+        # self.settings.setDisabled()
+
+    def setupManagers(self):
+        self.setFeatureManager(FM)
+

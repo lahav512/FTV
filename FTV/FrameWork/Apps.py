@@ -20,15 +20,15 @@ class NIApp(_AbstractApp, NIFeature):
         super(NIApp, self).__init__()
         super(Feature, self).__init__()
 
-    """This method is deprecated. Please use the method "setupFeatures" in the FeatureManager instead."""
-    # @abstractmethod
-    def setupFeatures(self):
-        pass
-
-    """This method is deprecated. Please use the method "setupSettings" in the FeatureManager instead."""
-    # @abstractmethod
-    def setupSettings(self):
-        pass
+    # """This method is deprecated. Please use the method "setupFeatures" in the FeatureManager instead."""
+    # # @abstractmethod
+    # def setupFeatures(self):
+    #     pass
+    #
+    # """This method is deprecated. Please use the method "setupSettings" in the FeatureManager instead."""
+    # # @abstractmethod
+    # def setupSettings(self):
+    #     pass
 
     def _setupBuiltinVariables(self):
         super(NIApp, self)._setupBuiltinVariables()
@@ -53,15 +53,15 @@ class UIApp(_AbstractApp, UIFeature):
         super(UIApp, self)._setupMethodsLists()
         self._BUILTIN_METHODS |= {"_setupUIServices"}
 
-    """This method is deprecated. Please use the method "setupFeatures" in the FeatureManager instead."""
-    # @abstractmethod
-    def setupFeatures(self):
-        pass
-
-    """This method is deprecated. Please use the method "setupSettings" in the FeatureManager instead."""
-    # @abstractmethod
-    def setupSettings(self):
-        pass
+    # """This method is deprecated. Please use the method "setupFeatures" in the FeatureManager instead."""
+    # # @abstractmethod
+    # def setupFeatures(self):
+    #     pass
+    #
+    # """This method is deprecated. Please use the method "setupSettings" in the FeatureManager instead."""
+    # # @abstractmethod
+    # def setupSettings(self):
+    #     pass
 
     @DyBuiltinMethod()
     def _setupUIServices(self):
