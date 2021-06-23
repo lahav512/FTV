@@ -1,3 +1,4 @@
+import time
 from threading import Thread as BaseThread
 
 from Experiments.Log import Log
@@ -11,6 +12,8 @@ class DyExecution(DyBuiltinModule):
     def runActiveTrigger(self, trigger):
         trigger.runAction()
 
+    def runCondition(self, trigger):
+        return trigger.runCondition()
 
 class DyProcess(DyExecution):
     pass
@@ -25,7 +28,7 @@ class DyThread(DyExecution):
         self.daemon = daemon
 
     def __call__(self, name=None, daemon=False):
-        Log.p(f"DyThread.__init__({name})")
+        # Log.p(f"DyThread.__init__({name})")
         self.name = name
         self.daemon = daemon
         super(DyExecution, self).__init__()
@@ -53,7 +56,8 @@ class DyThread(DyExecution):
                 if trigger is None:
                     break
 
-                self.runActiveTrigger(trigger)
+                if self.runCondition(trigger):
+                    self.runActiveTrigger(trigger)
             else:
                 self.isQueueEmpty.set(True)
 
@@ -71,8 +75,8 @@ class DyThread(DyExecution):
         # Log.p(f"stopThread: {self.name}")
         self.__active_triggers__.put_nowait(None)
 
-    def sleep(self):
-        pass
+    def sleep(self, secs):
+        time.sleep(secs)
 
     def join(self):
         self.thread.join()
@@ -87,7 +91,7 @@ class DyThread(DyExecution):
 
 class DyThreadList(DyExecution):
     def __call__(self, name=None, **kwargs):
-        Log.p(f"DyThreadList.__init__({name})")
+        # Log.p(f"DyThreadList.__init__({name})")
         self.name = name
         super(DyBuiltinModule, self).__init__()
 

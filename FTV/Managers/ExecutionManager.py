@@ -1,3 +1,5 @@
+import threading
+
 from FTV.Managers.AbstractManager import AbstractManager
 from FTV.Objects.SystemObjects.Executions import DyThread, DyThreadList, DyExecution
 from FTV.Objects.Variables.DynamicIterators import DyBoolList
@@ -79,6 +81,9 @@ class ExecutionManager(AbstractManager):
 
     def getThread(self, name):
         return self.threads[name]
+
+    def getCurrentThread(self):
+        return self.threads[threading.currentThread().name]
 
     def setupSettings(self):
         pass

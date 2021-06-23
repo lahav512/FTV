@@ -13,6 +13,6 @@ class AbstractFeature(UIFeature):
     def setupManagers(self):
         pass
 
-    def setupFeatures(self):
+    def setupTriggers(self):
         # pass
         time.sleep(1)

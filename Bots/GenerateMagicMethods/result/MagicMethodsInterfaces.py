@@ -14,10 +14,11 @@ class DynamicObjectInterface(object):
         self.__active_triggers__ = Queue()
 
     @staticmethod
-    def _distributeTriggers(dy_object):
+    def _distributeTriggers(dy_object, old_val=None, new_val=None):
         dy_object.__active_triggers__.clear()
 
         for trigger in dy_object.__triggers__:
+            trigger.setValues(old_val, new_val)
             if trigger.thread is None:
                 dy_object.__active_triggers__.put_nowait(trigger)
             else:
@@ -28,12 +29,12 @@ class DynamicObjectInterface(object):
     def _runActiveTriggers(dy_object, old_val=None, new_val=None):
         while not dy_object.__active_triggers__.empty():
             trigger = dy_object.__active_triggers__.get_nowait()
-            if trigger.runCondition(old_val, new_val):
+            if trigger.runCondition():
                 trigger.runAction()
 
     def _prepareAndRunTriggers(self, dy_object, old_val=None, new_val=None):
-        self._distributeTriggers(dy_object)
-        self._runActiveTriggers(dy_object, old_val, new_val)
+        self._distributeTriggers(dy_object, old_val, new_val)
+        self._runActiveTriggers(dy_object)
 
     # @abstractmethod
     def __action__(self, *args, **kwargs) -> object:

@@ -66,10 +66,12 @@ class Trigger:
         self.thread = thread
         return self
 
-    def runCondition(self, old_val, new_val):
-        # self.old_val = old_val
-        # self.new_val = new_val
-        return self.__condition__(old_val, new_val, *self.condition_args, **self.condition_kwargs)
+    def setValues(self, old_val=None, new_val=None):
+        self.old_val = old_val
+        self.new_val = new_val
+
+    def runCondition(self):
+        return self.__condition__(self.old_val, self.new_val, *self.condition_args, **self.condition_kwargs)
 
     def runAction(self):
         return self.__action__(*self.action_args, **self.action_kwargs)

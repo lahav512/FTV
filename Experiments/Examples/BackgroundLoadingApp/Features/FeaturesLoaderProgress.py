@@ -12,6 +12,7 @@ class VM(VariableManager):
     def setupTriggers(self):
         pass
 
+
 class FeaturesLoaderProgress(NIFeature):
     def setupSettings(self):
         self.settings.setEnabled()
