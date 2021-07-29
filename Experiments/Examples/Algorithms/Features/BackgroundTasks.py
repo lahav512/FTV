@@ -43,12 +43,18 @@ class BackgroundTasks(NIFeature):
         self.del_progress = 1/maximum
         self.results = set()
 
+        self.file = open("D:/Users/Lahav/ProgramingProjects/FTV/Experiments/Examples/Algorithms/Data/log.txt", 'w+')
+
         res = self.calculateFib(N)
         Log.p(res)
 
+        self.file.close()
+
     def calculateFib(self, n):
-        Log.d(self.vm.progress + self.del_progress)
+
+        # Log.d(self.vm.progress + self.del_progress)
         # print(self.vm.progress + self.del_progress)
+        self.printToFile(self.vm.progress + self.del_progress)
         self.vm.progress += self.del_progress
 
         # if self.vm.progress > 0.01:
@@ -67,3 +73,6 @@ class BackgroundTasks(NIFeature):
 
         self.results.add(res)
         return res
+
+    def printToFile(self, message):
+        self.file.write(str(message) + "\n")
