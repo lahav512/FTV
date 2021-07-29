@@ -47,6 +47,8 @@ class BackgroundTasks(NIFeature):
         Log.p(res)
 
     def calculateFib(self, n):
+        Log.d(self.vm.progress + self.del_progress)
+        # print(self.vm.progress + self.del_progress)
         self.vm.progress += self.del_progress
 
         # if self.vm.progress > 0.01:
