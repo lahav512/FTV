@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="abb96c24-d836-49b9-b1d4-66a1a865e584" name="Default Changelist" comment="The UI thread overloading issue has been investigated and there is a suggested solution in the Notes.md file.">
+      <changelist_data name="Lahav Svorai" email="lahavs512@gmail.com" />
+      <change beforePath="$PROJECT_DIR$/Notes.md" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1sfQ7vnYDbqRId8jsq0qvqguo4X" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Experiments\Examples\Algorithms" />
+      <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Experiments\Examples" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.Main">
+    <configuration name="DyBoolListExample" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ftv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Experiments/Examples" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Experiments/Examples/DyBoolListExample.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="DyIntExample" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ftv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Experiments/Examples" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Experiments/Examples/DyIntExample.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="DySwitchListExample" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ftv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Experiments/Examples" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Experiments/Examples/DySwitchListExample.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="DyWifiExample" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ftv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Experiments/Examples" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Experiments/Examples/DyWifiExample.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="FTV" type="PythonConfigurationType" factoryName="Python">
+      <module name="FTV" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Program Files\Python39\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ftv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Experiments/Examples/DyClockExample" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Experiments/Examples/DyClockExample/Main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ftv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Program Files\Python39\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Experiments/Examples/Algorithms" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Experiments/Examples/Algorithms/Main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.FTV" />
+      <item itemvalue="Python.DyBoolListExample" />
+      <item itemvalue="Python.DyIntExample" />
+      <item itemvalue="Python.Main" />
+      <item itemvalue="Python.DyWifiExample" />
+      <item itemvalue="Python.DySwitchListExample" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.Main" />
+        <item itemvalue="Python.DyBoolListExample" />
+        <item itemvalue="Python.DySwitchListExample" />
+        <item itemvalue="Python.DyWifiExample" />
+        <item itemvalue="Python.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="abb96c24-d836-49b9-b1d4-66a1a865e584" name="Default Changelist" comment="" />
+      <created>1621260999110</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1621260999110</updated>
+    </task>
+    <task id="LOCAL‎00001" summary="requirements.txt have been created">
+      <created>1621344233221</created>
+      <option name="number" value="LOCAL‎00001" />
+      <option name="presentableId" value="LOCAL‎00001" />
+      <updated>1621344233221</updated>
+    </task>
+    <task id="LOCAL‎00002" summary="- The DySwitch START has been implemented in UIApp.&#10;- The DySwitch EXIT has been implemented in NIApp and UIApp.">
+      <created>1621780356594</created>
+      <option name="number" value="LOCAL‎00002" />
+      <option name="presentableId" value="LOCAL‎00002" />
+      <updated>1621780356594</updated>
+    </task>
+    <task id="LOCAL‎00003" summary="- The DySwitch START has been implemented in UIApp.&#10;- The DySwitch EXIT has been implemented in NIApp and UIApp.">
+      <created>1621780371863</created>
+      <option name="number" value="LOCAL‎00003" />
+      <option name="presentableId" value="LOCAL‎00003" />
+      <updated>1621780371863</updated>
+    </task>
+    <task id="LOCAL‎00004" summary="- Multiple thread executions issue have been resolved.">
+      <created>1621782386414</created>
+      <option name="number" value="LOCAL‎00004" />
+      <option name="presentableId" value="LOCAL‎00004" />
+      <updated>1621782386414</updated>
+    </task>
+    <task id="LOCAL‎00005" summary="- DyThreadList functionality has been added. However, there is a problem with the multithreading logging that should be addressed at some point.">
+      <created>1621794908450</created>
+      <option name="number" value="LOCAL‎00005" />
+      <option name="presentableId" value="LOCAL‎00005" />
+      <updated>1621794908450</updated>
+    </task>
+    <task id="LOCAL‎00006" summary="Deprecated methods have been removed.">
+      <created>1623999399825</created>
+      <option name="number" value="LOCAL‎00006" />
+      <option name="presentableId" value="LOCAL‎00006" />
+      <updated>1623999399825</updated>
+    </task>
+    <task id="LOCAL‎00007" summary="Threads mechanism has been updated">
+      <created>1624443396556</created>
+      <option name="number" value="LOCAL‎00007" />
+      <option name="presentableId" value="LOCAL‎00007" />
+      <updated>1624443396556</updated>
+    </task>
+    <task id="LOCAL‎00008" summary="Un attempt has been made in order to solve the UI thread overloading with no success.">
+      <created>1624742705393</created>
+      <option name="number" value="LOCAL‎00008" />
+      <option name="presentableId" value="LOCAL‎00008" />
+      <updated>1624742705393</updated>
+    </task>
+    <task id="LOCAL‎00009" summary="An attempt has been made in order to solve the UI thread overloading with no success yet.">
+      <created>1627548886922</created>
+      <option name="number" value="LOCAL‎00009" />
+      <option name="presentableId" value="LOCAL‎00009" />
+      <updated>1627548886923</updated>
+    </task>
+    <task id="LOCAL‎00010" summary="The UI thread overloading issue has been investigated and there is a suggested solution in the Notes.md file.">
+      <created>1627552942811</created>
+      <option name="number" value="LOCAL‎00010" />
+      <option name="presentableId" value="LOCAL‎00010" />
+      <updated>1627552942811</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="requirements.txt have been created" />
+    <MESSAGE value="- The DySwitch START has been implemented in UIApp.&#10;- The DySwitch EXIT has been implemented in NIApp and UIApp." />
+    <MESSAGE value="- Multiple thread executions issue have been resolved." />
+    <MESSAGE value="- DyThreadList functionality has been added. However, there is a problem with the multithreading logging that should be addressed at some point." />
+    <MESSAGE value="Deprecated methods have been removed." />
+    <MESSAGE value="Threads mechanism has been updated" />
+    <MESSAGE value="Un attempt has been made in order to solve the UI thread overloading with no success." />
+    <MESSAGE value="An attempt has been made in order to solve the UI thread overloading with no success yet." />
+    <MESSAGE value="The UI thread overloading issue has been investigated and there is a suggested solution in the Notes.md file." />
+    <option name="LAST_COMMIT_MESSAGE" value="The UI thread overloading issue has been investigated and there is a suggested solution in the Notes.md file." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2334" y="175" width="1092" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1627517951364">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1621345931553" />
+    <state x="2334" y="175" width="1092" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627517951364" />
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1624098361476">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1624098361476" />
+    <state x="2685" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624000270981" />
+    <state x="2609" y="346" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1627517458985">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2609" y="346" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627517458985" />
+    <state x="2320" y="282" width="490" height="576" key="#xdebugger.evaluate" timestamp="1624115747077">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2320" y="282" width="490" height="576" key="#xdebugger.evaluate/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1624115747077" />
+    <state x="2683" y="241" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1621262025151">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2683" y="241" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1621262025151" />
+    <state width="434" height="466" key="DebuggerActiveHint" timestamp="1621792586969">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="434" height="466" key="DebuggerActiveHint/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1621792586969" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1627553150929">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627553150929" />
+    <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624001773949" />
+    <state x="2660" y="262" key="FileChooserDialogImpl" timestamp="1624001329573">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="262" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1621640703497" />
+    <state x="2660" y="262" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624001329573" />
+    <state width="410" height="650" key="Git.Branch.Popup" timestamp="1627548865577">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="436" height="676" key="Git.Branch.Popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627492037766" />
+    <state width="410" height="650" key="Git.Branch.Popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627548865577" />
+    <state width="1899" height="302" key="GridCell.Tab.0.bottom" timestamp="1627990145073">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="302" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627990145073" />
+    <state width="1899" height="183" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627978146608" />
+    <state width="1899" height="302" key="GridCell.Tab.0.center" timestamp="1627990145073">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="302" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627990145073" />
+    <state width="1899" height="183" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627978146608" />
+    <state width="1899" height="302" key="GridCell.Tab.0.left" timestamp="1627990145073">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="302" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627990145073" />
+    <state width="1899" height="183" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627978146608" />
+    <state width="1899" height="302" key="GridCell.Tab.0.right" timestamp="1627990145073">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="302" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627990145073" />
+    <state width="1899" height="183" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627978146608" />
+    <state width="1899" height="115" key="GridCell.Tab.1.bottom" timestamp="1627989547973">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="115" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627989547973" />
+    <state width="1899" height="183" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627978146504" />
+    <state width="1899" height="115" key="GridCell.Tab.1.center" timestamp="1627989547973">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="115" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627989547973" />
+    <state width="1899" height="183" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627978146504" />
+    <state width="1899" height="115" key="GridCell.Tab.1.left" timestamp="1627989547972">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="115" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627989547972" />
+    <state width="1899" height="183" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627978146504" />
+    <state width="1899" height="115" key="GridCell.Tab.1.right" timestamp="1627989547973">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="115" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627989547973" />
+    <state width="1899" height="183" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627978146504" />
+    <state x="765" y="222" key="RollbackChangesDialog" timestamp="1627491368537">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="222" key="RollbackChangesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627491368537" />
+    <state x="2685" y="222" key="RollbackChangesDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623999584110" />
+    <state x="461" y="165" key="SettingsEditor" timestamp="1627491771166">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627491771166" />
+    <state x="2381" y="165" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1621262178810" />
+    <state x="552" y="253" width="1238" height="534" key="Vcs.Push.Dialog.v2" timestamp="1627552958243">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" width="1238" height="534" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627552958243" />
+    <state x="2472" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1621799686272" />
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1627491941380">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627491941380" />
+    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1625482404916">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1625482404916" />
+    <state x="2587" y="253" width="585" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1625233446572" />
+    <state x="2560" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1624443393403">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2560" y="233" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624443393403" />
+    <state x="753" y="421" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1627491936190">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="753" y="421" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627491936190" />
+    <state x="803" y="305" key="refactoring.ChangeSignatureDialog" timestamp="1621788184188">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="803" y="305" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1621788184188" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1627491982491">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627491982491" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624065691640" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/BackgroundLoadingApp.py</url>
+          <line>14</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/FTV/Objects/Variables/DynamicMethods.py</url>
+          <line>53</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/FTV/Objects/SystemObjects/Executions.py</url>
+          <line>115</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/AppPackage/FrameWork/App.py</url>
+          <line>29</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicObject.py</url>
+          <line>31</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/BackgroundTasks.py</url>
+          <line>63</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="self.dy_module_parent.__name__" language="Python" />
+        <watch expression="self.action_name" language="Python" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
