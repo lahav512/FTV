@@ -1,4 +1,5 @@
 from FTV.FrameWork.Features import NIFeature, UIFeature, Feature
+from FTV.Managers.Log import Log
 from FTV.Objects.Variables.DynamicMethods import DyBuiltinMethod
 from FTV.Objects.Variables.DynamicObjects import DySwitch
 
@@ -29,6 +30,10 @@ class NIApp(_AbstractApp, NIFeature):
     # # @abstractmethod
     # def setupSettings(self):
     #     pass
+
+    def _setupBuiltinManagers(self):
+        super(NIApp, self)._setupBuiltinManagers()
+        Log.setup()
 
     def _setupBuiltinVariables(self):
         super(NIApp, self)._setupBuiltinVariables()

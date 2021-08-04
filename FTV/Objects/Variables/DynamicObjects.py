@@ -4,7 +4,7 @@ from Bots.GenerateMagicMethods.result.MagicMethodsInterfaces import (DyBoolMagic
                                                                      DyBytesMagicMethods, DyComplexMagicMethods,
                                                                      DyDictMagicMethods, DySetMagicMethods,
                                                                      DyTupleMagicMethods)
-from Experiments.Log import Log
+from FTV.Managers.Log import Log
 from FTV.Objects.Variables.AbstractConditions import (DyIntConditions, DyBoolConditions, DyFloatConditions,
                                                       DyStrConditions, DyByteArrayConditions, DyBytesConditions,
                                                       DyComplexConditions, DyDictConditions, DyListConditions,

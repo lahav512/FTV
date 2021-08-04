@@ -1,7 +1,6 @@
 import time
 from threading import Thread as BaseThread
 
-from Experiments.Log import Log
 from Experiments.PickleTests.DataObject import Queue
 from FTV.Objects.Variables.DynamicIterators import DyBoolList
 from FTV.Objects.Variables.DynamicModules import DyBuiltinModule
@@ -66,6 +65,9 @@ class DyThread(DyExecution):
 
         if not self.isAlive():
             self.start()
+
+    def isTriggerInQueue(self, trigger):
+        return id(trigger) in [id(obj) for obj in self.__active_triggers__]
 
     def start(self):
         # Log.p(f"startThread: {self.name}")

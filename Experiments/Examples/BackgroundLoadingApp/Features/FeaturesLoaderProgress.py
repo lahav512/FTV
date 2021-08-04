@@ -1,5 +1,5 @@
 from Experiments.Examples.BackgroundLoadingApp.BackgroundLoadingApp import App
-from Experiments.Log import Log
+from FTV.Managers.Log import Log
 from FTV.FrameWork.Features import NIFeature
 from FTV.Managers.VariableManager import VariableManager
 from FTV.Objects.Variables.DynamicMethods import DyMethod

@@ -19,7 +19,8 @@ class Trigger:
                  "action_name",
                  "action_args",
                  "action_kwargs",
-                 "thread")
+                 "thread",
+                 "unique")
 
     def __init__(self, dy_module_parent):
         self.dy_module_parent = dy_module_parent
@@ -37,6 +38,15 @@ class Trigger:
         self.action_kwargs = dict()
 
         self.thread: object = None
+
+        self.unique: bool = False
+
+    def setUnique(self, val=True):
+        self.unique = val
+        return self
+
+    def isUnique(self):
+        return self.unique
 
     def setCondition(self, condition, *args, **kwargs):
         self.condition = condition.__condition__

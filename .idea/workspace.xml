@@ -17,8 +17,37 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abb96c24-d836-49b9-b1d4-66a1a865e584" name="Default Changelist" comment="The UI thread overloading issue has been investigated and there is a suggested solution in the Notes.md file.">
-      <changelist_data name="Lahav Svorai" email="lahavs512@gmail.com" />
+    <list default="true" id="abb96c24-d836-49b9-b1d4-66a1a865e584" name="Default Changelist" comment="Example changes">
+      <change afterPath="$PROJECT_DIR$/FTVCompiler/Compiler.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FTVCompiler/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bots/GenerateMagicMethods/result/MagicMethodsInterfaces.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bots/GenerateMagicMethods/result/MagicMethodsInterfaces.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bots/GenerateMagicMethods/source/MagicMethodsInterfacesDemo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bots/GenerateMagicMethods/source/MagicMethodsInterfacesDemo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/BackgroundTasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/BackgroundTasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/ProgressBar.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/ProgressBar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/BackgroundLoadingApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/BackgroundLoadingApp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/FeaturesLoaderProgress.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/FeaturesLoaderProgress.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyBoolListExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DyBoolListExample.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyClockExample/Features/IntegratedClock.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DyClockExample/Features/IntegratedClock.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyClockExample/Features/VisualClock.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DyClockExample/Features/VisualClock.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyIntExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DyIntExample.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DySwitchListExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DySwitchListExample.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyWifiExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DyWifiExample.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Log.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Managers/Log.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/PickleTests/DyModuleTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/PickleTests/DyModuleTests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Threads/ExcecutionTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Threads/ExcecutionTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/FrameWork/Apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/FrameWork/Apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/FrameWork/Features.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/FrameWork/Features.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Managers/LogManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Managers/LogManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Managers/TriggerManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Managers/TriggerManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/SystemObjects/Executions.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/SystemObjects/Executions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/SystemObjects/TriggerObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/SystemObjects/TriggerObjects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicObject.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicObject.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicIterators.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicIterators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicMethods.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicMethods.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicModules.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicModules.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicObjects.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Notes.md" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,12 +63,18 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Lahav Svorai &lt;lahavs512@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="feature/architecture/add_thread_list_and_processes" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SIGN_OFF_COMMIT" value="true" />
   </component>
   <component name="ProjectId" id="1sfQ7vnYDbqRId8jsq0qvqguo4X" />
   <component name="ProjectLevelVcsManager">
@@ -60,12 +95,13 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\Lahav\ProgramingProjects\FTV\FTV\Managers" />
       <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Experiments\Examples\Algorithms" />
       <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Experiments\Examples" />
     </key>
   </component>
   <component name="RunManager" selected="Python.Main">
-    <configuration name="DyBoolListExample" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ftv" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -73,11 +109,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Experiments/Examples" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FTVCompiler" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Experiments/Examples/DyBoolListExample.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FTVCompiler/Client.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -86,7 +122,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="DyIntExample" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Compiler" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ftv" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -94,32 +130,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Experiments/Examples" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FTVCompiler" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Experiments/Examples/DyIntExample.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="DySwitchListExample" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ftv" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Experiments/Examples" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Experiments/Examples/DySwitchListExample.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FTVCompiler/Compiler.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -162,6 +177,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Log" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ftv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FTV/Managers" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FTV/Managers/Log.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -214,19 +250,19 @@
     </configuration>
     <list>
       <item itemvalue="Python.FTV" />
-      <item itemvalue="Python.DyBoolListExample" />
-      <item itemvalue="Python.DyIntExample" />
       <item itemvalue="Python.Main" />
+      <item itemvalue="Python.Log" />
+      <item itemvalue="Python.Compiler" />
+      <item itemvalue="Python.Client" />
       <item itemvalue="Python.DyWifiExample" />
-      <item itemvalue="Python.DySwitchListExample" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.Main" />
-        <item itemvalue="Python.DyBoolListExample" />
-        <item itemvalue="Python.DySwitchListExample" />
+        <item itemvalue="Python.Compiler" />
         <item itemvalue="Python.DyWifiExample" />
-        <item itemvalue="Python.Main" />
+        <item itemvalue="Python.Log" />
+        <item itemvalue="Python.Client" />
       </list>
     </recent_temporary>
   </component>
@@ -299,7 +335,13 @@
       <option name="presentableId" value="LOCAL‎00010" />
       <updated>1627552942811</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL‎00011" summary="Example changes">
+      <created>1628029184381</created>
+      <option name="number" value="LOCAL‎00011" />
+      <option name="presentableId" value="LOCAL‎00011" />
+      <updated>1628029184381</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -324,7 +366,8 @@
     <MESSAGE value="Un attempt has been made in order to solve the UI thread overloading with no success." />
     <MESSAGE value="An attempt has been made in order to solve the UI thread overloading with no success yet." />
     <MESSAGE value="The UI thread overloading issue has been investigated and there is a suggested solution in the Notes.md file." />
-    <option name="LAST_COMMIT_MESSAGE" value="The UI thread overloading issue has been investigated and there is a suggested solution in the Notes.md file." />
+    <MESSAGE value="Example changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Example changes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2334" y="175" width="1092" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1627517951364">
@@ -332,19 +375,20 @@
     </state>
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1621345931553" />
     <state x="2334" y="175" width="1092" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627517951364" />
-    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1624098361476">
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1628066115694">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1624098361476" />
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628066115694" />
     <state x="2685" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624000270981" />
     <state x="2609" y="346" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1627517458985">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2609" y="346" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627517458985" />
-    <state x="2320" y="282" width="490" height="576" key="#xdebugger.evaluate" timestamp="1624115747077">
+    <state x="2320" y="282" width="490" height="576" key="#xdebugger.evaluate" timestamp="1628078262540">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2320" y="282" width="490" height="576" key="#xdebugger.evaluate/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1624115747077" />
+    <state x="2320" y="282" width="490" height="576" key="#xdebugger.evaluate/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078262540" />
+    <state x="3064" y="195" key="#xdebugger.evaluate/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628038071020" />
     <state x="2683" y="241" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1621262025151">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -363,51 +407,51 @@
     </state>
     <state x="740" y="262" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1621640703497" />
     <state x="2660" y="262" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624001329573" />
-    <state width="410" height="650" key="Git.Branch.Popup" timestamp="1627548865577">
+    <state width="412" height="652" key="Git.Branch.Popup" timestamp="1628029220720">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="436" height="676" key="Git.Branch.Popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627492037766" />
-    <state width="410" height="650" key="Git.Branch.Popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627548865577" />
-    <state width="1899" height="302" key="GridCell.Tab.0.bottom" timestamp="1627990145073">
+    <state width="412" height="652" key="Git.Branch.Popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628029220720" />
+    <state width="1899" height="366" key="GridCell.Tab.0.bottom" timestamp="1628078942589">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="302" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627990145073" />
-    <state width="1899" height="183" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627978146608" />
-    <state width="1899" height="302" key="GridCell.Tab.0.center" timestamp="1627990145073">
+    <state width="1899" height="366" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078942589" />
+    <state width="1899" height="331" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
+    <state width="1899" height="366" key="GridCell.Tab.0.center" timestamp="1628078942589">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="302" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627990145073" />
-    <state width="1899" height="183" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627978146608" />
-    <state width="1899" height="302" key="GridCell.Tab.0.left" timestamp="1627990145073">
+    <state width="1899" height="366" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078942589" />
+    <state width="1899" height="331" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
+    <state width="1899" height="366" key="GridCell.Tab.0.left" timestamp="1628078942589">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="302" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627990145073" />
-    <state width="1899" height="183" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627978146608" />
-    <state width="1899" height="302" key="GridCell.Tab.0.right" timestamp="1627990145073">
+    <state width="1899" height="366" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078942589" />
+    <state width="1899" height="331" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
+    <state width="1899" height="366" key="GridCell.Tab.0.right" timestamp="1628078942589">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="302" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627990145073" />
-    <state width="1899" height="183" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627978146608" />
-    <state width="1899" height="115" key="GridCell.Tab.1.bottom" timestamp="1627989547973">
+    <state width="1899" height="366" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078942589" />
+    <state width="1899" height="331" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
+    <state width="1899" height="266" key="GridCell.Tab.1.bottom" timestamp="1628078671751">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="115" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627989547973" />
-    <state width="1899" height="183" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627978146504" />
-    <state width="1899" height="115" key="GridCell.Tab.1.center" timestamp="1627989547973">
+    <state width="1899" height="266" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078671751" />
+    <state width="1899" height="389" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628038784003" />
+    <state width="1899" height="266" key="GridCell.Tab.1.center" timestamp="1628078671751">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="115" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627989547973" />
-    <state width="1899" height="183" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627978146504" />
-    <state width="1899" height="115" key="GridCell.Tab.1.left" timestamp="1627989547972">
+    <state width="1899" height="266" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078671751" />
+    <state width="1899" height="389" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628038784003" />
+    <state width="1899" height="266" key="GridCell.Tab.1.left" timestamp="1628078671751">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="115" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627989547972" />
-    <state width="1899" height="183" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627978146504" />
-    <state width="1899" height="115" key="GridCell.Tab.1.right" timestamp="1627989547973">
+    <state width="1899" height="266" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078671751" />
+    <state width="1899" height="389" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628038784003" />
+    <state width="1899" height="266" key="GridCell.Tab.1.right" timestamp="1628078671751">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="115" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627989547973" />
-    <state width="1899" height="183" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627978146504" />
+    <state width="1899" height="266" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078671751" />
+    <state width="1899" height="389" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628038784003" />
     <state x="765" y="222" key="RollbackChangesDialog" timestamp="1627491368537">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -427,10 +471,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627491941380" />
-    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1625482404916">
+    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1628078101683">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1625482404916" />
+    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078101683" />
     <state x="2587" y="253" width="585" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1625233446572" />
     <state x="2560" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1624443393403">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -440,14 +484,15 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="753" y="421" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627491936190" />
-    <state x="803" y="305" key="refactoring.ChangeSignatureDialog" timestamp="1621788184188">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2723" y="305" key="refactoring.ChangeSignatureDialog" timestamp="1628031948576">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="803" y="305" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1621788184188" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1627491982491">
+    <state x="2723" y="305" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628031948576" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1628078493429">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627491982491" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078493429" />
     <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624065691640" />
   </component>
   <component name="XDebuggerManager">
@@ -465,7 +510,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/FTV/Objects/SystemObjects/Executions.py</url>
-          <line>115</line>
+          <line>117</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -473,15 +518,25 @@
           <line>29</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicObject.py</url>
-          <line>31</line>
-          <option name="timeStamp" value="63" />
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/ProgressBar.py</url>
+          <line>56</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/ProgressBar.py</url>
+          <line>26</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/FTV/Objects/Variables/AbstractConditions.py</url>
+          <line>10</line>
+          <option name="timeStamp" value="98" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/BackgroundTasks.py</url>
-          <line>63</line>
-          <option name="timeStamp" value="69" />
+          <url>file://$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/ProgressBar.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="100" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -489,6 +544,7 @@
       <configuration name="PythonConfigurationType">
         <watch expression="self.dy_module_parent.__name__" language="Python" />
         <watch expression="self.action_name" language="Python" />
+        <watch expression="self.progress_step*(self.progress // self.progress_step)" language="Python" />
       </configuration>
     </watches-manager>
   </component>

@@ -2,7 +2,7 @@ from threading import current_thread
 
 import wrapt
 
-from Experiments.Log import Log
+from FTV.Managers.Log import Log
 from FTV.Objects.Variables.AbstractDynamicObject import DynamicObjectInterface
 
 

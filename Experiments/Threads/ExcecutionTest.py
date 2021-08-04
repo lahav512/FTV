@@ -1,6 +1,6 @@
 import time
 
-from Experiments.Log import Log
+from FTV.Managers.Log import Log
 from FTV.FrameWork.Apps import NIApp
 from FTV.FrameWork.Features import NIFeature
 from FTV.Managers.ExecutionManager import ExecutionManager

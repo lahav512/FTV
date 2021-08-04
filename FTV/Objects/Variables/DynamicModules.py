@@ -1,4 +1,4 @@
-from Experiments.Log import Log
+from FTV.Managers.Log import Log
 from FTV.Objects.SystemObjects.TriggerObjects import Condition
 from FTV.Objects.Variables.AbstractDynamicModule import DynamicModuleParent
 from FTV.Objects.Variables.DynamicMethods import DyBuiltinMethod

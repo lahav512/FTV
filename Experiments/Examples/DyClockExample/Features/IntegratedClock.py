@@ -2,7 +2,7 @@ import time
 
 from Bots.GenerateMagicMethods.result.MagicMethodsInterfaces import DyObject
 from Experiments.Examples.DyClockExample.ClockApp import ClockApp
-from Experiments.Log import Log
+from FTV.Managers.Log import Log
 from FTV.FrameWork.Features import NIFeature
 from FTV.Managers.VariableManager import VariableManager
 from FTV.Objects.Variables.DynamicMethods import DyMethod

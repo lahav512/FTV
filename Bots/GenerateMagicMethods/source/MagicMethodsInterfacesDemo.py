@@ -1,4 +1,4 @@
-from Experiments.Log import Log
+from FTV.Managers.Log import Log
 from Experiments.PickleTests.DataObject import Queue
 from FTV.Objects.Variables.AbstractConditions import DyObjectConditions
 
@@ -19,6 +19,11 @@ class DynamicObjectInterface(object):
                 dy_object.__active_triggers__.put_nowait(trigger)
             else:
                 # TODO lahav Add trigger to its designated thread
+                if not trigger.isUnique():
+                    trigger.thread.addActiveTrigger(trigger)
+                else:
+                    if not trigger.thread.isTriggerInQueue(trigger):
+                        trigger.thread.addActiveTrigger(trigger)
                 pass
 
     @staticmethod

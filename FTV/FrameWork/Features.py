@@ -3,6 +3,7 @@ import abc
 # global featureManager
 import importlib
 
+from FTV.Managers.Log import Log
 from FTV.Objects.Variables.AbstractDynamicModule import DynamicModuleParent
 from FTV.Objects.Variables.DynamicMethods import DyBuiltinMethod
 from FTV.Objects.Variables.DynamicObjects import DyBool, DySwitch
@@ -12,11 +13,13 @@ class Feature(DynamicModuleParent):
     type = "Feature"
 
     _builtin_managers = {
+        "lm": "LogManager",
         "em": "ExecutionManager",
         "vm": "VariableManager",
         "fm": "FeatureManager",
     }
 
+    lm = None
     em = None
     vm = None
     fm = None
@@ -61,10 +64,12 @@ class Feature(DynamicModuleParent):
         pass
 
     def _setupBuiltinManagers(self):
+        from FTV.Managers.LogManager import LogManager
         from FTV.Managers.ExecutionManager import ExecutionManager
         from FTV.Managers.VariableManager import VariableManager
         from FTV.Managers.FeatureManager import FeatureManager
 
+        self.__lm_class = LogManager
         self.__vm_class = VariableManager
         self.__em_class = ExecutionManager
         self.__fm_class = FeatureManager
@@ -73,12 +78,14 @@ class Feature(DynamicModuleParent):
         from FTV.FrameWork.Apps import _AbstractApp
         is_parent_app = issubclass(self.__class__, _AbstractApp)
 
+        self.__class__.lm = self.__lm_class(_is_parent_app=is_parent_app)
         self.__class__.vm = self.__vm_class(_is_parent_app=is_parent_app)
         self.__class__.em = self.__em_class(_is_parent_app=is_parent_app)
         self.__class__.fm = self.__fm_class(_is_parent_app=is_parent_app)
 
     @classmethod
     def _resumeSetupManagers(cls):
+        cls.lm._resumeSetupEnvironment()
         cls.em._resumeSetupEnvironment()
         cls.vm._resumeSetupEnvironment()
         cls.fm._resumeSetupEnvironment()
@@ -153,6 +160,10 @@ class Feature(DynamicModuleParent):
     # @classmethod
     def setExecutionManager(self, Manager):
         self.__em_class = Manager
+
+    # @classmethod
+    def setLogManager(self, Manager):
+        self.__lm_class = Manager
 
     # @classmethod
     def setFeatureManager(self, Manager):

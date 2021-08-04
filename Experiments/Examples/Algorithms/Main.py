@@ -1,5 +1,7 @@
 from Experiments.Examples.Algorithms.CalculationApp import CalculationApp
+from FTV.Managers.Log import Log
 
+# Log.setup()
 CalculationApp()
 
 # progress = 0

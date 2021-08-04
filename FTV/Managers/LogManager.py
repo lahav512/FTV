@@ -1,20 +1,32 @@
+from FTV.Managers.AbstractManager import AbstractManager
+from FTV.Managers.Log import Log
 
-class LogManager:
-    _debugging_mode = False
 
-    def __init__(self):
+class LogManager(AbstractManager):
+    """This class is temporary!"""
+    ENABLED = True
+    BUILTIN_ENABLED = False
+    __BLANK_SPACE = 0
+
+    _DEBUG_MODE = False
+
+    def __init__(self, _is_parent_app=None):
+        super().__init__(_is_parent_app=_is_parent_app)
         self.setOptions()
+
+    def init(self):
+        pass
 
     def setOptions(self):
         pass
 
-    @staticmethod
-    def setDebuggingMode(mode):
-        LogManager._debugging_mode = mode
+    @classmethod
+    def setDebuggingMode(cls, mode):
+        cls._DEBUG_MODE = mode
 
     @classmethod
     def print(cls, message=None):
-        if cls._debugging_mode:
+        if cls._DEBUG_MODE:
             if message is None:
                 message = ""
             print(message)

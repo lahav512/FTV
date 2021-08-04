@@ -1,7 +1,7 @@
 from queue import Queue
 from threading import current_thread
 
-from Experiments.Log import Log
+from FTV.Managers.Log import Log
 from Experiments.PickleTests.DataObject import Queue
 from FTV.Objects.Variables.AbstractConditions import DyObjectConditions
 
@@ -22,8 +22,11 @@ class DynamicObjectInterface(object):
             if trigger.thread is None:
                 dy_object.__active_triggers__.put_nowait(trigger)
             else:
-                trigger.thread.addActiveTrigger(trigger)
-                # trigger.thread.__active_triggers__.put_nowait(trigger)
+                if not trigger.isUnique():
+                    trigger.thread.addActiveTrigger(trigger)
+                else:
+                    if not trigger.thread.isTriggerInQueue(trigger):
+                        trigger.thread.addActiveTrigger(trigger)
 
     @staticmethod
     def _runActiveTriggers(dy_object, old_val=None, new_val=None):

@@ -12,3 +12,5 @@ __Solutions__
 1. Create a port for each thread and send the print commands to the right port. Take a look if there is a builtin solution with the command line for that.
 2. Consider adding an option to make a trigger unique, which will make sure that there is only one trigger in a thread with the same address.
 
+* There is still a strange behavior with the unique option.
+* Make sure that the unique option works also when a thread is not defined for the trigger.

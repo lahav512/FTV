@@ -1,5 +1,5 @@
 from Experiments import Efficiency
-from Experiments.Log import Log
+from FTV.Managers.Log import Log
 from FTV.Objects.Variables.DynamicMethods import DyMethod
 from FTV.Objects.Variables.DynamicModules import DyModule
 from FTV.Objects.Variables.DynamicObjects import DySwitch, DyBool

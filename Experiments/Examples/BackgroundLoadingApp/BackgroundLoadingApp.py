@@ -1,6 +1,6 @@
 import time
 
-from Experiments.Log import Log
+from FTV.Managers.Log import Log
 from FTV.FrameWork.Apps import UIApp
 from FTV.Managers.ExecutionManager import ExecutionManager
 from FTV.Managers.FeatureManager import FeatureManager

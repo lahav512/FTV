@@ -1,4 +1,5 @@
-from Experiments.Log import Log
+from FTV.Managers.FeatureManager import FeatureManager
+from FTV.Managers.Log import Log
 from FTV.FrameWork.Apps import NIApp
 from FTV.FrameWork.Features import NIFeature
 from FTV.Managers.VariableManager import VariableManager
@@ -15,6 +16,11 @@ class VM(VariableManager):
 
     def setupTriggers(self):
         pass
+
+
+class FM(FeatureManager):
+    def setupFeatures(self):
+        self.addFeature(DyWifiExample)
 
 
 class DyWifiExample(NIFeature):
@@ -49,16 +55,11 @@ class DyWifiExample(NIFeature):
 
 
 class WifiApp(NIApp):
-
-    def setupFeatures(self):
-        self.addFeature(DyWifiExample)
-
     def setupSettings(self):
         pass
 
-    @classmethod
-    def setupManagers(cls):
-        pass
+    def setupManagers(self):
+        self.setFeatureManager(FM)
 
 
 WifiApp()
