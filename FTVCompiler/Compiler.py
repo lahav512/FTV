@@ -1,6 +1,8 @@
 import socket
+from threading import Thread
 
-if __name__ == '__main__':
+
+def start():
     __PORT = 64328
     __HOST = "localhost"
 
@@ -15,3 +17,7 @@ if __name__ == '__main__':
                 print(data)
         conn.close()
         print('client disconnected')
+
+
+if __name__ == '__main__':
+    start()

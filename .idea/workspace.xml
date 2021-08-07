@@ -17,38 +17,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abb96c24-d836-49b9-b1d4-66a1a865e584" name="Default Changelist" comment="Example changes">
-      <change afterPath="$PROJECT_DIR$/FTVCompiler/Compiler.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FTVCompiler/__init__.py" afterDir="false" />
+    <list default="true" id="abb96c24-d836-49b9-b1d4-66a1a865e584" name="Default Changelist" comment="Changes have been made in order to solve for the UIThread overloading problem.&#10;See Notes.md for more information.">
+      <change afterPath="$PROJECT_DIR$/FTVCompiler/Examples/PerformanceTest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FTVCompiler/Examples/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FTVCompiler/StartCompiler.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bots/GenerateMagicMethods/result/MagicMethodsInterfaces.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bots/GenerateMagicMethods/result/MagicMethodsInterfaces.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bots/GenerateMagicMethods/source/MagicMethodsInterfacesDemo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bots/GenerateMagicMethods/source/MagicMethodsInterfacesDemo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/BackgroundTasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/BackgroundTasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/ProgressBar.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/ProgressBar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/BackgroundLoadingApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/BackgroundLoadingApp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/FeaturesLoaderProgress.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/FeaturesLoaderProgress.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyBoolListExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DyBoolListExample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyClockExample/Features/IntegratedClock.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DyClockExample/Features/IntegratedClock.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyClockExample/Features/VisualClock.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DyClockExample/Features/VisualClock.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyIntExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DyIntExample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DySwitchListExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DySwitchListExample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyWifiExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DyWifiExample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Log.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Managers/Log.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/PickleTests/DyModuleTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/PickleTests/DyModuleTests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Threads/ExcecutionTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Threads/ExcecutionTest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/FrameWork/Apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/FrameWork/Apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/FrameWork/Features.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/FrameWork/Features.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Managers/LogManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Managers/LogManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Managers/TriggerManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Managers/TriggerManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/SystemObjects/Executions.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/SystemObjects/Executions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/SystemObjects/TriggerObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/SystemObjects/TriggerObjects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicObject.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicObject.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicIterators.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicIterators.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicMethods.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicMethods.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicModules.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicModules.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicObjects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.md" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Data/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Data/log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTVCompiler/Compiler.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTVCompiler/Compiler.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +45,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/architecture/add_thread_list_and_processes" />
+        <entry key="$PROJECT_DIR$" value="feature/architecture/solve_multi_logging" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -88,7 +63,7 @@
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/FTVCompiler/StartCompiler.bat" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
@@ -100,29 +75,17 @@
       <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Experiments\Examples" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Main">
-    <configuration name="Client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.PerformanceTest">
+    <configuration name="StartCompiler" type="BatchConfigurationType" factoryName="Batch" temporary="true">
       <module name="ftv" />
       <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="WORKING_DIRECTORY" value="D:\Users\Lahav\ProgramingProjects\FTV\FTVCompiler" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FTVCompiler" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FTVCompiler/Client.py" />
+      <option name="SCRIPT_NAME" value="StartCompiler.bat" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Compiler" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Compiler" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="ftv" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -185,27 +148,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Log" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ftv" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FTV/Managers" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FTV/Managers/Log.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ftv" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -248,21 +190,64 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="PerformanceTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ftv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FTVCompiler/Examples" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FTVCompiler/Examples/PerformanceTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ftv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FTVCompiler" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FTVCompiler/Test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="Batch.StartCompiler" />
       <item itemvalue="Python.FTV" />
-      <item itemvalue="Python.Main" />
-      <item itemvalue="Python.Log" />
       <item itemvalue="Python.Compiler" />
-      <item itemvalue="Python.Client" />
+      <item itemvalue="Python.Main" />
       <item itemvalue="Python.DyWifiExample" />
+      <item itemvalue="Python.Test" />
+      <item itemvalue="Python.PerformanceTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.PerformanceTest" />
         <item itemvalue="Python.Main" />
-        <item itemvalue="Python.Compiler" />
+        <item itemvalue="Batch.StartCompiler" />
+        <item itemvalue="Python.Test" />
         <item itemvalue="Python.DyWifiExample" />
-        <item itemvalue="Python.Log" />
-        <item itemvalue="Python.Client" />
       </list>
     </recent_temporary>
   </component>
@@ -341,7 +326,13 @@
       <option name="presentableId" value="LOCAL‎00011" />
       <updated>1628029184381</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL‎00012" summary="Changes have been made in order to solve for the UIThread overloading problem.&#10;See Notes.md for more information.">
+      <created>1628079182733</created>
+      <option name="number" value="LOCAL‎00012" />
+      <option name="presentableId" value="LOCAL‎00012" />
+      <updated>1628079182733</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -367,13 +358,14 @@
     <MESSAGE value="An attempt has been made in order to solve the UI thread overloading with no success yet." />
     <MESSAGE value="The UI thread overloading issue has been investigated and there is a suggested solution in the Notes.md file." />
     <MESSAGE value="Example changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Example changes" />
+    <MESSAGE value="Changes have been made in order to solve for the UIThread overloading problem.&#10;See Notes.md for more information." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes have been made in order to solve for the UIThread overloading problem.&#10;See Notes.md for more information." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2334" y="175" width="1092" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1627517951364">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="414" y="175" width="1092" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1628282532957">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1621345931553" />
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628282532957" />
     <state x="2334" y="175" width="1092" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627517951364" />
     <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1628066115694">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -384,6 +376,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2609" y="346" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627517458985" />
+    <state x="729" y="350" width="463" height="496" key="#com.intellij.tools.ToolEditorDialog" timestamp="1628282136210">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="729" y="350" width="463" height="496" key="#com.intellij.tools.ToolEditorDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628282136210" />
     <state x="2320" y="282" width="490" height="576" key="#xdebugger.evaluate" timestamp="1628078262540">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -393,6 +389,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2683" y="241" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1621262025151" />
+    <state x="2408" y="87" width="943" height="762" key="CommitChangelistDialog2" timestamp="1628079278456">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2408" y="87" width="943" height="762" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628079278456" />
     <state width="434" height="466" key="DebuggerActiveHint" timestamp="1621792586969">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -402,35 +402,35 @@
     </state>
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627553150929" />
     <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624001773949" />
-    <state x="2660" y="262" key="FileChooserDialogImpl" timestamp="1624001329573">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="740" y="262" key="FileChooserDialogImpl" timestamp="1628282045184">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="262" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1621640703497" />
+    <state x="740" y="262" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628282045184" />
     <state x="2660" y="262" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624001329573" />
-    <state width="412" height="652" key="Git.Branch.Popup" timestamp="1628029220720">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="440" height="680" key="Git.Branch.Popup" timestamp="1628340444426">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="436" height="676" key="Git.Branch.Popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627492037766" />
+    <state width="440" height="680" key="Git.Branch.Popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628340444426" />
     <state width="412" height="652" key="Git.Branch.Popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628029220720" />
-    <state width="1899" height="366" key="GridCell.Tab.0.bottom" timestamp="1628078942589">
+    <state width="1899" height="323" key="GridCell.Tab.0.bottom" timestamp="1628330698826">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="366" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078942589" />
+    <state width="1899" height="323" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628330698826" />
     <state width="1899" height="331" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
-    <state width="1899" height="366" key="GridCell.Tab.0.center" timestamp="1628078942589">
+    <state width="1899" height="323" key="GridCell.Tab.0.center" timestamp="1628330698826">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="366" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078942589" />
+    <state width="1899" height="323" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628330698826" />
     <state width="1899" height="331" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
-    <state width="1899" height="366" key="GridCell.Tab.0.left" timestamp="1628078942589">
+    <state width="1899" height="323" key="GridCell.Tab.0.left" timestamp="1628330698826">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="366" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078942589" />
+    <state width="1899" height="323" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628330698826" />
     <state width="1899" height="331" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
-    <state width="1899" height="366" key="GridCell.Tab.0.right" timestamp="1628078942589">
+    <state width="1899" height="323" key="GridCell.Tab.0.right" timestamp="1628330698826">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="366" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078942589" />
+    <state width="1899" height="323" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628330698826" />
     <state width="1899" height="331" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
     <state width="1899" height="266" key="GridCell.Tab.1.bottom" timestamp="1628078671751">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -462,19 +462,23 @@
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627491771166" />
     <state x="2381" y="165" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1621262178810" />
-    <state x="552" y="253" width="1238" height="534" key="Vcs.Push.Dialog.v2" timestamp="1627552958243">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2472" y="253" width="1238" height="534" key="Vcs.Push.Dialog.v2" timestamp="1628079259379">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="253" width="1238" height="534" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627552958243" />
-    <state x="2472" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1621799686272" />
+    <state x="2472" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628079259379" />
     <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1627491941380">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627491941380" />
-    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1628078101683">
+    <state x="855" y="255" key="com.intellij.tools.ToolSelectDialog.dimensionServiceKey" timestamp="1628282137248">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078101683" />
+    <state x="855" y="255" key="com.intellij.tools.ToolSelectDialog.dimensionServiceKey/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628282137248" />
+    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1628338145021">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628338145021" />
     <state x="2587" y="253" width="585" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1625233446572" />
     <state x="2560" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1624443393403">
       <screen x="1920" y="0" width="1920" height="1040" />
