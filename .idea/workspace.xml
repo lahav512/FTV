@@ -17,13 +17,189 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abb96c24-d836-49b9-b1d4-66a1a865e584" name="Default Changelist" comment="Changes have been made in order to solve for the UIThread overloading problem.&#10;See Notes.md for more information.">
-      <change afterPath="$PROJECT_DIR$/FTVCompiler/Examples/PerformanceTest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FTVCompiler/Examples/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FTVCompiler/StartCompiler.bat" afterDir="false" />
+    <list default="true" id="abb96c24-d836-49b9-b1d4-66a1a865e584" name="Default Changelist" comment="C++ script ran faster than the clean python script (obviously). It is necessary to rewrite the platform using C++ and execute the function blocks using python.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Data/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Data/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTVCompiler/Compiler.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTVCompiler/Compiler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/AI3M_Beak_B_R_3-Raft.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/AI3M_Beak_B_R_3.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/AI3M_Beak_FB_LR_4.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/AI3M_Box_1.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/AI3M_Cover_FB_LR_4.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/AI3M_Gear_D.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/AI3M_Holder_F_LR_4.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/AI3M_Motor Holder F_LR_4.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/AI3M_Shoe_B_R_4.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/AI3M_Shoe_FB_LR_4.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/AI3M_‏‏Beak_B_R_4.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/AI3M_‏‏‏‏Beak+Holder_FB_LR_4.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/AI3M_‏‏‏‏‏‏Piramid_Stand_1.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/Hart_Box-Leny.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/Hart_Box-Raft-Leny.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/Hart_Box-Skirt-Leny.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/Shoe_F_L_3.c-Raft-Leny.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/Shoe_F_L_3.c-Skirt-Leny.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/Shoe_F_R_4.b.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/ExampleGcodes/Stick-Leny.gcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataFiles/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/PyDyPlatform/StartSimpleApp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataObjects/Filament.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataObjects/Gcode.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataObjects/Object.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataObjects/Print.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataObjects/Printer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/DataObjects/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/PyDyPlatform/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/FrameWork/App.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/FrameWork/Features/UIFeature1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/FrameWork/Features/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/FrameWork/Platform.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/FrameWork/Modules/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/FrameWork/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppPackage/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bots/GenerateMagicMethods/FileReader.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bots/GenerateMagicMethods/GenerateMagicMethods.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bots/GenerateMagicMethods/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bots/GenerateMagicMethods/result/MagicMethodsInterfaces.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bots/GenerateMagicMethods/result/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bots/GenerateMagicMethods/source/Builtins_3_7.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bots/GenerateMagicMethods/source/MagicMethodsInterfacesDemo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bots/GenerateMagicMethods/source/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bots/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/AutoPrintServers/Client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/AutoPrintServers/Client2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/AutoPrintServers/Commands.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/AutoPrintServers/Controller.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/AutoPrintServers/LocalServer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/AutoPrintServers/Server.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/AutoPrintServers/SocketManagers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/AutoPrintServers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/MultiClientServer/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/MultiClientServer/client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/MultiClientServer/server.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/RestAPI/Clients/AutoPrintDesktopClient.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/RestAPI/Clients/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/RestAPI/ServerSide/Database/DataStructures.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/RestAPI/ServerSide/Database/Database.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/RestAPI/ServerSide/Database/DatabaseExceptions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/RestAPI/ServerSide/Database/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/RestAPI/ServerSide/Database/database.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/RestAPI/ServerSide/ScheduleServer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/RestAPI/ServerSide/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/RestAPI/Workshop/Controller.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/RestAPI/Workshop/Station.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/RestAPI/Workshop/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/RestAPI/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Backend/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/CodeDesign/CodeDesignTriggers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/CodeDesign/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/CythonTests/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/CythonTests/cy_hello.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/CythonTests/helloworld.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/CythonTests/helloworld.pyx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/DecorationTest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Efficiency.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/CalculationApp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Data/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Data/log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/BackgroundTasks.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/ProgressBar.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/BackgroundLoadingApp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/FeaturesLoader.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/FeaturesLoaderProgress.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/SubFeaturesLoader/AbstractFeature.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/SubFeaturesLoader/Feature1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/SubFeaturesLoader/Feature2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/SubFeaturesLoader/Feature3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/SubFeaturesLoader/SubFeature2/Feature2_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/SubFeaturesLoader/SubFeature2/Feature2_2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/SubFeaturesLoader/SubFeature2/Feature2_3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/SubFeaturesLoader/SubFeature2/Feature2_4.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/SubFeaturesLoader/SubFeature2/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/SubFeaturesLoader/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/UI/LoadingWindow.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/UI/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyBoolListExample.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyClockExample/ClockApp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyClockExample/Features/IntegratedClock.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyClockExample/Features/VisualClock.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyClockExample/Features/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyClockExample/Main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyClockExample/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyIntExample.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DySwitchListExample.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyWifiExample.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/GeneralObjects/App.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/GeneralObjects/Container.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/GeneralObjects/Feature.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/GeneralObjects/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/GetTest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Imports/A.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Imports/B.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Imports/C.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Imports/UnitClass.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Imports/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/InterfaceTest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/ListTrigger.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/LoggingTests/MultiThreadsLogging.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/LoggingTests/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/MagicMethodsTest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/MainWindow.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/MathPuzzle.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/MemoryLimit.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/NewObject.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Objects/AppDemo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Objects/Containers/ContainerDemo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Objects/Containers/Dialog.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Objects/Containers/MainWindow.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Objects/Containers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Objects/Features/FeatureDemo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Objects/Features/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Objects/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/PickleTests/DataObject.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/PickleTests/DyModuleTests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/PickleTests/DynamicModule.ftv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/PickleTests/PickleServices.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/PickleTests/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/PowerPoint/PowerPointController.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/PowerPoint/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/ThreadAllocation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Threads/ExcecutionTest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Threads/ThreadTest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Threads/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/TriggerClassMethod.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/TypeTest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Vector.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/functionArgument.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/getFullClassPath.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/methodAttribute.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/propertyTest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/FrameWork/Apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/FrameWork/Apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/FrameWork/Features.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/FrameWork/Features.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Managers/AbstractManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Managers/AbstractManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Managers/ExecutionManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Managers/ExecutionManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Managers/FeatureManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Managers/FeatureManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Managers/Log.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Managers/LogManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Managers/LogManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Managers/TriggerManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Managers/TriggerManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Managers/UIManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Managers/UIManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Managers/VariableManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Managers/VariableManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/SystemObjects/Executions.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/SystemObjects/Executions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/SystemObjects/TriggerObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/SystemObjects/TriggerObjects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/SystemObjects/UIPlatforms.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/SystemObjects/UIPlatforms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractConditions.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractConditions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicMethod.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicMethod.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicModule.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicModule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicObject.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicObject.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicIterators.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicIterators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicMethods.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicMethods.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicModules.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicModules.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicObjects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTVCompiler/Compiler.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTVCompiler/StartCompiler.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes.md" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +221,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/architecture/solve_multi_logging" />
+        <entry key="$PROJECT_DIR$" value="test/architecture/cpp_compiler_simple_test" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -332,7 +508,13 @@
       <option name="presentableId" value="LOCAL‎00012" />
       <updated>1628079182733</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL‎00013" summary="C++ script ran faster than the clean python script (obviously). It is necessary to rewrite the platform using C++ and execute the function blocks using python.">
+      <created>1628340549096</created>
+      <option name="number" value="LOCAL‎00013" />
+      <option name="presentableId" value="LOCAL‎00013" />
+      <updated>1628340549096</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -359,7 +541,8 @@
     <MESSAGE value="The UI thread overloading issue has been investigated and there is a suggested solution in the Notes.md file." />
     <MESSAGE value="Example changes" />
     <MESSAGE value="Changes have been made in order to solve for the UIThread overloading problem.&#10;See Notes.md for more information." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes have been made in order to solve for the UIThread overloading problem.&#10;See Notes.md for more information." />
+    <MESSAGE value="C++ script ran faster than the clean python script (obviously). It is necessary to rewrite the platform using C++ and execute the function blocks using python." />
+    <option name="LAST_COMMIT_MESSAGE" value="C++ script ran faster than the clean python script (obviously). It is necessary to rewrite the platform using C++ and execute the function blocks using python." />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="175" width="1092" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1628282532957">
@@ -376,6 +559,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2609" y="346" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627517458985" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1628341304902">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628341304902" />
     <state x="729" y="350" width="463" height="496" key="#com.intellij.tools.ToolEditorDialog" timestamp="1628282136210">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -389,9 +576,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2683" y="241" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1621262025151" />
-    <state x="2408" y="87" width="943" height="762" key="CommitChangelistDialog2" timestamp="1628079278456">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="329" y="87" width="943" height="762" key="CommitChangelistDialog2" timestamp="1628342106657">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="329" y="87" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628342106657" />
     <state x="2408" y="87" width="943" height="762" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628079278456" />
     <state width="434" height="466" key="DebuggerActiveHint" timestamp="1621792586969">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -407,50 +595,50 @@
     </state>
     <state x="740" y="262" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628282045184" />
     <state x="2660" y="262" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624001329573" />
-    <state width="440" height="680" key="Git.Branch.Popup" timestamp="1628340444426">
+    <state width="442" height="682" key="Git.Branch.Popup" timestamp="1628340561713">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="440" height="680" key="Git.Branch.Popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628340444426" />
+    <state width="442" height="682" key="Git.Branch.Popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628340561713" />
     <state width="412" height="652" key="Git.Branch.Popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628029220720" />
-    <state width="1899" height="323" key="GridCell.Tab.0.bottom" timestamp="1628330698826">
+    <state width="1899" height="197" key="GridCell.Tab.0.bottom" timestamp="1628340736311">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="323" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628330698826" />
+    <state width="1899" height="197" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628340736311" />
     <state width="1899" height="331" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
-    <state width="1899" height="323" key="GridCell.Tab.0.center" timestamp="1628330698826">
+    <state width="1899" height="197" key="GridCell.Tab.0.center" timestamp="1628340736311">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="323" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628330698826" />
+    <state width="1899" height="197" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628340736311" />
     <state width="1899" height="331" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
-    <state width="1899" height="323" key="GridCell.Tab.0.left" timestamp="1628330698826">
+    <state width="1899" height="197" key="GridCell.Tab.0.left" timestamp="1628340736311">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="323" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628330698826" />
+    <state width="1899" height="197" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628340736311" />
     <state width="1899" height="331" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
-    <state width="1899" height="323" key="GridCell.Tab.0.right" timestamp="1628330698826">
+    <state width="1899" height="197" key="GridCell.Tab.0.right" timestamp="1628340736311">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="323" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628330698826" />
+    <state width="1899" height="197" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628340736311" />
     <state width="1899" height="331" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
-    <state width="1899" height="266" key="GridCell.Tab.1.bottom" timestamp="1628078671751">
+    <state width="1899" height="266" key="GridCell.Tab.1.bottom" timestamp="1628340736309">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="266" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078671751" />
+    <state width="1899" height="266" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628340736309" />
     <state width="1899" height="389" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628038784003" />
-    <state width="1899" height="266" key="GridCell.Tab.1.center" timestamp="1628078671751">
+    <state width="1899" height="266" key="GridCell.Tab.1.center" timestamp="1628340736309">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="266" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078671751" />
+    <state width="1899" height="266" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628340736309" />
     <state width="1899" height="389" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628038784003" />
-    <state width="1899" height="266" key="GridCell.Tab.1.left" timestamp="1628078671751">
+    <state width="1899" height="266" key="GridCell.Tab.1.left" timestamp="1628340736309">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="266" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078671751" />
+    <state width="1899" height="266" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628340736309" />
     <state width="1899" height="389" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628038784003" />
-    <state width="1899" height="266" key="GridCell.Tab.1.right" timestamp="1628078671751">
+    <state width="1899" height="266" key="GridCell.Tab.1.right" timestamp="1628340736309">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="266" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078671751" />
+    <state width="1899" height="266" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628340736309" />
     <state width="1899" height="389" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628038784003" />
     <state x="765" y="222" key="RollbackChangesDialog" timestamp="1627491368537">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -475,10 +663,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="855" y="255" key="com.intellij.tools.ToolSelectDialog.dimensionServiceKey/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628282137248" />
-    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1628338145021">
+    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1628341851219">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628338145021" />
+    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628341851219" />
     <state x="2587" y="253" width="585" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1625233446572" />
     <state x="2560" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1624443393403">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -509,13 +697,8 @@
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/FTV/Objects/Variables/DynamicMethods.py</url>
-          <line>53</line>
+          <line>4</line>
           <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/FTV/Objects/SystemObjects/Executions.py</url>
-          <line>117</line>
-          <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/AppPackage/FrameWork/App.py</url>
@@ -531,11 +714,6 @@
           <url>file://$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/ProgressBar.py</url>
           <line>26</line>
           <option name="timeStamp" value="96" />
-        </line-breakpoint>
-        <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/FTV/Objects/Variables/AbstractConditions.py</url>
-          <line>10</line>
-          <option name="timeStamp" value="98" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/ProgressBar.py</url>
