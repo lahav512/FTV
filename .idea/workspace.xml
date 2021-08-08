@@ -17,39 +17,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abb96c24-d836-49b9-b1d4-66a1a865e584" name="Default Changelist" comment="Example changes">
-      <change afterPath="$PROJECT_DIR$/FTVCompiler/Compiler.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FTVCompiler/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bots/GenerateMagicMethods/result/MagicMethodsInterfaces.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bots/GenerateMagicMethods/result/MagicMethodsInterfaces.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bots/GenerateMagicMethods/source/MagicMethodsInterfacesDemo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bots/GenerateMagicMethods/source/MagicMethodsInterfacesDemo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/BackgroundTasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/BackgroundTasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/ProgressBar.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Features/ProgressBar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/BackgroundLoadingApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/BackgroundLoadingApp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/FeaturesLoaderProgress.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/BackgroundLoadingApp/Features/FeaturesLoaderProgress.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyBoolListExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DyBoolListExample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyClockExample/Features/IntegratedClock.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DyClockExample/Features/IntegratedClock.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyClockExample/Features/VisualClock.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DyClockExample/Features/VisualClock.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyIntExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DyIntExample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DySwitchListExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DySwitchListExample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DyWifiExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DyWifiExample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Log.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Managers/Log.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/PickleTests/DyModuleTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/PickleTests/DyModuleTests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Threads/ExcecutionTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Threads/ExcecutionTest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/FrameWork/Apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/FrameWork/Apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/FrameWork/Features.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/FrameWork/Features.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Managers/LogManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Managers/LogManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Managers/TriggerManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Managers/TriggerManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/SystemObjects/Executions.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/SystemObjects/Executions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/SystemObjects/TriggerObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/SystemObjects/TriggerObjects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicObject.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicObject.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicIterators.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicIterators.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicMethods.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicMethods.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicModules.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicModules.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicObjects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.md" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.md" afterDir="false" />
-    </list>
+    <list default="true" id="abb96c24-d836-49b9-b1d4-66a1a865e584" name="Default Changelist" comment="Example changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,28 +68,7 @@
       <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Experiments\Examples" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Main">
-    <configuration name="Client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ftv" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FTVCompiler" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FTVCompiler/Client.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.Main (1)">
     <configuration name="Compiler" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ftv" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -206,6 +153,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ftv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Experiments/PyDyPlatform" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Experiments/PyDyPlatform/Main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ftv" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -253,16 +221,16 @@
       <item itemvalue="Python.Main" />
       <item itemvalue="Python.Log" />
       <item itemvalue="Python.Compiler" />
-      <item itemvalue="Python.Client" />
       <item itemvalue="Python.DyWifiExample" />
+      <item itemvalue="Python.Main (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Main (1)" />
         <item itemvalue="Python.Main" />
         <item itemvalue="Python.Compiler" />
         <item itemvalue="Python.DyWifiExample" />
         <item itemvalue="Python.Log" />
-        <item itemvalue="Python.Client" />
       </list>
     </recent_temporary>
   </component>
@@ -384,10 +352,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2609" y="346" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1627517458985" />
-    <state x="2320" y="282" width="490" height="576" key="#xdebugger.evaluate" timestamp="1628078262540">
+    <state x="2320" y="282" width="490" height="576" key="#xdebugger.evaluate" timestamp="1628403627841">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2320" y="282" width="490" height="576" key="#xdebugger.evaluate/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078262540" />
+    <state x="2320" y="282" width="490" height="576" key="#xdebugger.evaluate/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628403627841" />
     <state x="3064" y="195" key="#xdebugger.evaluate/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628038071020" />
     <state x="2683" y="241" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1621262025151">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -397,71 +365,75 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="434" height="466" key="DebuggerActiveHint/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1621792586969" />
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1627553150929">
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1628403836313">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627553150929" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628403836313" />
     <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624001773949" />
     <state x="2660" y="262" key="FileChooserDialogImpl" timestamp="1624001329573">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="262" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1621640703497" />
     <state x="2660" y="262" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624001329573" />
-    <state width="412" height="652" key="Git.Branch.Popup" timestamp="1628029220720">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="440" height="680" key="Git.Branch.Popup" timestamp="1628403844909">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="436" height="676" key="Git.Branch.Popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627492037766" />
+    <state width="440" height="680" key="Git.Branch.Popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628403844909" />
     <state width="412" height="652" key="Git.Branch.Popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628029220720" />
-    <state width="1899" height="366" key="GridCell.Tab.0.bottom" timestamp="1628078942589">
+    <state width="1899" height="321" key="GridCell.Tab.0.bottom" timestamp="1628403809318">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="366" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078942589" />
+    <state width="1899" height="321" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628403809318" />
     <state width="1899" height="331" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
-    <state width="1899" height="366" key="GridCell.Tab.0.center" timestamp="1628078942589">
+    <state width="1899" height="321" key="GridCell.Tab.0.center" timestamp="1628403809318">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="366" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078942589" />
+    <state width="1899" height="321" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628403809318" />
     <state width="1899" height="331" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
-    <state width="1899" height="366" key="GridCell.Tab.0.left" timestamp="1628078942589">
+    <state width="1899" height="321" key="GridCell.Tab.0.left" timestamp="1628403809318">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="366" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078942589" />
+    <state width="1899" height="321" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628403809318" />
     <state width="1899" height="331" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
-    <state width="1899" height="366" key="GridCell.Tab.0.right" timestamp="1628078942589">
+    <state width="1899" height="321" key="GridCell.Tab.0.right" timestamp="1628403809318">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="366" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078942589" />
+    <state width="1899" height="321" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628403809318" />
     <state width="1899" height="331" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
-    <state width="1899" height="266" key="GridCell.Tab.1.bottom" timestamp="1628078671751">
+    <state width="1899" height="201" key="GridCell.Tab.1.bottom" timestamp="1628403707051">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="266" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078671751" />
+    <state width="1899" height="201" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628403707051" />
     <state width="1899" height="389" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628038784003" />
-    <state width="1899" height="266" key="GridCell.Tab.1.center" timestamp="1628078671751">
+    <state width="1899" height="201" key="GridCell.Tab.1.center" timestamp="1628403707051">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="266" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078671751" />
+    <state width="1899" height="201" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628403707051" />
     <state width="1899" height="389" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628038784003" />
-    <state width="1899" height="266" key="GridCell.Tab.1.left" timestamp="1628078671751">
+    <state width="1899" height="201" key="GridCell.Tab.1.left" timestamp="1628403707051">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="266" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078671751" />
+    <state width="1899" height="201" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628403707051" />
     <state width="1899" height="389" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628038784003" />
-    <state width="1899" height="266" key="GridCell.Tab.1.right" timestamp="1628078671751">
+    <state width="1899" height="201" key="GridCell.Tab.1.right" timestamp="1628403707051">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="266" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628078671751" />
+    <state width="1899" height="201" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628403707051" />
     <state width="1899" height="389" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628038784003" />
-    <state x="765" y="222" key="RollbackChangesDialog" timestamp="1627491368537">
+    <state x="765" y="222" key="RollbackChangesDialog" timestamp="1628403838680">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="222" key="RollbackChangesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627491368537" />
+    <state x="765" y="222" key="RollbackChangesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628403838680" />
     <state x="2685" y="222" key="RollbackChangesDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623999584110" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1627491771166">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1627491771166" />
     <state x="2381" y="165" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1621262178810" />
+    <state x="92" y="92" width="1736" height="856" key="ShowDiffWithBranchDialog" timestamp="1628403849325">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="ShowDiffWithBranchDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1628403849325" />
     <state x="552" y="253" width="1238" height="534" key="Vcs.Push.Dialog.v2" timestamp="1627552958243">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -538,6 +510,11 @@
           <line>25</line>
           <option name="timeStamp" value="100" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Experiments/PyDyPlatform/StartSimpleApp.py</url>
+          <line>34</line>
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -545,6 +522,7 @@
         <watch expression="self.dy_module_parent.__name__" language="Python" />
         <watch expression="self.action_name" language="Python" />
         <watch expression="self.progress_step*(self.progress // self.progress_step)" language="Python" />
+        <watch expression="func[0]" language="Python" />
       </configuration>
     </watches-manager>
   </component>
