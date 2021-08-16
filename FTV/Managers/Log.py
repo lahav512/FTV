@@ -32,6 +32,7 @@ class Log:
     @staticmethod
     def __print(mode, message, color):
         if Log.ENABLED:
+            message = message.replace("\n", "\n" + "   "*Log.__BLANK_SPACE)
             mode_str = "".join((mode, ": "*int(bool(mode))))
             msg_str = "".join(("   "*Log.__BLANK_SPACE, mode_str, color, str(message), "\033[0m"))
 
@@ -41,6 +42,24 @@ class Log:
             else:
                 # Print to general console
                 print(msg_str)
+
+    @staticmethod
+    def get(message, color=""):
+        return Log.__get("", message, color)
+
+    @staticmethod
+    def __get(mode, message, color):
+        if Log.ENABLED:
+            message = message.replace("\n", "\n" + "   "*Log.__BLANK_SPACE)
+            mode_str = "".join((mode, ": "*int(bool(mode))))
+            msg_str = "".join(("   "*Log.__BLANK_SPACE, mode_str, color, str(message), "\033[0m"))
+
+            if Log.FTV_CONSOLE_IS_ATTACHED:
+                # Print to FTV console
+                Log.sock.send(msg_str.encode())
+            else:
+                # Print to general console
+                return input(msg_str)
 
     @classmethod
     def step(cls, step):

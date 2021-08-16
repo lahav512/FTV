@@ -11,8 +11,11 @@ class DyExecution(DyBuiltinModule):
     def runActiveTrigger(self, trigger):
         trigger.runAction()
 
+    def runElseActiveTrigger(self, trigger):
+        trigger.runElseAction()
+
     def runCondition(self, trigger):
-        return trigger.runCondition()
+        return trigger.runIf()
 
 class DyProcess(DyExecution):
     pass
@@ -57,6 +60,8 @@ class DyThread(DyExecution):
 
                 if self.runCondition(trigger):
                     self.runActiveTrigger(trigger)
+                else:
+                    self.runElseActiveTrigger(trigger)
             else:
                 self.isQueueEmpty.set(True)
 

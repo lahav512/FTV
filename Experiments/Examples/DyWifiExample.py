@@ -43,15 +43,15 @@ class DyWifiExample(NIFeature):
         self.vm.onDataReceived.activate()
 
     @DyMethod()
-    def displayData(self, message):
-        Log.p(message)
+    def displayData(self, data):
+        Log.p(data)
 
     def setupTriggers(self):
         self.addTrigger(WifiApp.vm.START).setAction(self.vm.onStartWifiConnection)
         self.addTrigger(self.vm.onStartWifiConnection).setAction(self.turnWifiOn)
         self.addTrigger(self.vm.onWifiTurnedOn).setAction(self.connectSSID)
         self.addTrigger(self.vm.onWifiConnected).setAction(self.requestData)
-        self.addTrigger(self.vm.onDataReceived).setAction(self.displayData, "New data !!!")
+        self.addTrigger(self.vm.onDataReceived).setAction(self.displayData, "New data :)")
 
 
 class WifiApp(NIApp):
@@ -63,3 +63,4 @@ class WifiApp(NIApp):
 
 
 WifiApp()
+

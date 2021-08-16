@@ -50,7 +50,7 @@ class DyMethod(DynamicObjectInterface):
         # instance._ACTIVE_METHOD = ""
         self.__log_step__(-1)
         # self.__log_p__(f"<- {wrapped.__name__}")
-        self.__log_p__(f"<- {instance.__class__.__name__}.{wrapped.__name__}")
+        self.__log_p__(f"<-")  # {instance.__class__.__name__}.{wrapped.__name__}")
         self._prepareAndRunTriggers(instance.__get_by_method__(wrapped))
         return ans
 

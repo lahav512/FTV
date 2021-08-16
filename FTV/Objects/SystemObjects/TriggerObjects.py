@@ -19,6 +19,10 @@ class Trigger:
                  "action_name",
                  "action_args",
                  "action_kwargs",
+                 "else_action",
+                 "else_action_name",
+                 "else_action_args",
+                 "else_action_kwargs",
                  "thread",
                  "unique")
 
@@ -32,10 +36,15 @@ class Trigger:
         self.old_val = None
         self.new_val = None
 
-        self.action: function = None
+        self.action: function = self.__empty_action
         self.action_name = None
         self.action_args = []
         self.action_kwargs = dict()
+
+        self.else_action: function = self.__empty_action
+        self.else_action_name = None
+        self.else_action_args = []
+        self.else_action_kwargs = dict()
 
         self.thread: object = None
 
@@ -72,6 +81,24 @@ class Trigger:
         self.action_kwargs = kwargs
         return self
 
+    def elseAction(self, action, *args, **kwargs):
+        if callable(action):
+            parent = None
+            if "parent" in kwargs:
+                parent = kwargs["parent"]
+            if parent is None:
+                parent = self.dy_module_parent
+
+            modified_action = parent.__get_by_method__(action)
+            self.else_action_name = action.__name__
+        else:
+            modified_action = action
+
+        self.else_action = modified_action.__action__
+        self.else_action_args = args
+        self.else_action_kwargs = kwargs
+        return self
+
     def setThread(self, thread):
         self.thread = thread
         return self
@@ -80,14 +107,23 @@ class Trigger:
         self.old_val = old_val
         self.new_val = new_val
 
-    def runCondition(self):
+    def runIf(self):
         return self.__condition__(self.old_val, self.new_val, *self.condition_args, **self.condition_kwargs)
 
     def runAction(self):
         return self.__action__(*self.action_args, **self.action_kwargs)
+
+    def runElseAction(self):
+        return self.__else_action__(*self.else_action_args, **self.else_action_kwargs)
 
     def __condition__(self, old_val, new_val, *args, **kwargs):
         return self.condition(old_val, new_val, *args, **kwargs)
 
     def __action__(self, *args, **kwargs):
         return self.action(*args, **kwargs)
+
+    def __else_action__(self, *args, **kwargs):
+        return self.else_action(*args, **kwargs)
+
+    def __empty_action(self, *args, **kwargs):
+        pass

@@ -35,8 +35,10 @@ class DynamicObjectInterface(object):
             if "__name__" in dir(dy_object) and dy_object.__name__ == "progress":
                 print()
 
-            if trigger.runCondition():
+            if trigger.runIf():
                 trigger.runAction()
+            else:
+                trigger.runElseAction()
 
     def _prepareAndRunTriggers(self, dy_object, old_val=None, new_val=None):
         self._distributeTriggers(dy_object, old_val, new_val)
