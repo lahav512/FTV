@@ -18,15 +18,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="abb96c24-d836-49b9-b1d4-66a1a865e584" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bots/GenerateMagicMethods/result/MagicMethodsInterfaces.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bots/GenerateMagicMethods/result/MagicMethodsInterfaces.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/Algorithms/Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/DownloadFileFeature.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/DownloadFileFeature.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Managers/Log.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Managers/Log.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/SystemObjects/Executions.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/SystemObjects/Executions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/SystemObjects/TriggerObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/SystemObjects/TriggerObjects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicObject.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicObject.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicMethods.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicMethods.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -330,7 +322,19 @@
       <option name="presentableId" value="LOCAL‎00012" />
       <updated>1629075164753</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL‎00013" summary="The magic methods generator has been updated.">
+      <created>1629223018825</created>
+      <option name="number" value="LOCAL‎00013" />
+      <option name="presentableId" value="LOCAL‎00013" />
+      <updated>1629223018825</updated>
+    </task>
+    <task id="LOCAL‎00014" summary="gitignore has been updated">
+      <created>1629223087974</created>
+      <option name="number" value="LOCAL‎00014" />
+      <option name="presentableId" value="LOCAL‎00014" />
+      <updated>1629223087974</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -357,7 +361,9 @@
     <MESSAGE value="The UI thread overloading issue has been investigated and there is a suggested solution in the Notes.md file." />
     <MESSAGE value="Example changes" />
     <MESSAGE value="ElseAction option has been added to the architecture." />
-    <option name="LAST_COMMIT_MESSAGE" value="ElseAction option has been added to the architecture." />
+    <MESSAGE value="The magic methods generator has been updated." />
+    <MESSAGE value="gitignore has been updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="gitignore has been updated" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="175" width="1092" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1628937173591">
@@ -391,10 +397,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2683" y="241" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1621262025151" />
-    <state x="587" y="88" key="CommitChangelistDialog2" timestamp="1629075164379">
+    <state x="587" y="88" key="CommitChangelistDialog2" timestamp="1629223087692">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="587" y="88" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629075164379" />
+    <state x="587" y="88" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629223087692" />
     <state width="434" height="466" key="DebuggerActiveHint" timestamp="1621792586969">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
