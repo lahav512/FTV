@@ -107,7 +107,7 @@ class Trigger:
         self.old_val = old_val
         self.new_val = new_val
 
-    def runIf(self):
+    def runCondition(self):
         return self.__condition__(self.old_val, self.new_val, *self.condition_args, **self.condition_kwargs)
 
     def runAction(self):

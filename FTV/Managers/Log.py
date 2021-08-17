@@ -32,9 +32,9 @@ class Log:
     @staticmethod
     def __print(mode, message, color):
         if Log.ENABLED:
-            message = message.replace("\n", "\n" + "   "*Log.__BLANK_SPACE)
+            _message = str(message).replace("\n", "\n" + "   "*Log.__BLANK_SPACE)
             mode_str = "".join((mode, ": "*int(bool(mode))))
-            msg_str = "".join(("   "*Log.__BLANK_SPACE, mode_str, color, str(message), "\033[0m"))
+            msg_str = "".join(("   "*Log.__BLANK_SPACE, mode_str, color, _message, "\033[0m"))
 
             if Log.FTV_CONSOLE_IS_ATTACHED:
                 # Print to FTV console
@@ -67,6 +67,7 @@ class Log:
 
     @classmethod
     def setup(cls):
+        return
         # Setup the socket
         cls.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # cls.sock.settimeout(1000)

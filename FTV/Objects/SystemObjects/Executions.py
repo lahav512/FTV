@@ -15,7 +15,7 @@ class DyExecution(DyBuiltinModule):
         trigger.runElseAction()
 
     def runCondition(self, trigger):
-        return trigger.runIf()
+        return trigger.runCondition()
 
 class DyProcess(DyExecution):
     pass

@@ -32,7 +32,7 @@ class DynamicObjectInterface(object):
     def _runActiveTriggers(dy_object, old_val=None, new_val=None):
         while not dy_object.__active_triggers__.empty():
             trigger = dy_object.__active_triggers__.get_nowait()
-            if trigger.runIf():
+            if trigger.runCondition():
                 trigger.runAction()
             else:
                 trigger.runElseAction()
