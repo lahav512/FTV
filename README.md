@@ -4,4 +4,4 @@ The purpose of the project is to make programming modular, well-structured, and 
 enables shorter development and debugging time, a coherent code, an option of combining
 programs written by different authors, and a flexible code structure for changes. (Python, C++)
 
-More info is comming will be out once with the first release is aired.
+More information will be out once with the first release is aired.
