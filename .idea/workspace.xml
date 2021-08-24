@@ -17,8 +17,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abb96c24-d836-49b9-b1d4-66a1a865e584" name="Default Changelist" comment="">
+    <list default="true" id="abb96c24-d836-49b9-b1d4-66a1a865e584" name="Default Changelist" comment="gitignore has been updated">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,14 +65,14 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Bots\GenerateMagicMethods" />
-      <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Bots\GenerateMagicMethods\result" />
-      <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Experiments\Examples" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Users\Lahav\ProgramingProjects\FTV\FTV\Managers" />
       <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Experiments\Examples\Algorithms" />
+      <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Experiments\Examples" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Bots\GenerateMagicMethods" />
+      <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Bots\GenerateMagicMethods\result" />
       <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Experiments\Examples" />
     </key>
   </component>
@@ -225,11 +226,12 @@
     </configuration>
     <list>
       <item itemvalue="Python.FTV" />
-      <item itemvalue="Python.DyWifiExample" />
-      <item itemvalue="Python.server" />
-      <item itemvalue="Python.client" />
-      <item itemvalue="Python.GenerateMagicMethods" />
       <item itemvalue="Python.DownloadFileFeature" />
+      <item itemvalue="Python.DyWifiExample" />
+      <item itemvalue="Python.GenerateMagicMethods" />
+      <item itemvalue="Python.Main" />
+      <item itemvalue="Python.client" />
+      <item itemvalue="Python.server" />
     </list>
     <recent_temporary>
       <list>
@@ -397,10 +399,11 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2683" y="241" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1621262025151" />
-    <state x="587" y="88" key="CommitChangelistDialog2" timestamp="1629223087692">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2507" y="88" key="CommitChangelistDialog2" timestamp="1629791511027">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="587" y="88" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629223087692" />
+    <state x="2507" y="88" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1629791511027" />
     <state width="434" height="466" key="DebuggerActiveHint" timestamp="1621792586969">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -415,50 +418,50 @@
     </state>
     <state x="740" y="262" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1621640703497" />
     <state x="2660" y="262" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624001329573" />
-    <state width="444" height="684" key="Git.Branch.Popup" timestamp="1629218614905">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="414" height="654" key="Git.Branch.Popup" timestamp="1629791476912">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="444" height="684" key="Git.Branch.Popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629218614905" />
-    <state width="412" height="652" key="Git.Branch.Popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628029220720" />
-    <state width="1899" height="218" key="GridCell.Tab.0.bottom" timestamp="1629222806805">
+    <state width="414" height="654" key="Git.Branch.Popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1629791476912" />
+    <state width="1899" height="218" key="GridCell.Tab.0.bottom" timestamp="1629383700040">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="218" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629222806805" />
+    <state width="1899" height="218" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629383700040" />
     <state width="1899" height="331" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
-    <state width="1899" height="218" key="GridCell.Tab.0.center" timestamp="1629222806805">
+    <state width="1899" height="218" key="GridCell.Tab.0.center" timestamp="1629383700040">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="218" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629222806805" />
+    <state width="1899" height="218" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629383700040" />
     <state width="1899" height="331" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
-    <state width="1899" height="218" key="GridCell.Tab.0.left" timestamp="1629222806804">
+    <state width="1899" height="218" key="GridCell.Tab.0.left" timestamp="1629383700040">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="218" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629222806804" />
+    <state width="1899" height="218" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629383700040" />
     <state width="1899" height="331" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
-    <state width="1899" height="218" key="GridCell.Tab.0.right" timestamp="1629222806805">
+    <state width="1899" height="218" key="GridCell.Tab.0.right" timestamp="1629383700040">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="218" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629222806805" />
+    <state width="1899" height="218" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629383700040" />
     <state width="1899" height="331" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628039071337" />
-    <state width="1899" height="334" key="GridCell.Tab.1.bottom" timestamp="1629221695104">
+    <state width="1899" height="334" key="GridCell.Tab.1.bottom" timestamp="1629383700024">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="334" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629221695104" />
+    <state width="1899" height="334" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629383700024" />
     <state width="1899" height="389" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628038784003" />
-    <state width="1899" height="334" key="GridCell.Tab.1.center" timestamp="1629221695104">
+    <state width="1899" height="334" key="GridCell.Tab.1.center" timestamp="1629383700023">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="334" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629221695104" />
+    <state width="1899" height="334" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629383700023" />
     <state width="1899" height="389" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628038784003" />
-    <state width="1899" height="334" key="GridCell.Tab.1.left" timestamp="1629221695104">
+    <state width="1899" height="334" key="GridCell.Tab.1.left" timestamp="1629383700023">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="334" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629221695104" />
+    <state width="1899" height="334" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629383700023" />
     <state width="1899" height="389" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628038784003" />
-    <state width="1899" height="334" key="GridCell.Tab.1.right" timestamp="1629221695104">
+    <state width="1899" height="334" key="GridCell.Tab.1.right" timestamp="1629383700024">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="334" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629221695104" />
+    <state width="1899" height="334" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629383700024" />
     <state width="1899" height="389" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628038784003" />
     <state x="765" y="222" width="734" height="798" key="RollbackChangesDialog" timestamp="1629222660208">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -488,10 +491,10 @@
     </state>
     <state x="1073" y="198" width="589" height="640" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629222765838" />
     <state x="2587" y="253" width="585" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1625233446572" />
-    <state x="2560" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1624443393403">
+    <state x="2560" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1629791479526">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2560" y="233" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624443393403" />
+    <state x="2560" y="233" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1629791479526" />
     <state x="753" y="421" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1627491936190">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -501,11 +504,11 @@
     </state>
     <state x="803" y="305" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1621788184188" />
     <state x="2723" y="305" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1628031948576" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1629147340729">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1629716350958">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629147340729" />
-    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624065691640" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1629716350958" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

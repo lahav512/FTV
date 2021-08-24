@@ -1,3 +1,6 @@
 AppPackage
 AppPackage/
 AppPackage/*
+
+Demos/Posts/
+.Demos/Posts
