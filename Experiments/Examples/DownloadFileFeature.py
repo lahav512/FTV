@@ -29,7 +29,7 @@ class VM(VariableManager):
     class IsLinkValid(Condition):
         @staticmethod
         def __condition__(old_val, new_val, *args, **kwargs):
-            return new_val.startswith("https://www.youtube.com/")
+            return new_val.startswith("https://www.youtube.com/") or new_val.startswith("https://youtu.be/")
 
 
 class FM(FeatureManager):
