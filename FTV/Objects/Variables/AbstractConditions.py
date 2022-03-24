@@ -114,7 +114,30 @@ class DyFloatConditions(DyNumericConditions):
 
 
 class DyListConditions(DyIteratorConditions):
-    pass
+    def __condition__(self, old_val, new_val, *args, **kwargs):
+        return True
+
+    class IsChanged(Condition):
+        @staticmethod
+        def __condition__(old_val, new_val, *args, **kwargs):
+            return len(old_val) != len(new_val) or next((True for i, j in zip(old_val, new_val) if i != j), False)
+
+    class IsChangedTo(Condition):
+        @staticmethod
+        def __condition__(old_val, new_val, *args, **kwargs):
+            if not DyListConditions.IsChanged.__condition__(new_val, args[0]):
+                return DyListConditions.IsChanged.__condition__(old_val, new_val)
+            return False
+
+    class IsEmpty(Condition):
+        @staticmethod
+        def __condition__(old_val, new_val, *args, **kwargs):
+            return len(new_val) == 0
+
+    class IsNotEmpty(Condition):
+        @staticmethod
+        def __condition__(old_val, new_val, *args, **kwargs):
+            return len(new_val) != 0
 
 
 class DySetConditions(DyIteratorConditions):

@@ -1,3 +1,5 @@
+from threading import current_thread
+
 from Bots.GenerateMagicMethods.result.MagicMethodsInterfaces import (DyBoolMagicMethods, DyObject, DyFloatMagicMethods,
                                                                      DyIntMagicMethods, DyStrMagicMethods,
                                                                      DyListMagicMethods, DyByteArrayMagicMethods,
@@ -102,8 +104,72 @@ class DyList(DyListMagicMethods, DyListConditions, DyObject):
     def set(self, value):
         super(DyList, self).set(list(value))
 
+    def setItem(self, _index, item):
+        old_val = self.__value__.copy()
+        self.__value__.__setitem__(_index, item)
+        self.__log_p__(f"{self.__name__} = {self.__value__}: {current_thread().name}")
+        self._prepareAndRunTriggers(self, old_val, self.__value__)
+
+    def getItem(self, _index):
+        return self.__value__[_index]
+
     def append(self, item):
+        old_val = self.__value__.copy()
         self.__value__.append(item)
+        self.__log_p__(f"{self.__name__} = {self.__value__}: {current_thread().name}")
+        self._prepareAndRunTriggers(self, old_val, self.__value__)
+
+    def clear(self):
+        old_val = self.__value__.copy()
+        self.__value__.clear()
+        self.__log_p__(f"{self.__name__} = {self.__value__}: {current_thread().name}")
+        self._prepareAndRunTriggers(self, old_val, self.__value__)
+
+    def copy(self):
+        return self.__value__.copy()
+
+    def count(self, item):
+        return self.__value__.count(item)
+
+    def extend(self, iterable):
+        old_val = self.__value__.copy()
+        self.__value__.extend(iterable)
+        self.__log_p__(f"{self.__name__} = {self.__value__}: {current_thread().name}")
+        self._prepareAndRunTriggers(self, old_val, self.__value__)
+
+    def index(self, item):
+        return self.__value__.index(item)
+
+    def insert(self, _index, item):
+        old_val = self.__value__.copy()
+        self.__value__.insert(_index, item)
+        self.__log_p__(f"{self.__name__} = {self.__value__}: {current_thread().name}")
+        self._prepareAndRunTriggers(self, old_val, self.__value__)
+
+    def pop(self, _index):
+        old_val = self.__value__.copy()
+        item = self.__value__.pop(_index)
+        self.__log_p__(f"{self.__name__} = {self.__value__}: {current_thread().name}")
+        self._prepareAndRunTriggers(self, old_val, self.__value__)
+        return item
+
+    def remove(self, item):
+        old_val = self.__value__.copy()
+        self.__value__.remove(item)
+        self.__log_p__(f"{self.__name__} = {self.__value__}: {current_thread().name}")
+        self._prepareAndRunTriggers(self, old_val, self.__value__)
+
+    def reverse(self):
+        old_val = self.__value__.copy()
+        self.__value__.reverse()
+        self.__log_p__(f"{self.__name__} = {self.__value__}: {current_thread().name}")
+        self._prepareAndRunTriggers(self, old_val, self.__value__)
+
+    def sort(self):
+        old_val = self.__value__.copy()
+        self.__value__.sort()
+        self.__log_p__(f"{self.__name__} = {self.__value__}: {current_thread().name}")
+        self._prepareAndRunTriggers(self, old_val, self.__value__)
 
 
 class DySet(DySetMagicMethods, DySetConditions, DyObject):
@@ -153,7 +219,12 @@ if __name__ == '__main__':
             self.h = DyBool(False)
 
         def setupTriggers(self):
-            self.addTrigger(self.POST_LOAD).setAction(self.action)
+            self.addTrigger(self.POST_INIT).setAction(self.action)
+            self.addTrigger(self.e).setCondition(DyList.IsChanged).setAction(self.ftvWorks)
+
+        @DyMethod()
+        def ftvWorks(self):
+            Log.p("FTV works :)")
 
         @DyMethod()
         def action(self):
@@ -196,22 +267,31 @@ if __name__ == '__main__':
             # Log.p(self.d)
             # Log.p(type(self.d))
 
-            # self.e += self.f
+            self.e += self.f
+            self.e.append(10)
+            self.e.insert(3, 0)
+            self.e.set([0, 0, 0])
+            self.e.setItem(1, 2)
+            self.e.sort()
+            self.e.pop(1)
+            self.e.reverse()
+            self.e.clear()
+
             #
             # Log.p(self.c in [4])
             #
-            # Log.p(self.e)
-            # Log.p(type(self.e))
-            # Log.p(self.f)
-            # Log.p(type(self.f))
+            Log.p(self.e)
+            Log.p(type(self.e))
+            Log.p(self.f)
+            Log.p(type(self.f))
 
-            self.g += self.h
-            Log.p(self.g and self.h)
+            # self.g += self.h
+            # Log.p(self.g and self.h)
 
-            Log.p(self.g)
-            Log.p(type(self.g))
-            Log.p(self.h)
-            Log.p(type(self.h))
+            # Log.p(self.g)
+            # Log.p(type(self.g))
+            # Log.p(self.h)
+            # Log.p(type(self.h))
 
     VM()
 
