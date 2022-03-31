@@ -14,10 +14,14 @@ class VM(VariableManager):
     def setupVariables(self):
         self.isStopped = False
         self.seconds = DyInt(-1, builtin=False)
-        self.period = 10  # seconds
+        self.period = 3  # seconds
 
     def setupTriggers(self):
-        pass
+        self.addTrigger(self.seconds).setCondition(DyInt.IsChangedTo, self.period).setAction(self.setDyObject, self.seconds, 0)
+
+    @DyBuiltinMethod()
+    def setDyObject(self, object: DyObject, value):
+        object.set(value)
 
     class PeriodCompleted(Condition):
         @staticmethod
@@ -36,7 +40,8 @@ class Timer(NIFeature):
         from Experiments.Examples.BIUAutomation.BIUApp import BIUApp
 
         self.overrideTriggers(BIUApp.vm.START).setAction(self.startClock)
-        self.addTrigger(self.vm.seconds).setCondition(self.vm.PeriodCompleted, self.vm.period).setAction(BIUApp.vm.onStartCollection)
+        # self.addTrigger(self.vm.seconds).setCondition(self.vm.PeriodCompleted, self.vm.period).setAction(BIUApp.vm.onStartCollection)
+        self.addTrigger(self.vm.seconds).setCondition(DyInt.IsEqualTo, 0).setAction(BIUApp.vm.onStartCollection)
 
     def stop(self):
         self.vm.isStopped = True

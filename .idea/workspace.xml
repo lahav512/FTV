@@ -18,9 +18,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="abb96c24-d836-49b9-b1d4-66a1a865e584" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/Features/Timer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/BIUApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/BIUApp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/Features/Timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/Features/Timer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -323,7 +322,13 @@
       <option name="presentableId" value="LOCAL‎00015" />
       <updated>1648132010146</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL‎00016" summary="Timer feature has been added to the BIUAutomation example project. It was relatively easy, but the timer should be a part of the FTV toolbox to allow fast development.">
+      <created>1648758482628</created>
+      <option name="number" value="LOCAL‎00016" />
+      <option name="presentableId" value="LOCAL‎00016" />
+      <updated>1648758482628</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -353,7 +358,8 @@
     <MESSAGE value="The magic methods generator has been updated." />
     <MESSAGE value="gitignore has been updated" />
     <MESSAGE value="Basic list methods have been implemented to DyList" />
-    <option name="LAST_COMMIT_MESSAGE" value="Basic list methods have been implemented to DyList" />
+    <MESSAGE value="Timer feature has been added to the BIUAutomation example project. It was relatively easy, but the timer should be a part of the FTV toolbox to allow fast development." />
+    <option name="LAST_COMMIT_MESSAGE" value="Timer feature has been added to the BIUAutomation example project. It was relatively easy, but the timer should be a part of the FTV toolbox to allow fast development." />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1648729945361">
@@ -368,30 +374,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="285" y="354" width="1318" height="594" key="#xdebugger.evaluate/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648754427332" />
-    <state x="587" y="88" key="CommitChangelistDialog2" timestamp="1648132009817">
+    <state x="587" y="88" key="CommitChangelistDialog2" timestamp="1648758482346">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="587" y="88" key="CommitChangelistDialog2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648132009817" />
+    <state x="587" y="88" key="CommitChangelistDialog2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648758482346" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1648735585851">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648735585851" />
-    <state width="732" height="602" key="GridCell.Tab.0.bottom" timestamp="1648758056904">
+    <state width="563" height="809" key="GridCell.Tab.0.bottom" timestamp="1648758926777">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="732" height="602" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648758056904" />
-    <state width="732" height="602" key="GridCell.Tab.0.center" timestamp="1648758056904">
+    <state width="563" height="809" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648758926777" />
+    <state width="563" height="809" key="GridCell.Tab.0.center" timestamp="1648758926777">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="732" height="602" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648758056904" />
-    <state width="732" height="602" key="GridCell.Tab.0.left" timestamp="1648758056904">
+    <state width="563" height="809" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648758926777" />
+    <state width="563" height="809" key="GridCell.Tab.0.left" timestamp="1648758926777">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="732" height="602" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648758056904" />
-    <state width="732" height="602" key="GridCell.Tab.0.right" timestamp="1648758056904">
+    <state width="563" height="809" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648758926777" />
+    <state width="563" height="809" key="GridCell.Tab.0.right" timestamp="1648758926777">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="732" height="602" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648758056904" />
+    <state width="563" height="809" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648758926777" />
     <state width="1877" height="131" key="GridCell.Tab.1.bottom" timestamp="1648756498152">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
