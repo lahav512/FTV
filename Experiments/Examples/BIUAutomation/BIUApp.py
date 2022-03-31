@@ -1,5 +1,6 @@
 from Experiments.Examples.BIUAutomation.Features.DataCollection import DataCollection
 from Experiments.Examples.BIUAutomation.Features.DataSharing import DataSharing
+from Experiments.Examples.BIUAutomation.Features.Timer import Timer
 from FTV.FrameWork.Apps import NIApp
 from FTV.Managers.ExecutionManager import ExecutionManager
 from FTV.Managers.FeatureManager import FeatureManager
@@ -29,6 +30,7 @@ class FM(FeatureManager):
     def setupFeatures(self):
         self.addFeature(DataCollection)
         self.addFeature(DataSharing)
+        # self.addFeature(Timer)
 
 
 class BIUApp(NIApp):
