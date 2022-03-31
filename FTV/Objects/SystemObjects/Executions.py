@@ -17,6 +17,7 @@ class DyExecution(DyBuiltinModule):
     def runCondition(self, trigger):
         return trigger.runCondition()
 
+
 class DyProcess(DyExecution):
     pass
 
@@ -58,10 +59,19 @@ class DyThread(DyExecution):
                 if trigger is None:
                     break
 
-                if self.runCondition(trigger):
-                    self.runActiveTrigger(trigger)
+                if trigger.exception is not None:
+                    try:
+                        if self.runCondition(trigger):
+                            self.runActiveTrigger(trigger)
+                        else:
+                            self.runElseActiveTrigger(trigger)
+                    except trigger.exception as e:
+                        trigger.runCatchAction()
                 else:
-                    self.runElseActiveTrigger(trigger)
+                    if self.runCondition(trigger):
+                        self.runActiveTrigger(trigger)
+                    else:
+                        self.runElseActiveTrigger(trigger)
             else:
                 self.isQueueEmpty.set(True)
 

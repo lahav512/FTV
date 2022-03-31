@@ -17,16 +17,24 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abb96c24-d836-49b9-b1d4-66a1a865e584" name="Default Changelist" comment="gitignore has been updated">
-      <change afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/ClockApp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/Features/IntegratedClock.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/Features/VisualClock.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/Features/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/Main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/__init__.py" afterDir="false" />
+    <list default="true" id="abb96c24-d836-49b9-b1d4-66a1a865e584" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/AppTools/Calendars.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/AppTools/DataCollectionTools.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/AppTools/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/Tools/Files.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/Tools/JSTools.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/Tools/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/main.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractConditions.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractConditions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/DynamicObjects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bots/GenerateMagicMethods/result/MagicMethodsInterfaces.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bots/GenerateMagicMethods/result/MagicMethodsInterfaces.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/ClockApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/BIUApp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/Features/IntegratedClock.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/Features/DataCollection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/Features/VisualClock.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/Features/DataSharing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/SystemObjects/Executions.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/SystemObjects/Executions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/SystemObjects/TriggerObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/SystemObjects/TriggerObjects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicObject.py" beforeDir="false" afterPath="$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicObject.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,43 +77,23 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Experiments/Examples/BIUAutomation" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Experiments\Examples\BIUAutomation" />
-      <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Bots\GenerateMagicMethods" />
-      <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Bots\GenerateMagicMethods\result" />
-      <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Experiments\Examples" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Users\Lahav\ProgramingProjects\FTV\FTV\Managers" />
       <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Experiments\Examples\Algorithms" />
       <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Experiments\Examples" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Experiments\Examples\BIUAutomation" />
+      <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Experiments\Examples\BIUAutomation\Tools" />
+      <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Bots\GenerateMagicMethods" />
+      <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Bots\GenerateMagicMethods\result" />
+      <recent name="D:\Users\Lahav\ProgramingProjects\FTV\Experiments\Examples" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python.DynamicObjects">
-    <configuration name="DyBoolListExample" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ftv" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Experiments/Examples" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Experiments/Examples/DyBoolListExample.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.Main">
     <configuration name="DySwitchListExample" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ftv" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -211,21 +199,42 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ftv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Experiments/Examples/BIUAutomation" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Experiments/Examples/BIUAutomation/Main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.FTV" />
       <item itemvalue="Python.DyWifiExample" />
-      <item itemvalue="Python.DyBoolListExample" />
       <item itemvalue="Python.DySwitchListExample" />
       <item itemvalue="Python.Main (1)" />
       <item itemvalue="Python.DynamicObjects" />
+      <item itemvalue="Python.Main" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Main" />
         <item itemvalue="Python.DynamicObjects" />
         <item itemvalue="Python.Main (1)" />
         <item itemvalue="Python.DyWifiExample" />
         <item itemvalue="Python.DySwitchListExample" />
-        <item itemvalue="Python.DyBoolListExample" />
       </list>
     </recent_temporary>
   </component>
@@ -322,7 +331,13 @@
       <option name="presentableId" value="LOCAL‎00014" />
       <updated>1629223087974</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL‎00015" summary="Basic list methods have been implemented to DyList">
+      <created>1648132010146</created>
+      <option name="number" value="LOCAL‎00015" />
+      <option name="presentableId" value="LOCAL‎00015" />
+      <updated>1648132010146</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -351,57 +366,90 @@
     <MESSAGE value="ElseAction option has been added to the architecture." />
     <MESSAGE value="The magic methods generator has been updated." />
     <MESSAGE value="gitignore has been updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="gitignore has been updated" />
+    <MESSAGE value="Basic list methods have been implemented to DyList" />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic list methods have been implemented to DyList" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="715" y="223" key="#xdebugger.evaluate" timestamp="1648076712386">
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1648729945361">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="715" y="223" key="#xdebugger.evaluate/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648076712386" />
-    <state width="590" height="564" key="GridCell.Tab.0.bottom" timestamp="1648078418188">
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648729945361" />
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1648739520014">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="590" height="564" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648078418188" />
-    <state width="590" height="564" key="GridCell.Tab.0.center" timestamp="1648078418188">
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648739520014" />
+    <state x="285" y="354" width="1318" height="594" key="#xdebugger.evaluate" timestamp="1648754427332">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="590" height="564" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648078418188" />
-    <state width="590" height="564" key="GridCell.Tab.0.left" timestamp="1648078418188">
+    <state x="285" y="354" width="1318" height="594" key="#xdebugger.evaluate/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648754427332" />
+    <state x="587" y="88" key="CommitChangelistDialog2" timestamp="1648132009817">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="590" height="564" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648078418188" />
-    <state width="590" height="564" key="GridCell.Tab.0.right" timestamp="1648078418188">
+    <state x="587" y="88" key="CommitChangelistDialog2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648132009817" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1648735585851">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="590" height="564" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648078418188" />
-    <state width="1877" height="320" key="GridCell.Tab.1.bottom" timestamp="1648076658852">
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648735585851" />
+    <state width="564" height="598" key="GridCell.Tab.0.bottom" timestamp="1648755884063">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="320" key="GridCell.Tab.1.bottom/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648076658852" />
-    <state width="1877" height="320" key="GridCell.Tab.1.center" timestamp="1648076658852">
+    <state width="564" height="598" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648755884063" />
+    <state width="564" height="598" key="GridCell.Tab.0.center" timestamp="1648755884063">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="320" key="GridCell.Tab.1.center/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648076658852" />
-    <state width="1877" height="320" key="GridCell.Tab.1.left" timestamp="1648076658852">
+    <state width="564" height="598" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648755884063" />
+    <state width="564" height="598" key="GridCell.Tab.0.left" timestamp="1648755884063">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="320" key="GridCell.Tab.1.left/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648076658852" />
-    <state width="1877" height="320" key="GridCell.Tab.1.right" timestamp="1648076658852">
+    <state width="564" height="598" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648755884063" />
+    <state width="564" height="598" key="GridCell.Tab.0.right" timestamp="1648755884063">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="320" key="GridCell.Tab.1.right/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648076658852" />
-    <state x="1971" y="207" width="878" height="679" key="dock-window-1" timestamp="1648077870618">
+    <state width="564" height="598" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648755884063" />
+    <state width="1877" height="286" key="GridCell.Tab.1.bottom" timestamp="1648754095194">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="286" key="GridCell.Tab.1.bottom/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648754095194" />
+    <state width="1877" height="286" key="GridCell.Tab.1.center" timestamp="1648754095194">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="286" key="GridCell.Tab.1.center/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648754095194" />
+    <state width="1877" height="286" key="GridCell.Tab.1.left" timestamp="1648754095194">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="286" key="GridCell.Tab.1.left/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648754095194" />
+    <state width="1877" height="286" key="GridCell.Tab.1.right" timestamp="1648754095194">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="286" key="GridCell.Tab.1.right/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648754095194" />
+    <state x="461" y="165" key="SettingsEditor" timestamp="1648730205513">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="165" key="SettingsEditor/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648730205513" />
+    <state x="509" y="256" width="901" height="749" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1648724301252">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="509" y="256" width="901" height="749" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648724301252" />
+    <state x="1946" y="0" width="1482" height="679" maximized="true" key="dock-window-1" timestamp="1648726131743">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="1971" y="207" width="878" height="679" key="dock-window-1/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648077870618" />
-    <state x="667" y="253" width="1146" height="558" key="find.popup" timestamp="1648077829083">
+    <state x="1946" y="0" width="1482" height="679" maximized="true" key="dock-window-1/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648726131743" />
+    <state x="771" y="128" width="1075" height="797" key="dock-window-2" timestamp="1648734678936">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="253" width="1146" height="558" key="find.popup/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648077829083" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1648076897448">
+    <state x="771" y="128" width="1075" height="797" key="dock-window-2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648734678936" />
+    <state x="667" y="253" width="1146" height="564" key="find.popup" timestamp="1648753246456">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648076897448" />
+    <state x="667" y="253" width="1146" height="564" key="find.popup/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648753246456" />
+    <state x="803" y="305" key="refactoring.ChangeSignatureDialog" timestamp="1648731510599">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="803" y="305" key="refactoring.ChangeSignatureDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648731510599" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1648750636521">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1648750636521" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -418,7 +466,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/FTV/Objects/SystemObjects/Executions.py</url>
-          <line>122</line>
+          <line>132</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -471,6 +519,21 @@
           <line>85</line>
           <option name="timeStamp" value="249" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/FTV/Objects/SystemObjects/Executions.py</url>
+          <line>62</line>
+          <option name="timeStamp" value="260" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/FTV/Objects/Variables/AbstractDynamicObject.py</url>
+          <line>38</line>
+          <option name="timeStamp" value="261" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Experiments/Examples/BIUAutomation/AppTools/Calendars.py</url>
+          <line>73</line>
+          <option name="timeStamp" value="279" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -479,6 +542,7 @@
         <watch expression="self.action_name" language="Python" />
         <watch expression="self.progress_step*(self.progress // self.progress_step)" language="Python" />
         <watch expression="func[0]" language="Python" />
+        <watch expression="self.e" language="Python" />
       </configuration>
     </watches-manager>
   </component>
